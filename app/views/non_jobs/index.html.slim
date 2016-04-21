@@ -1,0 +1,27 @@
+.page-header
+  = link_to new_non_job_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Non job
+  h1
+    | Listing non_jobs
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Name
+        th
+        th
+        th
+    tbody
+      - @non_jobs.each do | non_job |
+        tr
+          td
+            = non_job.name
+          td
+            = link_to 'Show', non_job
+          td
+            = link_to 'Edit', edit_non_job_path(non_job) 
+          td
+            = link_to 'Destroy', non_job, method: :delete, data: { confirm: 'Are you sure?' } 

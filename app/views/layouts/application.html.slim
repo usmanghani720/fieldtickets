@@ -30,6 +30,15 @@ html
             li class="#{'active' if controller_name == 'employees'}"
               a href="/employees"
                 | Employees
+            li class="#{'active' if controller_name == 'customers'}"
+              a href="/customers"
+                | Customers
+            li class="#{'active' if controller_name == 'jobs'}"
+              a href="/jobs"
+                | Jobs
+            li class="#{'active' if controller_name == 'employees'}"
+              a href="/employees"
+                | Employees
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

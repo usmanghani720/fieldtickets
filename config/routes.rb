@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :non_jobs
+  resources :jobs
+  resources :customers
   resources :employees
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

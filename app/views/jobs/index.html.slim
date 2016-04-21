@@ -1,0 +1,39 @@
+.page-header
+  = link_to new_job_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Job
+  h1
+    | Listing jobs
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Internal number
+        th
+          | Customers number
+        th
+          | Flat rate
+        th
+          | Customer
+        th
+        th
+        th
+    tbody
+      - @jobs.each do | job |
+        tr
+          td
+            = job.internal_number
+          td
+            = job.customers_number
+          td
+            = job.flat_rate
+          td
+            = job.customer
+          td
+            = link_to 'Show', job
+          td
+            = link_to 'Edit', edit_job_path(job) 
+          td
+            = link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } 

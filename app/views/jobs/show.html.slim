@@ -1,0 +1,26 @@
+.page-header
+  = link_to jobs_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_job_path(@job), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show job
+dl.dl-horizontal
+  dt
+    | Internal number:
+  dd
+    = @job.internal_number
+  dt
+    | Customers number:
+  dd
+    = @job.customers_number
+  dt
+    | Flat rate:
+  dd
+    = @job.flat_rate
+  dt
+    | Customer:
+  dd
+    = @job.customer

@@ -1,0 +1,31 @@
+= form_for(@job, html: { class: "form-horizontal", role: "form" }) do |f|
+  - if @job.errors.any?
+    .alert.alert-danger.alert-dismissable role="alert"
+      button.close type="button" data-dismiss="alert"
+        span aria-hidden="true"
+          | &times;
+        span.sr-only
+          | Close
+      h4= "#{pluralize(@job.errors.count,"error")} prohibited this job from being saved:"
+      ul
+        - @job.errors.full_messages.each do |msg|
+          li= msg
+  .form-group
+    = f.label :internal_number, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :internal_number, class: "form-control"
+  .form-group
+    = f.label :customers_number, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :customers_number, class: "form-control"
+  .form-group
+    = f.label :flat_rate, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :flat_rate, class: "form-control"
+  .form-group
+    = f.label :customer, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :customer, class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-primary"
