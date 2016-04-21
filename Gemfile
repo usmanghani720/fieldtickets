@@ -1,5 +1,13 @@
 source 'https://rubygems.org'
 
+gem 'devise'
+gem 'pg'
+gem 'slim-rails'
+gem 'route_downcaser'
+gem 'paperclip'
+gem 'paranoia'
+gem 'bootstrap-generators'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
