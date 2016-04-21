@@ -1,0 +1,26 @@
+.page-header
+  = link_to equipment_index_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_equipment_path(@equipment), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show equipment
+dl.dl-horizontal
+  dt
+    | Internal number:
+  dd
+    = @equipment.internal_number
+  dt
+    | License plate number:
+  dd
+    = @equipment.license_plate_number
+  dt
+    | Vin:
+  dd
+    = @equipment.vin
+  dt
+    | Vehicle type:
+  dd
+    = @equipment.vehicle_type

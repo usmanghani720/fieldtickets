@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421212656) do
+ActiveRecord::Schema.define(version: 20160421213141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,33 @@ ActiveRecord::Schema.define(version: 20160421212656) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "equipment", force: :cascade do |t|
+    t.text     "internal_number"
+    t.text     "license_plate_number"
+    t.text     "vin"
+    t.text     "vehicle_type"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "field_tickets", force: :cascade do |t|
+    t.integer  "job_id"
+    t.integer  "non_job_id"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.boolean  "customer_approved_work"
+    t.text     "customer_name_and_title"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "customer_signature_file_name"
+    t.string   "customer_signature_content_type"
+    t.integer  "customer_signature_file_size"
+    t.datetime "customer_signature_updated_at"
+  end
+
+  add_index "field_tickets", ["job_id"], name: "index_field_tickets_on_job_id", using: :btree
+  add_index "field_tickets", ["non_job_id"], name: "index_field_tickets_on_non_job_id", using: :btree
 
   create_table "jobs", force: :cascade do |t|
     t.text     "internal_number"
@@ -65,5 +92,7 @@ ActiveRecord::Schema.define(version: 20160421212656) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "field_tickets", "jobs"
+  add_foreign_key "field_tickets", "non_jobs"
   add_foreign_key "jobs", "customers"
 end

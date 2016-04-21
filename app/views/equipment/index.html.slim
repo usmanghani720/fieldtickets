@@ -1,0 +1,39 @@
+.page-header
+  = link_to new_equipment_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Equipment
+  h1
+    | Listing equipment
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Internal number
+        th
+          | License plate number
+        th
+          | Vin
+        th
+          | Vehicle type
+        th
+        th
+        th
+    tbody
+      - @equipment.each do | equipment |
+        tr
+          td
+            = equipment.internal_number
+          td
+            = equipment.license_plate_number
+          td
+            = equipment.vin
+          td
+            = equipment.vehicle_type
+          td
+            = link_to 'Show', equipment
+          td
+            = link_to 'Edit', edit_equipment_path(equipment) 
+          td
+            = link_to 'Destroy', equipment, method: :delete, data: { confirm: 'Are you sure?' } 

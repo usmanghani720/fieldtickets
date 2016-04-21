@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :non_jobs
+  resources :field_tickets
+  resources :equipment
+  resources :non_jobs, path: 'non-jobs'
   resources :jobs
   resources :customers
   resources :employees

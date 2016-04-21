@@ -1,0 +1,34 @@
+.page-header
+  = link_to field_tickets_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_field_ticket_path(@field_ticket), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show field_ticket
+dl.dl-horizontal
+  dt
+    | Job:
+  dd
+    = @field_ticket.job
+  dt
+    | Non job:
+  dd
+    = @field_ticket.non_job
+  dt
+    | Started at:
+  dd
+    = @field_ticket.started_at
+  dt
+    | Finished at:
+  dd
+    = @field_ticket.finished_at
+  dt
+    | Customer approved work:
+  dd
+    = @field_ticket.customer_approved_work
+  dt
+    | Customer name and title:
+  dd
+    = @field_ticket.customer_name_and_title

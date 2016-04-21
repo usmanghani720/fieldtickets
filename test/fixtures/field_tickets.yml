@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  job_id: 
+  non_job_id: 
+  started_at: 2016-04-21 17:31:41
+  finished_at: 2016-04-21 17:31:41
+  customer_approved_work: false
+  customer_name_and_title: MyText
+
+two:
+  job_id: 
+  non_job_id: 
+  started_at: 2016-04-21 17:31:41
+  finished_at: 2016-04-21 17:31:41
+  customer_approved_work: false
+  customer_name_and_title: MyText

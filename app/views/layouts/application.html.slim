@@ -36,9 +36,9 @@ html
             li class="#{'active' if controller_name == 'jobs'}"
               a href="/jobs"
                 | Jobs
-            li class="#{'active' if controller_name == 'employees'}"
-              a href="/employees"
-                | Employees
+            li class="#{'active' if controller_name == 'non_jobs'}"
+              a href="/non-jobs"
+                | Non-Jobs
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

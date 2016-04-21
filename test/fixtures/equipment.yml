@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  internal_number: MyText
+  license_plate_number: MyText
+  vin: MyText
+  vehicle_type: MyText
+
+two:
+  internal_number: MyText
+  license_plate_number: MyText
+  vin: MyText
+  vehicle_type: MyText
