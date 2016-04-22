@@ -69,6 +69,6 @@ class FieldTicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_ticket_params
-      params.require(:field_ticket).permit(:job_id, :non_job_id, :started_at, :finished_at, :customer_approved_work, :customer_name_and_title)
+      params.require(:field_ticket).permit(:job_id, :non_job_id, :started_at, :finished_at, :customer_approved_work, :customer_name_and_title, :customer_signature)
     end
 end

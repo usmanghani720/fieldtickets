@@ -6,29 +6,39 @@
     span.glyphicon.glyphicon-pencil
     |  Edit 
   h1
-    | Show field_ticket
+    | Field Ticket
 dl.dl-horizontal
   dt
     | Job:
   dd
     = @field_ticket.job
+    
   dt
     | Non job:
   dd
     = @field_ticket.non_job
+    
   dt
     | Started at:
   dd
     = @field_ticket.started_at
+    
   dt
     | Finished at:
   dd
     = @field_ticket.finished_at
+    
   dt
-    | Customer approved work:
+    | Customer Approved?
   dd
     = @field_ticket.customer_approved_work
+    
   dt
-    | Customer name and title:
+    | Customer Signature:
+  dd
+    = image_tag @field_ticket.customer_signature.url(:thumb)
+    
+  dt
+    | Name &amp; Title:
   dd
     = @field_ticket.customer_name_and_title

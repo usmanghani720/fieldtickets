@@ -3,7 +3,7 @@
     span.glyphicon.glyphicon-plus
     |  New Employee
   h1
-    | Listing employees
+    | Employees
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
@@ -14,8 +14,6 @@
         th
           | Internal number
         th
-        th
-        th
     tbody
       - @employees.each do | employee |
         tr
@@ -25,7 +23,7 @@
             = employee.internal_number
           td
             = link_to 'Show', employee
-          td
+            |  
             = link_to 'Edit', edit_employee_path(employee) 
-          td
+            |  
             = link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } 

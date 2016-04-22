@@ -30,6 +30,24 @@
     = f.label :customer_approved_work, class: "col-sm-2 control-label"
     .col-sm-10
       = f.check_box :customer_approved_work, class: "form-control"
+      
+  .form-group
+    = f.label :customer_signature, class: "col-sm-2 control-label"
+    .col-sm-10
+      /= f.file_field :customer_signature, class: "form-control"
+      canvas#signature_canvas width="500px" height="200px"
+      a#reset_signature_canvas.btn.btn-sm.btn-primary Clear Signature
+      
+    javascript:
+      var canvas = document.querySelector("#signature_canvas");
+      var signaturePad = new SignaturePad(canvas);
+    
+    coffee:
+      $('#reset_signature_canvas').click ->
+        signaturePad.clear()
+      
+        
+      
   .form-group
     = f.label :customer_name_and_title, class: "col-sm-2 control-label"
     .col-sm-10

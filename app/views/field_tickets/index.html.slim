@@ -1,9 +1,9 @@
 .page-header
   = link_to new_field_ticket_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
-    |  New Field ticket
+    |  New Field Ticket
   h1
-    | Listing field_tickets
+    | Field Tickets
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
@@ -22,8 +22,6 @@
         th
           | Customer name and title
         th
-        th
-        th
     tbody
       - @field_tickets.each do | field_ticket |
         tr
@@ -41,7 +39,7 @@
             = field_ticket.customer_name_and_title
           td
             = link_to 'Show', field_ticket
-          td
+            |  
             = link_to 'Edit', edit_field_ticket_path(field_ticket) 
-          td
+            |  
             = link_to 'Destroy', field_ticket, method: :delete, data: { confirm: 'Are you sure?' } 
