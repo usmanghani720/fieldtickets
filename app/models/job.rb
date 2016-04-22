@@ -8,4 +8,17 @@ class Job < ActiveRecord::Base
       'Hourly'
     end
   end
+  
+  def customer_name=(name)
+    self.customer = Customer.find_or_create_by(name: name)
+  end
+  
+  def customer_name
+    if customer
+      customer.name
+    else
+      ''
+    end
+  end
+  
 end

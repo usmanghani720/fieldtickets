@@ -11,9 +11,9 @@
         - @job.errors.full_messages.each do |msg|
           li= msg
   .form-group
-    = f.label :customer, class: "col-sm-2 control-label"
+    = f.label :customer_name, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.autocomplete_field :customer, autocomplete_customer_name_jobs_path, class: "form-control"
+      = f.autocomplete_field :customer_name, autocomplete_customer_name_jobs_path, class: "form-control"
       
   .form-group
     = f.label :internal_number, class: "col-sm-2 control-label"
