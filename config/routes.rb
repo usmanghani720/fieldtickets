@@ -1,19 +1,28 @@
 Rails.application.routes.draw do
   namespace :timesheet do
     resources :scaffold_entries
-  end
-  namespace :timesheet do
     resources :employee_entries
   end
+  
   resources :timesheets, module: :timesheet
   
-  resources :field_tickets, path: 'field-tickets'
+  resources :field_tickets, path: 'field-tickets' do
+    get :autocomplete_job_internal_number, on: :collection
+    get :autocomplete_non_job_name, on: :collection
+  end
+  
   resources :equipment
   resources :non_jobs, path: 'non-jobs'
-  resources :jobs
+  
+  resources :jobs do
+    get :autocomplete_customer_name, on: :collection
+  end
+  
   resources :customers
   resources :employees
+  
   devise_for :users
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

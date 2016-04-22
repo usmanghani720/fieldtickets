@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
+  autocomplete :customer, :name, full: true, limit: 50
 
   # GET /jobs
   # GET /jobs.json

@@ -13,11 +13,11 @@
   .form-group
     = f.label :job, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :job, class: "form-control"
+      = f.autocomplete_field :job, autocomplete_job_internal_number_field_tickets_path, class: "form-control"
   .form-group
     = f.label :non_job, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :non_job, class: "form-control"
+      = f.collection_select :non_job_id, NonJob.all, :id, :name, include_blank: true
   .form-group
     = f.label :started_at, class: "col-sm-2 control-label"
     .col-sm-10
@@ -29,7 +29,7 @@
   .form-group
     = f.label :customer_approved_work, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.check_box :customer_approved_work, class: "form-control"
+      = f.check_box :customer_approved_work, class: "form-control", data: {'off-label': 'No', 'on-label': 'Yes'}
       
   .form-group
     = f.label :customer_signature, class: "col-sm-2 control-label"
@@ -100,3 +100,6 @@ coffee:
     hasSignature = false
     input.value = ''
     signaturePad.clear()
+
+coffee:
+  $('#field_ticket_customer_approved_work').checkboxpicker()

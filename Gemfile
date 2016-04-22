@@ -8,6 +8,9 @@ gem 'paperclip'
 gem 'paranoia'
 gem 'bootstrap-generators'
 gem 'aws-sdk', '< 2.0' # Paperclip requires an old version of the ugly Amazon SDK gem
+gem 'rails-jquery-autocomplete'
+gem 'jquery-ui-rails'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

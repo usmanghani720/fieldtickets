@@ -1,5 +1,6 @@
 class FieldTicketsController < ApplicationController
   before_action :set_field_ticket, only: [:show, :edit, :update, :destroy]
+  autocomplete :job, :internal_number, full: false, limit: 50
 
   # GET /field_tickets
   # GET /field_tickets.json

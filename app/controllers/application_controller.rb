@@ -1,3 +1,5 @@
+require 'rails-jquery-autocomplete'
+
 class ApplicationController < ActionController::Base
   include RenamedRoutesHelper
   include DateHelper

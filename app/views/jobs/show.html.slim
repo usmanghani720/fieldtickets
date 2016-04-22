@@ -9,18 +9,18 @@
     | Job
 dl.dl-horizontal
   dt
-    | Internal number:
-  dd
-    = @job.internal_number
-  dt
-    | Customers number:
-  dd
-    = @job.customers_number
-  dt
-    | Flat rate:
-  dd
-    = @job.flat_rate
-  dt
     | Customer:
   dd
     = @job.customer
+  dt
+    | BRM #
+  dd
+    = @job.internal_number
+  dt
+    | Customer’s Job #
+  dd
+    = @job.customers_number
+  dt
+    | Billing:
+  dd
+    = @job.billing

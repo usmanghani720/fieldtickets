@@ -10,13 +10,13 @@
     thead
       tr
         th
-          | Internal number
-        th
-          | Customers number
-        th
-          | Flat rate
-        th
           | Customer
+        th
+          | BRM #
+        th
+          | Customer’s Job #
+        th
+          | Billing
         th
         th
         th
@@ -24,13 +24,13 @@
       - @jobs.each do | job |
         tr
           td
+            = job.customer
+          td
             = job.internal_number
           td
             = job.customers_number
           td
-            = job.flat_rate
-          td
-            = job.customer
+            = job.billing
           td
             = link_to 'Show', job
           td

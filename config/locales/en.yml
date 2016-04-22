@@ -24,5 +24,5 @@ en:
     label:
       job:
         internal_number: "BRM #"
-        customers_number: "Customer Job #"
+        customers_number: "Customer’s Job #"
         flat_rate: "Billing"

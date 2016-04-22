@@ -13,7 +13,8 @@
   .form-group
     = f.label :customer, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.text_field :customer, class: "form-control"
+      = f.autocomplete_field :customer, autocomplete_customer_name_jobs_path, class: "form-control"
+      
   .form-group
     = f.label :internal_number, class: "col-sm-2 control-label"
     .col-sm-10
