@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421232338) do
+ActiveRecord::Schema.define(version: 20160422185820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,19 @@ ActiveRecord::Schema.define(version: 20160421232338) do
   add_index "timesheet_employee_entries", ["employee_id"], name: "index_timesheet_employee_entries_on_employee_id", using: :btree
   add_index "timesheet_employee_entries", ["timesheet_timesheet_id"], name: "index_timesheet_employee_entries_on_timesheet_timesheet_id", using: :btree
 
+  create_table "timesheet_equipment_entries", force: :cascade do |t|
+    t.integer  "timesheet_id"
+    t.integer  "equipment_id"
+    t.decimal  "fuel_gallons"
+    t.decimal  "mileage_start"
+    t.decimal  "mileage_end"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "timesheet_equipment_entries", ["equipment_id"], name: "index_timesheet_equipment_entries_on_equipment_id", using: :btree
+  add_index "timesheet_equipment_entries", ["timesheet_id"], name: "index_timesheet_equipment_entries_on_timesheet_id", using: :btree
+
   create_table "timesheet_scaffold_entries", force: :cascade do |t|
     t.integer  "timesheet_timesheet_id"
     t.integer  "equipment_id"
@@ -143,6 +156,7 @@ ActiveRecord::Schema.define(version: 20160421232338) do
   add_foreign_key "jobs", "customers"
   add_foreign_key "timesheet_employee_entries", "employees"
   add_foreign_key "timesheet_employee_entries", "timesheet_timesheets"
+  add_foreign_key "timesheet_equipment_entries", "equipment"
   add_foreign_key "timesheet_scaffold_entries", "equipment"
   add_foreign_key "timesheet_scaffold_entries", "timesheet_timesheets"
   add_foreign_key "timesheet_timesheets", "field_tickets"

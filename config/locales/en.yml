@@ -26,3 +26,5 @@ en:
         internal_number: "BRM #"
         customers_number: "Customer’s Job #"
         flat_rate: "Billing"
+      equipment:
+        internal_number: "BRM ID #"

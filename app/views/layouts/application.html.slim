@@ -11,8 +11,8 @@ html
     /! HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
     /[if lt IE 9]
       = javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js"
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
   body
     nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
@@ -36,6 +36,9 @@ html
             li class="#{'active' if controller_name == 'employees'}"
               a href="/employees"
                 | Employees
+            li class="#{'active' if controller_name == 'equipment'}"
+              a href="/vehicles"
+                | Vehicles
             li class="#{'active' if controller_name == 'customers'}"
               a href="/customers"
                 | Customers

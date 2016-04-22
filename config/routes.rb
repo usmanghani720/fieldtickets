@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get :autocomplete_non_job_name, on: :collection
   end
   
-  resources :equipment
+  resources :equipment, path: 'vehicles'
   resources :non_jobs, path: 'non-jobs'
   
   resources :jobs do
