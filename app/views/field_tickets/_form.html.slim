@@ -22,11 +22,11 @@
   .form-group
     = f.label :started_at, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.datetime_select :started_at, class: "form-control"
+      = f.text_field :started_at, class: "form-control"
   .form-group
     = f.label :finished_at, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.datetime_select :finished_at, class: "form-control"
+      = f.text_field :finished_at, class: "form-control"
   .form-group
     = f.label :customer_approved_work, class: "col-sm-2 control-label"
     .col-sm-10

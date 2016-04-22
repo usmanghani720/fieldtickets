@@ -12,6 +12,7 @@ gem 'rails-jquery-autocomplete'
 gem 'jquery-ui-rails'
 gem 'seed_dump'
 gem 'bootstrap-select-rails'
+gem 'chronic'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

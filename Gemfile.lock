@@ -50,6 +50,7 @@ GEM
     bootstrap-select-rails (1.6.3)
     builder (3.2.2)
     byebug (8.2.4)
+    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -241,6 +242,7 @@ DEPENDENCIES
   bootstrap-generators
   bootstrap-select-rails
   byebug
+  chronic
   coffee-rails (~> 4.1.0)
   devise
   guard (>= 2.2.2)
