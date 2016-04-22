@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  timesheet_id: 
+  equipment_id: 
+  fuel_gallons: 
+  mileage_start: 
+  mileage_end: 
+
+two:
+  timesheet_id: 
+  equipment_id: 
+  fuel_gallons: 
+  mileage_start: 
+  mileage_end: 

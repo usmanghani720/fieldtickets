@@ -1,0 +1,50 @@
+.page-header
+  = link_to timesheets_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_timesheet_path(@timesheet), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show timesheet
+dl.dl-horizontal
+  dt
+    | Field ticket:
+  dd
+    = @timesheet.field_ticket
+  dt
+    | Site supervisor:
+  dd
+    = @timesheet.site_supervisor
+  dt
+    | Crew chief:
+  dd
+    = @timesheet.crew_chief
+  dt
+    | Finalized:
+  dd
+    = @timesheet.finalized
+  dt
+    | Project:
+  dd
+    = @timesheet.project
+  dt
+    | Supplies teeth:
+  dd
+    = @timesheet.supplies_teeth
+  dt
+    | Supplies oil:
+  dd
+    = @timesheet.supplies_oil
+  dt
+    | Supplies holders:
+  dd
+    = @timesheet.supplies_holders
+  dt
+    | Supplies other:
+  dd
+    = @timesheet.supplies_other
+  dt
+    | Left job at:
+  dd
+    = @timesheet.left_job_at

@@ -24,9 +24,15 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to "Project name", "#", class: "navbar-brand"
+          = link_to "Acme, Inc.", "#", class: "navbar-brand"
         #navbar.collapse.navbar-collapse
           ul.nav.navbar-nav
+            li class="#{'active' if controller_name == 'field_tickets'}"
+              a href="/field-tickets"
+                | Field Tickets
+            li class="#{'active' if controller_name == 'timesheets'}"
+              a href="/timesheets"
+                | Timesheets
             li class="#{'active' if controller_name == 'employees'}"
               a href="/employees"
                 | Employees

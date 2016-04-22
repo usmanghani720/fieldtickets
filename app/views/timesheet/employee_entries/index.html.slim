@@ -1,0 +1,47 @@
+.page-header
+  = link_to new_timesheet_employee_entry_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Employee entry
+  h1
+    | Listing timesheet_employee_entries
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Timesheet
+        th
+          | Employee
+        th
+          | Start at
+        th
+          | End at
+        th
+          | Minutes worked
+        th
+          | Boolean
+        th
+        th
+        th
+    tbody
+      - @timesheet_employee_entries.each do | timesheet_employee_entry |
+        tr
+          td
+            = timesheet_employee_entry.timesheet
+          td
+            = timesheet_employee_entry.employee
+          td
+            = timesheet_employee_entry.start_at
+          td
+            = timesheet_employee_entry.end_at
+          td
+            = timesheet_employee_entry.minutes_worked
+          td
+            = timesheet_employee_entry.boolean
+          td
+            = link_to 'Show', timesheet_employee_entry
+          td
+            = link_to 'Edit', edit_timesheet_employee_entry_path(timesheet_employee_entry) 
+          td
+            = link_to 'Destroy', timesheet_employee_entry, method: :delete, data: { confirm: 'Are you sure?' } 

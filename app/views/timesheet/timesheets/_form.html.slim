@@ -1,0 +1,55 @@
+= form_for(@timesheet, html: { class: "form-horizontal", role: "form" }) do |f|
+  - if @timesheet.errors.any?
+    .alert.alert-danger.alert-dismissable role="alert"
+      button.close type="button" data-dismiss="alert"
+        span aria-hidden="true"
+          | &times;
+        span.sr-only
+          | Close
+      h4= "#{pluralize(@timesheet.errors.count,"error")} prohibited this timesheet from being saved:"
+      ul
+        - @timesheet.errors.full_messages.each do |msg|
+          li= msg
+  .form-group
+    = f.label :field_ticket, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :field_ticket, class: "form-control"
+  .form-group
+    = f.label :site_supervisor, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :site_supervisor, class: "form-control"
+  .form-group
+    = f.label :crew_chief, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :crew_chief, class: "form-control"
+  .form-group
+    = f.label :finalized, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :finalized, class: "form-control"
+  .form-group
+    = f.label :project, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :project, class: "form-control"
+  .form-group
+    = f.label :supplies_teeth, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :supplies_teeth, class: "form-control"
+  .form-group
+    = f.label :supplies_oil, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :supplies_oil, class: "form-control"
+  .form-group
+    = f.label :supplies_holders, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :supplies_holders, class: "form-control"
+  .form-group
+    = f.label :supplies_other, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_area :supplies_other, class: "form-control"
+  .form-group
+    = f.label :left_job_at, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.datetime_select :left_job_at, class: "form-control"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: "btn btn-primary"

@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :field_tickets
+  namespace :timesheet do
+    resources :scaffold_entries
+  end
+  namespace :timesheet do
+    resources :employee_entries
+  end
+  resources :timesheets, module: :timesheet
+  
+  resources :field_tickets, path: 'field-tickets'
   resources :equipment
   resources :non_jobs, path: 'non-jobs'
   resources :jobs

@@ -1,0 +1,2 @@
+module Timesheet::ScaffoldEntriesHelper
+end

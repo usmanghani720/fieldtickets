@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160421213141) do
+ActiveRecord::Schema.define(version: 20160421232338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,52 @@ ActiveRecord::Schema.define(version: 20160421213141) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "timesheet_employee_entries", force: :cascade do |t|
+    t.integer  "timesheet_timesheet_id"
+    t.integer  "employee_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.integer  "minutes_worked"
+    t.boolean  "per_diem"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "timesheet_employee_entries", ["employee_id"], name: "index_timesheet_employee_entries_on_employee_id", using: :btree
+  add_index "timesheet_employee_entries", ["timesheet_timesheet_id"], name: "index_timesheet_employee_entries_on_timesheet_timesheet_id", using: :btree
+
+  create_table "timesheet_scaffold_entries", force: :cascade do |t|
+    t.integer  "timesheet_timesheet_id"
+    t.integer  "equipment_id"
+    t.integer  "fuel_gallons"
+    t.integer  "mileage_start"
+    t.integer  "mileage_end"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "timesheet_scaffold_entries", ["equipment_id"], name: "index_timesheet_scaffold_entries_on_equipment_id", using: :btree
+  add_index "timesheet_scaffold_entries", ["timesheet_timesheet_id"], name: "index_timesheet_scaffold_entries_on_timesheet_timesheet_id", using: :btree
+
+  create_table "timesheet_timesheets", force: :cascade do |t|
+    t.integer  "field_ticket_id"
+    t.integer  "site_supervisor_id"
+    t.integer  "crew_chief_id"
+    t.boolean  "finalized"
+    t.text     "project"
+    t.text     "supplies_teeth"
+    t.text     "supplies_oil"
+    t.text     "supplies_holders"
+    t.text     "supplies_other"
+    t.datetime "left_job_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "timesheet_timesheets", ["crew_chief_id"], name: "index_timesheet_timesheets_on_crew_chief_id", using: :btree
+  add_index "timesheet_timesheets", ["field_ticket_id"], name: "index_timesheet_timesheets_on_field_ticket_id", using: :btree
+  add_index "timesheet_timesheets", ["site_supervisor_id"], name: "index_timesheet_timesheets_on_site_supervisor_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -95,4 +141,9 @@ ActiveRecord::Schema.define(version: 20160421213141) do
   add_foreign_key "field_tickets", "jobs"
   add_foreign_key "field_tickets", "non_jobs"
   add_foreign_key "jobs", "customers"
+  add_foreign_key "timesheet_employee_entries", "employees"
+  add_foreign_key "timesheet_employee_entries", "timesheet_timesheets"
+  add_foreign_key "timesheet_scaffold_entries", "equipment"
+  add_foreign_key "timesheet_scaffold_entries", "timesheet_timesheets"
+  add_foreign_key "timesheet_timesheets", "field_tickets"
 end
