@@ -28,7 +28,7 @@ class NonJobsController < ApplicationController
 
     respond_to do |format|
       if @non_job.save
-        format.html { redirect_to @non_job, notice: 'Non job was successfully created.' }
+        format.html { redirect_to non_jobs_path, notice: 'Non job was successfully created.' }
         format.json { render :show, status: :created, location: @non_job }
       else
         format.html { render :new }

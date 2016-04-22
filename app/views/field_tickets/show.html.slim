@@ -21,12 +21,12 @@ dl.dl-horizontal
   dt
     | Started at:
   dd
-    = @field_ticket.started_at
+    = format_datetime @field_ticket.started_at
     
   dt
     | Finished at:
   dd
-    = @field_ticket.finished_at
+    = format_datetime @field_ticket.finished_at
     
   dt
     | Customer Approved?
@@ -36,7 +36,7 @@ dl.dl-horizontal
   dt
     | Customer Signature:
   dd
-    = image_tag @field_ticket.customer_signature.url(:thumb)
+    = image_tag @field_ticket.customer_signature.url()
     
   dt
     | Name &amp; Title:

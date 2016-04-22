@@ -1,3 +1,5 @@
 @import "vendor/bootstrap-generators/bootstrap-generators";
 @import "vendor/bootstrap-generators/bootstrap-variables";
-@import "field_tickets";
+@import "vendor/bootstrap-switch";
+
+@import "pages/field_tickets";

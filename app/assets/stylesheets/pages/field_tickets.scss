@@ -1,7 +1,13 @@
 #signature_canvas {
-  border: 1px solid black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 #reset_signature_canvas {
-  //@extend .btn;
+  @extend .btn;
+  @extend .btn-sm;
+  @extend .btn-default;
+}
+
+#signature_canvas_container {
 }

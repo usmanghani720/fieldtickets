@@ -11,21 +11,24 @@
         - @job.errors.full_messages.each do |msg|
           li= msg
   .form-group
-    = f.label :internal_number, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.text_area :internal_number, class: "form-control"
-  .form-group
-    = f.label :customers_number, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.text_area :customers_number, class: "form-control"
-  .form-group
-    = f.label :flat_rate, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.check_box :flat_rate, class: "form-control"
-  .form-group
     = f.label :customer, class: "col-sm-2 control-label"
     .col-sm-10
       = f.text_field :customer, class: "form-control"
   .form-group
+    = f.label :internal_number, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :internal_number, class: "form-control"
+  .form-group
+    = f.label :customers_number, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :customers_number, class: "form-control"
+  .form-group
+    = f.label :flat_rate, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :flat_rate, class: "form-control", data: {'off-label': 'Hourly', 'on-label': 'Day Rate', 'off-active-cls': 'btn-primary', 'on-active-cls': 'btn-primary'}
+  .form-group
     .col-sm-offset-2.col-sm-10
-      = f.submit class: "btn btn-primary"
+      = f.submit class: "btn btn-primary btn-lg "
+
+coffee:
+  $('#job_flat_rate').checkboxpicker()
