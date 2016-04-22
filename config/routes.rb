@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   namespace :timesheet do
+    resources :equipment_entries
+  end
+  namespace :timesheet do
     resources :scaffold_entries
     resources :employee_entries
   end

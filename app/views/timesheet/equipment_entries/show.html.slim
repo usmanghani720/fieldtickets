@@ -1,0 +1,30 @@
+.page-header
+  = link_to timesheet_equipment_entries_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to edit_timesheet_equipment_entry_path(@timesheet_equipment_entry), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Show timesheet_equipment_entry
+dl.dl-horizontal
+  dt
+    | Timesheet:
+  dd
+    = @timesheet_equipment_entry.timesheet
+  dt
+    | Equipment:
+  dd
+    = @timesheet_equipment_entry.equipment
+  dt
+    | Fuel gallons:
+  dd
+    = @timesheet_equipment_entry.fuel_gallons
+  dt
+    | Mileage start:
+  dd
+    = @timesheet_equipment_entry.mileage_start
+  dt
+    | Mileage end:
+  dd
+    = @timesheet_equipment_entry.mileage_end
