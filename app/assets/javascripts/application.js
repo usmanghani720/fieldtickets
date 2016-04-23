@@ -16,9 +16,12 @@
 
 //= require autocomplete-rails
 
-//= require bootstrap
 //= require bootstrap-select
+//= require bootstrap-checkbox
 //= require bootstrap/alert
 //= require bootstrap/dropdown
+//= require bootstrap
+
+//= require signature_pad
 
 //= require data-links
