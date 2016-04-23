@@ -7,11 +7,3 @@ Employee.create!([
   {name: "Mark Twain", internal_number: ""},
   {name: "Vince Smith", internal_number: ""}
 ])
-NonJob.create!([
-  {name: "Weather"},
-  {name: "Overhead"},
-  {name: "Office Staff"},
-  {name: "Transport"},
-  {name: "Equipment Maintenance & Repair"},
-  {name: "Job Cancelled"}
-])

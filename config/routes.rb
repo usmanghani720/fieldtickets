@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   end
   
   resources :equipment, path: 'vehicles'
-  resources :non_jobs, path: 'non-jobs'
   
   resources :jobs do
     get :autocomplete_customer_name, on: :collection
