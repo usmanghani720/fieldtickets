@@ -17,7 +17,7 @@
         th
     tbody
       - @equipment.each do | equipment |
-        tr
+        tr data-link="#{equipment_path(equipment)}"
           td
             = equipment.internal_number
           td
