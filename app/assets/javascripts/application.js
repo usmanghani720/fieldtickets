@@ -21,4 +21,4 @@
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 
-//= require 
+//= require data-links

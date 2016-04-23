@@ -6,18 +6,31 @@ module FxActiveRecord
   def flash(method)
     case method
     when :create
-      self.reference_name + ' was successfully created.'
+      self.model_reference_name + ' was successfully created.'
     when :update
-      self.reference_name + ' was successfully updated.'
+      self.model_reference_name + ' was successfully updated.'
     when :destroy
-      self.reference_name + ' was successfully destroyed.'
+      self.model_reference_name + ' was successfully deleted.'
+    when :confirm_destroy
+      "Are you sure you want to delete #{self.model_reference_name}?"
     else
-      raise "Flash param `#{method} not found.`"
+      raise "FxActiveRecord: flash(param) `#{method}` not found."
     end
   end
   
-  def reference_name
+  def humanize
     self.class.human
+  end
+  
+  def reference_name
+  end
+  
+  def model_reference_name
+    if reference_name
+      "#{humanize} “#{reference_name}”"
+    else
+      humanize
+    end
   end
 
   # add your static(class) methods here

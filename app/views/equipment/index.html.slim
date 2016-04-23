@@ -14,7 +14,6 @@
           = Equipment.human_attribute_name :internal_number
         th
           = Equipment.human_attribute_name :vehicle_type
-        th
     tbody
       - @equipment.each do | equipment |
         tr data-link="#{equipment_path(equipment)}"
@@ -22,6 +21,4 @@
             = equipment.internal_number
           td
             = equipment.vehicle_type
-          td
-            = link_to 'Show', equipment
             
