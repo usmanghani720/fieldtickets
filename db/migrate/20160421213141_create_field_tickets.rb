@@ -14,8 +14,8 @@ class CreateFieldTickets < ActiveRecord::Migration
       t.text :supplies_holders
       t.text :supplies_other
       
-      t.decimal :length
-      t.decimal :width
+      t.integer :length
+      t.integer :width
       t.decimal :depth
 
       t.timestamps null: false

@@ -26,11 +26,11 @@ class FieldTicket < ActiveRecord::Base
     end
   end
   
-  def square_yards_human
+  def square_yards_human(default = 'Not entered')
     if square_yards
       "#{square_yards} square yards"
     else
-      'Not entered'
+      default
     end
   end
   

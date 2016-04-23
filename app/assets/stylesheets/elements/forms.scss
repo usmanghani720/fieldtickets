@@ -11,5 +11,11 @@
 //
 
 .bootstrap-select .btn:focus {
-    outline: none !important;
+  outline: none !important;
+}
+
+.form-control-calculated {
+  @extend .form-control;
+  border: none;
+  box-shadow: none;
 }
