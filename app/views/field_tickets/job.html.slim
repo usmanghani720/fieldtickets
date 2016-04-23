@@ -1,0 +1,20 @@
+.row
+  = render 'sidebar'
+      
+  div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+
+    = render 'header'
+    
+    = form_for(@field_ticket, html: { class: "form-horizontal", role: "form" }) do |f|
+
+      = render 'errors'
+      
+      .form-group
+        = f.label :non_job, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.select :non_job_id, options_for_select(FieldTicket::BILLING_TYPES), { include_blank: true }, { class: 'selectpicker' }
+
+      .form-group
+        = f.label :job, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.autocomplete_field :job, autocomplete_job_internal_number_field_tickets_path, class: 'form-control'

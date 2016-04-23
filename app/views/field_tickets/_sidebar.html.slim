@@ -1,0 +1,30 @@
+div class="col-sm-3 col-md-2 sidebar"
+  ul class="nav nav-sidebar"
+    li class="active"
+      a href="#{field_ticket_job_path @field_ticket}"
+        | Job
+        .detail # 3949
+    li
+      a href="#{field_ticket_employees_path @field_ticket}"
+        | Employees
+        .detail 2 in, 1 out
+    li
+      a href="#{field_ticket_delays_path @field_ticket}"
+        | Delays
+        .detail None
+    li
+      a href="#{field_ticket_vehicles_path @field_ticket}"
+        | Vehicles
+        .detail 1 in
+    li
+      a href="#{field_ticket_supplies_path @field_ticket}"
+        | Supplies
+        .detail None used
+    li
+      a href="#{field_ticket_dimensions_path @field_ticket}"
+        | Milling Dimensions
+        .detail Not entered
+    li
+      a href="#{field_ticket_approval_path @field_ticket}"
+        | Customer Approval
+        .detail Not yet approved

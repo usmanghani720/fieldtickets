@@ -1,15 +1,7 @@
 = form_for(@field_ticket, html: { class: "form-horizontal", role: "form" }) do |f|
-  - if @field_ticket.errors.any?
-    .alert.alert-danger.alert-dismissable role="alert"
-      button.close type="button" data-dismiss="alert"
-        span aria-hidden="true"
-          | &times;
-        span.sr-only
-          | Close
-      h4= "#{pluralize(@field_ticket.errors.count,"error")} prohibited this field_ticket from being saved:"
-      ul
-        - @field_ticket.errors.full_messages.each do |msg|
-          li= msg
+
+  = render 'errors'
+  
   .form-group
     = f.label :job, class: "col-sm-2 control-label"
     .col-sm-10
@@ -39,7 +31,7 @@
       #signature_canvas_container
         canvas#signature_canvas width="500px" height="100px"
       a#reset_signature_canvas Clear Signature
-      = f.hidden_field :customer_signature, id: 'customer_signature_input'
+      = f.hidden_field :customer_signature, id: 'customer_signature_input', value: ''
       
   .form-group
     = f.label :customer_name_and_title, class: "col-sm-2 control-label"

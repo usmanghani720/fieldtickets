@@ -23,8 +23,8 @@ en:
   activerecord:
     models:
       field_ticket:
-        one: 'Field Ticket'
-        other: 'Field Tickets'
+        one: 'Ticket'
+        other: 'Tickets'
       equipment:
         one: 'Vehicle'
         other: 'Vehicles'

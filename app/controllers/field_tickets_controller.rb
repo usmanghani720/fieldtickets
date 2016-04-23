@@ -1,5 +1,5 @@
 class FieldTicketsController < ApplicationController
-  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job]
   autocomplete :job, :internal_number, full: false, limit: 50
 
   # GET /field_tickets
@@ -11,6 +11,10 @@ class FieldTicketsController < ApplicationController
   # GET /field_tickets/1
   # GET /field_tickets/1.json
   def show
+    redirect_to field_ticket_job_path(@field_ticket)
+  end
+  
+  def job
   end
 
   # GET /field_tickets/new
@@ -65,7 +69,7 @@ class FieldTicketsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_field_ticket
-      @field_ticket = FieldTicket.find(params[:id])
+      @field_ticket = FieldTicket.find(params[:field_ticket_id] || params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

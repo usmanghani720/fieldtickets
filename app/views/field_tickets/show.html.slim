@@ -1,44 +1,49 @@
-.page-header
-  = link_to field_tickets_path, class: 'btn btn-default' do 
-    span.glyphicon.glyphicon-list-alt
-    |  Back 
-  = link_to edit_field_ticket_path(@field_ticket), class: 'btn btn-primary' do 
-    span.glyphicon.glyphicon-pencil
-    |  Edit 
-  h1
-    | Field Ticket
-dl.dl-horizontal
-  dt
-    = FieldTicket.human_attribute_name :job
-  dd
-    = @field_ticket.job
-    
-  dt
-    = FieldTicket.human_attribute_name :non_job
-  dd
-    = @field_ticket.non_job
-    
-  dt
-    = FieldTicket.human_attribute_name :started_at
-  dd
-    = @field_ticket.started_at
-    
-  dt
-    = FieldTicket.human_attribute_name :finished_at
-  dd
-    = @field_ticket.finished_at
-    
-  dt
-    = FieldTicket.human_attribute_name :customer_approved_work
-  dd
-    = @field_ticket.customer_approved_work
-    
-  dt
-    = FieldTicket.human_attribute_name :customer_signature
-  dd
-    = image_tag @field_ticket.customer_signature.url
-    
-  dt
-    = FieldTicket.human_attribute_name :customer_name_and_title
-  dd
-    = @field_ticket.customer_name_and_title
+.row
+  = render 'sidebar'
+      
+  div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+
+    .page-header
+      = link_to field_tickets_path, class: 'btn btn-default' do 
+        span.glyphicon.glyphicon-list-alt
+        |  Back 
+      = link_to edit_field_ticket_path(@field_ticket), class: 'btn btn-primary' do 
+        span.glyphicon.glyphicon-pencil
+        |  Edit 
+      h1 = @field_ticket.model_reference_name
+    dl.dl-horizontal
+      dt
+        = FieldTicket.human_attribute_name :job
+      dd
+        = @field_ticket.job
+      
+      dt
+        = FieldTicket.human_attribute_name :non_job
+      dd
+        = @field_ticket.non_job
+      
+      dt
+        = FieldTicket.human_attribute_name :started_at
+      dd
+        = @field_ticket.started_at
+      
+      dt
+        = FieldTicket.human_attribute_name :finished_at
+      dd
+        = @field_ticket.finished_at
+      
+      dt
+        = FieldTicket.human_attribute_name :customer_approved_work
+      dd
+        = @field_ticket.customer_approved_work
+      
+      dt
+        = FieldTicket.human_attribute_name :customer_signature
+      dd
+        = image_tag @field_ticket.customer_signature.url
+      
+      dt
+        = FieldTicket.human_attribute_name :customer_name_and_title
+      dd
+        = @field_ticket.customer_name_and_title
+  
