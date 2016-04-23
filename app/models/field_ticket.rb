@@ -21,7 +21,7 @@ class FieldTicket < ActiveRecord::Base
   end
   
   def square_yards
-    if length > 0 and width > 0
+    if length.to_i > 0 and width.to_i > 0
       (length * width).to_i
     end
   end

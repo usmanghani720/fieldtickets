@@ -25,26 +25,27 @@ html
             span.icon-bar
             span.icon-bar
           = link_to "Black Rock Milling", "#", class: "navbar-brand"
-        #navbar.collapse.navbar-collapse
-          ul.nav.navbar-nav
-            li class="#{'active' if controller_name == 'field_tickets'}"
-              a href="/tickets"
-                | Tickets
-            li class="#{'active' if controller_name == 'timesheets'}"
-              a href="/timesheets"
-                | Timesheets
-            li class="#{'active' if controller_name == 'employees'}"
-              a href="/employees"
-                | Employees
-            li class="#{'active' if controller_name == 'equipment'}"
-              a href="/vehicles"
-                | Vehicles
-            li class="#{'active' if controller_name == 'customers'}"
-              a href="/customers"
-                | Customers
-            li class="#{'active' if controller_name == 'jobs'}"
-              a href="/jobs"
-                | Jobs
+        - if not @minimal_ui
+          #navbar.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li class="#{'active' if controller_name == 'field_tickets'}"
+                a href="/tickets"
+                  | Tickets
+              li class="#{'active' if controller_name == 'timesheets'}"
+                a href="/timesheets"
+                  | Timesheets
+              li class="#{'active' if controller_name == 'employees'}"
+                a href="/employees"
+                  | Employees
+              li class="#{'active' if controller_name == 'equipment'}"
+                a href="/vehicles"
+                  | Vehicles
+              li class="#{'active' if controller_name == 'customers'}"
+                a href="/customers"
+                  | Customers
+              li class="#{'active' if controller_name == 'jobs'}"
+                a href="/jobs"
+                  | Jobs
     .container-fluid
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

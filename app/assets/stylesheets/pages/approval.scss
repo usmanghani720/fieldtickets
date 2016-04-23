@@ -1,0 +1,25 @@
+#approval_form {
+  
+  text-align: center;
+
+  .btn-approve {
+    @extend .btn;
+    @extend .btn-success;
+    @extend .btn-lg;
+    
+    margin-right: 15px;
+  }
+
+  .btn-disapprove {
+    @extend .btn;
+    @extend .btn-danger;
+    @extend .btn-lg;
+  }
+
+  .btn-cancel {
+    @extend .btn;
+    @extend .btn-default;
+    @extend .btn-sm;
+  }
+  
+}

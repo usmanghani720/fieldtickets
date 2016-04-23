@@ -14,7 +14,16 @@ class FieldTicketsController < ApplicationController
     redirect_to field_ticket_job_path(@field_ticket)
   end
   
-  
+  def approval
+    @minimal_ui = true
+    
+    #raise @field_ticket.customer_approved_work.inspect
+    if @field_ticket.customer_approved_work === nil
+      render 'approval1'
+    else
+      render text: 'asdf'
+    end
+  end
 
   # GET /field_tickets/new
   def new

@@ -6,6 +6,8 @@
 //@import "custom/rails-jquery-autocomplete";
 @import "vendor/jquery-ui";
 
-@import "pages/field_tickets";
 @import "elements/forms";
 @import "elements/sidebar";
+
+@import "pages/approval";
+@import "pages/field_tickets";
