@@ -2,9 +2,8 @@ require 'fx_datetime'
 
 class FieldTicket < ActiveRecord::Base
   belongs_to :job
-  belongs_to :non_job
   
-  BILLING_TYPES = ['Job', '-', 'Weather', 'Overhead', 'Office Staff', 'Transport', 'Equipment Maintenance & Repair', 'Job Cancelled']
+  BILLING_TYPES = ['Job', 'Cancelled Job', ['-', 'data-divider' => 'true'], 'Weather', 'Overhead', 'Office Staff', 'Transport', 'Equipment Maintenance & Repair']
   
   has_attached_file :customer_signature,
     styles: {
@@ -19,6 +18,20 @@ class FieldTicket < ActiveRecord::Base
   
   def model_reference_name
     "#{humanize} # #{reference_name}"
+  end
+  
+  def square_yards
+    if length > 0 and width > 0
+      (length * width).to_i
+    end
+  end
+  
+  def square_yards_human
+    if square_yards
+      "#{square_yards} square yards"
+    else
+      'Not entered'
+    end
   end
   
 end

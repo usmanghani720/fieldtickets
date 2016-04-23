@@ -1,30 +1,30 @@
 div class="col-sm-3 col-md-2 sidebar"
   ul class="nav nav-sidebar"
-    li class="active"
+    li class="#{'active' if params[:action] == 'job'}"
       a href="#{field_ticket_job_path @field_ticket}"
         | Job
         .detail # 3949
-    li
+    li class="#{'active' if params[:action] == 'employees'}"
       a href="#{field_ticket_employees_path @field_ticket}"
         | Employees
         .detail 2 in, 1 out
-    li
-      a href="#{field_ticket_delays_path @field_ticket}"
-        | Delays
-        .detail None
-    li
+    li class="#{'active' if params[:action] == 'vehicles'}"
       a href="#{field_ticket_vehicles_path @field_ticket}"
         | Vehicles
         .detail 1 in
-    li
+    li class="#{'active' if params[:action] == 'supplies'}"
       a href="#{field_ticket_supplies_path @field_ticket}"
         | Supplies
         .detail None used
-    li
+    li class="#{'active' if params[:action] == 'dimensions'}"
       a href="#{field_ticket_dimensions_path @field_ticket}"
         | Milling Dimensions
-        .detail Not entered
-    li
+        .detail = @field_ticket.square_yards_human
+    li class="#{'active' if params[:action] == 'delays'}"
+      a href="#{field_ticket_delays_path @field_ticket}"
+        | Delays
+        .detail None
+    li class="#{'active' if params[:action] == 'approval'}"
       a href="#{field_ticket_approval_path @field_ticket}"
         | Customer Approval
         .detail Not yet approved

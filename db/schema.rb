@@ -40,13 +40,21 @@ ActiveRecord::Schema.define(version: 20160422185820) do
 
   create_table "field_tickets", force: :cascade do |t|
     t.integer  "job_id"
-    t.integer  "non_job_id"
+    t.string   "bill_to",                         default: "Job"
+    t.boolean  "is_non_job",                      default: false
     t.datetime "started_at"
     t.datetime "finished_at"
     t.boolean  "customer_approved_work"
     t.text     "customer_name_and_title"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.text     "supplies_teeth"
+    t.text     "supplies_oil"
+    t.text     "supplies_holders"
+    t.text     "supplies_other"
+    t.decimal  "length"
+    t.decimal  "width"
+    t.decimal  "depth"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "customer_signature_file_name"
     t.string   "customer_signature_content_type"
     t.integer  "customer_signature_file_size"
@@ -54,24 +62,17 @@ ActiveRecord::Schema.define(version: 20160422185820) do
   end
 
   add_index "field_tickets", ["job_id"], name: "index_field_tickets_on_job_id", using: :btree
-  add_index "field_tickets", ["non_job_id"], name: "index_field_tickets_on_non_job_id", using: :btree
 
   create_table "jobs", force: :cascade do |t|
     t.text     "internal_number"
     t.text     "customers_number"
-    t.boolean  "flat_rate"
+    t.boolean  "flat_rate",        default: true
     t.integer  "customer_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "jobs", ["customer_id"], name: "index_jobs_on_customer_id", using: :btree
-
-  create_table "non_jobs", force: :cascade do |t|
-    t.text     "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "timesheet_employee_entries", force: :cascade do |t|
     t.integer  "timesheet_timesheet_id"
@@ -88,30 +89,17 @@ ActiveRecord::Schema.define(version: 20160422185820) do
   add_index "timesheet_employee_entries", ["timesheet_timesheet_id"], name: "index_timesheet_employee_entries_on_timesheet_timesheet_id", using: :btree
 
   create_table "timesheet_equipment_entries", force: :cascade do |t|
-    t.integer  "timesheet_id"
+    t.integer  "timesheet_timesheet_id"
     t.integer  "equipment_id"
     t.decimal  "fuel_gallons"
     t.decimal  "mileage_start"
     t.decimal  "mileage_end"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "timesheet_equipment_entries", ["equipment_id"], name: "index_timesheet_equipment_entries_on_equipment_id", using: :btree
-  add_index "timesheet_equipment_entries", ["timesheet_id"], name: "index_timesheet_equipment_entries_on_timesheet_id", using: :btree
-
-  create_table "timesheet_scaffold_entries", force: :cascade do |t|
-    t.integer  "timesheet_timesheet_id"
-    t.integer  "equipment_id"
-    t.integer  "fuel_gallons"
-    t.integer  "mileage_start"
-    t.integer  "mileage_end"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  add_index "timesheet_scaffold_entries", ["equipment_id"], name: "index_timesheet_scaffold_entries_on_equipment_id", using: :btree
-  add_index "timesheet_scaffold_entries", ["timesheet_timesheet_id"], name: "index_timesheet_scaffold_entries_on_timesheet_timesheet_id", using: :btree
+  add_index "timesheet_equipment_entries", ["equipment_id"], name: "index_timesheet_equipment_entries_on_equipment_id", using: :btree
+  add_index "timesheet_equipment_entries", ["timesheet_timesheet_id"], name: "index_timesheet_equipment_entries_on_timesheet_timesheet_id", using: :btree
 
   create_table "timesheet_timesheets", force: :cascade do |t|
     t.integer  "field_ticket_id"
@@ -119,10 +107,6 @@ ActiveRecord::Schema.define(version: 20160422185820) do
     t.integer  "crew_chief_id"
     t.boolean  "finalized"
     t.text     "project"
-    t.text     "supplies_teeth"
-    t.text     "supplies_oil"
-    t.text     "supplies_holders"
-    t.text     "supplies_other"
     t.datetime "left_job_at"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
@@ -152,12 +136,10 @@ ActiveRecord::Schema.define(version: 20160422185820) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "field_tickets", "jobs"
-  add_foreign_key "field_tickets", "non_jobs"
   add_foreign_key "jobs", "customers"
   add_foreign_key "timesheet_employee_entries", "employees"
   add_foreign_key "timesheet_employee_entries", "timesheet_timesheets"
   add_foreign_key "timesheet_equipment_entries", "equipment"
-  add_foreign_key "timesheet_scaffold_entries", "equipment"
-  add_foreign_key "timesheet_scaffold_entries", "timesheet_timesheets"
+  add_foreign_key "timesheet_equipment_entries", "timesheet_timesheets"
   add_foreign_key "timesheet_timesheets", "field_tickets"
 end

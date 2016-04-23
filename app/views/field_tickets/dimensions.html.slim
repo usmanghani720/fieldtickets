@@ -1,0 +1,27 @@
+.row
+  = render 'sidebar'
+      
+  div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+
+    = render partial: 'header', locals: { title: 'Milling Dimensions' }
+    
+    = form_for(@field_ticket, html: { class: "form-horizontal", role: "form" }) do |f|
+
+      = render 'errors'
+      
+      .form-group
+        = f.label :length, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :length, class: 'form-control'
+      
+      .form-group
+        = f.label :width, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :width, class: 'form-control'
+      
+      .form-group
+        = f.label :depth, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :depth, class: 'form-control'
+      
+      = render partial: 'form_buttons', locals: {f: f}

@@ -1,5 +1,5 @@
 class FieldTicketsController < ApplicationController
-  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job]
+  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval]
   autocomplete :job, :internal_number, full: false, limit: 50
 
   # GET /field_tickets
@@ -14,12 +14,12 @@ class FieldTicketsController < ApplicationController
     redirect_to field_ticket_job_path(@field_ticket)
   end
   
-  def job
-  end
+  
 
   # GET /field_tickets/new
   def new
-    @field_ticket = FieldTicket.new
+    @field_ticket = FieldTicket.create
+    redirect_to @field_ticket
   end
 
   # GET /field_tickets/1/edit
@@ -47,7 +47,7 @@ class FieldTicketsController < ApplicationController
   def update
     respond_to do |format|
       if @field_ticket.update(field_ticket_params)
-        format.html { redirect_to @field_ticket, notice: 'Field ticket was successfully updated.' }
+        format.html { redirect_to request.referrer, notice: 'Field ticket was successfully updated.' }
         format.json { render :show, status: :ok, location: @field_ticket }
       else
         format.html { render :edit }
@@ -74,6 +74,27 @@ class FieldTicketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def field_ticket_params
-      params.require(:field_ticket).permit(:job_id, :non_job_id, :started_at, :finished_at, :customer_approved_work, :customer_name_and_title, :customer_signature)
+      params.require(:field_ticket).permit(
+        :job_id,
+        :bill_to,
+        
+        :started_at,
+        :finished_at,
+        
+        :customer_approved_work,
+        :customer_name_and_title,
+        :customer_signature,
+        
+        :length,
+        :width,
+        :depth,
+        
+        :supplies_teeth,
+        :supplies_oil,
+        :supplies_holders,
+        :supplies_other,
+        
+        
+      )
     end
 end

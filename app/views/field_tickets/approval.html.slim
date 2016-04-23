@@ -1,0 +1,86 @@
+.row
+  = render 'sidebar'
+      
+  div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+
+    = render partial: 'header', locals: { title: 'Customer Approval' }
+    
+    = form_for(@field_ticket, html: { class: "form-horizontal", role: "form" }) do |f|
+
+      = render 'errors'
+      
+      .form-group
+        = f.label :customer_approved_work, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.check_box :customer_approved_work, class: "form-control", data: {'off-label': 'No', 'on-label': 'Yes'}
+      
+      .form-group
+        = f.label :customer_signature, class: "col-sm-2 control-label"
+        .col-sm-10
+          #signature_canvas_container
+            canvas#signature_canvas width="500px" height="100px"
+          a#reset_signature_canvas Clear Signature
+          = f.hidden_field :customer_signature, id: 'customer_signature_input', value: ''
+      
+      .form-group
+        = f.label :customer_name_and_title, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :customer_name_and_title, class: "form-control"
+      
+      = render partial: 'form_buttons', locals: {f: f}
+          
+javascript:
+  var canvas = document.querySelector("#signature_canvas");
+  var signaturePad = new SignaturePad(canvas, {
+            onEnd: function() {
+                hasSignature = true;
+            }
+        });
+  
+  var resizeCanvas = function () {
+              if (hasSignature) {
+                  signatureCopy = signaturePad.toDataURL();
+              }
+
+              var ratio = window.devicePixelRatio || 2;
+
+              // Note fixed width:height ratio. No need for dynamic height.       
+              canvas.width = canvas.offsetWidth * ratio;
+              canvas.height = Math.floor(canvas.offsetWidth/3) * ratio; 
+              canvas.getContext("2d").scale(ratio, ratio);
+
+              // Line width is relative to canvas size to prevent different
+              // width after orientation changes.
+              signaturePad.minWidth = canvas.offsetWidth / 1000;
+              signaturePad.maxWidth = signaturePad.minWidth * 5;
+
+              if (hasSignature) {
+                  signaturePad.fromDataURL(signatureCopy);
+              } else {
+                  // signaturePad doesn't watch canvas and needs to be told it's clear now
+                  signaturePad.clear(); 
+              }
+          }
+
+  //window.addEventListener("resize", resizeCanvas);
+  //resizeCanvas();
+  
+  var input = document.querySelector("#customer_signature_input");
+  
+  canvas.addEventListener("mouseup", function(event) {
+      if ( signaturePad.isEmpty() ) {
+          input.value = '';
+      } else {
+          input.value = signaturePad.toDataURL();
+      }
+  });
+  
+
+coffee:
+  $('#reset_signature_canvas').click ->
+    hasSignature = false
+    input.value = ''
+    signaturePad.clear()
+
+coffee:
+  $('#field_ticket_customer_approved_work').checkboxpicker()

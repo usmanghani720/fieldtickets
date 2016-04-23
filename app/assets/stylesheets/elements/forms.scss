@@ -7,3 +7,9 @@
 .btn-delete:hover {
   @extend .btn-danger;
 }
+
+//
+
+.bootstrap-select .btn:focus {
+    outline: none !important;
+}
