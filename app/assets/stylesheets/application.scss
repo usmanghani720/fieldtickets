@@ -3,7 +3,8 @@
 @import "vendor/bootstrap-switch";
 @import "bootstrap-select";
 
-@import "pages/field_tickets";
-
 //@import "custom/rails-jquery-autocomplete";
-@import "vendor/jquery-ui"
+@import "vendor/jquery-ui";
+
+@import "pages/field_tickets";
+@import "forms/forms";

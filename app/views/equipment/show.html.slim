@@ -9,18 +9,16 @@
     | Vehicle
 dl.dl-horizontal
   dt
-    | Internal number:
+    = Equipment.human_attribute_name :internal_number
   dd
     = @equipment.internal_number
   dt
-    | License plate number:
-  dd
-    = @equipment.license_plate_number
-  dt
-    | Vin:
-  dd
-    = @equipment.vin
-  dt
-    | Vehicle type:
+    = Equipment.human_attribute_name :vehicle_type
   dd
     = @equipment.vehicle_type
+  hr
+  dt
+  dd
+    = link_to 'Edit', edit_equipment_path(@equipment), class: 'btn-edit' 
+    |  
+    = link_to 'Delete', @equipment, method: :delete, data: { confirm: 'Are you sure you want to delete this record?' }, class: 'btn-delete' 

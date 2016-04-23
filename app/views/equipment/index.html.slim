@@ -1,24 +1,19 @@
 .page-header
   = link_to new_equipment_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
-    |  New Vehicle
+    |  New 
+    = Equipment.human
   h1
-    | Vehicles
+    = Equipment.humans
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
         th
-          | Internal number
+          = Equipment.human_attribute_name :internal_number
         th
-          | License plate number
-        th
-          | Vin
-        th
-          | Vehicle type
-        th
-        th
+          = Equipment.human_attribute_name :vehicle_type
         th
     tbody
       - @equipment.each do | equipment |
@@ -26,14 +21,7 @@
           td
             = equipment.internal_number
           td
-            = equipment.license_plate_number
-          td
-            = equipment.vin
-          td
             = equipment.vehicle_type
           td
             = link_to 'Show', equipment
-          td
-            = link_to 'Edit', edit_equipment_path(equipment) 
-          td
-            = link_to 'Destroy', equipment, method: :delete, data: { confirm: 'Are you sure?' } 
+            

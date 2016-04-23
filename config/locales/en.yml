@@ -22,9 +22,15 @@
 en:
   activerecord:
     models:
-      field_ticket: 'Field Ticket'
-      equipment: 'Vehicle'
-      non_job: 'Non-Job'
+      field_ticket:
+        one: 'Field Ticket'
+        other: 'Field Tickets'
+      equipment:
+        one: 'Vehicle'
+        other: 'Vehicles'
+      non_job:
+        one: 'Non-Job'
+        other: 'Non-Jobs'
     
     attributes:
     
@@ -35,6 +41,7 @@ en:
         
       equipment:
         internal_number: 'BRM Vehicle #'
+        vehicle_type: 'Type'
         
       field_ticket:
         job: 'BRM Job #'
