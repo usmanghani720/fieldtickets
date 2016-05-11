@@ -16,8 +16,14 @@
     div.col-md-4
       h3 On the Job
       
+      = render partial: 'vehicle_list', locals: { vehicles: @field_ticket.equipment_on_the_job }
+      
     div.col-md-4
       h3 In Maintenance
       
+      = render partial: 'vehicle_list', locals: { vehicles: @field_ticket.equipment_in_maintenance }
+      
     div.col-md-4
-      h3 Not in Use
+      h3 Idle
+      
+      = render partial: 'vehicle_list', locals: { vehicles: @field_ticket.equipment_idle }

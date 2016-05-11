@@ -5,7 +5,7 @@ class CreateEquipmentEntries < ActiveRecord::Migration
       t.boolean :rental
       t.belongs_to :equipment, index: true, foreign_key: true
       t.text :rental_description
-      t.text :status
+      t.text :status, default: 'idle'
       t.datetime :time
       t.decimal :fuel_gallons
       t.decimal :mileage

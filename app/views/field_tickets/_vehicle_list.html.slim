@@ -1,0 +1,16 @@
+ul
+  - vehicles.each do |entry|
+    li
+      = entry.to_s
+      br
+      | ID: 
+      = entry.id
+      br
+      = link_to 'Go On the Job' if not entry.status == 'on_the_job'
+      br
+      = link_to 'Begin Maintenance' if not entry.status == 'in_maintenance'
+      br
+      = link_to 'Go Idle' if not entry.status == 'idle'
+      br
+      br
+      

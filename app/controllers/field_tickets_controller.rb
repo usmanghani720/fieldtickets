@@ -39,12 +39,25 @@ class FieldTicketsController < ApplicationController
     @field_ticket.update(customer_approved_work: false)
   end
   
+  ###
+  
+  def vehicles
+    
+  end
+  
   def vehicles_add
     @equipment_entry = EquipmentEntry.new(field_ticket: @field_ticket)
   end
   
   def vehicles_create
     @equipment_entry = EquipmentEntry.new(field_ticket: @field_ticket)
+    @equipment_entry.update(equipment_entry_params)
+    
+    if @equipment_entry.save
+      redirect_to field_ticket_vehicles_path(@field_ticket)
+    else
+      render :vehicles_add
+    end
   end
   
 
@@ -100,6 +113,12 @@ class FieldTicketsController < ApplicationController
 
   private
     def equipment_entry_params
+      p = params.require(:equipment_entry).permit(
+        :rental,
+        :equipment_id,
+        :rental_description,
+        :mileage,
+      )
     end
     
     # Use callbacks to share common setup or constraints between actions.

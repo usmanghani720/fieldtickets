@@ -7,7 +7,17 @@
     
     = form_for(@equipment_entry, url: field_ticket_add_vehicle_path, html: { class: "form-horizontal", role: "form" }) do |f|
 
-      = render 'errors'
+      - if @equipment_entry.errors.any?
+        .alert.alert-danger.alert-dismissable role="alert"
+          button.close type="button" data-dismiss="alert"
+            span aria-hidden="true"
+              | &times;
+            span.sr-only
+              | Close
+          h4 = "#{pluralize(@equipment_entry.errors.count,"error")} prohibited this from being saved:"
+          ul
+            - @equipment_entry.errors.full_messages.each do |msg|
+              li= msg
       
       .form-group
         = f.label :rental, class: "col-sm-2 control-label"

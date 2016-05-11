@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(version: 20160509183334) do
     t.boolean  "rental"
     t.integer  "equipment_id"
     t.text     "rental_description"
-    t.text     "status"
+    t.text     "status",             default: "idle"
     t.datetime "time"
     t.decimal  "fuel_gallons"
     t.decimal  "mileage"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "equipment_entries", ["equipment_id"], name: "index_equipment_entries_on_equipment_id", using: :btree
@@ -86,10 +86,10 @@ ActiveRecord::Schema.define(version: 20160509183334) do
   create_table "jobs", force: :cascade do |t|
     t.text     "internal_number"
     t.text     "customers_number"
-    t.boolean  "flat_rate",        default: true
+    t.boolean  "flat_rate",        default: false
     t.integer  "customer_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "jobs", ["customer_id"], name: "index_jobs_on_customer_id", using: :btree

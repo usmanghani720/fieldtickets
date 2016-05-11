@@ -43,6 +43,7 @@ en:
     attributes:
     
       job:
+        customer_name: 'Customer'
         internal_number: 'BRM Job #'
         customers_number: 'Customer’s Job #'
         flat_rate: 'Billing'
