@@ -12,18 +12,21 @@
         = @equipment_entries.first
     
     .table-responsive
-      table.table.table-striped.table-bordered.table-hover
+      table.table.table-striped.table-bordered
         thead
           tr
             th Status
             th Time
             th Mileage
-            th Fuel
+            th Fuel Pumped
         tbody
           - @equipment_entries.each do |entry|
             tr
               td
-                strong = entry.status.humanize
+                strong = entry.status.humanize.titleize
               td = entry.created_at
               td = entry.mileage
-              td = entry.fuel_gallons
+              td
+                - if entry.fuel_gallons
+                  = entry.fuel_gallons
+                  |  gallons

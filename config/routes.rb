@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get :vehicles
     get 'vehicles/add' => 'field_tickets#vehicles_add', as: :add_vehicle
     post 'vehicles/add' => 'field_tickets#vehicles_create'
+    get 'vehicles/:equipment_entry_id/refuel' => 'field_tickets#vehicles_refuel', as: :vehicle_refuel
     post 'vehicles/:equipment_entry_id/:new_status' => 'field_tickets#vehicles_update', as: :vehicle_update
     get 'vehicles/:equipment_entry_id' => 'field_tickets#vehicles_log', as: :vehicle_log
     

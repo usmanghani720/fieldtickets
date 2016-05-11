@@ -77,3 +77,4 @@ en:
         rental: 'Type'
         equipment: 'BRM #'
         rental_description: 'Description'
+        fuel_gallons: 'Fuel Pumped'

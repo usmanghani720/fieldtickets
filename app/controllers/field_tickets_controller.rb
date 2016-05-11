@@ -1,5 +1,5 @@
 class FieldTicketsController < ApplicationController
-  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval, :approve, :disapprove, :vehicles_add, :vehicles_create, :vehicles_update, :vehicles_log]
+  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval, :approve, :disapprove, :vehicles_add, :vehicles_create, :vehicles_update, :vehicles_log, :vehicles_refuel]
   
   autocomplete :job, :internal_number, limit: 50, display_value: :to_s
   autocomplete :equipment, :internal_number, limit: 50, display_value: :to_s
@@ -60,17 +60,39 @@ class FieldTicketsController < ApplicationController
     end
   end
   
+  def vehicles_refuel
+    old_equipment_entry = EquipmentEntry.find params[:equipment_entry_id]
+    
+    @equipment_entry = EquipmentEntry.new(
+      field_ticket: @field_ticket,
+      equipment_id: old_equipment_entry.equipment_id,
+      rental_description: old_equipment_entry.rental_description,
+      rental: old_equipment_entry.rental,
+      status: 'refuel'
+    )
+  end
+  
   def vehicles_update
     if EquipmentEntry::STATUS_TYPES.include? params[:new_status]
       old_equipment_entry = EquipmentEntry.find params[:equipment_entry_id]
       
-      new_equipment_entry = EquipmentEntry.create(
+      ps = {
         field_ticket_id: params[:field_ticket_id],
         equipment_id: old_equipment_entry.equipment_id,
         rental_description: old_equipment_entry.rental_description,
         rental: old_equipment_entry.rental,
         status: params[:new_status]
-      )
+      }
+      
+      if params[:new_status] == 'refuel'
+        ps[:mileage] = params[:equipment_entry][:mileage].gsub(',', '')
+        ps[:fuel_gallons] = params[:equipment_entry][:fuel_gallons]
+        flash[:notice] = "#{old_equipment_entry} filled with #{ps[:fuel_gallons]} gallons of fuel"
+      else
+        flash[:notice] = "#{old_equipment_entry} marked ‘#{ps[:status].humanize}’"
+      end
+      
+      new_equipment_entry = EquipmentEntry.create(ps)
       
       redirect_to field_ticket_vehicles_path(@field_ticket)
     else

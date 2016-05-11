@@ -43,7 +43,11 @@ class FieldTicket < ActiveRecord::Base
   end
   
   def job_equipment_list
-    @job_equipment_list ||= job.equipment_entries.select('DISTINCT equipment_id, rental_description, rental')
+    if job
+      @job_equipment_list ||= job.equipment_entries.select('DISTINCT equipment_id, rental_description, rental')
+    else
+      @job_equipment_list ||= []
+    end
   end
   
   def equipment_on_the_job

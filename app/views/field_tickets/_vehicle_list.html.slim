@@ -14,7 +14,7 @@
           |  since 
           = hide_today_in_date(entry.created_at)
       
-      li = link_to 'View Vehicle Logs…', field_ticket_vehicle_log_path(entry.field_ticket, entry)
+      li = link_to 'View Log…', field_ticket_vehicle_log_path(entry.field_ticket, entry)
 
       li.divider role="separator"
     
@@ -29,7 +29,7 @@
       
       li.divider role="separator"
       
-      li = link_to 'Refuel', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'refuel'), method: :post
+      li = link_to 'Refuel', field_ticket_vehicle_refuel_path(entry.field_ticket, entry)
             
   br
   br
