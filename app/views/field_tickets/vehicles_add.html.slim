@@ -1,0 +1,61 @@
+.row
+  = render 'sidebar'
+      
+  div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+
+    = render partial: 'header', locals: { title: 'Add a Vehicle' }
+    
+    = form_for(@equipment_entry, url: field_ticket_add_vehicle_path, html: { class: "form-horizontal", role: "form" }) do |f|
+
+      = render 'errors'
+      
+      .form-group
+        = f.label :rental, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.check_box :rental, class: "form-control", data: {'off-label': 'Black Rock', 'on-label': 'Rental', 'off-active-cls': 'btn-primary', 'on-active-cls': 'btn-primary'}
+      
+      .form-group style="#{'display:none;' if @equipment_entry.rental}"
+        = f.label :equipment, class: "col-sm-2 control-label"
+        .col-sm-10
+          /= f.text_field :equipment, class: 'form-control'
+          
+          = f.autocomplete_field :equipment, autocomplete_equipment_internal_number_field_tickets_path, id_element: '#equipment_id', class: 'form-control'
+          
+          = f.hidden_field :equipment_id, id: 'equipment_id'
+          
+      
+      .form-group style="#{'display:none;' if not @equipment_entry.rental}"
+        = f.label :rental_description, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :rental_description, class: 'form-control'
+      
+      .form-group
+        = f.label :mileage, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :mileage, class: 'form-control'
+
+      = render partial: 'form_buttons', locals: {f: f}
+
+          
+coffee:
+  $('#equipment_entry_rental').checkboxpicker()
+  
+  
+  
+  # Focus
+  $ ->
+    $('#equipment_entry_equipment').focus()
+  
+
+
+  # Handle hiding/showing BRM Job #
+  $ ->
+    $('#equipment_entry_rental').change ->
+      if $('#equipment_entry_rental').is(':checked')
+        $('#equipment_entry_equipment').parent().parent().slideUp()
+        $('#equipment_entry_rental_description').parent().parent().slideDown()
+        $('#equipment_entry_rental_description').focus()
+      else
+        $('#equipment_entry_rental_description').parent().parent().slideUp()
+        $('#equipment_entry_equipment').parent().parent().slideDown()
+        $('#equipment_entry_equipment').focus()

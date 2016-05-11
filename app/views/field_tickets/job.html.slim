@@ -1,8 +1,8 @@
 .row
   = render 'sidebar'
-      
+  
   div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
-
+  
     = render partial: 'header', locals: { title: 'Job' }
     
     = form_for(@field_ticket, html: { class: "form-horizontal", role: "form" }) do |f|
@@ -14,10 +14,13 @@
         .col-sm-10
           = f.select :bill_to, options_for_select(FieldTicket::BILLING_TYPES, selected: @field_ticket.bill_to), {}, { class: 'selectpicker' }
 
-      .form-group
+      .form-group style="#{'display:none;' if not @field_ticket.requires_job_number}"
         = f.label :job, class: "col-sm-2 control-label"
         .col-sm-10
-          = f.autocomplete_field :job, autocomplete_job_internal_number_field_tickets_path, class: 'form-control'
+          = f.autocomplete_field :job, autocomplete_job_internal_number_field_tickets_path, id_element: '#job_id', class: 'form-control'
+          
+          = f.hidden_field :job_id, id: 'job_id'
+          
       
       = render partial: 'form_buttons', locals: {f: f}
 

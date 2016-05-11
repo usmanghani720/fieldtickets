@@ -22,4 +22,16 @@
     @extend .btn-sm;
   }
   
+  .question {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+  
+  a.undo {
+    font-weight: normal;
+    color: gray !important;
+    text-decoration: underline;
+    font-size: 12px;
+  }
+  
 }

@@ -1,6 +1,8 @@
 class FieldTicketsController < ApplicationController
-  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval]
-  autocomplete :job, :internal_number, full: false, limit: 50
+  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval, :approve, :disapprove, :vehicles_add, :vehicles_create]
+  
+  autocomplete :job, :internal_number, limit: 50, display_value: :to_s
+  autocomplete :equipment, :internal_number, limit: 50, display_value: :to_s
 
   # GET /field_tickets
   # GET /field_tickets.json
@@ -20,10 +22,31 @@ class FieldTicketsController < ApplicationController
     #raise @field_ticket.customer_approved_work.inspect
     if @field_ticket.customer_approved_work === nil
       render 'approval1'
+    elsif @field_ticket.customer_approved_work === false
+      render 'disapprove'
     else
-      render text: 'asdf'
+      render 'approve'
     end
   end
+  
+  # PATCH customer is satisfied
+  def approve
+    @field_ticket.update(customer_approved_work: true)
+  end
+  
+  # PATCH customer doesn't approve of job quality
+  def disapprove
+    @field_ticket.update(customer_approved_work: false)
+  end
+  
+  def vehicles_add
+    @equipment_entry = EquipmentEntry.new(field_ticket: @field_ticket)
+  end
+  
+  def vehicles_create
+    @equipment_entry = EquipmentEntry.new(field_ticket: @field_ticket)
+  end
+  
 
   # GET /field_tickets/new
   def new
@@ -76,6 +99,9 @@ class FieldTicketsController < ApplicationController
   end
 
   private
+    def equipment_entry_params
+    end
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_field_ticket
       @field_ticket = FieldTicket.find(params[:field_ticket_id] || params[:id])
@@ -103,7 +129,10 @@ class FieldTicketsController < ApplicationController
         :supplies_holders,
         :supplies_other,
         
-        
+        :delays_trucks,
+        :delays_paving,
+        :delays_mot,
+        :delays_other,
       )
     end
 end

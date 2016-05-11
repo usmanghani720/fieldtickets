@@ -32,23 +32,23 @@ html
                 a href="/tickets"
                   | Tickets
               li class="#{'active' if controller_name == 'timesheets'}"
-                a href="/timesheets"
-                  | Timesheets
+               a href="/timesheets"
+                 | Timesheets
               li class="#{'active' if controller_name == 'employees'}"
-                a href="/employees"
-                  | Employees
+               a href="/employees"
+                 | Employees
               li class="#{'active' if controller_name == 'equipment'}"
-                a href="/vehicles"
-                  | Vehicles
+               a href="/vehicles"
+                 | Vehicles
               li class="#{'active' if controller_name == 'customers'}"
-                a href="/customers"
-                  | Customers
+               a href="/customers"
+                 | Customers
               li class="#{'active' if controller_name == 'jobs'}"
-                a href="/jobs"
-                  | Jobs
+               a href="/jobs"
+                 | Jobs
     .container-fluid
       - flash.each do |name, msg|
-        = content_tag :div, class: "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
+        = content_tag :div, class: "col-sm-offset-2 alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
           button.close type="button" data-dismiss="alert"
             span aria-hidden="true"
               | &times;

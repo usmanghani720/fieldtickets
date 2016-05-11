@@ -3,12 +3,21 @@
       
   div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
 
-    = render partial: 'header', locals: { title: 'Vehicles' }
+    .page-header
+      = link_to field_ticket_add_vehicle_path, class: 'btn btn-primary' do 
+          span.glyphicon.glyphicon-plus
+          |  Add a Vehicle to This Job
     
-    = form_for(@field_ticket, html: { class: "form-horizontal", role: "form" }) do |f|
+      h4
+        = @field_ticket.model_reference_name
 
-      = render 'errors'
+      h2 Vehicles
+    
+    div.col-md-4
+      h3 On the Job
       
+    div.col-md-4
+      h3 In Maintenance
       
-      
-      = render partial: 'form_buttons', locals: {f: f}
+    div.col-md-4
+      h3 Not in Use

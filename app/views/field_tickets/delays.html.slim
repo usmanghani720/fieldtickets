@@ -9,6 +9,24 @@
 
       = render 'errors'
       
+      .form-group
+        = f.label :delays_trucks, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :delays_trucks, class: 'form-control'      
       
+      .form-group
+        = f.label :delays_paving, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :delays_paving, class: 'form-control'      
+      
+      .form-group
+        = f.label :delays_mot, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :delays_mot, class: 'form-control'      
+      
+      .form-group
+        = f.label :delays_other, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.text_field :delays_other, class: 'form-control'      
       
       = render partial: 'form_buttons', locals: {f: f}

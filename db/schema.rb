@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422185820) do
+ActiveRecord::Schema.define(version: 20160509183334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,9 +38,25 @@ ActiveRecord::Schema.define(version: 20160422185820) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "equipment_entries", force: :cascade do |t|
+    t.integer  "field_ticket_id"
+    t.boolean  "rental"
+    t.integer  "equipment_id"
+    t.text     "rental_description"
+    t.text     "status"
+    t.datetime "time"
+    t.decimal  "fuel_gallons"
+    t.decimal  "mileage"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "equipment_entries", ["equipment_id"], name: "index_equipment_entries_on_equipment_id", using: :btree
+  add_index "equipment_entries", ["field_ticket_id"], name: "index_equipment_entries_on_field_ticket_id", using: :btree
+
   create_table "field_tickets", force: :cascade do |t|
     t.integer  "job_id"
-    t.string   "bill_to",                         default: "Job"
+    t.text     "bill_to",                         default: "Job"
     t.boolean  "is_non_job",                      default: false
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -50,9 +66,13 @@ ActiveRecord::Schema.define(version: 20160422185820) do
     t.text     "supplies_oil"
     t.text     "supplies_holders"
     t.text     "supplies_other"
-    t.decimal  "length"
-    t.decimal  "width"
+    t.integer  "length"
+    t.integer  "width"
     t.decimal  "depth"
+    t.text     "delays_trucks"
+    t.text     "delays_paving"
+    t.text     "delays_mot"
+    t.text     "delays_other"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "customer_signature_file_name"
@@ -117,9 +137,9 @@ ActiveRecord::Schema.define(version: 20160422185820) do
   add_index "timesheet_timesheets", ["site_supervisor_id"], name: "index_timesheet_timesheets_on_site_supervisor_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.text     "email",                  default: "", null: false
+    t.text     "encrypted_password",     default: "", null: false
+    t.text     "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",          default: 0,  null: false
@@ -135,6 +155,8 @@ ActiveRecord::Schema.define(version: 20160422185820) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "equipment_entries", "equipment"
+  add_foreign_key "equipment_entries", "field_tickets"
   add_foreign_key "field_tickets", "jobs"
   add_foreign_key "jobs", "customers"
   add_foreign_key "timesheet_employee_entries", "employees"

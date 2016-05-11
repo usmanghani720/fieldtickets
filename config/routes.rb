@@ -11,13 +11,18 @@ Rails.application.routes.draw do
   
   resources :field_tickets, path: 'tickets' do
     get :autocomplete_job_internal_number, on: :collection
+    get :autocomplete_equipment_internal_number, on: :collection
     get :job
     get :employees
     get :delays
     get :vehicles
+    get 'vehicles/add' => 'field_tickets#vehicles_add', as: :add_vehicle
+    post 'vehicles/add' => 'field_tickets#vehicles_create'
     get :supplies
     get :dimensions
     get :approval
+    get 'approval/approve' => 'field_tickets#approve'
+    get 'approval/disapprove' => 'field_tickets#disapprove'
   end
   
   resources :equipment, path: 'vehicles'

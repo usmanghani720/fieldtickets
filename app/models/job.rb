@@ -1,5 +1,7 @@
 class Job < ActiveRecord::Base
   belongs_to :customer
+  has_many :field_tickets
+  has_many :equipment_entries, through: :field_tickets
   
   def billing
     if flat_rate
@@ -19,6 +21,10 @@ class Job < ActiveRecord::Base
     else
       ''
     end
+  end
+  
+  def to_s
+    "#{internal_number} — #{customer_name}"
   end
   
 end

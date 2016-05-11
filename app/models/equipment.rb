@@ -8,4 +8,8 @@ class Equipment < ActiveRecord::Base
   def model_reference_name
     "#{humanize} # #{reference_name}"
   end
+  
+  def to_s
+    internal_number
+  end
 end

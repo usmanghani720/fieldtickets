@@ -3,6 +3,8 @@ require 'fx_datetime'
 class FieldTicket < ActiveRecord::Base
   belongs_to :job
   
+  has_many :equipment_entries
+  
   BILLING_TYPES = ['Job', 'Cancelled Job', ['-', 'data-divider' => 'true'], 'Weather', 'Overhead', 'Office Staff', 'Transport', 'Equipment Maintenance & Repair']
   
   has_attached_file :customer_signature,
@@ -11,6 +13,8 @@ class FieldTicket < ActiveRecord::Base
       normal: "1000x1000>"
     }
   validates_attachment_content_type :customer_signature, content_type: /\Aimage\/.*\Z/
+  
+  before_save :erase_job_if_not_needed
   
   def reference_name
     id
@@ -33,5 +37,17 @@ class FieldTicket < ActiveRecord::Base
       default
     end
   end
+  
+  def requires_job_number
+    ['Job', 'Cancelled Job'].include? bill_to
+  end
+  
+  private
+  
+    def erase_job_if_not_needed
+      if not requires_job_number
+        self.job = nil
+      end
+    end
   
 end
