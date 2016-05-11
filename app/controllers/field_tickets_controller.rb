@@ -1,5 +1,5 @@
 class FieldTicketsController < ApplicationController
-  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval, :approve, :disapprove, :vehicles_add, :vehicles_create]
+  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval, :approve, :disapprove, :vehicles_add, :vehicles_create, :vehicles_update]
   
   autocomplete :job, :internal_number, limit: 50, display_value: :to_s
   autocomplete :equipment, :internal_number, limit: 50, display_value: :to_s
@@ -57,6 +57,24 @@ class FieldTicketsController < ApplicationController
       redirect_to field_ticket_vehicles_path(@field_ticket)
     else
       render :vehicles_add
+    end
+  end
+  
+  def vehicles_update
+    if EquipmentEntry::STATUS_TYPES.include? params[:new_status]
+      old_equipment_entry = EquipmentEntry.find params[:equipment_entry_id]
+      
+      new_equipment_entry = EquipmentEntry.create(
+        field_ticket_id: params[:field_ticket_id],
+        equipment_id: old_equipment_entry.equipment_id,
+        rental_description: old_equipment_entry.rental_description,
+        rental: old_equipment_entry.rental,
+        status: params[:new_status]
+      )
+      
+      redirect_to field_ticket_vehicles_path(@field_ticket)
+    else
+      raise 'Bad status'
     end
   end
   

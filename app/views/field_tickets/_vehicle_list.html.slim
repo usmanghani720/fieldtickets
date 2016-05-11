@@ -1,16 +1,47 @@
-ul
-  - vehicles.each do |entry|
-    li
-      = entry.to_s
-      br
-      | ID: 
-      = entry.id
-      br
-      = link_to 'Go On the Job' if not entry.status == 'on_the_job'
-      br
-      = link_to 'Begin Maintenance' if not entry.status == 'in_maintenance'
-      br
-      = link_to 'Go Idle' if not entry.status == 'idle'
-      br
-      br
+/ <div class="btn-group">
+/   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+/     Action <span class="caret"></span>
+/   </button>
+/   <ul class="dropdown-menu">
+/     <li><a href="#">Action</a></li>
+/     <li><a href="#">Another action</a></li>
+/     <li><a href="#">Something else here</a></li>
+/     <li role="separator" class="divider"></li>
+/     <li><a href="#">Separated link</a></li>
+/   </ul>
+/ </div>
+
+
+
+- vehicles.each do |entry|
+  .btn-group
+  
+    button.btn.btn-primary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      strong = entry
+      |  
+      span.caret
+    
+    ul.dropdown-menu
       
+      li.disabled
+        a Idle since 9:34 am
+      
+      li = link_to 'View Vehicle Logs…', field_ticket_vehicle_log_path(entry.field_ticket, entry)
+
+      li.divider role="separator"
+    
+      - if not entry.status == 'on_the_job'
+        li = link_to 'Mark ‘On the Job’', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'on_the_job'), method: :post
+        
+      - if not entry.status == 'in_maintenance'
+        li = link_to 'Mark ‘In Maintenance’', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'in_maintenance'), method: :post
+        
+      - if not entry.status == 'idle'
+        li = link_to 'Mark ‘Idle’', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'idle'), method: :post
+      
+      li.divider role="separator"
+      
+      li = link_to 'Refuel', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'refuel'), method: :post
+            
+  br
+  br

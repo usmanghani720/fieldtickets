@@ -75,7 +75,7 @@ class FieldTicket < ActiveRecord::Base
           rental_description: list_item.rental_description,
           rental: list_item.rental
         ).where.not(
-          status: 'refueling'
+          status: 'refuel'
         ).order('created_at DESC').limit(1).last
       
         if not result
