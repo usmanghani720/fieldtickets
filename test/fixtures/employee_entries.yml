@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee_id: 
+  field_ticket_id: 
+  status: MyText
+  time: 2016-05-11 16:02:39
+
+two:
+  employee_id: 
+  field_ticket_id: 
+  status: MyText
+  time: 2016-05-11 16:02:39

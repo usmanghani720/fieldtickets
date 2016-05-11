@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509183334) do
+ActiveRecord::Schema.define(version: 20160511200239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20160509183334) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "employee_entries", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "field_ticket_id"
+    t.text     "status"
+    t.datetime "time"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "employee_entries", ["employee_id"], name: "index_employee_entries_on_employee_id", using: :btree
+  add_index "employee_entries", ["field_ticket_id"], name: "index_employee_entries_on_field_ticket_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
     t.text     "name"
@@ -155,6 +167,8 @@ ActiveRecord::Schema.define(version: 20160509183334) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "employee_entries", "employees"
+  add_foreign_key "employee_entries", "field_tickets"
   add_foreign_key "equipment_entries", "equipment"
   add_foreign_key "equipment_entries", "field_tickets"
   add_foreign_key "field_tickets", "jobs"
