@@ -10,6 +10,10 @@ class Time
   def pretty_time
     strftime '%-l:%M %P'
   end
+  
+  def yesterday?
+    self.to_date == Date.yesterday
+  end
 end
 
 

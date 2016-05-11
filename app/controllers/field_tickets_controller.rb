@@ -1,5 +1,5 @@
 class FieldTicketsController < ApplicationController
-  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval, :approve, :disapprove, :vehicles_add, :vehicles_create, :vehicles_update]
+  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval, :approve, :disapprove, :vehicles_add, :vehicles_create, :vehicles_update, :vehicles_log]
   
   autocomplete :job, :internal_number, limit: 50, display_value: :to_s
   autocomplete :equipment, :internal_number, limit: 50, display_value: :to_s
@@ -76,6 +76,18 @@ class FieldTicketsController < ApplicationController
     else
       raise 'Bad status'
     end
+  end
+  
+  def vehicles_log
+    this_entry = EquipmentEntry.find params[:equipment_entry_id]
+    
+    @equipment_entries = EquipmentEntry.where(
+      field_ticket_id: params[:field_ticket_id],
+      equipment_id: this_entry.equipment_id,
+      rental_description: this_entry.rental_description,
+      rental: this_entry.rental
+    )
+    
   end
   
 
