@@ -4,11 +4,11 @@ div class="col-sm-3 col-md-2 sidebar"
       a href="#{field_ticket_job_path @field_ticket}"
         | Job
         .detail # 3949
-    li class="#{'active' if params[:action] == 'employees'}"
+    li class="#{'active' if %w{employees employees_add employees_log}.include? params[:action]}"
       a href="#{field_ticket_employees_path @field_ticket}"
         | Employees
         .detail 2 in, 1 out
-    li class="#{'active' if ['vehicles', 'vehicles_add', 'vehicles_refuel', 'vehicles_log'].include? params[:action]}"
+    li class="#{'active' if %w{vehicles vehicles_add vehicles_refuel vehicles_log}.include? params[:action]}"
       a href="#{field_ticket_vehicles_path @field_ticket}"
         | Vehicles
         .detail 1 in

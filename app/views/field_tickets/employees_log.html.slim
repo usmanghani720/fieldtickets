@@ -1,0 +1,25 @@
+.row
+  = render 'sidebar'
+      
+  div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+
+    .page-header    
+      h4
+        = @field_ticket.model_reference_name
+
+      h2
+        | Employee Log for 
+        = @employee_entries.first
+    
+    .table-responsive
+      table.table.table-striped.table-bordered
+        thead
+          tr
+            th Status
+            th Time
+        tbody
+          - @employee_entries.each do |entry|
+            tr
+              td
+                strong = entry.status.humanize.titleize
+              td = entry.created_at

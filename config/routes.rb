@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     get :employees
     get 'employees/add' => 'field_tickets#employees_add', as: :add_employee
     post 'employees/add' => 'field_tickets#employees_create'
+    post 'employees/:employee_entry_id/:new_status' => 'field_tickets#employees_update', as: :employee_update
+    get 'employees/:employee_entry_id' => 'field_tickets#employees_log', as: :employee_log
     
     get :delays
     

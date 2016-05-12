@@ -24,6 +24,7 @@ class FieldTicketsController < ApplicationController
     :employees_add,
     :employees_create,
     :employees_update,
+    :employees_log,
   ]
   
   autocomplete :job, :internal_number, limit: 50, display_value: :to_s
@@ -85,8 +86,32 @@ class FieldTicketsController < ApplicationController
   end
   
   def employees_update
-    @employee_entry = EmployeeEntry.new(field_ticket: @field_ticket)
-    @equipment_entry.update(employee_entry_params)
+    if EmployeeEntry::STATUS_TYPES.include? params[:new_status]
+      old_employee_entry = EmployeeEntry.find params[:employee_entry_id]
+      
+      ps = {
+        field_ticket_id: params[:field_ticket_id],
+        employee_id: old_employee_entry.employee_id,
+        status: params[:new_status]
+      }
+      
+      flash[:notice] = "#{old_employee_entry} marked ‘#{ps[:status].humanize}’"
+      
+      new_employee_entry = EmployeeEntry.create(ps)
+      
+      redirect_to field_ticket_employees_path(@field_ticket)
+    else
+      raise 'Bad status'
+    end
+  end
+  
+  def employees_log
+    this_entry = EmployeeEntry.find params[:employee_entry_id]
+    
+    @employee_entries = EmployeeEntry.where(
+      field_ticket_id: params[:field_ticket_id],
+      employee_id: this_entry.employee_id,
+    )
   end
   
   ###

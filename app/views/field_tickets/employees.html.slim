@@ -18,11 +18,10 @@
       
       = render partial: 'employee_list', locals: { employees: @field_ticket.job_employee_list[:on_the_job] }
       
-      /- @field_ticket.job_employee_list.each do |entry|
-      /  p = entry.inspect
-      
     div.col-md-4
       h3 Overhead
+      
+      = render partial: 'employee_list', locals: { employees: @field_ticket.job_employee_list[:overhead] }
       
     div.col-md-4
       h3 Idle
