@@ -50,6 +50,12 @@ en:
   activerecord:
     errors:
       models:
+      
+        employee_entry:
+          attributes:
+            employee:
+              blank: 'Please fill in the <strong>employee</strong>’s name or BRM number.'
+      
         equipment_entry:
           attributes:
             mileage:

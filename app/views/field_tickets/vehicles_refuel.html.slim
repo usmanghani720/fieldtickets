@@ -7,17 +7,7 @@
     
     = form_for(@equipment_entry, url: field_ticket_vehicle_refuel_path, html: { class: "form-horizontal", role: "form" }) do |f|
 
-      - if @equipment_entry.errors.any?
-        .alert.alert-danger.alert-dismissable role="alert"
-          button.close type="button" data-dismiss="alert"
-            span aria-hidden="true"
-              | &times;
-            span.sr-only
-              | Close
-          h4 = "#{pluralize(@equipment_entry.errors.count,"error")} prohibited this from being saved:"
-          ul
-            - @equipment_entry.errors.full_messages.each do |msg|
-              li= msg
+      = render partial: 'shared/errors_for', locals: { object: @equipment_entry }
       
       .form-group
         = f.label :mileage, class: "col-sm-2 control-label"

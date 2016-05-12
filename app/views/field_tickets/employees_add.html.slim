@@ -7,17 +7,7 @@
     
     = form_for(@employee_entry, url: field_ticket_add_employee_path, html: { class: "form-horizontal", role: "form" }) do |f|
 
-      - if @employee_entry.errors.any?
-        .alert.alert-danger.alert-dismissable role="alert"
-          button.close type="button" data-dismiss="alert"
-            span aria-hidden="true"
-              | &times;
-            span.sr-only
-              | Close
-          h4 = "#{pluralize(@employee_entry.errors.count,"error")} prohibited this from being saved:"
-          ul
-            - @employee_entry.errors.full_messages.each do |msg|
-              li= msg
+      = render partial: 'shared/errors_for', locals: { object: @employee_entry }
       
       .form-group
         = f.label :employee, class: "col-sm-2 control-label"
