@@ -1,8 +1,36 @@
 class FieldTicketsController < ApplicationController
-  before_action :set_field_ticket, only: [:show, :edit, :update, :destroy, :job, :employees, :delays, :vehicles, :supplies, :dimensions, :approval, :approve, :disapprove, :vehicles_add, :vehicles_create, :vehicles_update, :vehicles_log, :vehicles_refuel]
+  before_action :set_field_ticket, only: [
+    :show,
+    :edit,
+    :update,
+    :destroy,
+    
+    :job,
+    :delays,
+    :supplies,
+    :dimensions,
+    :approval,
+    :approve,
+    :disapprove,
+    
+    :vehicles,
+    :vehicles_add,
+    :vehicles_create,
+    :vehicles_update,
+    :vehicles_log,
+    :vehicles_refuel,
+    
+    :employees,
+    :employees_add,
+    :employees_create,
+    :employees_update,
+  ]
   
   autocomplete :job, :internal_number, limit: 50, display_value: :to_s
+  
   autocomplete :equipment, :internal_number, limit: 50, display_value: :to_s
+
+  autocomplete :employee, :name, limit: 50, display_value: :to_s
 
   # GET /field_tickets
   # GET /field_tickets.json
@@ -37,6 +65,28 @@ class FieldTicketsController < ApplicationController
   # PATCH customer doesn't approve of job quality
   def disapprove
     @field_ticket.update(customer_approved_work: false)
+  end
+  
+  ###
+  
+  def employees_add
+    @employee_entry = EmployeeEntry.new(field_ticket: @field_ticket)
+  end
+  
+  def employees_create
+    @employee_entry = EmployeeEntry.new(field_ticket: @field_ticket)
+    @employee_entry.update(employee_entry_params)
+    
+    if @employee_entry.save
+      redirect_to field_ticket_employees_path(@field_ticket)
+    else
+      render :employees_add
+    end
+  end
+  
+  def employees_update
+    @employee_entry = EmployeeEntry.new(field_ticket: @field_ticket)
+    @equipment_entry.update(employee_entry_params)
   end
   
   ###
@@ -165,11 +215,17 @@ class FieldTicketsController < ApplicationController
 
   private
     def equipment_entry_params
-      p = params.require(:equipment_entry).permit(
+      params.require(:equipment_entry).permit(
         :rental,
         :equipment_id,
         :rental_description,
         :mileage,
+      )
+    end
+    
+    def employee_entry_params
+      params.require(:employee_entry).permit(
+        :employee_id,
       )
     end
     

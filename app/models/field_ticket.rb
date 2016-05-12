@@ -4,6 +4,7 @@ class FieldTicket < ActiveRecord::Base
   belongs_to :job
   
   has_many :equipment_entries
+  has_many :employee_entries
   
   BILLING_TYPES = ['Job', 'Cancelled Job', ['-', 'data-divider' => 'true'], 'Weather', 'Overhead', 'Office Staff', 'Transport', 'Equipment Maintenance & Repair']
   
@@ -42,6 +43,45 @@ class FieldTicket < ActiveRecord::Base
     ['Job', 'Cancelled Job'].include? bill_to
   end
   
+  ###
+  
+  def job_employee_list_unsorted
+    if job
+      @employee_list ||= job.employee_entries.select('DISTINCT employee_id')
+    else
+      @employee_list ||= []
+    end
+  end
+  
+  def job_employee_list
+    if not @job_employee_list
+      @job_employee_list = {
+        idle: [],
+        overhead: [],
+        on_the_job: []
+      }
+      
+      job_employee_list_unsorted.each do |list_item|
+        result = employee_entries.where(
+          employee_id: list_item.employee_id
+        ).order('created_at DESC').limit(1).last
+        
+        if not result
+          result = EmployeeEntry.create(
+            field_ticket: self,
+            employee_id: list_item.employee_id
+          )
+        end
+        
+        @job_employee_list[result.status.to_sym] << result
+      end
+    end
+    
+    @job_employee_list
+  end
+  
+  ###
+  
   def job_equipment_list
     if job
       @job_equipment_list ||= job.equipment_entries.select('DISTINCT equipment_id, rental_description, rental')
@@ -67,6 +107,7 @@ class FieldTicket < ActiveRecord::Base
   
   private
   
+    # Goes through the list of equipment entries and creates three instance variables for each category of equipment entry. I'm sure there's a much more database-efficient way of doing this, but I don't know it.
     def sort_job_equipment_list
       @idle = []
       @in_maintenance = []
@@ -83,7 +124,7 @@ class FieldTicket < ActiveRecord::Base
         ).order('created_at DESC').limit(1).last
       
         if not result
-          # @idle << list_item
+          # first time it's been viewed, so create a new DB entry for this idle equipment
           @idle << EquipmentEntry.create(
             field_ticket: self,
             equipment_id: list_item.equipment_id,

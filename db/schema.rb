@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20160511200239) do
   create_table "employee_entries", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "field_ticket_id"
-    t.text     "status"
+    t.text     "status",          default: "idle"
     t.datetime "time"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "employee_entries", ["employee_id"], name: "index_employee_entries_on_employee_id", using: :btree

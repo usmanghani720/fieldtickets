@@ -1,0 +1,35 @@
+- employees.each do |entry|
+  .btn-group
+  
+    button.btn.btn-primary.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      strong = entry
+      |  
+      span.caret
+    
+    ul.dropdown-menu
+      
+      / li.disabled
+      /   a
+      /     = entry.status.humanize
+      /     |  since 
+      /     = hide_today_in_date(entry.created_at)
+      / 
+      / li = link_to 'View Log…', field_ticket_vehicle_log_path(entry.field_ticket, entry)
+      / 
+      / li.divider role="separator"
+      / 
+      / - if not entry.status == 'on_the_job'
+      /   li = link_to 'Mark ‘On the Job’', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'on_the_job'), method: :post
+      /   
+      / - if not entry.status == 'in_maintenance'
+      /   li = link_to 'Mark ‘In Maintenance’', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'in_maintenance'), method: :post
+      /   
+      / - if not entry.status == 'idle'
+      /   li = link_to 'Mark ‘Idle’', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'idle'), method: :post
+      / 
+      / li.divider role="separator"
+      / 
+      / li = link_to 'Refuel', field_ticket_vehicle_refuel_path(entry.field_ticket, entry)
+            
+  br
+  br

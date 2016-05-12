@@ -1,0 +1,35 @@
+.row
+  = render 'sidebar'
+      
+  div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+
+    = render partial: 'header', locals: { title: 'Add an Employee' }
+    
+    = form_for(@employee_entry, url: field_ticket_add_employee_path, html: { class: "form-horizontal", role: "form" }) do |f|
+
+      - if @employee_entry.errors.any?
+        .alert.alert-danger.alert-dismissable role="alert"
+          button.close type="button" data-dismiss="alert"
+            span aria-hidden="true"
+              | &times;
+            span.sr-only
+              | Close
+          h4 = "#{pluralize(@employee_entry.errors.count,"error")} prohibited this from being saved:"
+          ul
+            - @employee_entry.errors.full_messages.each do |msg|
+              li= msg
+      
+      .form-group
+        = f.label :employee, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.autocomplete_field :employee, autocomplete_employee_name_field_tickets_path, id_element: '#employee_id', class: 'form-control'
+          
+          = f.hidden_field :employee_id, id: 'employee_id'
+          
+
+      = render partial: 'form_buttons', locals: {f: f}
+
+coffee: 
+  # Focus
+  $ ->
+    $('#employee_entry_employee').focus()

@@ -12,10 +12,13 @@ Rails.application.routes.draw do
   resources :field_tickets, path: 'tickets' do
     get :autocomplete_job_internal_number, on: :collection
     get :autocomplete_equipment_internal_number, on: :collection
+    get :autocomplete_employee_name, on: :collection
     
     get :job
     
     get :employees
+    get 'employees/add' => 'field_tickets#employees_add', as: :add_employee
+    post 'employees/add' => 'field_tickets#employees_create'
     
     get :delays
     

@@ -2,6 +2,7 @@ class Job < ActiveRecord::Base
   belongs_to :customer
   has_many :field_tickets
   has_many :equipment_entries, through: :field_tickets
+  has_many :employee_entries, through: :field_tickets
   
   def billing
     if flat_rate
