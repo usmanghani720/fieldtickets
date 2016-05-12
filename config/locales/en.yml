@@ -21,6 +21,25 @@
 
 en:
 
+  # Error Messages
+  #
+  # Read more at http://guides.rubyonrails.org/i18n.html#error-message-scopes
+  
+  
+  errors:
+    format: "%{message}"
+      
+    messages:
+      blank: "Please fill in the <strong>%{attribute}</strong>."
+      
+    template:
+      header:
+        one: "Oops! Just one issue:"
+        two: "Oops! Just a couple issues:"
+        other: "Oops! Just a few issues:"
+    
+    
+
   custom:
     approval:
        question: 'Are you satisfied with the work performed by Black Rock Milling?'
@@ -29,6 +48,17 @@ en:
        back: 'I’m not ready to approve at this time.'
 
   activerecord:
+    errors:
+      models:
+        equipment_entry:
+          attributes:
+            mileage:
+              blank: 'To fill in the <strong>current mileage</strong>, please look at the vehicle’s odometer.'
+            equipment:
+              blank: 'Please fill in the vehicle’s <strong>BRM number</strong>.'
+            rental_description:
+              blank: 'Please fill in a short <strong>description</strong> of the rental vehicle.'
+  
     models:
       field_ticket:
         one: 'Ticket'
@@ -75,6 +105,7 @@ en:
       
       equipment_entry:
         rental: 'Type'
-        equipment: 'BRM #'
+        equipment: 'Vehicle #'
         rental_description: 'Description'
         fuel_gallons: 'Fuel Pumped'
+        mileage: 'Current Mileage'

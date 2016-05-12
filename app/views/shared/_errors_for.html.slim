@@ -1,0 +1,18 @@
+- if object.errors.any?
+  .alert.alert-danger.alert-dismissable role="alert"
+    button.close type="button" data-dismiss="alert"
+      span aria-hidden="true"
+        | &times;
+      span.sr-only
+        | Close
+    h4
+      - case object.errors.count
+      - when 1
+        = raw(t 'errors.template.header.one')
+      - when 2
+        = raw(t 'errors.template.header.two')
+      - else
+        = raw(t 'errors.template.header.other')
+    ul
+      - object.errors.full_messages.each do |msg|
+        li = raw msg

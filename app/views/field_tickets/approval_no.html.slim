@@ -3,8 +3,10 @@
   div#approval_form.main
   
     h2
-      | You’ve approved this job. 
-      a.undo href="./" Undo
+      | You disapprove of this job. 
+
+      = link_to 'Undo', field_ticket_approve_path(@field_ticket, :reset), method: :patch, class: 'undo'
+      
     hr
     p If you don’t want to leave feedback, please hand the iPad back to Larry.
     a.btn.btn-default href="#" Send Feedback to Management

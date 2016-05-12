@@ -60,15 +60,18 @@ class FieldTicketsController < ApplicationController
     end
   end
   
-  # PATCH customer is satisfied
+  # PATCH customer is satisfied, or not, or reset
   def approve
-    @field_ticket.update(customer_approved_work: true)
-    redirect_to field_ticket_approval_path(@field_ticket)
-  end
-  
-  # PATCH customer doesn't approve of job quality
-  def disapprove
-    @field_ticket.update(customer_approved_work: false)
+    new_status = case params[:new_status]
+    when 'reset'
+      nil
+    when 'approve'
+      true
+    when 'disapprove'
+      false
+    end
+    
+    @field_ticket.update(customer_approved_work: new_status)
     redirect_to field_ticket_approval_path(@field_ticket)
   end
   
