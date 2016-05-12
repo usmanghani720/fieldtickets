@@ -1,0 +1,15 @@
+.row
+      
+  div#approval_form.main
+  
+    h2 Job Approval
+    hr
+    p.question = t 'custom.approval.question'
+    
+    = link_to t('custom.approval.approve'), field_ticket_approve_path(@field_ticket), method: :patch, class: 'btn-approve'
+    
+    = link_to t('custom.approval.disapprove'), field_ticket_disapprove_path(@field_ticket), method: :patch, class: 'btn-disapprove'
+    
+    hr
+    
+    a.btn-cancel href="./" = t 'custom.approval.back'

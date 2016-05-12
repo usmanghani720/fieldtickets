@@ -36,8 +36,8 @@ Rails.application.routes.draw do
     get :dimensions
     
     get :approval
-    get 'approval/approve' => 'field_tickets#approve'
-    get 'approval/disapprove' => 'field_tickets#disapprove'
+    patch 'approval/approve' => 'field_tickets#approve', as: :approve
+    patch 'approval/disapprove' => 'field_tickets#disapprove', as: :disapprove
   end
   
   resources :equipment, path: 'vehicles'

@@ -13,12 +13,14 @@
         = f.label :supplies_teeth, class: "col-sm-2 control-label"
         .col-sm-10
           = f.text_field :supplies_teeth, class: 'form-control'
-      
+          
       .form-group
         = f.label :supplies_oil, class: "col-sm-2 control-label"
         .col-sm-10
-          = f.text_field :supplies_oil, class: 'form-control'
-      
+          .input-group
+            = f.text_field :supplies_oil, class: 'form-control'
+            span.input-group-addon quarts
+
       .form-group
         = f.label :supplies_holders, class: "col-sm-2 control-label"
         .col-sm-10

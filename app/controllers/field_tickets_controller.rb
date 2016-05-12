@@ -45,27 +45,31 @@ class FieldTicketsController < ApplicationController
     redirect_to field_ticket_job_path(@field_ticket)
   end
   
+  ###
+  
   def approval
     @minimal_ui = true
     
     #raise @field_ticket.customer_approved_work.inspect
     if @field_ticket.customer_approved_work === nil
-      render 'approval1'
+      render 'approval_question'
     elsif @field_ticket.customer_approved_work === false
-      render 'disapprove'
+      render 'approval_no'
     else
-      render 'approve'
+      render 'approval_yes'
     end
   end
   
   # PATCH customer is satisfied
   def approve
     @field_ticket.update(customer_approved_work: true)
+    redirect_to field_ticket_approval_path(@field_ticket)
   end
   
   # PATCH customer doesn't approve of job quality
   def disapprove
     @field_ticket.update(customer_approved_work: false)
+    redirect_to field_ticket_approval_path(@field_ticket)
   end
   
   ###
