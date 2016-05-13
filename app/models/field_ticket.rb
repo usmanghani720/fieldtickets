@@ -64,7 +64,7 @@ class FieldTicket < ActiveRecord::Base
       job_employee_list_unsorted.each do |list_item|
         result = employee_entries.where(
           employee_id: list_item.employee_id
-        ).order('time DESC').limit(1).last
+        ).last
         
         if not result
           result = EmployeeEntry.create(
@@ -224,7 +224,7 @@ class FieldTicket < ActiveRecord::Base
           rental: list_item.rental
         ).where.not(
           status: 'refuel'
-        ).order('time DESC').limit(1).last
+        ).last
       
         if not result
           # first time it's been viewed, so create a new DB entry for this idle equipment
