@@ -6,8 +6,10 @@ class CreateFieldTickets < ActiveRecord::Migration
       t.boolean :is_non_job, default: false
       t.datetime :started_at
       t.datetime :finished_at
+      
       t.boolean :customer_approved_work
       t.text :customer_name_and_title
+      t.text :customer_feedback
       
       t.text :supplies_teeth
       t.text :supplies_oil
