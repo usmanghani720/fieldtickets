@@ -4,34 +4,34 @@ div class="col-sm-3 col-md-2 sidebar"
     li class="#{'active' if params[:action] == 'job'}"
       a href="#{field_ticket_job_path @field_ticket}"
         | Bill To
-        .detail = @field_ticket.sidebar_descriptions[:job]
+        .detail = raw @field_ticket.sidebar_descriptions[:job]
         
     li class="#{'active' if %w{employees employees_add employees_log employees_log_edit}.include? params[:action]}"
       a href="#{field_ticket_employees_path @field_ticket}"
         | Employees
-        .detail = @field_ticket.sidebar_descriptions[:employees]
+        .detail = raw @field_ticket.sidebar_descriptions[:employees]
         
     li class="#{'active' if %w{vehicles vehicles_add vehicles_refuel vehicles_log}.include? params[:action]}"
       a href="#{field_ticket_vehicles_path @field_ticket}"
         | Vehicles
-        .detail = @field_ticket.sidebar_descriptions[:vehicles]
+        .detail = raw @field_ticket.sidebar_descriptions[:vehicles]
         
     li class="#{'active' if params[:action] == 'dimensions'}"
       a href="#{field_ticket_dimensions_path @field_ticket}"
         | Milling Dimensions
-        .detail = @field_ticket.sidebar_descriptions[:dimensions]
+        .detail = raw @field_ticket.sidebar_descriptions[:dimensions]
         
     li class="#{'active' if params[:action] == 'supplies'}"
       a href="#{field_ticket_supplies_path @field_ticket}"
         | Supplies
-        .detail = @field_ticket.sidebar_descriptions[:supplies]
+        .detail = raw @field_ticket.sidebar_descriptions[:supplies]
         
     li class="#{'active' if params[:action] == 'delays'}"
       a href="#{field_ticket_delays_path @field_ticket}"
         | Delays
-        .detail = @field_ticket.sidebar_descriptions[:delays]
+        .detail = raw @field_ticket.sidebar_descriptions[:delays]
         
     li class="#{'active' if params[:action] == 'approval'}"
       a href="#{field_ticket_approval_path @field_ticket}"
         | Customer Approval
-        .detail = @field_ticket.sidebar_descriptions[:approval]
+        .detail = raw @field_ticket.sidebar_descriptions[:approval]

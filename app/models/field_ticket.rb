@@ -121,43 +121,27 @@ class FieldTicket < ActiveRecord::Base
       
       
       
-      working_count = (equipment_on_the_job.count + equipment_in_maintenance.count)
+      arr = []
+      arr << "#{equipment_on_the_job.count}&nbsp;on&nbsp;the&nbsp;job" if equipment_on_the_job.count > 0
+      arr << "#{equipment_in_maintenance.count}&nbsp;in&nbsp;maintenance" if equipment_in_maintenance.count > 0
+      arr << "#{equipment_idle.count}&nbsp;idle" if equipment_idle.count > 0
       
-      idle_count = equipment_idle.count
+      @sidebar_descriptions[:vehicles] = arr.join(', ')
+
+
+
+      arr = []
+      arr << "#{job_employee_list[:on_the_job].count}&nbsp;on&nbsp;the&nbsp;job" if job_employee_list[:on_the_job].count > 0
+      arr << "#{job_employee_list[:overhead].count}&nbsp;in&nbsp;overhead" if job_employee_list[:overhead].count > 0
+      arr << "#{job_employee_list[:idle].count}&nbsp;idle" if job_employee_list[:idle].count > 0
       
-      @sidebar_descriptions[:vehicles] = if working_count > 0 and idle_count > 0
-        "#{working_count} in use, #{idle_count} idle"
-      elsif working_count > 0
-        "#{working_count} in use"
-      elsif idle_count > 0
-        "#{idle_count} idle"
-      else
-        'No vehicles added'
-      end
-      
-      
-      
-      working_count = job_employee_list[:on_the_job].count + job_employee_list[:overhead].count
-      
-      idle_count = job_employee_list[:idle].count
-      
-      @sidebar_descriptions[:employees] = if working_count > 0 and idle_count > 0
-        "#{working_count} working, #{idle_count} idle"
-      elsif working_count > 0
-        "#{working_count} working"
-      elsif idle_count > 0
-        "#{idle_count} idle"
-      else
-        'No employees added'
-      end
+      @sidebar_descriptions[:employees] = arr.join(', ')
             
       
       
       
       @sidebar_descriptions[:dimensions] = if square_yards and depth
-        "#{square_yards} sq. yd. × #{depth} in."
-      else
-        'Not entered'
+        "#{square_yards}&nbsp;sq.&nbsp;yd.&nbsp;× #{depth}&nbsp;in."
       end
             
       
@@ -171,8 +155,6 @@ class FieldTicket < ActiveRecord::Base
       
       @sidebar_descriptions[:supplies] = if arr.count > 0
         arr.join(', ').humanize
-      else
-        'None used'
       end
             
       
@@ -187,8 +169,6 @@ class FieldTicket < ActiveRecord::Base
       @sidebar_descriptions[:delays] = if arr.count > 0
         str = arr.join(', ')
         str.slice(0,1).capitalize + str.slice(1..-1)
-      else
-        'None'
       end
       
       
@@ -198,8 +178,6 @@ class FieldTicket < ActiveRecord::Base
         'Approved'
       when false
         'Disapproved'
-      else
-        'Not yet approved'
       end
       
       
