@@ -4,12 +4,12 @@
   
     h2 Job Approval
     hr
-    p.question = t 'custom.approval.question'
+    p.question Are you satisfied with the work performed by Black Rock Milling?
     
-    = link_to t('custom.approval.approve'), field_ticket_decision_path(@field_ticket, :approve), class: 'btn-approve'
+    = link_to 'Yes, I’m satisfied.', field_ticket_decision_path(@field_ticket, :approve), class: 'btn-approve'
     
-    = link_to t('custom.approval.disapprove'), field_ticket_decision_path(@field_ticket, :disapprove), class: 'btn-disapprove'
+    = link_to 'No, I’m not satisfied.', field_ticket_decision_path(@field_ticket, :disapprove), class: 'btn-disapprove'
     
     hr
     
-    a.btn-cancel href="./" = t 'custom.approval.back'
+    a.btn-cancel href="./" I’m not ready to approve at this time.

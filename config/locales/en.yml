@@ -40,12 +40,6 @@ en:
     
     
 
-  custom:
-    approval:
-       question: 'Are you satisfied with the work performed by Black Rock Milling?'
-       approve: 'Yes, I’m satisfied.'
-       disapprove: 'No, I’m not satisfied.'
-       back: 'I’m not ready to approve at this time.'
 
   activerecord:
     errors:
