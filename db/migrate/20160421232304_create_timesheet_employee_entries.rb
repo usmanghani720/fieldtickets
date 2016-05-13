@@ -7,7 +7,7 @@ class CreateTimesheetEmployeeEntries < ActiveRecord::Migration
       t.datetime :end_at
       t.integer :minutes_worked
       t.boolean :per_diem
-
+      
       t.timestamps null: false
     end
   end

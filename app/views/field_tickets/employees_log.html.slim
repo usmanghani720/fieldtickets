@@ -8,7 +8,7 @@
         = @field_ticket.model_reference_name
 
       h2
-        | Employee Log for 
+        | Timesheet for 
         = @employee_entries.first
     
     .table-responsive
@@ -18,8 +18,52 @@
             th Status
             th Time
         tbody
-          - @employee_entries.each do |entry|
+          - @employee_entries.each_with_index do |entry, index|
+            - if not (index == 0 and entry.status == 'idle')
+              tr
+                td
+                  strong = entry.status.humanize.titleize
+                td
+                  - if entry.time_entered_manually?
+                    span.time_entered_manually data-toggle="tooltip" title="Originally #{entry.created_at}"
+                      | ✱ 
+                  = hide_today_in_date entry.time
+                  
+                  |  
+                  span.edit_timesheet
+                    = link_to 'edit', field_ticket_employee_log_edit_path(@field_ticket, entry)
+    
+    - if @employee_entries_deleted.count > 0
+    
+      h3 Deleted Entries
+      - if @employee_entries_deleted.count == 1
+        p This is a permanent record of the timesheet entry that was deleted.
+      - else
+        p = "This is a permanent record of the #{@employee_entries_deleted.count} timesheet entries that were deleted."
+
+      .table-responsive
+        table.table.table-striped.table-bordered
+          thead
             tr
-              td
-                strong = entry.status.humanize.titleize
-              td = entry.created_at
+              th Status
+              th Time
+              th Deleted By
+          tbody
+            - @employee_entries_deleted.each do |entry|
+              tr
+                td
+                  strong = entry.status.humanize.titleize
+                td
+                  - if entry.time_entered_manually?
+                    span.time_entered_manually data-toggle="tooltip" title="Originally #{entry.created_at}"
+                      | ✱ 
+                  = hide_today_in_date entry.time
+                td
+                  | Jose
+                  |  at 
+                  = hide_today_in_date entry.deleted_at
+                  
+coffee:
+  # enable tooltips
+  $ ->
+    $('[data-toggle="tooltip"]').tooltip({'placement': 'top'})

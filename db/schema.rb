@@ -27,10 +27,12 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.integer  "field_ticket_id"
     t.text     "status",          default: "idle"
     t.datetime "time"
+    t.datetime "deleted_at"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
+  add_index "employee_entries", ["deleted_at"], name: "index_employee_entries_on_deleted_at", using: :btree
   add_index "employee_entries", ["employee_id"], name: "index_employee_entries_on_employee_id", using: :btree
   add_index "employee_entries", ["field_ticket_id"], name: "index_employee_entries_on_field_ticket_id", using: :btree
 
@@ -59,10 +61,12 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.datetime "time"
     t.decimal  "fuel_gallons"
     t.decimal  "mileage"
+    t.datetime "deleted_at"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
 
+  add_index "equipment_entries", ["deleted_at"], name: "index_equipment_entries_on_deleted_at", using: :btree
   add_index "equipment_entries", ["equipment_id"], name: "index_equipment_entries_on_equipment_id", using: :btree
   add_index "equipment_entries", ["field_ticket_id"], name: "index_equipment_entries_on_field_ticket_id", using: :btree
 

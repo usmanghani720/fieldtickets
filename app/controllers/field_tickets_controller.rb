@@ -18,6 +18,9 @@ class FieldTicketsController < ApplicationController
     :vehicles_create,
     :vehicles_update,
     :vehicles_log,
+    :vehicles_log_edit,
+    :vehicles_log_update,
+    :vehicles_log_destroy,
     :vehicles_refuel,
     
     :employees,
@@ -25,6 +28,9 @@ class FieldTicketsController < ApplicationController
     :employees_create,
     :employees_update,
     :employees_log,
+    :employees_log_edit,
+    :employees_log_update,
+    :employees_log_destroy,
   ]
   
   autocomplete :job, :internal_number, limit: 50, display_value: :to_s
@@ -102,7 +108,7 @@ class FieldTicketsController < ApplicationController
         status: params[:new_status]
       }
       
-      flash[:notice] = "#{old_employee_entry} marked ‘#{ps[:status].humanize}’"
+      flash[:notice] = "#{old_employee_entry} marked ‘#{ps[:status].titleize}’"
       
       new_employee_entry = EmployeeEntry.create(ps)
       
@@ -113,13 +119,43 @@ class FieldTicketsController < ApplicationController
   end
   
   def employees_log
-    this_entry = EmployeeEntry.find params[:employee_entry_id]
+    this_entry = EmployeeEntry.with_deleted.find params[:employee_entry_id]
     
-    @employee_entries = EmployeeEntry.where(
+    ps = {
       field_ticket_id: params[:field_ticket_id],
       employee_id: this_entry.employee_id,
-    )
+    }
+    
+    @employee_entries = EmployeeEntry.where(ps)
+    
+    @employee_entries_deleted = EmployeeEntry.only_deleted.where(ps)
   end
+  
+  def employees_log_edit
+    @employee_entry = EmployeeEntry.find params[:employee_entry_id]
+  end
+  
+  def employees_log_update
+    @employee_entry = EmployeeEntry.find params[:employee_entry_id]
+    
+    ps = {
+      time: params[:employee_entry][:time].to_time_with_chronic
+    }
+    
+    if (not ps[:time].blank?) and @employee_entry.update(ps)
+      flash[:notice] = 'Time changed successfully'
+      redirect_to field_ticket_employee_log_path(@field_ticket, @employee_entry)
+    else
+      render :employees_log_edit
+    end
+  end
+  
+  def employees_log_destroy
+    @employee_entry = EmployeeEntry.find params[:employee_entry_id]
+    @employee_entry.destroy
+    redirect_to field_ticket_employee_log_path(@field_ticket, @employee_entry)
+  end
+  
   
   ###
   
@@ -171,7 +207,7 @@ class FieldTicketsController < ApplicationController
         ps[:fuel_gallons] = params[:equipment_entry][:fuel_gallons]
         flash[:notice] = "#{old_equipment_entry} filled with #{ps[:fuel_gallons]} gallons of fuel"
       else
-        flash[:notice] = "#{old_equipment_entry} marked ‘#{ps[:status].humanize}’"
+        flash[:notice] = "#{old_equipment_entry} marked ‘#{ps[:status].titleize}’"
       end
       
       new_equipment_entry = EquipmentEntry.create(ps)

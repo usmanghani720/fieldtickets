@@ -12,9 +12,9 @@
         a
           = entry.status.humanize
           |  since 
-          = hide_today_in_date(entry.created_at)
+          = hide_today_in_date(entry.time)
       
-      li = link_to 'View Log…', field_ticket_employee_log_path(entry.field_ticket, entry)
+      li = link_to 'View timesheet…', field_ticket_employee_log_path(entry.field_ticket, entry)
       
       li.divider role="separator"
       

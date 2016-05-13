@@ -47,7 +47,7 @@ class FieldTicket < ActiveRecord::Base
   
   def job_employee_list_unsorted
     if job
-      @employee_list ||= job.employee_entries.select('DISTINCT employee_id')
+      @employee_list ||= job.employee_entries.unscoped.select('DISTINCT ON (employee_id) *')
     else
       @employee_list ||= []
     end
@@ -64,7 +64,7 @@ class FieldTicket < ActiveRecord::Base
       job_employee_list_unsorted.each do |list_item|
         result = employee_entries.where(
           employee_id: list_item.employee_id
-        ).order('created_at DESC').limit(1).last
+        ).order('time DESC').limit(1).last
         
         if not result
           result = EmployeeEntry.create(
@@ -84,7 +84,7 @@ class FieldTicket < ActiveRecord::Base
   
   def job_equipment_list
     if job
-      @job_equipment_list ||= job.equipment_entries.select('DISTINCT equipment_id, rental_description, rental')
+      @job_equipment_list ||= job.equipment_entries.unscoped.select('DISTINCT ON (equipment_id, rental_description, rental) *')
     else
       @job_equipment_list ||= []
     end
@@ -224,7 +224,7 @@ class FieldTicket < ActiveRecord::Base
           rental: list_item.rental
         ).where.not(
           status: 'refuel'
-        ).order('created_at DESC').limit(1).last
+        ).order('time DESC').limit(1).last
       
         if not result
           # first time it's been viewed, so create a new DB entry for this idle equipment

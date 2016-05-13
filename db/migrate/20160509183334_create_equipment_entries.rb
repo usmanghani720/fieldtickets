@@ -9,6 +9,8 @@ class CreateEquipmentEntries < ActiveRecord::Migration
       t.datetime :time
       t.decimal :fuel_gallons
       t.decimal :mileage
+      
+      t.datetime :deleted_at, index: true
 
       t.timestamps null: false
     end

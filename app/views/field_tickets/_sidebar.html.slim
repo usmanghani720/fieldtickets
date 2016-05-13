@@ -6,7 +6,7 @@ div class="col-sm-3 col-md-2 sidebar"
         | Bill To
         .detail = @field_ticket.sidebar_descriptions[:job]
         
-    li class="#{'active' if %w{employees employees_add employees_log}.include? params[:action]}"
+    li class="#{'active' if %w{employees employees_add employees_log employees_log_edit}.include? params[:action]}"
       a href="#{field_ticket_employees_path @field_ticket}"
         | Employees
         .detail = @field_ticket.sidebar_descriptions[:employees]

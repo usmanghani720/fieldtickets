@@ -24,7 +24,11 @@
             tr
               td
                 strong = entry.status.humanize.titleize
-              td = entry.created_at
+              td
+                - if entry.time_entered_manually?
+                  span.time_entered_manually
+                    | ✱ 
+                = hide_today_in_date entry.time
               td = entry.mileage
               td
                 - if entry.fuel_gallons

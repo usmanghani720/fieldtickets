@@ -14,6 +14,10 @@ class Time
   def yesterday?
     self.to_date == Date.yesterday
   end
+  
+  def round_to_minute
+    self.change(:sec => 0)
+  end
 end
 
 

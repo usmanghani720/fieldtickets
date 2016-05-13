@@ -5,6 +5,8 @@ class CreateEmployeeEntries < ActiveRecord::Migration
       t.belongs_to :field_ticket, index: true, foreign_key: true
       t.text :status, default: 'idle'
       t.datetime :time
+      
+      t.datetime :deleted_at, index: true
 
       t.timestamps null: false
     end
