@@ -6,9 +6,9 @@
     hr
     p.question Are you satisfied with the work performed by Black Rock Milling?
     
-    = link_to 'Yes, I’m satisfied.', field_ticket_decision_path(@field_ticket, :approve), class: 'btn-approve'
+    = link_to 'Yes, I’m satisfied.', field_ticket_approval_decision_path(@field_ticket, :approve), class: 'btn-approve'
     
-    = link_to 'No, I’m not satisfied.', field_ticket_decision_path(@field_ticket, :disapprove), class: 'btn-disapprove'
+    = link_to 'No, I’m not satisfied.', field_ticket_approval_decision_path(@field_ticket, :disapprove), class: 'btn-disapprove'
     
     hr
     

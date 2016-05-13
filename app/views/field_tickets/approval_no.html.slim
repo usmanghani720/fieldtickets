@@ -12,9 +12,9 @@
     
     hr
   
-    = form_for(@field_ticket, html: { class: "form-horizontal center-block", role: "form" }) do |f|
+    = form_for(@field_ticket, url: field_ticket_approval_decision_path, html: { class: "form-horizontal center-block", role: "form" }) do |f|
 
-      = render 'errors'
+      = render partial: 'shared/errors_for', locals: { object: @field_ticket }
       
       = f.hidden_field :customer_approved_work, value: false
       
@@ -107,6 +107,3 @@ coffee:
     hasSignature = false
     input.value = ''
     signaturePad.clear()
-
-coffee:
-  $('#field_ticket_customer_approved_work').checkboxpicker()

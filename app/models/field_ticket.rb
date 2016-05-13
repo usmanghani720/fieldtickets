@@ -15,6 +15,10 @@ class FieldTicket < ActiveRecord::Base
     }
   validates_attachment_content_type :customer_signature, content_type: /\Aimage\/.*\Z/
   
+  validates :customer_name_and_title, presence: true, if: "not customer_approved_work.nil?"
+  validates :customer_signature, presence: true, if: "not customer_approved_work.nil?"
+  validates :customer_feedback, presence: true, if: "customer_approved_work === false"
+  
   before_save :erase_job_if_not_needed
   
   def reference_name

@@ -10,8 +10,7 @@ class FieldTicketsController < ApplicationController
     :supplies,
     :dimensions,
     :approval,
-    :approve,
-    :disapprove,
+    :approval_save,
     
     :vehicles,
     :vehicles_add,
@@ -37,7 +36,7 @@ class FieldTicketsController < ApplicationController
   
   autocomplete :equipment, :internal_number, limit: 50, display_value: :to_s
 
-  autocomplete :employee, :name, limit: 50, display_value: :to_s
+  autocomplete :employee, :name, limit: 50, display_value: :to_s, full: true
 
   # GET /field_tickets
   # GET /field_tickets.json
@@ -54,33 +53,38 @@ class FieldTicketsController < ApplicationController
   ###
   
   def approval
-    @minimal_ui = true
+    if @field_ticket.customer_approved_work.nil?
+      
+      @minimal_ui = true
     
-    #raise @field_ticket.customer_approved_work.inspect
-    
-    case params[:decision]
-    when nil
-      render 'approval_question'
-    when 'approve'
-      render 'approval_yes'
-    when 'disapprove'
-      render 'approval_no'
+      case params[:decision]
+      when nil
+        render 'approval_question'
+      when 'approve'
+        render 'approval_yes'
+      when 'disapprove'
+        render 'approval_no'
+      end
+      
+    else
+      
+      render 'approval_complete'
+      
     end
+    
   end
   
-  # PATCH customer is satisfied, or not, or reset
-  def approve
-    new_status = case params[:new_status]
-    when 'reset'
-      nil
-    when 'approve'
-      true
-    when 'disapprove'
-      false
-    end
+  # PATCH customer has submitted approval form
+  def approval_save
+    @minimal_ui = true
+
+    @field_ticket.update(field_ticket_params)
     
-    @field_ticket.update(customer_approved_work: new_status)
-    redirect_to field_ticket_approval_path(@field_ticket)
+    if @field_ticket.save
+      redirect_to field_ticket_approval_path(@field_ticket)
+    else
+      render 'approval_yes'
+    end
   end
   
   ###
@@ -316,6 +320,7 @@ class FieldTicketsController < ApplicationController
         :customer_approved_work,
         :customer_name_and_title,
         :customer_signature,
+        :customer_feedback,
         
         :length,
         :width,

@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.datetime "finished_at"
     t.boolean  "customer_approved_work"
     t.text     "customer_name_and_title"
+    t.text     "customer_feedback"
     t.text     "supplies_teeth"
     t.text     "supplies_oil"
     t.text     "supplies_holders"
