@@ -27,6 +27,6 @@ class EmployeeEntry < ActiveRecord::Base
   
   private
     def set_default_time
-      self.time = self.created_at
+      self.time ||= self.created_at
     end
 end

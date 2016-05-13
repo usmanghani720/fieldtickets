@@ -3,7 +3,7 @@
       
   div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
 
-    .page-header    
+    .page-header
       h4
         = @field_ticket.model_reference_name
 
@@ -32,6 +32,22 @@
                   |  
                   span.edit_timesheet
                     = link_to 'edit', field_ticket_employee_log_edit_path(@field_ticket, entry)
+          tr
+            td colspan="2"
+              a href="#" id="add_timesheet_entry_link"
+                | Add an entry to this timesheet
+                
+          tr id="add_timesheet_entry_form"
+            = form_for(@new_employee_entry, url: field_ticket_employee_log_path, html: { class: "form-horizontal", role: "form" }) do |f|
+              td colspan="2"
+                = f.select :status, options_for_select(EmployeeEntry::STATUS_TYPES), {}
+                |  
+                = f.text_field :time, value: Time.now
+                |  
+                = f.submit 'Save', class: 'btn btn-primary btn-xs'
+                |  
+                a href="#" id="cancel_timesheet_entry_link"
+                  | Cancel
     
     - if @employee_entries_deleted.count > 0
     
@@ -47,7 +63,7 @@
             tr
               th Status
               th Time
-              th Deleted By
+              th Deleted At
           tbody
             - @employee_entries_deleted.each do |entry|
               tr
@@ -59,11 +75,23 @@
                       | ✱ 
                   = hide_today_in_date entry.time
                 td
-                  | Jose
-                  |  at 
                   = hide_today_in_date entry.deleted_at
                   
 coffee:
   # enable tooltips
   $ ->
     $('[data-toggle="tooltip"]').tooltip({'placement': 'top'})
+    
+  
+  
+  # show form when link clicked
+  $('#add_timesheet_entry_link').click ->
+    $('#add_timesheet_entry_link').parent().parent().hide()
+    $('#add_timesheet_entry_form').show()   
+    
+    
+    
+  # hide form when Cancel clicked
+  $('#cancel_timesheet_entry_link').click ->
+    $('#add_timesheet_entry_form').hide()
+    $('#add_timesheet_entry_link').parent().parent().show()

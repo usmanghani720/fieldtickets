@@ -135,6 +135,8 @@ class FieldTicketsController < ApplicationController
     @employee_entries = EmployeeEntry.where(ps)
     
     @employee_entries_deleted = EmployeeEntry.only_deleted.where(ps)
+    
+    @new_employee_entry = EmployeeEntry.new
   end
   
   def employees_log_edit
@@ -154,6 +156,26 @@ class FieldTicketsController < ApplicationController
     else
       render :employees_log_edit
     end
+  end
+  
+  def employees_log_new
+    this_entry = EmployeeEntry.with_deleted.find params[:employee_entry_id]
+
+    ps = {
+      employee: this_entry.employee,
+      field_ticket: this_entry.field_ticket,
+      time: params[:employee_entry][:time].to_time_with_chronic,
+      status: params[:employee_entry][:status]
+    }
+    
+    @employee_entry = EmployeeEntry.new(ps)
+    
+    if @employee_entry.save
+      redirect_to field_ticket_employee_log_path
+    else
+      raise @employee_entry.errors.inspect
+    end
+    
   end
   
   def employees_log_destroy

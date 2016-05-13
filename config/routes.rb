@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     post 'employees/:employee_entry_id/:new_status' => 'field_tickets#employees_update', as: :employee_update
     get 'employees/:employee_entry_id' => 'field_tickets#employees_log', as: :employee_log
     get 'employees/:employee_entry_id/edit' => 'field_tickets#employees_log_edit', as: :employee_log_edit
+    post 'employees/:employee_entry_id' => 'field_tickets#employees_log_new'
     patch 'employees/:employee_entry_id' => 'field_tickets#employees_log_update'
     delete 'employees/:employee_entry_id' => 'field_tickets#employees_log_destroy'
     

@@ -1,0 +1,9 @@
+#add_timesheet_entry_form {
+  display: none;
+}
+
+#cancel_timesheet_entry_link {
+  @extend .btn;
+  @extend .btn-link;
+  @extend .btn-xs;
+}
