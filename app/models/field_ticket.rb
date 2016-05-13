@@ -46,11 +46,13 @@ class FieldTicket < ActiveRecord::Base
   ###
   
   def job_employee_list_unsorted
-    if job
-      @employee_list ||= job.employee_entries.unscoped.select('DISTINCT ON (employee_id) *')
+    object = if job
+      job
     else
-      @employee_list ||= []
+      self
     end
+    
+    @employee_list ||= object.employee_entries.unscoped.select('DISTINCT ON (employee_id) *')
   end
   
   def job_employee_list
@@ -83,11 +85,13 @@ class FieldTicket < ActiveRecord::Base
   ###
   
   def job_equipment_list
-    if job
-      @job_equipment_list ||= job.equipment_entries.unscoped.select('DISTINCT ON (equipment_id, rental_description, rental) *')
+    object = if job
+      job
     else
-      @job_equipment_list ||= []
+      self
     end
+    
+    @job_equipment_list ||= object.equipment_entries.unscoped.select('DISTINCT ON (equipment_id, rental_description, rental) *')
   end
   
   def equipment_on_the_job
