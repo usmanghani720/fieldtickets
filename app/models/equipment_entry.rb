@@ -11,7 +11,7 @@ class EquipmentEntry < ActiveRecord::Base
   
   acts_as_paranoid
   
-  default_scope { order('time') }
+  default_scope { order(:time, :id) }
   
   
   STATUS_TYPES = ['on_the_job', 'in_maintenance', 'refuel', 'idle']

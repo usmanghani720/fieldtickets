@@ -11,7 +11,7 @@ class EmployeeEntry < ActiveRecord::Base
   
   acts_as_paranoid
   
-  default_scope { order('time') }
+  default_scope { order(:time, :id) }
   
   def to_s
     employee.name
