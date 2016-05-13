@@ -262,7 +262,7 @@ class FieldTicketsController < ApplicationController
   def update
     respond_to do |format|
       if @field_ticket.update(field_ticket_params)
-        format.html { redirect_to request.referrer, notice: 'Field ticket was successfully updated.' }
+        format.html { redirect_to request.referrer, notice: 'Your changes have been saved.' }
         format.json { render :show, status: :ok, location: @field_ticket }
       else
         format.html { render :edit }
