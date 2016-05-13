@@ -113,10 +113,14 @@ class FieldTicket < ActiveRecord::Base
       @sidebar_descriptions = {
       }
       
-      @sidebar_descriptions[:job] = if job == nil
-        bill_to.humanize
-      else
+      
+      
+      @sidebar_descriptions[:job] = if ['Job', 'Cancelled Job'].include? bill_to and job.blank?
+        nil
+      elsif ['Job', 'Cancelled Job'].include? bill_to
         "#{bill_to.humanize} ##{job.internal_number}"
+      else
+        bill_to.humanize
       end
       
       
