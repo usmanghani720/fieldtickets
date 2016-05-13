@@ -1,17 +1,17 @@
 Customer.create!([
-  {name: "Acme Construction"},
-  {name: "Florida DOT"}
+  {name: 'Acme Construction'},
+  {name: 'Florida DOT'}
 ])
 
 Employee.create!([
-  {name: "John Doe", internal_number: ""},
-  {name: "Mark Twain", internal_number: ""},
-  {name: "Vince Smith", internal_number: ""}
+  {name: 'John Doe'},
+  {name: 'Mark Twain'},
+  {name: 'Vince Smith'}
 ])
 
 Equipment.create!([
-  {internal_number: '007', vehicle_type: "Truck"},
-  {internal_number: '032', vehicle_type: "Mill"}
+  {internal_number: '007', vehicle_type: 'Truck'},
+  {internal_number: '032', vehicle_type: 'Mill'}
 ])
 
 Job.create!([
