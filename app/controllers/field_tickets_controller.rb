@@ -57,12 +57,14 @@ class FieldTicketsController < ApplicationController
     @minimal_ui = true
     
     #raise @field_ticket.customer_approved_work.inspect
-    if @field_ticket.customer_approved_work === nil
+    
+    case params[:decision]
+    when nil
       render 'approval_question'
-    elsif @field_ticket.customer_approved_work === false
-      render 'approval_no'
-    else
+    when 'approve'
       render 'approval_yes'
+    when 'disapprove'
+      render 'approval_no'
     end
   end
   

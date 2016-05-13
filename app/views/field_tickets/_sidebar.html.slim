@@ -15,23 +15,26 @@ div class="col-sm-3 col-md-2 sidebar"
       a href="#{field_ticket_vehicles_path @field_ticket}"
         | Vehicles
         .detail = raw @field_ticket.sidebar_descriptions[:vehicles]
-        
-    li class="#{'active' if params[:action] == 'dimensions'}"
-      a href="#{field_ticket_dimensions_path @field_ticket}"
-        | Milling Dimensions
-        .detail = raw @field_ticket.sidebar_descriptions[:dimensions]
+    
+    - if @field_ticket.job
+      li class="#{'active' if params[:action] == 'dimensions'}"
+        a href="#{field_ticket_dimensions_path @field_ticket}"
+          | Milling Dimensions
+          .detail = raw @field_ticket.sidebar_descriptions[:dimensions]
         
     li class="#{'active' if params[:action] == 'supplies'}"
       a href="#{field_ticket_supplies_path @field_ticket}"
         | Supplies
         .detail = raw @field_ticket.sidebar_descriptions[:supplies]
         
-    li class="#{'active' if params[:action] == 'delays'}"
-      a href="#{field_ticket_delays_path @field_ticket}"
-        | Delays
-        .detail = raw @field_ticket.sidebar_descriptions[:delays]
-        
-    li class="#{'active' if params[:action] == 'approval'}"
-      a href="#{field_ticket_approval_path @field_ticket}"
-        | Customer Approval
-        .detail = raw @field_ticket.sidebar_descriptions[:approval]
+    - if @field_ticket.job
+      li class="#{'active' if params[:action] == 'delays'}"
+        a href="#{field_ticket_delays_path @field_ticket}"
+          | Delays
+          .detail = raw @field_ticket.sidebar_descriptions[:delays]
+    
+    - if @field_ticket.job
+      li class="#{'active' if params[:action] == 'approval'}"
+        a href="#{field_ticket_approval_path @field_ticket}"
+          | Customer Approval
+          .detail = raw @field_ticket.sidebar_descriptions[:approval]

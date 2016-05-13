@@ -2,13 +2,109 @@
       
   div#approval_form.main
   
-    h2
-      | You disapprove of this job. 
-
-      = link_to 'Undo', field_ticket_approve_path(@field_ticket, :reset), method: :patch, class: 'undo'
+    .heading
+  
+      h2
+        | Sorry things didn’t go well.
+        br
+        | We’d like to make it right.
       
+    
     hr
-    p If you don’t want to leave feedback, please hand the iPad back to Larry.
-    a.btn.btn-default href="#" Send Feedback to Management
-    hr
-    a.btn href="#" Done
+  
+    = form_for(@field_ticket, html: { class: "form-horizontal center-block", role: "form" }) do |f|
+
+      = render 'errors'
+      
+      p
+        span.badge 1
+        |  Please let us know what we could have done better:
+
+      .form-group
+        = f.text_area :customer_name_and_title, class: "form-control"
+
+      
+      hr
+
+      p
+        span.badge 2
+        |  Please type your name and title:
+    
+      .form-group
+        = f.text_field :customer_name_and_title, class: "form-control"
+      
+      hr
+      
+      p
+        span.badge 3
+        |  Please sign using your finger:
+
+      .form-group
+        #signature_canvas_container
+          canvas#signature_canvas width="500px" height="100px"
+          a#reset_signature_canvas Clear Signature
+        = f.hidden_field :customer_signature, id: 'customer_signature_input', value: ''
+          
+      hr
+      
+
+      .form-group
+          = submit_tag 'Disapprove Job', class: "btn-disapprove"
+          |  or 
+          = link_to 'Cancel', '/', class: "btn-cancel"
+
+javascript:
+  var canvas = document.querySelector("#signature_canvas");
+  var signaturePad = new SignaturePad(canvas, {
+            onEnd: function() {
+                hasSignature = true;
+            }
+        });
+  
+  var resizeCanvas = function () {
+              if (hasSignature) {
+                  signatureCopy = signaturePad.toDataURL();
+              }
+
+              var ratio = window.devicePixelRatio || 2;
+
+              // Note fixed width:height ratio. No need for dynamic height.       
+              canvas.width = canvas.offsetWidth * ratio;
+              canvas.height = Math.floor(canvas.offsetWidth/3) * ratio; 
+              canvas.getContext("2d").scale(ratio, ratio);
+
+              // Line width is relative to canvas size to prevent different
+              // width after orientation changes.
+              signaturePad.minWidth = canvas.offsetWidth / 1000;
+              signaturePad.maxWidth = signaturePad.minWidth * 5;
+
+              if (hasSignature) {
+                  signaturePad.fromDataURL(signatureCopy);
+              } else {
+                  // signaturePad doesn't watch canvas and needs to be told it's clear now
+                  signaturePad.clear(); 
+              }
+          }
+
+  //window.addEventListener("resize", resizeCanvas);
+  //resizeCanvas();
+  
+  var input = document.querySelector("#customer_signature_input");
+  
+  canvas.addEventListener("mouseup", function(event) {
+      if ( signaturePad.isEmpty() ) {
+          input.value = '';
+      } else {
+          input.value = signaturePad.toDataURL();
+      }
+  });
+  
+
+coffee:
+  $('#reset_signature_canvas').click ->
+    hasSignature = false
+    input.value = ''
+    signaturePad.clear()
+
+coffee:
+  $('#field_ticket_customer_approved_work').checkboxpicker()

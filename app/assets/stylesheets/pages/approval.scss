@@ -1,5 +1,12 @@
 #approval_form {
   
+  text-align: center;
+  
+  form {
+    text-align: left;
+    width: 500px;
+  }
+  
   .heading {
     text-align: center;
   }
@@ -8,6 +15,7 @@
     @extend .btn;
     @extend .btn-success;
     @extend .btn-lg;
+    font-weight: bold;
     
     margin-right: 15px;
   }
@@ -17,23 +25,33 @@
     @extend .btn-danger;
     @extend .btn-lg;
   }
-
-  .btn-cancel {
-    @extend .btn;
-    @extend .btn-default;
-    @extend .btn-sm;
-  }
   
   .question {
     font-size: 18px;
     margin-bottom: 18px;
   }
   
-  a.undo {
+  #reset_signature_canvas, .btn-cancel {
     font-weight: normal;
     color: gray !important;
     text-decoration: underline;
     font-size: 12px;
+    @extend .btn;
+  }
+  
+  #reset_signature_canvas {
+    margin-top: -3px;
+    float: right;
+  }
+  
+  #signature_canvas {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    clear: none;
+  }
+
+  #signature_canvas_container {
+    clear: none;
   }
   
 }
