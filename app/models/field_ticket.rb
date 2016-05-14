@@ -45,7 +45,7 @@ class FieldTicket < ActiveRecord::Base
     end
   end
   
-  def requires_job_number
+  def job_number_required?
     ['Job', 'Cancelled Job'].include? bill_to
   end
   
@@ -243,7 +243,7 @@ class FieldTicket < ActiveRecord::Base
     end
   
     def erase_job_if_not_needed
-      if not requires_job_number
+      if not job_number_required?
         self.job = nil
       end
     end
