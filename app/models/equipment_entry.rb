@@ -1,4 +1,6 @@
 class EquipmentEntry < ActiveRecord::Base
+  include Timesheet
+  
   belongs_to :field_ticket
   belongs_to :equipment
   
@@ -23,19 +25,7 @@ class EquipmentEntry < ActiveRecord::Base
       "#{equipment}"
     end
   end
-  
-  def time_entered_manually?
-    created_at.round_to_minute != time
-  end
-  
-  def time=(new_time)
-    self[:time] = new_time.round_to_minute
-  end
-  
-  def time_entered_manually?
-    created_at != time
-  end
-  
+    
   private
   
     def needs_mileage?
@@ -43,7 +33,4 @@ class EquipmentEntry < ActiveRecord::Base
       #(field_ticket.equipment_entries.where(equipment: self.equipment).count == 0) or
     end
     
-    def set_default_time
-      self.time = self.created_at
-    end
 end
