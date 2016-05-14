@@ -6,7 +6,7 @@ class Equipment < ActiveRecord::Base
   acts_as_paranoid
   
   def reference_name
-    internal_number
+    to_s
   end
   
   def model_reference_name
