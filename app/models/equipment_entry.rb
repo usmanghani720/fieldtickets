@@ -7,7 +7,7 @@ class EquipmentEntry < ActiveRecord::Base
   validates :field_ticket, presence: true
   validates :equipment, presence: true, if: "not rental?"
   validates :rental_description, presence: true, if: "rental?"
-  validates :mileage, presence: true, if: :needs_mileage?
+  validates :mileage, presence: true, if: :mileage_required?
   
   before_create :set_default_time
   
@@ -28,7 +28,7 @@ class EquipmentEntry < ActiveRecord::Base
     
   private
   
-    def needs_mileage?
+    def mileage_required?
       status == 'refuel'
       #(field_ticket.equipment_entries.where(equipment: self.equipment).count == 0) or
     end
