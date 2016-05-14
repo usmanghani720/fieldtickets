@@ -4,6 +4,7 @@ class CreateJobs < ActiveRecord::Migration
       t.text :internal_number
       t.text :customers_number
       t.boolean :flat_rate,   default: false
+      t.boolean :completed,   default: false
       t.belongs_to :customer, index: true, foreign_key: true
       
       t.text :display_name

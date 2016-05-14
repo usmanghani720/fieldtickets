@@ -32,7 +32,7 @@ class FieldTicketsController < ApplicationController
     :employees_log_destroy,
   ]
   
-  autocomplete :job, :display_name, limit: 50, full: true
+  autocomplete :job, :display_name, limit: 50, full: true, scopes: [:in_progress]
   
   autocomplete :equipment, :display_name, limit: 50, full: true
 

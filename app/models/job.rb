@@ -6,6 +6,9 @@ class Job < ActiveRecord::Base
   
   before_save :cache_display_name
   
+  scope :in_progress, -> { where(completed: false) }
+  scope :completed, -> { where(completed: true) }
+  
   def billing
     if flat_rate
       'Day Rate'

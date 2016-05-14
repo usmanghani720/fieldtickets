@@ -15,6 +15,7 @@
     .col-sm-10
       = f.autocomplete_field :customer_name, autocomplete_customer_name_jobs_path, class: "form-control"
       
+      
   .form-group
     = f.label :internal_number, class: "col-sm-2 control-label"
     .col-sm-10
@@ -28,8 +29,13 @@
     .col-sm-10
       = f.check_box :flat_rate, class: "form-control", data: {'off-label': 'Hourly', 'on-label': 'Day Rate', 'off-active-cls': 'btn-primary', 'on-active-cls': 'btn-primary'}
   .form-group
+    = f.label :completed, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :completed, class: "form-control", data: {'off-label': 'In Progress', 'on-label': 'Completed', 'off-active-cls': 'btn-primary', 'on-active-cls': 'btn-success'}
+  .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: "btn btn-primary"
 
 coffee:
   $('#job_flat_rate').checkboxpicker()
+  $('#job_completed').checkboxpicker()

@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.text     "internal_number"
     t.text     "customers_number"
     t.boolean  "flat_rate",        default: false
+    t.boolean  "completed",        default: false
     t.integer  "customer_id"
     t.text     "display_name"
     t.datetime "created_at",                       null: false
