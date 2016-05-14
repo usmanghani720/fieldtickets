@@ -38,18 +38,20 @@ ActiveRecord::Schema.define(version: 20160511200239) do
 
   create_table "employees", force: :cascade do |t|
     t.text     "name"
+    t.text     "nickname"
     t.text     "internal_number"
+    t.text     "display_name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
   create_table "equipment", force: :cascade do |t|
     t.text     "internal_number"
-    t.text     "license_plate_number"
-    t.text     "vin"
+    t.text     "description"
     t.text     "vehicle_type"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.text     "display_name"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "equipment_entries", force: :cascade do |t|
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.text     "customers_number"
     t.boolean  "flat_rate",        default: false
     t.integer  "customer_id"
+    t.text     "display_name"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end

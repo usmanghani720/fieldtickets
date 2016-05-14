@@ -69,6 +69,6 @@ class EquipmentController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def equipment_params
-      params.require(:equipment).permit(:internal_number, :license_plate_number, :vin, :vehicle_type)
+      params.require(:equipment).permit(:internal_number, :license_plate_number, :vin, :vehicle_type, :description)
     end
 end

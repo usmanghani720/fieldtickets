@@ -17,7 +17,7 @@
       .form-group style="#{'display:none;' if not @field_ticket.requires_job_number}"
         = f.label :job, class: "col-sm-2 control-label"
         .col-sm-10
-          = f.autocomplete_field :job, autocomplete_job_internal_number_field_tickets_path, id_element: '#job_id', class: 'form-control'
+          = f.autocomplete_field :job, autocomplete_job_display_name_field_tickets_path, id_element: '#job_id', class: 'form-control'
           
           = f.hidden_field :job_id, id: 'job_id'
           

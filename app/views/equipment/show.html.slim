@@ -22,6 +22,10 @@ dl.dl-horizontal
   dd
     = @equipment.internal_number
   dt
+    = Equipment.human_attribute_name :description
+  dd
+    = @equipment.description
+  dt
     = Equipment.human_attribute_name :vehicle_type
   dd
     = @equipment.vehicle_type

@@ -19,7 +19,7 @@
         .col-sm-10
           /= f.text_field :equipment, class: 'form-control'
           
-          = f.autocomplete_field :equipment, autocomplete_equipment_internal_number_field_tickets_path, id_element: '#equipment_id', class: 'form-control'
+          = f.autocomplete_field :equipment, autocomplete_equipment_display_name_field_tickets_path, id_element: '#equipment_id', class: 'form-control'
           
           = f.hidden_field :equipment_id, id: 'equipment_id'
           

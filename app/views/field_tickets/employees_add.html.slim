@@ -12,7 +12,7 @@
       .form-group
         = f.label :employee, class: "col-sm-2 control-label"
         .col-sm-10
-          = f.autocomplete_field :employee, autocomplete_employee_name_field_tickets_path, id_element: '#employee_id', class: 'form-control'
+          = f.autocomplete_field :employee, autocomplete_employee_display_name_field_tickets_path, id_element: '#employee_id', class: 'form-control'
           
           = f.hidden_field :employee_id, id: 'employee_id'
           

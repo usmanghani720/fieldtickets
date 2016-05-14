@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   resources :timesheets, module: :timesheet
   
   resources :field_tickets, path: 'tickets' do
-    get :autocomplete_job_internal_number, on: :collection
-    get :autocomplete_equipment_internal_number, on: :collection
-    get :autocomplete_employee_name, on: :collection
+    get :autocomplete_job_display_name, on: :collection
+    get :autocomplete_equipment_display_name, on: :collection
+    get :autocomplete_employee_display_name, on: :collection
     
     get :job
     

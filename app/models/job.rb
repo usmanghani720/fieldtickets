@@ -4,6 +4,8 @@ class Job < ActiveRecord::Base
   has_many :equipment_entries, through: :field_tickets
   has_many :employee_entries, through: :field_tickets
   
+  before_save :cache_display_name
+  
   def billing
     if flat_rate
       'Day Rate'
@@ -20,12 +22,16 @@ class Job < ActiveRecord::Base
     if customer
       customer.name
     else
-      ''
+      'd'
     end
   end
   
   def to_s
-    "#{internal_number} — #{customer_name}"
+    "##{internal_number} — #{customer_name}"
+  end
+  
+  def cache_display_name
+    self[:display_name] = to_s
   end
   
 end

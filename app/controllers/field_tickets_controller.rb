@@ -32,11 +32,11 @@ class FieldTicketsController < ApplicationController
     :employees_log_destroy,
   ]
   
-  autocomplete :job, :internal_number, limit: 50, display_value: :to_s
+  autocomplete :job, :display_name, limit: 50, full: true
   
-  autocomplete :equipment, :internal_number, limit: 50, display_value: :to_s
+  autocomplete :equipment, :display_name, limit: 50, full: true
 
-  autocomplete :employee, :name, limit: 50, display_value: :to_s, full: true
+  autocomplete :employee, :display_name, limit: 50, full: true
 
   # GET /field_tickets
   # GET /field_tickets.json
