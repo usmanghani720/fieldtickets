@@ -5,7 +5,9 @@ class CreateEquipment < ActiveRecord::Migration
       t.text :description
       t.text :vehicle_type
       
-      t.text :display_name
+      t.text :display_name # cached display name
+      
+      t.datetime :deleted_at, index: true
 
       t.timestamps null: false
     end

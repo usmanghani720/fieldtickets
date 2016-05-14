@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   namespace :timesheet do
-    resources :equipment_entries
-  end
-  namespace :timesheet do
     resources :scaffold_entries
     resources :employee_entries
   end
@@ -53,7 +50,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :employees
   
-  devise_for :users
+  devise_for :employees
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -3,6 +3,8 @@ class Equipment < ActiveRecord::Base
   
   VEHICLE_TYPES = ['Truck', 'Mill']
   
+  acts_as_paranoid
+  
   def reference_name
     internal_number
   end

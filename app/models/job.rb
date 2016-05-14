@@ -1,6 +1,8 @@
 class Job < ActiveRecord::Base
   include DisplayName
   
+  acts_as_paranoid
+  
   belongs_to :customer
   has_many :field_tickets
   has_many :equipment_entries, through: :field_tickets

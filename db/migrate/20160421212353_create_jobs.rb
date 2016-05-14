@@ -7,7 +7,9 @@ class CreateJobs < ActiveRecord::Migration
       t.boolean :completed,   default: false
       t.belongs_to :customer, index: true, foreign_key: true
       
-      t.text :display_name
+      t.text :display_name # cached display name
+      
+      t.datetime :deleted_at, index: true
 
       t.timestamps null: false
     end

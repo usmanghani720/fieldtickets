@@ -24,6 +24,8 @@ class CreateFieldTickets < ActiveRecord::Migration
       t.text :delays_paving
       t.text :delays_mot
       t.text :delays_other
+      
+      t.datetime :deleted_at, index: true
 
       t.timestamps null: false
     end

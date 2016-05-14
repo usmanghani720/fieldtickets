@@ -1,6 +1,10 @@
 class Employee < ActiveRecord::Base
   include DisplayName
   
+  acts_as_paranoid
+  
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable
+  
   def to_s
     if nickname.present? and internal_number.present?
       "“#{nickname}” #{name} (##{internal_number})"

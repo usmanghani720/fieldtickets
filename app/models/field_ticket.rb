@@ -8,6 +8,8 @@ class FieldTicket < ActiveRecord::Base
   
   BILLING_TYPES = ['Job', 'Cancelled Job', ['-', 'data-divider' => 'true'], 'Weather', 'Overhead', 'Office Staff', 'Transport', 'Equipment Maintenance & Repair']
   
+  acts_as_paranoid
+  
   has_attached_file :customer_signature,
     styles: {
       thumb: "150x300>",
