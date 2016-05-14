@@ -21,7 +21,7 @@
       - if not entry.status == 'on_the_job'
         li = link_to 'Mark ‘On the Job’', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'on_the_job'), method: :post
         
-      - if maintenance_available? and not entry.status == 'in_maintenance'
+      - if entry.maintenance_available? and not entry.status == 'in_maintenance'
         li = link_to 'Mark ‘In Maintenance’', field_ticket_vehicle_update_path(entry.field_ticket, entry, new_status: 'in_maintenance'), method: :post
         
       - if not entry.status == 'idle'
