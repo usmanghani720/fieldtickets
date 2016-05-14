@@ -5,6 +5,14 @@ class Employee < ActiveRecord::Base
   
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable
   
+  def email_required?
+    false
+  end
+  
+  def password_required?
+    false
+  end
+  
   def to_s
     if nickname.present? and internal_number.present?
       "“#{nickname}” #{name} (##{internal_number})"

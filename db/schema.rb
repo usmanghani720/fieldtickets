@@ -18,9 +18,12 @@ ActiveRecord::Schema.define(version: 20160511200239) do
 
   create_table "customers", force: :cascade do |t|
     t.text     "name"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "customers", ["deleted_at"], name: "index_customers_on_deleted_at", using: :btree
 
   create_table "employee_entries", force: :cascade do |t|
     t.integer  "employee_id"
@@ -41,18 +44,40 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.text     "nickname"
     t.text     "internal_number"
     t.text     "display_name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "worker"
+    t.boolean  "crew_chief"
+    t.boolean  "manager"
+    t.text     "email"
+    t.text     "encrypted_password"
+    t.text     "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.integer  "failed_attempts",        default: 0, null: false
+    t.text     "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
+
+  add_index "employees", ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
 
   create_table "equipment", force: :cascade do |t|
     t.text     "internal_number"
     t.text     "description"
     t.text     "vehicle_type"
     t.text     "display_name"
+    t.datetime "deleted_at"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "equipment", ["deleted_at"], name: "index_equipment_on_deleted_at", using: :btree
 
   create_table "equipment_entries", force: :cascade do |t|
     t.integer  "field_ticket_id"
@@ -92,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.text     "delays_paving"
     t.text     "delays_mot"
     t.text     "delays_other"
+    t.datetime "deleted_at"
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
     t.string   "customer_signature_file_name"
@@ -100,6 +126,7 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.datetime "customer_signature_updated_at"
   end
 
+  add_index "field_tickets", ["deleted_at"], name: "index_field_tickets_on_deleted_at", using: :btree
   add_index "field_tickets", ["job_id"], name: "index_field_tickets_on_job_id", using: :btree
 
   create_table "jobs", force: :cascade do |t|
@@ -109,72 +136,13 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.boolean  "completed",        default: false
     t.integer  "customer_id"
     t.text     "display_name"
+    t.datetime "deleted_at"
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
   end
 
   add_index "jobs", ["customer_id"], name: "index_jobs_on_customer_id", using: :btree
-
-  create_table "timesheet_employee_entries", force: :cascade do |t|
-    t.integer  "timesheet_timesheet_id"
-    t.integer  "employee_id"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.integer  "minutes_worked"
-    t.boolean  "per_diem"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "timesheet_employee_entries", ["employee_id"], name: "index_timesheet_employee_entries_on_employee_id", using: :btree
-  add_index "timesheet_employee_entries", ["timesheet_timesheet_id"], name: "index_timesheet_employee_entries_on_timesheet_timesheet_id", using: :btree
-
-  create_table "timesheet_equipment_entries", force: :cascade do |t|
-    t.integer  "timesheet_timesheet_id"
-    t.integer  "equipment_id"
-    t.decimal  "fuel_gallons"
-    t.decimal  "mileage_start"
-    t.decimal  "mileage_end"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "timesheet_equipment_entries", ["equipment_id"], name: "index_timesheet_equipment_entries_on_equipment_id", using: :btree
-  add_index "timesheet_equipment_entries", ["timesheet_timesheet_id"], name: "index_timesheet_equipment_entries_on_timesheet_timesheet_id", using: :btree
-
-  create_table "timesheet_timesheets", force: :cascade do |t|
-    t.integer  "field_ticket_id"
-    t.integer  "site_supervisor_id"
-    t.integer  "crew_chief_id"
-    t.boolean  "finalized"
-    t.text     "project"
-    t.datetime "left_job_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
-
-  add_index "timesheet_timesheets", ["crew_chief_id"], name: "index_timesheet_timesheets_on_crew_chief_id", using: :btree
-  add_index "timesheet_timesheets", ["field_ticket_id"], name: "index_timesheet_timesheets_on_field_ticket_id", using: :btree
-  add_index "timesheet_timesheets", ["site_supervisor_id"], name: "index_timesheet_timesheets_on_site_supervisor_id", using: :btree
-
-  create_table "users", force: :cascade do |t|
-    t.text     "email",                  default: "", null: false
-    t.text     "encrypted_password",     default: "", null: false
-    t.text     "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.boolean  "admin"
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "jobs", ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
 
   add_foreign_key "employee_entries", "employees"
   add_foreign_key "employee_entries", "field_tickets"
@@ -182,9 +150,4 @@ ActiveRecord::Schema.define(version: 20160511200239) do
   add_foreign_key "equipment_entries", "field_tickets"
   add_foreign_key "field_tickets", "jobs"
   add_foreign_key "jobs", "customers"
-  add_foreign_key "timesheet_employee_entries", "employees"
-  add_foreign_key "timesheet_employee_entries", "timesheet_timesheets"
-  add_foreign_key "timesheet_equipment_entries", "equipment"
-  add_foreign_key "timesheet_equipment_entries", "timesheet_timesheets"
-  add_foreign_key "timesheet_timesheets", "field_tickets"
 end

@@ -15,8 +15,8 @@ class CreateEmployees < ActiveRecord::Migration
       
       
       ## Database authenticatable
-      t.text :email,              null: false, default: ""
-      t.text :encrypted_password, null: false, default: ""
+      t.text :email #,              null: false, default: ""
+      t.text :encrypted_password #, null: false, default: ""
 
       ## Recoverable
       t.text   :reset_password_token
