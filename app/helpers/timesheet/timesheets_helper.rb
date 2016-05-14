@@ -1,2 +1,0 @@
-module Timesheet::TimesheetsHelper
-end

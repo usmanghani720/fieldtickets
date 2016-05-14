@@ -1,1 +1,0 @@
-json.extract! @timesheet, :id, :field_ticket_id, :site_supervisor_id, :crew_chief_id, :finalized, :project, :supplies_teeth, :supplies_oil, :supplies_holders, :supplies_other, :left_job_at, :created_at, :updated_at
