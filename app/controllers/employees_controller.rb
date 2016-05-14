@@ -73,6 +73,13 @@ class EmployeesController < ApplicationController
         :name,
         :nickname,
         :internal_number,
+        
+        :manager,
+        :crew_chief,
+        :worker,
+        
+        :email,
+        :password,
       )
     end
 end

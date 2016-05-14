@@ -1,4 +1,4 @@
-= form_for(@employee, html: { class: "form-horizontal", role: "form" }) do |f|
+= form_for(@employee, html: { class: "form-horizontal", role: "form", autocomplete: 'off' }) do |f|
   - if @employee.errors.any?
     .alert.alert-danger.alert-dismissable role="alert"
       button.close type="button" data-dismiss="alert"
@@ -26,6 +26,38 @@
     .col-sm-10
       = f.text_field :internal_number, class: "form-control"
       
+  hr
+
+  .form-group
+    = f.label :email, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :email, class: "form-control"
+
+  .form-group
+    = f.label :password, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.text_field :password, class: "form-control"
+
+  .form-group
+    = f.label :worker, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :worker, class: "form-control"
+
+  .form-group
+    = f.label :crew_chief, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :crew_chief, class: "form-control"
+
+  .form-group
+    = f.label :manager, class: "col-sm-2 control-label"
+    .col-sm-10
+      = f.check_box :manager, class: "form-control"
+      
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: "btn btn-primary"
+
+coffee:
+  $('#employee_worker').checkboxpicker()
+  $('#employee_crew_chief').checkboxpicker()
+  $('#employee_manager').checkboxpicker()
