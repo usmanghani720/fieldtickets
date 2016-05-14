@@ -1,7 +1,7 @@
 class Equipment < ActiveRecord::Base
-  VEHICLE_TYPES = ['Truck', 'Mill']
+  include DisplayName
   
-  before_save :cache_display_name
+  VEHICLE_TYPES = ['Truck', 'Mill']
   
   def reference_name
     internal_number
@@ -19,7 +19,4 @@ class Equipment < ActiveRecord::Base
     end
   end
   
-  def cache_display_name
-    self[:display_name] = to_s
-  end
 end

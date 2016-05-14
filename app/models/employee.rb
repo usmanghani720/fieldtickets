@@ -1,5 +1,5 @@
 class Employee < ActiveRecord::Base
-  before_save :cache_display_name
+  include DisplayName
   
   def to_s
     if nickname.present? and internal_number.present?
@@ -13,7 +13,4 @@ class Employee < ActiveRecord::Base
     end
   end
   
-  def cache_display_name
-    self[:display_name] = to_s
-  end
 end

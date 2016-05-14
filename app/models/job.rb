@@ -1,10 +1,10 @@
 class Job < ActiveRecord::Base
+  include DisplayName
+  
   belongs_to :customer
   has_many :field_tickets
   has_many :equipment_entries, through: :field_tickets
   has_many :employee_entries, through: :field_tickets
-  
-  before_save :cache_display_name
   
   scope :in_progress, -> { where(completed: false) }
   scope :completed, -> { where(completed: true) }
@@ -31,10 +31,6 @@ class Job < ActiveRecord::Base
   
   def to_s
     "##{internal_number} — #{customer_name}"
-  end
-  
-  def cache_display_name
-    self[:display_name] = to_s
   end
   
 end

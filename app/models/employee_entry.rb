@@ -14,7 +14,7 @@ class EmployeeEntry < ActiveRecord::Base
   default_scope { order(:time, :id) }
   
   def to_s
-    employee.name
+    employee.to_s
   end
   
   def time_entered_manually?
