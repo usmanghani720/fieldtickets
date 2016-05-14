@@ -2,27 +2,22 @@ class EquipmentEntry < ActiveRecord::Base
   include Timesheet
   
   belongs_to :field_ticket
-  belongs_to :equipment
-  
   validates :field_ticket, presence: true
+  belongs_to :equipment
   validates :equipment, presence: true, if: "not rental?"
+  
   validates :rental_description, presence: true, if: "rental?"
   validates :mileage, presence: true, if: :mileage_required?
   
-  before_create :set_default_time
-  
   acts_as_paranoid
-  
-  default_scope { order(:time, :id) }
-  
   
   STATUS_TYPES = ['on_the_job', 'in_maintenance', 'refuel', 'idle']
   
   def to_s
     if self.rental?
-      "#{rental_description}"
+      rental_description
     else
-      "#{equipment}"
+      equipment.to_s
     end
   end
     
