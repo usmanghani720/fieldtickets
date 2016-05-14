@@ -22,7 +22,7 @@ class Job < ActiveRecord::Base
     if customer
       customer.name
     else
-      'd'
+      ''
     end
   end
   
