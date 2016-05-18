@@ -12,27 +12,17 @@
         th
           | Bill to
         th
-          | Job
-        th
-          | Started at
-        th
           | Finished at
         th
           | Customer approved work
-        th
-          | Customer name and title
     tbody
       - @field_tickets.each do | field_ticket |
         tr data-link="#{field_ticket_path(field_ticket)}"
           td
-            = field_ticket.job
-          td
             = field_ticket.bill_to
-          td
-            = field_ticket.started_at
+            |  
+            = field_ticket.job
           td
             = field_ticket.finished_at
           td
             = field_ticket.customer_approved_work
-          td
-            = field_ticket.customer_name_and_title
