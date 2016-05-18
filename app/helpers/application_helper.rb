@@ -17,9 +17,9 @@ module ApplicationHelper
       hours = total_minutes / 60
     
       if hours > 0
-        "#{hours}h #{minutes}m"
+        "#{hours} hr #{minutes} min"
       elsif minutes > 0
-        "#{minutes}m"
+        "#{minutes} min"
       else
         ''
       end
