@@ -11,17 +11,8 @@
       tr
         th
           | Name
-        th
-        th
-        th
     tbody
       - @customers.each do | customer |
-        tr
+        tr data-link="#{customer_path(customer)}"
           td
             = customer.name
-          td
-            = link_to 'Show', customer
-          td
-            = link_to 'Edit', edit_customer_path(customer) 
-          td
-            = link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } 

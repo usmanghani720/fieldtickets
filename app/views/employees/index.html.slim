@@ -13,17 +13,10 @@
           | Name
         th
           | Internal number
-        th
     tbody
       - @employees.each do | employee |
-        tr
+        tr data-link="#{employee_path(employee)}"
           td
             = employee.name
           td
             = employee.internal_number
-          td
-            = link_to 'Show', employee
-            |  
-            = link_to 'Edit', edit_employee_path(employee) 
-            |  
-            = link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } 

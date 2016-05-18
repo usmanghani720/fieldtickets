@@ -13,6 +13,10 @@ class Employee < ActiveRecord::Base
     false
   end
   
+  def reference_name
+    to_s
+  end
+  
   def to_s
     if nickname.present? and internal_number.present?
       "“#{nickname}” #{name} (##{internal_number})"

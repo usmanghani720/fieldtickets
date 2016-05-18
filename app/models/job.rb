@@ -35,4 +35,8 @@ class Job < ActiveRecord::Base
     "##{internal_number} — #{customer_name}"
   end
   
+  def reference_name
+    to_s
+  end
+  
 end
