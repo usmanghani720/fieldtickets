@@ -14,11 +14,10 @@ module Timesheet
   end
   
   class_methods do
-    
-    def recalculate(field_ticket_id, employee_id)
+    def recalculate(field_ticket_id, column_data)
       entries = self.where(
         field_ticket_id: field_ticket_id,
-        employee_id: employee_id
+        @column => column_data
       )
       
       entries.each_with_index do |entry, index|
@@ -32,9 +31,15 @@ module Timesheet
           
         entry.save if entry.changed?
       end
+      
+      true
     end
     
-    true
+    # Used by the model to tell this concern the name of the item's column, such as :employee_id or :equipment_id
+    def timesheet_column(column)
+      @column = column
+    end
+    
   end
   
   # Don't let time_end be less than time
@@ -65,7 +70,7 @@ module Timesheet
     end
     
     def recalculate_all
-      self.class.recalculate(field_ticket_id, employee_id)
+      self.class.recalculate(field_ticket_id, @column)
     end
   
     def recalculate_duration

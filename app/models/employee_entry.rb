@@ -6,6 +6,7 @@ class EmployeeEntry < ActiveRecord::Base
   belongs_to :employee
   validates :employee, presence: true
   
+  timesheet_column :employee_id
   STATUS_TYPES = ['on_the_job', 'overhead', 'idle']
     
   acts_as_paranoid

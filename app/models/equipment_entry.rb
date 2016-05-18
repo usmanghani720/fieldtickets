@@ -11,6 +11,7 @@ class EquipmentEntry < ActiveRecord::Base
   
   acts_as_paranoid
   
+  timesheet_column :equipment_id
   STATUS_TYPES = ['on_the_job', 'in_maintenance', 'refuel', 'idle']
   
   def maintenance_available?
