@@ -106,8 +106,6 @@ ActiveRecord::Schema.define(version: 20160511200239) do
   create_table "field_tickets", force: :cascade do |t|
     t.integer  "job_id"
     t.text     "bill_to",                         default: "Job"
-    t.boolean  "is_non_job",                      default: false
-    t.datetime "started_at"
     t.datetime "finished_at"
     t.boolean  "customer_approved_work"
     t.text     "customer_name_and_title"
