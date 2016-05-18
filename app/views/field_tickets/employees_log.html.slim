@@ -20,7 +20,7 @@
             th Duration
         tbody
           - @employee_entries.each_with_index do |entry, index|
-            - if not (index == 0 and entry.status == 'idle')
+            - if true
               tr
                 td
                   strong = entry.status.humanize.titleize
