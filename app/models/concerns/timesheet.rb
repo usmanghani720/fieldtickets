@@ -1,3 +1,5 @@
+require 'fx_datetime'
+
 module Timesheet
   extend ActiveSupport::Concern
   

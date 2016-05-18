@@ -4,9 +4,11 @@ Customer.create!([
 ])
 
 Employee.create!([
-  {name: 'John Doe'},
-  {name: 'Mark Twain'},
-  {name: 'Vince Smith'},
+  {name: 'John Appleseed'},
+  {name: 'Kevin Jones'},
+  {name: 'Emily Langer'},
+  {name: 'Mike Smith'},
+  {name: 'Joe Walker'},
 ])
 
 Equipment.create!([
@@ -16,8 +18,38 @@ Equipment.create!([
 
 Job.create!([
   {internal_number: '12345', customer_id: 1},
+  {internal_number: '54321', customer_id: 2},
 ])
 
 FieldTicket.create!([
   {job_id: 1},
+  {job_id: 1},
+  {job_id: 2},
+])
+
+EmployeeEntry.create!([
+  {
+    employee_id: 2, field_ticket_id: 1,
+    status: "idle", time: Time.parse("2016-05-01 06:01:00")
+  },
+  {
+    employee_id: 2, field_ticket_id: 1,
+    status: "on_the_job", time: Time.parse("2016-05-01 06:28:00")
+  },
+  {
+    employee_id: 2, field_ticket_id: 1,
+    status: "idle", time: Time.parse("2016-05-01 12:13:00")
+  },
+  {
+    employee_id: 2, field_ticket_id: 1,
+    status: "on_the_job", time: Time.parse("2016-05-01 1:15:00")
+  },
+  {
+    employee_id: 2, field_ticket_id: 1,
+    status: "overhead", time: Time.parse("2016-05-01 4:19:00")
+  },
+  {
+    employee_id: 2, field_ticket_id: 1,
+    status: "idle", time: Time.parse("2016-05-01 4:30:00")
+  },
 ])
