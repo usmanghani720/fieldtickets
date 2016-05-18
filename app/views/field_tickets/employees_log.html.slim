@@ -17,6 +17,7 @@
           tr
             th Status
             th Time
+            th Duration
         tbody
           - @employee_entries.each_with_index do |entry, index|
             - if not (index == 0 and entry.status == 'idle')
@@ -32,18 +33,20 @@
                   |  
                   span.edit_timesheet
                     = link_to 'edit', field_ticket_employee_log_edit_path(@field_ticket, entry)
+                td
+                  strong = hours_minutes_display(entry.duration_total) if entry.duration_total and entry.duration_total > 0
           tr
-            td colspan="2"
+            td colspan="3"
               a href="#" id="add_timesheet_entry_link"
                 | Add an entry to this timesheet
                 
           tr id="add_timesheet_entry_form"
             = form_for(@new_employee_entry, url: field_ticket_employee_log_path, html: { class: "form-horizontal", role: "form" }) do |f|
-              td colspan="2"
+              td
                 = f.select :status, options_for_select(EmployeeEntry::STATUS_TYPES), {}
-                |  
+              td
                 = f.text_field :time, value: Time.now
-                |  
+              td
                 = f.submit 'Save', class: 'btn btn-primary btn-xs'
                 |  
                 a href="#" id="cancel_timesheet_entry_link"

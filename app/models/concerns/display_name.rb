@@ -10,7 +10,7 @@ module DisplayName
   end
   
   def display_name
-    # simple logic doesn't work if to_s relies on another model
+    # Simple logic doesn't work if to_s relies on another model. This should be resolved in the other model by calling cache_display_name as needed.
     
     cache_display_name if changed?
       

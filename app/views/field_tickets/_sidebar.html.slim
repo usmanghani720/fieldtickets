@@ -1,6 +1,12 @@
 div class="col-sm-3 col-md-2 sidebar"
   ul class="nav nav-sidebar"
   
+    li 
+      a 
+        | Ticket for Job # 21234
+
+    hr
+  
     li class="#{'active' if params[:action] == 'job'}"
       a href="#{field_ticket_job_path @field_ticket}"
         | Bill To

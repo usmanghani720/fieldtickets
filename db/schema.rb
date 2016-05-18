@@ -28,12 +28,15 @@ ActiveRecord::Schema.define(version: 20160511200239) do
   create_table "employee_entries", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "field_ticket_id"
-    t.text     "status",              default: "idle"
+    t.text     "status",          default: "idle"
     t.datetime "time"
-    t.integer  "duration_in_minutes"
+    t.datetime "time_end"
+    t.integer  "duration_day"
+    t.integer  "duration_night"
+    t.integer  "duration_total"
     t.datetime "deleted_at"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   add_index "employee_entries", ["deleted_at"], name: "index_employee_entries_on_deleted_at", using: :btree
@@ -85,14 +88,15 @@ ActiveRecord::Schema.define(version: 20160511200239) do
     t.boolean  "rental"
     t.integer  "equipment_id"
     t.text     "rental_description"
-    t.text     "status",              default: "idle"
+    t.text     "status",             default: "idle"
     t.decimal  "fuel_gallons"
     t.decimal  "mileage"
     t.datetime "time"
-    t.integer  "duration_in_minutes"
+    t.datetime "time_end"
+    t.integer  "duration_total"
     t.datetime "deleted_at"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "equipment_entries", ["deleted_at"], name: "index_equipment_entries_on_deleted_at", using: :btree

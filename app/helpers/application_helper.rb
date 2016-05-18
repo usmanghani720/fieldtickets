@@ -10,4 +10,16 @@ module ApplicationHelper
       datetime.pretty
     end
   end
+  
+  def hours_minutes_display(total_minutes)
+    minutes = total_minutes % 60
+    hours = total_minutes / 60
+    
+    if hours > 0
+      "#{hours}h #{minutes}m"
+    else
+      "#{minutes}m"
+    end
+  end
+  
 end

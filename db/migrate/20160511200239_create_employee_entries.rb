@@ -6,7 +6,10 @@ class CreateEmployeeEntries < ActiveRecord::Migration
       t.text :status, default: 'idle'
       
       t.datetime :time
-      t.integer :duration_in_minutes
+      t.datetime :time_end        #          calculated
+      t.integer :duration_day     # minutes, calculated
+      t.integer :duration_night   # minutes, calculated
+      t.integer :duration_total   # minutes, calculated
       
       t.datetime :deleted_at, index: true
 
