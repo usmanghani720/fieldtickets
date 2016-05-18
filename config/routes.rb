@@ -40,6 +40,8 @@ Rails.application.routes.draw do
     get :approval
     get 'approval/:decision' => 'field_tickets#approval', as: :approval_decision
     patch 'approval/:decision' => 'field_tickets#approval_save'
+
+    get :close
   end
   
   resources :equipment, path: 'vehicles'
