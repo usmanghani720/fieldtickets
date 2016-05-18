@@ -47,7 +47,11 @@ class FieldTicketsController < ApplicationController
   # GET /field_tickets/1
   # GET /field_tickets/1.json
   def show
-    redirect_to field_ticket_job_path(@field_ticket)
+    if @field_ticket.billing_empty?
+      redirect_to field_ticket_job_path(@field_ticket)
+    else
+      redirect_to field_ticket_employees_path(@field_ticket)
+    end
   end
   
   ###
