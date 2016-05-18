@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  namespace :timesheet do
-    resources :scaffold_entries
-    resources :employee_entries
+  namespace :reports do
+  get 'payroll/show'
   end
   
-  resources :timesheets, module: :timesheet
+  namespace :reports do
+    get 'payroll' => 'payroll#show'
+  end
   
   resources :field_tickets, path: 'tickets' do
     get :autocomplete_job_display_name, on: :collection

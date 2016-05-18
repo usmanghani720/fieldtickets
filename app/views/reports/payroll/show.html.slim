@@ -1,0 +1,18 @@
+.page-header
+  h1 Payroll Report
+
+.table-responsive
+  table.table.table-striped.table-bordered
+    thead
+      tr
+        th Employee
+        th Day Rate
+        th Night Rate
+        th Total
+    tbody
+      - @employees.each do |id, employee|
+        tr
+          td = employee[:name]
+          td = hours_minutes_display employee[:duration_day]
+          td = hours_minutes_display employee[:duration_night]
+          td = hours_minutes_display employee[:duration_total]

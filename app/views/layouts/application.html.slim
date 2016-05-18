@@ -43,6 +43,9 @@ html
               li class="#{'active' if controller_name == 'jobs'}"
                a href="/jobs"
                  | Jobs
+              li class="#{'active' if controller_name == 'payroll'}"
+               a href="/reports/payroll"
+                 | Reports
     .container-fluid
       - flash.each do |name, msg|
         = content_tag :div, class: "col-sm-offset-2 alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
