@@ -34,7 +34,7 @@
                   span.edit_timesheet
                     = link_to 'edit', field_ticket_employee_log_edit_path(@field_ticket, entry)
                 td
-                  strong = hours_minutes_display(entry.duration_total) if entry.duration_total and entry.duration_total > 0
+                  strong = hours_minutes_display(entry.duration_total)
           tr
             td colspan="3"
               a href="#" id="add_timesheet_entry_link"

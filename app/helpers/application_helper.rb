@@ -12,13 +12,17 @@ module ApplicationHelper
   end
   
   def hours_minutes_display(total_minutes)
-    minutes = total_minutes % 60
-    hours = total_minutes / 60
+    if total_minutes
+      minutes = total_minutes % 60
+      hours = total_minutes / 60
     
-    if hours > 0
-      "#{hours}h #{minutes}m"
-    else
-      "#{minutes}m"
+      if hours > 0
+        "#{hours}h #{minutes}m"
+      elsif minutes > 0
+        "#{minutes}m"
+      else
+        ''
+      end
     end
   end
   

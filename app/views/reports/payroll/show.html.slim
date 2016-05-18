@@ -1,5 +1,22 @@
 .page-header
   h1 Payroll Report
+  = @start
+  |  to 
+  = @end
+  
+.panel.panel-default
+  .panel-heading
+    strong Date Range
+  .panel-body
+    = form_tag('/reports/payroll', method: :get) do |f|
+      = label_tag :start, 'From:'
+      |  
+      = text_field_tag :start, params[:start]
+      |  
+      = label_tag :end, 'To:'
+      |  
+      = text_field_tag :end, params[:end]
+      input type="submit" value="Go"
 
 .table-responsive
   table.table.table-striped.table-bordered
@@ -17,3 +34,7 @@
           td = hours_minutes_display employee[:duration_day]
           td = hours_minutes_display employee[:duration_night]
           td = hours_minutes_display employee[:duration_total]
+
+coffee:
+  $('#start').datepicker()
+  $('#end').datepicker()
