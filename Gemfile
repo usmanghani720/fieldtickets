@@ -14,6 +14,7 @@ gem 'jquery-ui-rails'
 gem 'seed_dump'
 gem 'bootstrap-select-rails'
 gem 'chronic'
+gem 'pundit'
 
 
 

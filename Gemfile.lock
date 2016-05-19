@@ -109,6 +109,8 @@ GEM
     paranoia (2.1.5)
       activerecord (~> 4.0)
     pg (0.18.4)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -210,6 +212,7 @@ DEPENDENCIES
   paperclip
   paranoia
   pg
+  pundit
   rails (= 4.2.5)
   rails-jquery-autocomplete
   route_downcaser

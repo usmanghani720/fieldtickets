@@ -6,6 +6,7 @@ class JobsController < ApplicationController
   # GET /jobs.json
   def index
     @jobs = Job.all
+    authorize(Job)
   end
 
   # GET /jobs/1
