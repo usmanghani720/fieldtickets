@@ -86,9 +86,6 @@ en:
         job: 'BRM Job #'
         bill_to: 'Bill To'
         
-        started_at: 'Started At'
-        finished_at: 'Finished At'
-        
         customer_approved_work: 'Customer Approves?'
         customer_signature: 'Signature'
         customer_name_and_title: 'Name & Title'

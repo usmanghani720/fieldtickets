@@ -3,7 +3,7 @@ class CreateFieldTickets < ActiveRecord::Migration
     create_table :field_tickets do |t|
       t.belongs_to :job, index: true, foreign_key: true
       t.text :bill_to, default: 'Job'
-      t.datetime :finished_at
+      t.datetime :submitted_at
       
       t.boolean :customer_approved_work
       t.text :customer_name_and_title

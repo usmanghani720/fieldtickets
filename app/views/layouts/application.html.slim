@@ -46,6 +46,9 @@ html
               li class="#{'active' if controller_name == 'payroll'}"
                a href="/reports/payroll"
                  | Reports
+              - if employee_signed_in?
+                li
+                  = link_to 'Log Out', destroy_employee_session_path, method: :delete
     .container-fluid
       - flash.each do |name, msg|
         = content_tag :div, class: "col-sm-offset-2 alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

@@ -39,6 +39,6 @@ div class="col-sm-3 col-md-2 sidebar"
           | Customer Approval
           .detail = raw @field_ticket.sidebar_descriptions[:approval]
           
-    li class="#{'active' if params[:action] == 'close'}"
-      a href="#{field_ticket_close_path @field_ticket}"
-        | Close Ticket
+    li class="#{'active' if params[:action] == 'submit'}"
+      a href="#{field_ticket_submit_path @field_ticket}"
+        | Finalize Ticket

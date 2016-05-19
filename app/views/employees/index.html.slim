@@ -12,11 +12,11 @@
         th
           | Name
         th
-          | Internal number
+          | Password Set?
     tbody
       - @employees.each do | employee |
         tr data-link="#{employee_path(employee)}"
           td
-            = employee.name
+            = employee.to_s
           td
-            = employee.internal_number
+            = 'Yes' if employee.can_log_in?

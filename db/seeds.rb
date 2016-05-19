@@ -9,6 +9,11 @@ Employee.create!([
   {name: 'Emily Langer'},
   {name: 'Mike Smith'},
   {name: 'Joe Walker'},
+  {
+    name: 'Oliver Anson',
+    email: 'oliver@fluffyx.com',
+    encrypted_password: '$2a$10$2uB..Revw3TAjgcpDTYBmuPkbFZrl3Ym1L5VSQjmAOto2LieOBY6.'
+  },
 ])
 
 Equipment.create!([

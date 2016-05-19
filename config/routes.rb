@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  namespace :reports do
-  get 'payroll/show'
-  end
+  devise_for :employees
   
   namespace :reports do
     get 'payroll' => 'payroll#show'
@@ -41,7 +39,8 @@ Rails.application.routes.draw do
     get 'approval/:decision' => 'field_tickets#approval', as: :approval_decision
     patch 'approval/:decision' => 'field_tickets#approval_save'
 
-    get :close
+    get :submit
+    post 'submit' => 'field_tickets#submit_confirm'
   end
   
   resources :equipment, path: 'vehicles'
@@ -52,8 +51,6 @@ Rails.application.routes.draw do
   
   resources :customers
   resources :employees
-  
-  devise_for :employees
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

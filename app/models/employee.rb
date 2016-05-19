@@ -3,7 +3,11 @@ class Employee < ActiveRecord::Base
   
   acts_as_paranoid
   
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :lockable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  
+  def can_log_in?
+    not (encrypted_password.blank? or email.blank?)
+  end
   
   def email_required?
     false

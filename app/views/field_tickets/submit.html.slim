@@ -1,0 +1,11 @@
+.row
+  = render 'sidebar'
+  
+  div#approval_form.main.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+  
+    h2 Submit Ticket
+    hr
+    p.question When you submit the ticket, employee hours will be sent to payroll.
+    p.question Please double-check your entries before proceeding.
+    
+    = link_to 'Submit Ticket', field_ticket_submit_path(@field_ticket), class: 'btn-disapprove', method: :post

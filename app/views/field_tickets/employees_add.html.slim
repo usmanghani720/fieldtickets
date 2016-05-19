@@ -1,25 +1,2 @@
 .row
   = render 'sidebar'
-      
-  div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
-
-    = render partial: 'header', locals: { title: 'Add an Employee' }
-    
-    = form_for(@employee_entry, url: field_ticket_add_employee_path, html: { class: "form-horizontal", role: "form" }) do |f|
-
-      = render partial: 'shared/errors_for', locals: { object: @employee_entry }
-      
-      .form-group
-        = f.label :employee, class: "col-sm-2 control-label"
-        .col-sm-10
-          = f.autocomplete_field :employee, autocomplete_employee_display_name_field_tickets_path, id_element: '#employee_id', class: 'form-control'
-          
-          = f.hidden_field :employee_id, id: 'employee_id'
-          
-
-      = render partial: 'form_buttons', locals: {f: f}
-
-coffee: 
-  # Focus
-  $ ->
-    $('#employee_entry_employee').focus()

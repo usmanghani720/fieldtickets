@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'devise'
+gem 'devise-bootstrap-views'
 gem 'pg'
 gem 'slim-rails'
 gem 'route_downcaser'
@@ -13,6 +14,7 @@ gem 'jquery-ui-rails'
 gem 'seed_dump'
 gem 'bootstrap-select-rails'
 gem 'chronic'
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

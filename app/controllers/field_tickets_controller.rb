@@ -1,9 +1,14 @@
 class FieldTicketsController < ApplicationController
+  before_action :authenticate_employee!
+  
   before_action :set_field_ticket, only: [
     :show,
     :edit,
     :update,
     :destroy,
+
+    :submit,
+    :submit_confirm,
     
     :job,
     :delays,
@@ -37,6 +42,13 @@ class FieldTicketsController < ApplicationController
   autocomplete :equipment, :display_name, limit: 50, full: true
 
   autocomplete :employee, :display_name, limit: 50, full: true
+  
+  def submit_confirm
+    @field_ticket.update(
+      submitted_at: Time.now
+    )
+    redirect_to field_tickets_path
+  end
 
   # GET /field_tickets
   # GET /field_tickets.json
@@ -339,9 +351,6 @@ class FieldTicketsController < ApplicationController
       params.require(:field_ticket).permit(
         :job_id,
         :bill_to,
-        
-        :started_at,
-        :finished_at,
         
         :customer_approved_work,
         :customer_name_and_title,
