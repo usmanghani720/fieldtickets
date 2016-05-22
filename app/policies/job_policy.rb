@@ -1,5 +1,9 @@
 class JobPolicy < ApplicationPolicy
+  def all?
+    user.manager?
+  end
+  
   def index?
-    true
+    user.manager?
   end
 end

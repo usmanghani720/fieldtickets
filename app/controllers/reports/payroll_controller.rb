@@ -33,7 +33,7 @@ class Reports::PayrollController < ApplicationController
         duration_total: 0
       }
       
-      if entry.duration_total > 0
+      if entry.duration_total and (entry.duration_total > 0)
         @employees[entry.employee_id][:duration_day] += entry.duration_day
         @employees[entry.employee_id][:duration_night] += entry.duration_night
         @employees[entry.employee_id][:duration_total] += entry.duration_total

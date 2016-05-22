@@ -12,7 +12,8 @@ Employee.create!([
   {
     name: 'Oliver Anson',
     email: 'oliver@fluffyx.com',
-    encrypted_password: '$2a$10$2uB..Revw3TAjgcpDTYBmuPkbFZrl3Ym1L5VSQjmAOto2LieOBY6.'
+    encrypted_password: '$2a$10$2uB..Revw3TAjgcpDTYBmuPkbFZrl3Ym1L5VSQjmAOto2LieOBY6.',
+    manager: true,
   },
 ])
 
@@ -36,26 +37,26 @@ FieldTicket.create!([
 EmployeeEntry.create!([
   {
     employee_id: 2, field_ticket_id: 1,
-    status: "idle", time: Time.parse("2016-05-01 06:01:00")
+    status: "idle", created_at: Time.parse("2016-05-15 06:01:00")
   },
   {
     employee_id: 2, field_ticket_id: 1,
-    status: "on_the_job", time: Time.parse("2016-05-01 06:28:00")
+    status: "on_the_job", created_at: Time.parse("2016-05-15 06:28:00")
   },
   {
     employee_id: 2, field_ticket_id: 1,
-    status: "idle", time: Time.parse("2016-05-01 12:13:00")
+    status: "idle", created_at: Time.parse("2016-05-15 12:13:00")
   },
   {
     employee_id: 2, field_ticket_id: 1,
-    status: "on_the_job", time: Time.parse("2016-05-01 1:15:00")
+    status: "on_the_job", created_at: Time.parse("2016-05-15 1:15:00")
   },
   {
     employee_id: 2, field_ticket_id: 1,
-    status: "overhead", time: Time.parse("2016-05-01 4:19:00")
+    status: "overhead", created_at: Time.parse("2016-05-15 4:19:00")
   },
   {
     employee_id: 2, field_ticket_id: 1,
-    status: "idle", time: Time.parse("2016-05-01 4:30:00")
+    status: "idle", created_at: Time.parse("2016-05-15 4:30:00")
   },
 ])

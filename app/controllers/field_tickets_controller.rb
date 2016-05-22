@@ -1,5 +1,5 @@
 class FieldTicketsController < ApplicationController
-  before_action :authenticate_employee!
+  # before_action :authenticate_employee!
   
   before_action :set_field_ticket, only: [
     :show,
