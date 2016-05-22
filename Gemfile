@@ -15,6 +15,7 @@ gem 'seed_dump'
 gem 'bootstrap-select-rails'
 gem 'chronic'
 gem 'pundit'
+gem 'minitest-rails'
 
 
 
