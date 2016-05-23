@@ -134,48 +134,50 @@ ActiveRecord::Schema.define(version: 20160523004718) do
   add_index "field_tickets", ["job_id"], name: "index_field_tickets_on_job_id", using: :btree
 
   create_table "jobs", force: :cascade do |t|
+    t.integer  "customer_id"
     t.text     "internal_number"
     t.text     "customers_number"
-    t.boolean  "flat_rate",        default: false
-    t.boolean  "completed",        default: false
-    t.integer  "customer_id"
+    t.integer  "billing",          default: 0
+    t.integer  "status",           default: 0
     t.text     "display_name"
     t.datetime "deleted_at"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "jobs", ["customer_id"], name: "index_jobs_on_customer_id", using: :btree
   add_index "jobs", ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
 
   create_table "tickets", force: :cascade do |t|
+    t.integer  "bill_to",                         default: 0
     t.integer  "job_id"
-    t.text     "bill_to",                         default: "Job"
-    t.datetime "submitted_at"
-    t.boolean  "customer_approved_work"
-    t.text     "customer_name_and_title"
-    t.text     "customer_feedback"
+    t.integer  "approval",                        default: 0
+    t.text     "approval_name_and_title"
+    t.text     "approval_email"
+    t.text     "approval_feedback"
     t.text     "supplies_teeth"
     t.text     "supplies_oil"
     t.text     "supplies_holders"
     t.text     "supplies_other"
-    t.integer  "length"
-    t.integer  "width"
-    t.decimal  "depth"
+    t.integer  "milling_length"
+    t.integer  "milling_width"
+    t.decimal  "milling_depth"
     t.text     "delays_trucks"
     t.text     "delays_paving"
     t.text     "delays_mot"
     t.text     "delays_other"
+    t.datetime "finalized_at"
     t.datetime "deleted_at"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "customer_signature_file_name"
-    t.string   "customer_signature_content_type"
-    t.integer  "customer_signature_file_size"
-    t.datetime "customer_signature_updated_at"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "approval_signature_file_name"
+    t.string   "approval_signature_content_type"
+    t.integer  "approval_signature_file_size"
+    t.datetime "approval_signature_updated_at"
   end
 
   add_index "tickets", ["deleted_at"], name: "index_tickets_on_deleted_at", using: :btree
+  add_index "tickets", ["finalized_at"], name: "index_tickets_on_finalized_at", using: :btree
   add_index "tickets", ["job_id"], name: "index_tickets_on_job_id", using: :btree
 
   add_foreign_key "employee_entries", "employees"

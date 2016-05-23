@@ -3,11 +3,9 @@
 one:
   internal_number: MyText
   customers_number: MyText
-  flat_rate: false
   customer_id: 
 
 two:
   internal_number: MyText
   customers_number: MyText
-  flat_rate: false
   customer_id: 

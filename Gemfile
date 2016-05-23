@@ -16,6 +16,8 @@ gem 'bootstrap-select-rails'
 gem 'chronic'
 gem 'pundit'
 gem 'minitest-rails'
+gem 'email_validator'
+gem 'awesome_print'
 
 
 

@@ -4,6 +4,10 @@ class TicketTest < ActiveSupport::TestCase
   def ticket
     @ticket ||= Ticket.new
   end
+  
+  def job
+    @job ||= Job.create(billing: 1)
+  end
 
   def test_valid
     assert ticket.valid?
@@ -16,5 +20,45 @@ class TicketTest < ActiveSupport::TestCase
     refute ticket.job_required?
   end
   
+  # After changing bill_to to something other than Job or Job Cancelled, it should remove the Job from the Ticket
+  def test_job_removed_upon_change
+    ticket.job = job
+    assert ticket.job
+    ticket.bill_to = 'Weather'
+    ticket.save
+    refute ticket.job
+  end
+  
+  # Basic math sanity check
+  # 
+  def test_milling_square_yards
+    ticket.milling_length = 225
+    ticket.milling_width = 36
+    assert ticket.milling_square_yards == 900
+    ticket.milling_length = 250
+    assert ticket.milling_square_yards == 1000
+  end
+  
+  # Basic math sanity check
+  # 
+  def test_milling_square_feet
+    ticket.milling_width = 36
+    ticket.milling_length = 250
+    assert ticket.milling_square_feet == 9000
+  end
+  
+  # Make sure it won't let crappy dimensions in
+  def test_milling_dimensions_validations
+    ticket.milling_width = 36
+    refute ticket.valid?
+    ticket.milling_length = 250
+    refute ticket.valid?
+    ticket.milling_depth = 30
+    refute ticket.valid?
+    ticket.milling_depth = 1
+    assert ticket.valid?
+    ticket.milling_width = 0
+    refute ticket.valid?
+  end
   
 end
