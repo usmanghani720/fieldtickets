@@ -14,11 +14,9 @@ class Equipment < ActiveRecord::Base
   end
   
   def to_s
-    if description
-      "##{internal_number} — #{description}"
-    else
-      internal_number
-    end
+    the_string = (internal_number || 'Unnumbered Vehicle')
+    the_string << " — #{description}" if description.present?
+    the_string
   end
   
 end

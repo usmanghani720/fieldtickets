@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class EmployeeEntryTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def employee_entry
+    @employee_entry ||= EmployeeEntry.new
+  end
 end

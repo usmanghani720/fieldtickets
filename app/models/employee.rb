@@ -22,15 +22,11 @@ class Employee < ActiveRecord::Base
   end
   
   def to_s
-    if nickname.present? and internal_number.present?
-      "“#{nickname}” #{name} (##{internal_number})"
-    elsif internal_number.present?
-      "#{name} (##{internal_number})"
-    elsif nickname.present?
-      "“#{nickname}” #{name}"
-    else
-      name
-    end
+    the_name = ''
+    the_name << "“#{nickname}” " if nickname.present?
+    the_name << (name || 'Unnamed Employee')
+    the_name << " (#{internal_number})" if internal_number.present?
+    the_name
   end
   
 end

@@ -1,1 +1,1 @@
-require 'fx_active_record'
+require 'tilt/coffee'

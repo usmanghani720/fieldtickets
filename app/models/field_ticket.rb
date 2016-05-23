@@ -6,7 +6,7 @@ class FieldTicket < ActiveRecord::Base
   has_many :equipment_entries
   has_many :employee_entries
   
-  BILLING_TYPES = ['Job', 'Cancelled Job', ['-', 'data-divider' => 'true'], 'Weather', 'Overhead', 'Office Staff', 'Transport', 'Equipment Maintenance & Repair']
+  BILLING_TYPES = ['Job', 'Cancelled Job', ['-', 'data-divider' => 'true'], 'Weather', 'Overhead', 'Office Staff', 'Transport', 'Shop']
   
   acts_as_paranoid
   
@@ -23,6 +23,8 @@ class FieldTicket < ActiveRecord::Base
   
   before_save :erase_job_if_not_needed
   
+  
+  
   def reference_name
     id
   end
@@ -31,9 +33,16 @@ class FieldTicket < ActiveRecord::Base
     "#{humanize} # #{reference_name}"
   end
   
-  def square_yards
+  # length and width
+  def square_feet
     if length.to_i > 0 and width.to_i > 0
-      (length * width).to_i
+      length * width
+    end
+  end
+  
+  def square_yards
+    if square_feet
+      square_feet / 9
     end
   end
   
