@@ -18,6 +18,7 @@ gem 'pundit'
 gem 'minitest-rails'
 gem 'email_validator'
 gem 'awesome_print'
+gem 'draper'
 
 
 

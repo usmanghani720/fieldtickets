@@ -5,10 +5,6 @@ class Customer < ActiveRecord::Base
   
   acts_as_paranoid
   
-  def reference_name
-    to_s
-  end
-  
   def to_s
     name
   end

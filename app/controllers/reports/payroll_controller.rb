@@ -20,8 +20,7 @@ class Reports::PayrollController < ApplicationController
     @start.change(hour: 0, min: 0)
     @end.change(hour: 23, min: 59, sec: 59)
     
-    #
-    
+      
     @employees = {}
     @employee_entries = EmployeeEntry.where(time: @start..@end).where.not(status: 'idle')
     

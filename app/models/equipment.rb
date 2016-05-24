@@ -9,10 +9,6 @@ class Equipment < ActiveRecord::Base
     to_s
   end
   
-  def model_reference_name
-    "#{humanize} # #{reference_name}"
-  end
-  
   def to_s
     the_string = (internal_number || 'Unnumbered Vehicle')
     the_string << " — #{description}" if description.present?

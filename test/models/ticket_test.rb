@@ -18,6 +18,8 @@ class TicketTest < ActiveSupport::TestCase
     assert ticket.job_required?
     ticket.bill_to = 'Office Staff'
     refute ticket.job_required?
+    ticket.bill_to = 1
+    assert ticket.job_required?
   end
   
   # After changing bill_to to something other than Job or Job Cancelled, it should remove the Job from the Ticket
@@ -30,7 +32,6 @@ class TicketTest < ActiveSupport::TestCase
   end
   
   # Basic math sanity check
-  # 
   def test_milling_square_yards
     ticket.milling_length = 225
     ticket.milling_width = 36
@@ -40,7 +41,6 @@ class TicketTest < ActiveSupport::TestCase
   end
   
   # Basic math sanity check
-  # 
   def test_milling_square_feet
     ticket.milling_width = 36
     ticket.milling_length = 250
@@ -58,6 +58,22 @@ class TicketTest < ActiveSupport::TestCase
     ticket.milling_depth = 1
     assert ticket.valid?
     ticket.milling_width = 0
+    refute ticket.valid?
+  end
+  
+  # Make sure it validates approval okay
+  def test_approval
+    ticket.approval = :approved
+    refute ticket.valid?
+    ticket.approval_name_and_title = 'Mark'
+    refute ticket.valid?
+    ticket.approval_signature = "data:image/png;base64,iVBORw0KGgoAAAANS"
+    refute ticket.valid?
+    ticket.approval_name_and_title = 'Mark Twain, VP'
+    refute ticket.valid?
+    ticket.approval_email = 'a@me.com'
+    assert ticket.valid?
+    ticket.approval_email = 'a@'
     refute ticket.valid?
   end
   
