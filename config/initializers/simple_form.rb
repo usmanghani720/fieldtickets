@@ -104,7 +104,7 @@ SimpleForm.setup do |config|
 
   # You can define the default class to be used on forms. Can be overriden
   # with `html: { :class }`. Defaulting to none.
-  # config.default_form_class = nil
+  config.default_form_class = 'form-horizontal'
 
   # You can define which elements should obtain additional classes
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
@@ -162,4 +162,15 @@ SimpleForm.setup do |config|
 
   # Defines which i18n scope will be used in Simple Form.
   # config.i18n_scope = 'simple_form'
+end
+
+# Disable buttons after they've been clicked
+# from http://www.railsonmaui.com/blog/2014/02/23/simple-form-and-disable-processing-by-default/
+SimpleForm::FormBuilder.class_eval do
+  def submit_with_override(field, options = {})
+    data_disable_with = { disable_with: 'Please wait…' }
+    options[:data] = data_disable_with.merge(options[:data] || {})
+    submit_without_override(field, options)
+  end
+  alias_method_chain :submit, :override
 end

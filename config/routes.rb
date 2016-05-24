@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   scope module: 'ticket' do
     resources :tickets do
       get :job, controller: :job
+      
+      get :autocomplete_job_display_name, on: :collection
+      get :autocomplete_equipment_display_name, on: :collection
+      get :autocomplete_employee_display_name, on: :collection
     end
   end
   

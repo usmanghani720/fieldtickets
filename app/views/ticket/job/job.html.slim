@@ -1,24 +1,16 @@
-.row
-      
-    = form_for(@ticket, html: { class: "form-horizontal", role: "form" }) do |f|
+= simple_form_for @ticket do |f|
+  = f.error_notification
 
-      = render partial: 'shared/errors_for', locals: { object: @ticket }
-      
-      .form-group
-        = f.label :bill_to, class: "col-sm-2 control-label"
-        .col-sm-10
-          /= f.select :bill_to, options_for_select(FieldTicket::BILLING_TYPES, selected: @ticket.bill_to), {}, { class: 'selectpicker' }
+  .form-inputs
+    = f.input :bill_to
+    = f.input :job, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, id_element: '#job_id'
+    = f.hidden_field :job_id, id: 'job_id'
+    
+  hr
 
-      .form-group style="#{'display:none;' if not @ticket.job_required?}"
-        = f.label :job, class: "col-sm-2 control-label"
-        .col-sm-10
-          = f.autocomplete_field :job, autocomplete_job_display_name_tickets_path, id_element: '#job_id', class: 'form-control'
-          
-          = f.hidden_field :job_id, id: 'job_id'
-          
-      
-      = render partial: 'form_buttons', locals: {f: f}
-
+  .form-actions
+    = f.button :submit, 'Save Changes'
+    
 coffee:
   # Handle hiding/showing BRM Job #
   $ ->

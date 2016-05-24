@@ -1,5 +1,11 @@
 class Ticket::TicketsController < Ticket::BaseController
-  before_action :set_ticket, only: [ :show ]
+  before_action :set_ticket, only: [ :show, :update ]
+  
+  autocomplete :job, :display_name, limit: 50, full: true, scopes: [:in_progress]
+  
+  autocomplete :equipment, :display_name, limit: 50, full: true
+
+  autocomplete :employee, :display_name, limit: 50, full: true
   
   # Show list of tickets
   # TODO: Functionality not mapped out with permissions yet.
@@ -21,4 +27,42 @@ class Ticket::TicketsController < Ticket::BaseController
       redirect_to ticket_employees_path(@ticket)
     end
   end
+  
+  # Generic updating method, works with all Ticket pages
+  def update
+    if @ticket.update(ticket_params)
+      redirect_to request.referrer, notice: 'Your changes have been saved.'
+    else
+      render :edit
+    end
+  end
+  
+  private
+  
+    def ticket_params
+      params.require(:ticket).permit(
+        :bill_to,
+        :job_id,
+      
+        :approval,
+        :approval_name_and_title,
+        :approval_email,
+        :approval_signature,
+        :approval_feedback,
+      
+        :milling_length,
+        :milling_width,
+        :milling_depth,
+      
+        :supplies_teeth,
+        :supplies_oil,
+        :supplies_holders,
+        :supplies_other,
+      
+        :delays_trucks,
+        :delays_paving,
+        :delays_mot,
+        :delays_other,
+      )
+    end
 end

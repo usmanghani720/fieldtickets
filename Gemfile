@@ -20,6 +20,7 @@ gem 'email_validator'
 gem 'awesome_print'
 gem 'draper'
 gem 'simple_form'
+gem 'enum_help'
 
 
 

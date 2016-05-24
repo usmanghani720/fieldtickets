@@ -19,3 +19,12 @@
   border: none;
   box-shadow: none;
 }
+
+.form-horizontal .form-actions {
+  @extend .col-sm-offset-2;
+  padding-left: 6px;
+}
+
+.form-horizontal {
+  width: 50%;
+}
