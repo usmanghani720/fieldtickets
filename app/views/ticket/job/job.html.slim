@@ -1,0 +1,32 @@
+.row
+      
+    = form_for(@ticket, html: { class: "form-horizontal", role: "form" }) do |f|
+
+      = render partial: 'shared/errors_for', locals: { object: @ticket }
+      
+      .form-group
+        = f.label :bill_to, class: "col-sm-2 control-label"
+        .col-sm-10
+          /= f.select :bill_to, options_for_select(FieldTicket::BILLING_TYPES, selected: @ticket.bill_to), {}, { class: 'selectpicker' }
+
+      .form-group style="#{'display:none;' if not @ticket.job_required?}"
+        = f.label :job, class: "col-sm-2 control-label"
+        .col-sm-10
+          = f.autocomplete_field :job, autocomplete_job_display_name_tickets_path, id_element: '#job_id', class: 'form-control'
+          
+          = f.hidden_field :job_id, id: 'job_id'
+          
+      
+      = render partial: 'form_buttons', locals: {f: f}
+
+coffee:
+  # Handle hiding/showing BRM Job #
+  $ ->
+    $('#ticket_bill_to').change ->
+      switch $('#ticket_bill_to').val()
+        when 'Job', 'Cancelled Job'
+          $('#ticket_job').parent().parent().slideDown()
+          $('#ticket_job').focus()
+        else
+          $('#ticket_job').parent().parent().slideUp()
+          

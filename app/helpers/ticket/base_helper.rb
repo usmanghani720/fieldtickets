@@ -1,0 +1,2 @@
+module Ticket::BaseHelper
+end

@@ -1,0 +1,44 @@
+div class="col-sm-3 col-md-2 sidebar"
+  ul class="nav nav-sidebar"
+  
+    li class="#{'active' if params[:action] == 'job'}"
+      a href="#{field_ticket_job_path @ticket}"
+        | Bill To
+        .detail = raw @ticket.sidebar_descriptions[:job]
+        
+    li class="#{'active' if %w{employees employees_add employees_log employees_log_edit}.include? params[:action]}"
+      a href="#{field_ticket_employees_path @ticket}"
+        | Employees
+        .detail = raw @ticket.sidebar_descriptions[:employees]
+        
+    li class="#{'active' if %w{vehicles vehicles_add vehicles_refuel vehicles_log}.include? params[:action]}"
+      a href="#{field_ticket_vehicles_path @ticket}"
+        | Vehicles
+        .detail = raw @ticket.sidebar_descriptions[:vehicles]
+    
+    - if @ticket.job
+      li class="#{'active' if params[:action] == 'dimensions'}"
+        a href="#{field_ticket_dimensions_path @ticket}"
+          | Milling Dimensions
+          .detail = raw @ticket.sidebar_descriptions[:dimensions]
+        
+    li class="#{'active' if params[:action] == 'supplies'}"
+      a href="#{field_ticket_supplies_path @ticket}"
+        | Supplies
+        .detail = raw @ticket.sidebar_descriptions[:supplies]
+        
+    - if @ticket.job
+      li class="#{'active' if params[:action] == 'delays'}"
+        a href="#{field_ticket_delays_path @ticket}"
+          | Delays
+          .detail = raw @ticket.sidebar_descriptions[:delays]
+    
+    - if @ticket.job
+      li class="#{'active' if params[:action] == 'approval'}"
+        a href="#{field_ticket_approval_path @ticket}"
+          | Customer Approval
+          .detail = raw @ticket.sidebar_descriptions[:approval]
+          
+    li class="#{'active' if params[:action] == 'submit'}"
+      a href="#{field_ticket_submit_path @ticket}"
+        | Finalize Ticket

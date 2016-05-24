@@ -34,6 +34,13 @@ FieldTicket.create!([
   {bill_to: 'Equipment Maintenance & Repair'},
 ])
 
+Ticket.create!([
+  {job_id: 1},
+  {job_id: 1},
+  {job_id: 2},
+  {bill_to: 'Shop Time'},
+])
+
 EmployeeEntry.create!([
   {
     employee_id: 2, field_ticket_id: 1,

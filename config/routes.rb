@@ -5,43 +5,49 @@ Rails.application.routes.draw do
     get 'payroll' => 'payroll#show'
   end
   
-  resources :field_tickets, path: 'tickets' do
-    get :autocomplete_job_display_name, on: :collection
-    get :autocomplete_equipment_display_name, on: :collection
-    get :autocomplete_employee_display_name, on: :collection
-    
-    get :job
-    
-    get :employees
-    get 'employees/add' => 'field_tickets#employees_add', as: :add_employee
-    post 'employees/add' => 'field_tickets#employees_create'
-    post 'employees/:employee_entry_id/:new_status' => 'field_tickets#employees_update', as: :employee_update
-    get 'employees/:employee_entry_id' => 'field_tickets#employees_log', as: :employee_log
-    get 'employees/:employee_entry_id/edit' => 'field_tickets#employees_log_edit', as: :employee_log_edit
-    post 'employees/:employee_entry_id' => 'field_tickets#employees_log_new'
-    patch 'employees/:employee_entry_id' => 'field_tickets#employees_log_update'
-    delete 'employees/:employee_entry_id' => 'field_tickets#employees_log_destroy'
-    
-    get :delays
-    
-    get :vehicles
-    get 'vehicles/add' => 'field_tickets#vehicles_add', as: :add_vehicle
-    post 'vehicles/add' => 'field_tickets#vehicles_create'
-    get 'vehicles/:equipment_entry_id/refuel' => 'field_tickets#vehicles_refuel', as: :vehicle_refuel
-    post 'vehicles/:equipment_entry_id/:new_status' => 'field_tickets#vehicles_update', as: :vehicle_update
-    get 'vehicles/:equipment_entry_id' => 'field_tickets#vehicles_log', as: :vehicle_log
-    
-    get :supplies
-    
-    get :dimensions
-    
-    get :approval
-    get 'approval/:decision' => 'field_tickets#approval', as: :approval_decision
-    patch 'approval/:decision' => 'field_tickets#approval_save'
-
-    get :submit
-    post 'submit' => 'field_tickets#submit_confirm'
+  scope module: 'ticket' do
+    resources :tickets do
+      get :job, controller: :job
+    end
   end
+  
+  #resources :field_tickets, path: 'tickets' do
+  #  get :autocomplete_job_display_name, on: :collection
+  #  get :autocomplete_equipment_display_name, on: :collection
+  #  get :autocomplete_employee_display_name, on: :collection
+  #  
+  #  get :job
+  #  
+  #  get :employees
+  #  get 'employees/add' => 'field_tickets#employees_add', as: :add_employee
+  #  post 'employees/add' => 'field_tickets#employees_create'
+  #  post 'employees/:employee_entry_id/:new_status' => 'field_tickets#employees_update', as: :employee_update
+  #  get 'employees/:employee_entry_id' => 'field_tickets#employees_log', as: :employee_log
+  #  get 'employees/:employee_entry_id/edit' => 'field_tickets#employees_log_edit', as: :employee_log_edit
+  #  post 'employees/:employee_entry_id' => 'field_tickets#employees_log_new'
+  #  patch 'employees/:employee_entry_id' => 'field_tickets#employees_log_update'
+  #  delete 'employees/:employee_entry_id' => 'field_tickets#employees_log_destroy'
+  #  
+  #  get :delays
+  #  
+  #  get :vehicles
+  #  get 'vehicles/add' => 'field_tickets#vehicles_add', as: :add_vehicle
+  #  post 'vehicles/add' => 'field_tickets#vehicles_create'
+  #  get 'vehicles/:equipment_entry_id/refuel' => 'field_tickets#vehicles_refuel', as: :vehicle_refuel
+  #  post 'vehicles/:equipment_entry_id/:new_status' => 'field_tickets#vehicles_update', as: :vehicle_update
+  #  get 'vehicles/:equipment_entry_id' => 'field_tickets#vehicles_log', as: :vehicle_log
+  #  
+  #  get :supplies
+  #  
+  #  get :dimensions
+  #  
+  #  get :approval
+  #  get 'approval/:decision' => 'field_tickets#approval', as: :approval_decision
+  #  patch 'approval/:decision' => 'field_tickets#approval_save'
+  #
+  #  get :submit
+  #  post 'submit' => 'field_tickets#submit_confirm'
+  #end
   
   resources :equipment, path: 'vehicles'
   

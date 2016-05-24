@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_ticket_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Ticket
+  h1
+    | Tickets
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Bill to
+        th
+          | Finalized At
+        th
+          | Customer Approval
+    tbody
+      - @tickets.each do | ticket |
+        tr data-link="#{ticket_path(ticket)}"
+          td
+            = ticket.bill_to
+            |  
+            = ticket.job
+          td
+            = ticket.finalized_at
+          td
+            = ticket.approval

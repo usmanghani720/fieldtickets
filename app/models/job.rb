@@ -26,9 +26,9 @@ class Job < ActiveRecord::Base
     end
   end
   
-  # Job 23 - Acme Construction
+  # #23 - Acme Construction
   def to_s
-    "Job ##{internal_number} — #{customer_name}"
+    "##{internal_number} — #{customer_name}"
   end
   
 end
