@@ -77,4 +77,26 @@ class TicketTest < ActiveSupport::TestCase
     refute ticket.valid?
   end
   
+  # When you add a delay, make sure delays_present? is true
+  def test_delays_present
+    refute ticket.delays_present?
+    ticket.delays_other = 2
+    assert ticket.delays_present?
+  end
+  
+  # When you add a delay, make sure they add
+  def test_delays_total
+    assert ticket.delays_total == 0
+    ticket.delays_other = 2
+    assert ticket.delays_total == 2
+    ticket.delays_mot = 1.5
+    assert ticket.delays_total == 3.5, msg: ticket.delays_total
+    ticket.delays_trucks = 99.1
+    assert ticket.delays_total == 102.6
+    ticket.delays_paving = 4.4
+    assert ticket.delays_total == 107.0
+  end
+  
+  
+  
 end

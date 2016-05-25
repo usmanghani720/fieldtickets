@@ -92,12 +92,13 @@ en:
         supplies_teeth: 'Teeth'
         supplies_oil: 'Oil'
         supplies_holders: 'Holders'
-        supplies_other: 'Other'
+        supplies_notes: 'Notes'
         
         delays_trucks: 'Trucks'
         delays_paving: 'Paving'
         delays_mot: 'MOT'
         delays_other: 'Other'
+        delays_notes: 'Notes'
         
         milling_length: 'Length'
         milling_width: 'Width'

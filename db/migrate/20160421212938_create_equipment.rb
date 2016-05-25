@@ -1,11 +1,11 @@
 class CreateEquipment < ActiveRecord::Migration
   def change
     create_table :equipment do |t|
-      t.text :internal_number
-      t.text :description
-      t.text :vehicle_type
+      t.string :internal_number
+      t.string :description
+      t.string :vehicle_type
       
-      t.text :display_name # cached display name
+      t.string :display_name # cached display name
       
       t.datetime :deleted_at, index: true
 

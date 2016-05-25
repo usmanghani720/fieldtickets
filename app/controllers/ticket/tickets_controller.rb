@@ -26,33 +26,5 @@ class Ticket::TicketsController < Ticket::BaseController
       redirect_to ticket_employees_path(@ticket)
     end
   end
-    
-  private
   
-    def ticket_params
-      params.require(:ticket).permit(
-        :bill_to,
-        :job_id,
-      
-        :approval,
-        :approval_name_and_title,
-        :approval_email,
-        :approval_signature,
-        :approval_feedback,
-      
-        :milling_length,
-        :milling_width,
-        :milling_depth,
-      
-        :supplies_teeth,
-        :supplies_oil,
-        :supplies_holders,
-        :supplies_other,
-      
-        :delays_trucks,
-        :delays_paving,
-        :delays_mot,
-        :delays_other,
-      )
-    end
 end

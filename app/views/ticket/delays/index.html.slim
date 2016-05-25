@@ -1,5 +1,48 @@
-.page-header
-  h1
-    | Ticket::Delays#index
-p
-  | Find me in app/views/ticket/delays/index.html.slim
+= simple_form_for ticket, url: request.original_url do |f|
+  = f.error_notification
+
+  .form-inputs
+  
+    = f.input :delays_trucks, wrapper: :horizontal_input_group do
+      = f.input_field :delays_trucks, class: 'form-control'
+      .input-group-addon hours
+            
+    = f.input :delays_paving, wrapper: :horizontal_input_group do
+      = f.input_field :delays_paving, class: 'form-control'
+      .input-group-addon hours
+            
+    = f.input :delays_mot, wrapper: :horizontal_input_group do
+      = f.input_field :delays_mot, class: 'form-control'
+      .input-group-addon hours
+            
+    = f.input :delays_other, wrapper: :horizontal_input_group do
+      = f.input_field :delays_other, class: 'form-control'
+      .input-group-addon hours
+      
+    / Live display of square yards
+    .form-group
+      label.col-sm-3.control-label Total Delays
+      .col-sm-9
+        span.form-control-calculated#delays_total = ticket.delays_total
+      
+    hr
+            
+    = f.input :delays_notes
+            
+  = partial 'autoshow_form_buttons', f: f
+  
+coffee:
+
+  # When any form input is changed, recalculate delays total
+  $('form :input').on 'input', ->
+    delays_total = +$('#ticket_delays_trucks').val() + +$('#ticket_delays_paving').val() + +$('#ticket_delays_mot').val() + +$('#ticket_delays_other').val()
+    
+    new_text = switch
+      when delays_total == 1.0
+        '1 hour'
+      when delays_total <= 0
+        ''
+      else
+        delays_total + ' hours'
+    
+    $('#delays_total').html(new_text)

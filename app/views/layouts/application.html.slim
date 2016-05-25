@@ -55,7 +55,7 @@ html
           ul class="nav nav-sidebar"
         
             li class="#{'active' if params[:controller].include? 'job'}"
-              a href="#{ticket_job_index_path @ticket}"
+              a href="#{ticket_job_path @ticket}"
                 | Bill To
         
             li class="#{'active' if params[:controller].include? 'dimensions'}"
@@ -71,11 +71,11 @@ html
                 | Delays
         
             li class="#{'active' if params[:controller].include? 'approval'}"
-              a href="#{ticket_approval_index_path @ticket}"
+              a href="#{ticket_approval_path @ticket}"
                 | Customer Approval
         
             li class="#{'active' if params[:controller].include? 'finalize'}"
-              a href="#{ticket_finalize_index_path @ticket}"
+              a href="#{ticket_finalize_path @ticket}"
                 | Finalize Ticket
       
       - flash.each do |name, msg|

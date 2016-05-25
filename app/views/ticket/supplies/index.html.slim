@@ -1,5 +1,18 @@
-.page-header
-  h1
-    | Ticket::Supplies#index
-p
-  | Find me in app/views/ticket/supplies/index.html.slim
+= simple_form_for @ticket, url: request.original_url do |f|
+  = f.error_notification
+
+  .form-inputs
+  
+    = f.input :supplies_teeth
+                        
+    = f.input :supplies_holders
+
+    = f.input :supplies_oil, wrapper: :horizontal_input_group do
+      = f.input_field :supplies_oil, class: 'form-control'
+      .input-group-addon quarts
+      
+    hr
+            
+    = f.input :supplies_notes
+            
+  = partial 'autoshow_form_buttons', f: f

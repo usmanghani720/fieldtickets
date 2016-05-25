@@ -7,23 +7,24 @@ class CreateTickets < ActiveRecord::Migration
             
       t.integer :approval, default: 0
         # { not_yet_approved: 0, approved: 1, disapproved: 2 }
-      t.text :approval_name_and_title
-      t.text :approval_email
+      t.string :approval_name_and_title
+      t.string :approval_email
       t.text :approval_feedback
       
-      t.text :supplies_teeth
-      t.text :supplies_oil
-      t.text :supplies_holders
-      t.text :supplies_other
+      t.integer :supplies_teeth
+      t.decimal :supplies_oil
+      t.integer :supplies_holders
+      t.text :supplies_notes
       
       t.integer :milling_length
       t.integer :milling_width
       t.decimal :milling_depth
       
-      t.text :delays_trucks
-      t.text :delays_paving
-      t.text :delays_mot
-      t.text :delays_other
+      t.decimal :delays_trucks
+      t.decimal :delays_paving
+      t.decimal :delays_mot
+      t.decimal :delays_other
+      t.text :delays_notes
       
       t.datetime :finalized_at, index: true
       t.datetime :deleted_at, index: true

@@ -44,17 +44,52 @@ class Ticket < ActiveRecord::Base
   validates :approval_feedback, presence: true, if: :disapproved?
 
   # Make sure milling dimensions, if entered, are a number greater than 0
-  with_options if: :milling_dimensions_required? do |ticket|
-    ticket.validates :milling_length, numericality: { greater_than: 0 }
-    ticket.validates :milling_width, numericality: { greater_than: 0 }
-    ticket.validates :milling_depth, numericality: {
+  with_options if: :milling_dimensions_required? do |t|
+    t.validates :milling_length, numericality: { greater_than: 0 }
+    t.validates :milling_width, numericality: { greater_than: 0 }
+    t.validates :milling_depth, numericality: {
       greater_than: 0,
       less_than_or_equal_to: 24
     }
   end
   
+  with_options numericality: { greater_than_or_equal_to: 0 } do |t|
+    t.validates :delays_trucks, if: 'delays_trucks.present?'
+    t.validates :delays_paving, if: 'delays_paving.present?'
+    t.validates :delays_mot, if: 'delays_mot.present?'
+    t.validates :delays_other, if: 'delays_other.present?'
+  end
+  validates :delays_notes, presence: true, if: :delays_present?
+  
+  with_options numericality: { greater_than_or_equal_to: 0 } do |t|
+    t.validates :supplies_teeth, if: 'supplies_teeth.present?'
+    t.validates :supplies_holders, if: 'supplies_holders.present?'
+    t.validates :supplies_oil, if: 'supplies_oil.present?'
+  end
+  
   # If this Ticket shouldn't be attached to a Job, set job to nil.
   before_save :erase_job_if_not_needed
+  
+  # Returns true if any delays are entered
+  def delays_present?
+    [:trucks, :paving, :mot, :other].each do |delay_type|
+      val = self["delays_#{delay_type}"].to_f
+      return true if val > 0
+    end
+    false
+  end
+  
+  # Adds up delays in hours
+  def delays_total
+    total = 0
+    
+    [:trucks, :paving, :mot, :other].each do |delay_type|
+      val = self["delays_#{delay_type}"].to_f
+      total += val
+    end
+    
+    total
+  end
   
   # Should the Ticket be attached to a Job?
   def job_required?

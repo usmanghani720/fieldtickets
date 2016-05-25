@@ -7,12 +7,23 @@ Rails.application.routes.draw do
   
   scope module: 'ticket' do
     resources :tickets do
-      resources :job, only: [:index, :update]
-      resources :dimensions, only: [:index, :update]
-      resources :delays, only: [:index, :update]
-      resources :approval, only: [:index, :update]
-      resources :supplies, only: [:index, :update]
-      resources :finalize, only: [:index, :update]
+      get 'job' => 'job#index'
+      patch 'job' => 'job#update'
+      
+      get 'dimensions' => 'dimensions#index'
+      patch 'dimensions' => 'dimensions#update'
+      
+      get 'supplies' => 'supplies#index'
+      patch 'supplies' => 'supplies#update'
+      
+      get 'delays' => 'delays#index'
+      patch 'delays' => 'delays#update'
+      
+      get 'approval' => 'approval#index'
+      patch 'approval' => 'approval#update'
+      
+      get 'finalize' => 'finalize#index'
+      patch 'finalize' => 'finalize#update'
       
       get :autocomplete_job_display_name, on: :collection
       get :autocomplete_equipment_display_name, on: :collection

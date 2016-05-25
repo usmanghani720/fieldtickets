@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160523004718) do
   enable_extension "plpgsql"
 
   create_table "customers", force: :cascade do |t|
-    t.text     "name"
+    t.string   "name"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20160523004718) do
   create_table "employee_entries", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "field_ticket_id"
-    t.text     "status",          default: "idle"
+    t.string   "status",          default: "idle"
     t.datetime "time"
     t.datetime "time_end"
     t.integer  "duration_day"
@@ -44,16 +44,16 @@ ActiveRecord::Schema.define(version: 20160523004718) do
   add_index "employee_entries", ["field_ticket_id"], name: "index_employee_entries_on_field_ticket_id", using: :btree
 
   create_table "employees", force: :cascade do |t|
-    t.text     "name"
-    t.text     "nickname"
-    t.text     "internal_number"
-    t.text     "display_name"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "internal_number"
+    t.string   "display_name"
     t.boolean  "worker"
     t.boolean  "crew_chief"
     t.boolean  "manager"
-    t.text     "email"
-    t.text     "encrypted_password"
-    t.text     "reset_password_token"
+    t.string   "email"
+    t.string   "encrypted_password"
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",          default: 0, null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160523004718) do
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.integer  "failed_attempts",        default: 0, null: false
-    t.text     "unlock_token"
+    t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "deleted_at"
     t.datetime "created_at",                         null: false
@@ -72,10 +72,10 @@ ActiveRecord::Schema.define(version: 20160523004718) do
   add_index "employees", ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
 
   create_table "equipment", force: :cascade do |t|
-    t.text     "internal_number"
-    t.text     "description"
-    t.text     "vehicle_type"
-    t.text     "display_name"
+    t.string   "internal_number"
+    t.string   "description"
+    t.string   "vehicle_type"
+    t.string   "display_name"
     t.datetime "deleted_at"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 20160523004718) do
     t.integer  "field_ticket_id"
     t.boolean  "rental"
     t.integer  "equipment_id"
-    t.text     "rental_description"
-    t.text     "status",             default: "idle"
+    t.string   "rental_description"
+    t.string   "status",             default: "idle"
     t.decimal  "fuel_gallons"
     t.decimal  "mileage"
     t.datetime "time"
@@ -135,11 +135,11 @@ ActiveRecord::Schema.define(version: 20160523004718) do
 
   create_table "jobs", force: :cascade do |t|
     t.integer  "customer_id"
-    t.text     "internal_number"
-    t.text     "customers_number"
+    t.string   "internal_number"
+    t.string   "customers_number"
     t.integer  "billing",          default: 0
     t.integer  "status",           default: 0
-    t.text     "display_name"
+    t.string   "display_name"
     t.datetime "deleted_at"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
@@ -152,20 +152,21 @@ ActiveRecord::Schema.define(version: 20160523004718) do
     t.integer  "bill_to",                         default: 0
     t.integer  "job_id"
     t.integer  "approval",                        default: 0
-    t.text     "approval_name_and_title"
-    t.text     "approval_email"
+    t.string   "approval_name_and_title"
+    t.string   "approval_email"
     t.text     "approval_feedback"
-    t.text     "supplies_teeth"
-    t.text     "supplies_oil"
-    t.text     "supplies_holders"
-    t.text     "supplies_other"
+    t.integer  "supplies_teeth"
+    t.decimal  "supplies_oil"
+    t.integer  "supplies_holders"
+    t.text     "supplies_notes"
     t.integer  "milling_length"
     t.integer  "milling_width"
     t.decimal  "milling_depth"
-    t.text     "delays_trucks"
-    t.text     "delays_paving"
-    t.text     "delays_mot"
-    t.text     "delays_other"
+    t.decimal  "delays_trucks"
+    t.decimal  "delays_paving"
+    t.decimal  "delays_mot"
+    t.decimal  "delays_other"
+    t.text     "delays_notes"
     t.datetime "finalized_at"
     t.datetime "deleted_at"
     t.datetime "created_at",                                  null: false

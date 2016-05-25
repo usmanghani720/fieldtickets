@@ -1,4 +1,4 @@
-= simple_form_for @ticket, url: '.' do |f|
+= simple_form_for ticket, url: request.original_url do |f|
   = f.error_notification
 
   .form-inputs
@@ -21,7 +21,7 @@
     .form-group
       label.col-sm-3.control-label Area
       .col-sm-9
-        span.form-control-calculated#square_yards = @ticket.milling_square_yards
+        span.form-control-calculated#square_yards = ticket.milling_square_yards
   
   = partial 'autoshow_form_buttons', f: f
 
