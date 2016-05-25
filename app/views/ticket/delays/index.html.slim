@@ -1,4 +1,4 @@
-= simple_form_for ticket, url: request.original_url,  do |f|
+= simple_form_for ticket, url: request.original_url, validate: true do |f|
   = f.error_notification
 
   .form-inputs

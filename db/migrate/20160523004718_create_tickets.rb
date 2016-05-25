@@ -6,7 +6,7 @@ class CreateTickets < ActiveRecord::Migration
       t.belongs_to :job, index: true, foreign_key: true
             
       t.integer :approval, default: 0
-        # { not_yet_approved: 0, approved: 1, disapproved: 2 }
+        # { pending_approval: 0, approved: 1, disapproved: 2 }
       t.string :approval_name_and_title
       t.string :approval_email
       t.text :approval_feedback

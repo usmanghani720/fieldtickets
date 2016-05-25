@@ -20,7 +20,9 @@ Rails.application.routes.draw do
       patch 'delays' => 'delays#update'
       
       get 'approval' => 'approval#index'
-      patch 'approval' => 'approval#update'
+      get 'approval/:decision' => 'approval#approval_confirm', as: :approval_confirm
+      patch 'approval/:decision' => 'approval#update'
+      
       
       get 'finalize' => 'finalize#index'
       patch 'finalize' => 'finalize#update'

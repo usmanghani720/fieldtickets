@@ -23,7 +23,7 @@ class Ticket < ActiveRecord::Base
   has_many :employee_entries
     
   # Whether the Customer's representative has signed off on the Job.
-  enum approval: { not_yet_approved: 0, approved: 1, disapproved: 2 }
+  enum approval: { pending_approval: 0, approved: 1, disapproved: 2 }
   
   # Use Paperclip to attach a customer signature
   has_attached_file :approval_signature,
@@ -34,7 +34,7 @@ class Ticket < ActiveRecord::Base
   validates_attachment_content_type :approval_signature, content_type: /\Aimage\/.*\Z/
   
   # If customer has approved or disapproved, certain info is required.
-  with_options unless: :not_yet_approved? do |ticket|
+  with_options unless: :pending_approval? do |ticket|
     ticket.validates :approval_name_and_title, presence: true, length: { minimum: 9 }
     ticket.validates :approval_email, presence: true, email: true
     ticket.validates :approval_signature, presence: true

@@ -86,5 +86,9 @@ html
             span.sr-only
               | Close
           = msg
-      div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
-        = yield
+      - if @minimal_ui
+        .col-sm-12.main
+          = yield
+      - else
+        .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+          = yield

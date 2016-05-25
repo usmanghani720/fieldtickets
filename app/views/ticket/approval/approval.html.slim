@@ -1,0 +1,15 @@
+.row
+      
+  div#approval_form.main
+  
+    h2 Job Approval
+    hr
+    p.question Are you satisfied with the work performed by BlackRock Milling?
+    
+    = link_to 'Yes, I’m satisfied.', ticket_approval_confirm_path(ticket, :approve), class: 'btn-approve'
+    
+    = link_to 'No, I’m not satisfied.', ticket_approval_confirm_path(ticket, :disapprove), class: 'btn-disapprove'
+    
+    hr
+    
+    a.btn-cancel href="./" I’m not ready to approve at this time.
