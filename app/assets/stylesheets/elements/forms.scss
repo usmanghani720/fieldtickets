@@ -21,10 +21,21 @@
 }
 
 .form-horizontal .form-actions {
-  @extend .col-sm-offset-2;
+  @extend .col-sm-offset-3;
   padding-left: 6px;
 }
 
 .form-horizontal {
   width: 50%;
+}
+
+#autoshow-form-buttons {
+  @extend hr;
+  display: none;
+  padding-top: 20px;
+}
+
+#undo-my-changes {
+  @extend .btn;
+  @extend .btn-link;
 }

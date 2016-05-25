@@ -17,13 +17,20 @@
       label.col-sm-3.control-label Area
       .col-sm-9
         span.form-control-calculated#square_yards = @ticket.milling_square_yards
-    
-  hr
-
-  .form-actions
-    = f.button :submit, 'Save Changes'
+  
+  = partial 'autoshow_form_buttons', f: f
 
 coffee:
+
+  # Click the reset button
+  $('#undo-my-changes').click ->
+    $('form')[0].reset()
+    $('#autoshow-form-buttons').fadeOut()
+
+  # Show the section when form is changed
+  reveal_form_buttons = () ->
+    $("#autoshow-form-buttons").fadeIn()
+
   # Calculate the area field
   square_yards_reload = () ->
     square_feet = $('#ticket_milling_length').val() * $('#ticket_milling_width').val()
@@ -40,15 +47,7 @@ coffee:
     
     $('#square_yards').html(new_text)
       
-
-  $('#ticket_milling_length').keyup ->
+  # What to do when any item on the form receives a keypress or paste event
+  $('form :input').on 'input', ->
     square_yards_reload()
-    
-  $('#ticket_milling_width').keyup ->
-    square_yards_reload()
-    
-  $('#ticket_milling_length').change ->
-    square_yards_reload()
-    
-  $('#ticket_milling_width').change ->
-    square_yards_reload()
+    reveal_form_buttons()

@@ -81,7 +81,7 @@ en:
         internal_number: 'BRM Vehicle #'
         vehicle_type: 'Type'
         
-      field_ticket:
+      ticket:
         job: 'BRM Job #'
         bill_to: 'Bill To'
         
@@ -98,6 +98,10 @@ en:
         delays_paving: 'Paving'
         delays_mot: 'MOT'
         delays_other: 'Other'
+        
+        milling_length: 'Length'
+        milling_width: 'Width'
+        milling_depth: 'Depth'
       
       equipment_entry:
         rental: 'Type'
