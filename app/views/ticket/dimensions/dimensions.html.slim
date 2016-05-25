@@ -22,17 +22,8 @@
 
 coffee:
 
-  # Click the reset button
-  $('#undo-my-changes').click ->
-    $('form')[0].reset()
-    $('#autoshow-form-buttons').fadeOut()
-
-  # Show the section when form is changed
-  reveal_form_buttons = () ->
-    $("#autoshow-form-buttons").fadeIn()
-
-  # Calculate the area field
-  square_yards_reload = () ->
+  # When any form input is changed, recalculate square yards
+  $('form :input').on 'input', ->
     square_feet = $('#ticket_milling_length').val() * $('#ticket_milling_width').val()
     square_yards = square_feet / 9
     square_yards = parseInt(square_yards) # round down to integer
@@ -46,8 +37,3 @@ coffee:
         square_yards + ' square yards'
     
     $('#square_yards').html(new_text)
-      
-  # What to do when any item on the form receives a keypress or paste event
-  $('form :input').on 'input', ->
-    square_yards_reload()
-    reveal_form_buttons()

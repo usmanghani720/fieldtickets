@@ -13,16 +13,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require jquery-safari-forms
 
 //= require autocomplete-rails
 
 //= require bootstrap-select
-//= require bootstrap-checkbox
+//= require vendor/bootstrap-checkbox
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require bootstrap
 
-//= require signature_pad
+//= require vendor/jquery-safari-forms
+//= require vendor/signature_pad
 
-//= require data-links
+//= require app/data-links
+//= require app/autoshow-form-buttons
