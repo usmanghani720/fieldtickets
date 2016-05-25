@@ -1,20 +1,4 @@
 Rails.application.routes.draw do
-  namespace :ticket do
-  get 'finalize/index'
-  end
-
-  namespace :ticket do
-  get 'delays/index'
-  end
-
-  namespace :ticket do
-  get 'approval/index'
-  end
-
-  namespace :ticket do
-  get 'supplies/index'
-  end
-
   devise_for :employees
   
   namespace :reports do
@@ -25,6 +9,10 @@ Rails.application.routes.draw do
     resources :tickets do
       resources :job, only: [:index, :update]
       resources :dimensions, only: [:index, :update]
+      resources :delays, only: [:index, :update]
+      resources :approval, only: [:index, :update]
+      resources :supplies, only: [:index, :update]
+      resources :finalize, only: [:index, :update]
       
       get :autocomplete_job_display_name, on: :collection
       get :autocomplete_equipment_display_name, on: :collection
