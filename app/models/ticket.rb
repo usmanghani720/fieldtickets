@@ -53,18 +53,18 @@ class Ticket < ActiveRecord::Base
     }
   end
   
-  with_options numericality: { greater_than_or_equal_to: 0 } do |t|
-    t.validates :delays_trucks, if: 'delays_trucks.present?'
-    t.validates :delays_paving, if: 'delays_paving.present?'
-    t.validates :delays_mot, if: 'delays_mot.present?'
-    t.validates :delays_other, if: 'delays_other.present?'
+  with_options numericality: { greater_than_or_equal_to: 0 }, allow_blank: true do |t|
+    t.validates :delays_trucks
+    t.validates :delays_paving
+    t.validates :delays_mot
+    t.validates :delays_other
   end
   validates :delays_notes, presence: true, if: :delays_present?
   
-  with_options numericality: { greater_than_or_equal_to: 0 } do |t|
-    t.validates :supplies_teeth, if: 'supplies_teeth.present?'
-    t.validates :supplies_holders, if: 'supplies_holders.present?'
-    t.validates :supplies_oil, if: 'supplies_oil.present?'
+  with_options numericality: { greater_than_or_equal_to: 0 }, allow_blank: true do |t|
+    t.validates :supplies_teeth
+    t.validates :supplies_holders
+    t.validates :supplies_oil
   end
   
   # If this Ticket shouldn't be attached to a Job, set job to nil.

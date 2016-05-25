@@ -21,6 +21,9 @@
 //= require bootstrap/alert
 //= require bootstrap/dropdown
 //= require bootstrap
+  
+//= require rails.validations
+//= require rails.validations.simple_form
 
 //= require vendor/jquery-safari-forms
 //= require vendor/signature_pad
