@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  namespace :ticket do
+  get 'finalize/index'
+  end
+
+  namespace :ticket do
+  get 'delays/index'
+  end
+
+  namespace :ticket do
+  get 'approval/index'
+  end
+
+  namespace :ticket do
+  get 'supplies/index'
+  end
+
   devise_for :employees
   
   namespace :reports do
