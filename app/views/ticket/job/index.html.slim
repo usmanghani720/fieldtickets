@@ -1,12 +1,12 @@
-= simple_form_for @ticket do |f|
+= simple_form_for @ticket, url: '.' do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :bill_to
-    = f.input :job, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, id_element: '#job_id'
+    = f.input :job, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, id_element: '#job_id', wrapper_html: { style: (@ticket.job_required? ? '' : 'display:none') }
     = f.hidden_field :job_id, id: 'job_id'
     
-  = partial 'shared/autoshow_form_buttons', f: f
+  = partial 'autoshow_form_buttons', f: f
       
 coffee:
   # Handle hiding/showing BRM Job #

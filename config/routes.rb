@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   scope module: 'ticket' do
     resources :tickets do
-      get :job, controller: :job
+      resources :job, only: [:index, :update]
       get :dimensions, controller: :dimensions
       
       get :autocomplete_job_display_name, on: :collection

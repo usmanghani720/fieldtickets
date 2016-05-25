@@ -12,15 +12,18 @@ gem 'aws-sdk', '< 2.0' # Paperclip requires an old version of the ugly Amazon SD
 gem 'rails-jquery-autocomplete'
 gem 'jquery-ui-rails'
 gem 'seed_dump'
+
+gem 'simple_form'
+gem 'bootstrap3-datetimepicker-rails'
 gem 'bootstrap-select-rails'
+gem 'enum_help'
+
 gem 'chronic'
 gem 'pundit'
 gem 'minitest-rails'
 gem 'email_validator'
 gem 'awesome_print'
 gem 'draper'
-gem 'simple_form'
-gem 'enum_help'
 
 
 

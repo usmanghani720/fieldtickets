@@ -2,23 +2,28 @@
   = f.error_notification
 
   .form-inputs
+  
     = f.input :milling_depth, wrapper: :horizontal_input_group do
       = f.input_field :milling_depth, class: 'form-control'
       .input-group-addon inches
+      
     hr
+    
     = f.input :milling_length, wrapper: :horizontal_input_group do
       = f.input_field :milling_length, class: 'form-control'
       .input-group-addon feet
+      
     = f.input :milling_width, wrapper: :horizontal_input_group do
       = f.input_field :milling_width, class: 'form-control'
       .input-group-addon feet
-      
+    
+    / Live display of square yards
     .form-group
       label.col-sm-3.control-label Area
       .col-sm-9
         span.form-control-calculated#square_yards = @ticket.milling_square_yards
   
-  = partial 'shared/autoshow_form_buttons', f: f
+  = partial 'autoshow_form_buttons', f: f
 
 coffee:
 

@@ -1,5 +1,5 @@
 class Ticket::TicketsController < Ticket::BaseController
-  before_action :set_ticket, only: [ :show, :update ]
+  before_action :set_ticket, only: [ :show ]
   
   autocomplete :job, :display_name, limit: 50, full: true, scopes: [:in_progress]
   
@@ -8,7 +8,6 @@ class Ticket::TicketsController < Ticket::BaseController
   autocomplete :employee, :display_name, limit: 50, full: true
   
   # Show list of tickets
-  # TODO: Functionality not mapped out with permissions yet.
   def index
     @tickets = Ticket.all
   end
@@ -27,16 +26,7 @@ class Ticket::TicketsController < Ticket::BaseController
       redirect_to ticket_employees_path(@ticket)
     end
   end
-  
-  # Generic updating method, works with all Ticket pages
-  def update
-    if @ticket.update(ticket_params)
-      redirect_to :back, notice: 'Your changes have been saved.'
-    else
-      render_previous
-    end
-  end
-  
+    
   private
   
     def ticket_params

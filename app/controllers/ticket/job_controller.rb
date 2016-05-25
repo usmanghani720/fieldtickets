@@ -1,3 +1,3 @@
 class Ticket::JobController < Ticket::BaseController
-  before_action :set_ticket, only: [ :job ]
+  before_action :set_ticket, only: [ :index ]
 end

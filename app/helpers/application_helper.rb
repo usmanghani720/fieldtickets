@@ -31,6 +31,7 @@ module ApplicationHelper
     begin
       render partial: partial_path, locals: locals
     rescue
+      render partial: "shared/#{partial_path}", locals: locals
     end
   end
   
