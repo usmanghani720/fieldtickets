@@ -39,3 +39,7 @@
   @extend .btn;
   @extend .btn-link;
 }
+
+.form-actions input[type="submit"] {
+  margin-right: 15px;
+}

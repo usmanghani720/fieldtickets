@@ -7,3 +7,4 @@ $ ->
   $('#undo-my-changes').click ->
     $('form')[0].reset()
     $('#autoshow-form-buttons').fadeOut()
+    $('form input')[0].dispatchEvent(new Event('change'));

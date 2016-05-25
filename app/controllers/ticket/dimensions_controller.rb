@@ -1,3 +1,3 @@
 class Ticket::DimensionsController < Ticket::BaseController
-  before_action :set_ticket, only: [ :dimensions ]
+  before_action :set_ticket, only: [ :index ]
 end

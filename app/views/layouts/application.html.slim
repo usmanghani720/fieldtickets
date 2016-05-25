@@ -54,9 +54,13 @@ html
         div class="col-sm-3 col-md-2 sidebar"
           ul class="nav nav-sidebar"
         
-            li class="#{'active' if params[:action] == 'job'}"
-              a href="#"
+            li class="#{'active' if params[:controller].include? 'job'}"
+              a href="#{ticket_job_index_path @ticket}"
                 | Bill To
+        
+            li class="#{'active' if params[:controller].include? 'dimensions'}"
+              a href="#{ticket_dimensions_path @ticket}"
+                | Dimensions
       
       - flash.each do |name, msg|
         = content_tag :div, class: "col-sm-offset-2 alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
