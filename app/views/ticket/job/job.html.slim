@@ -6,7 +6,7 @@
     = f.input :job, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, id_element: '#job_id'
     = f.hidden_field :job_id, id: 'job_id'
     
-  = partial 'autoshow_form_buttons', f: f
+  = partial 'shared/autoshow_form_buttons', f: f
       
 coffee:
   # Handle hiding/showing BRM Job #

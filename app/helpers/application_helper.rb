@@ -26,8 +26,12 @@ module ApplicationHelper
     end
   end
   
-  def partial(partial_name, locals = {})
-    render partial: "ticket/shared/#{partial_name}", locals: locals
+  # Render the partial (shared or not)
+  def partial(partial_path, locals = {})
+    begin
+      render partial: partial_path, locals: locals
+    rescue
+    end
   end
   
 end
