@@ -61,6 +61,22 @@ html
             li class="#{'active' if params[:controller].include? 'dimensions'}"
               a href="#{ticket_dimensions_path @ticket}"
                 | Dimensions
+        
+            li class="#{'active' if params[:controller].include? 'supplies'}"
+              a href="#{ticket_supplies_path @ticket}"
+                | Supplies
+        
+            li class="#{'active' if params[:controller].include? 'delays'}"
+              a href="#{ticket_delays_path @ticket}"
+                | Delays
+        
+            li class="#{'active' if params[:controller].include? 'approval'}"
+              a href="#{ticket_approval_index_path @ticket}"
+                | Customer Approval
+        
+            li class="#{'active' if params[:controller].include? 'finalize'}"
+              a href="#{ticket_finalize_index_path @ticket}"
+                | Finalize Ticket
       
       - flash.each do |name, msg|
         = content_tag :div, class: "col-sm-offset-2 alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
