@@ -1,0 +1,54 @@
+= simple_form_for @ticket do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :milling_depth, wrapper: :horizontal_input_group do
+      = f.input_field :milling_depth, class: 'form-control'
+      .input-group-addon inches
+    hr
+    = f.input :milling_length, wrapper: :horizontal_input_group do
+      = f.input_field :milling_length, class: 'form-control'
+      .input-group-addon feet
+    = f.input :milling_width, wrapper: :horizontal_input_group do
+      = f.input_field :milling_width, class: 'form-control'
+      .input-group-addon feet
+      
+    .form-group
+      label.col-sm-3.control-label Area
+      .col-sm-9
+        span.form-control-calculated#square_yards = @ticket.milling_square_yards
+    
+  hr
+
+  .form-actions
+    = f.button :submit, 'Save Changes'
+
+coffee:
+  # Calculate the area field
+  square_yards_reload = () ->
+    square_feet = $('#ticket_milling_length').val() * $('#ticket_milling_width').val()
+    square_yards = square_feet / 9
+    square_yards = parseInt(square_yards) # round down to integer
+    
+    new_text = switch
+      when square_yards == 1
+        '1 square yard'
+      when square_yards < 1
+        ''
+      else
+        square_yards + ' square yards'
+    
+    $('#square_yards').html(new_text)
+      
+
+  $('#ticket_milling_length').keyup ->
+    square_yards_reload()
+    
+  $('#ticket_milling_width').keyup ->
+    square_yards_reload()
+    
+  $('#ticket_milling_length').change ->
+    square_yards_reload()
+    
+  $('#ticket_milling_width').change ->
+    square_yards_reload()

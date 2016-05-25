@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
   def current_user
     current_employee
   end
+  
+  def render_previous
+    hsh = Rails.application.routes.recognize_path(request.referer)
+    render template: "#{hsh[:controller]}/#{hsh[:action]}"
+  end
 end

@@ -31,9 +31,9 @@ class Ticket::TicketsController < Ticket::BaseController
   # Generic updating method, works with all Ticket pages
   def update
     if @ticket.update(ticket_params)
-      redirect_to request.referrer, notice: 'Your changes have been saved.'
+      redirect_to :back, notice: 'Your changes have been saved.'
     else
-      render :edit
+      render_previous
     end
   end
   
