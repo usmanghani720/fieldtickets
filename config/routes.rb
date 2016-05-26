@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :ticket do
+  get 'vehicles/index'
+  end
+
   devise_for :employees
   
   namespace :reports do
@@ -9,6 +13,10 @@ Rails.application.routes.draw do
     resources :tickets do
       get 'job' => 'job#index'
       patch 'job' => 'job#update'
+      
+      get 'employees' => 'employees#index'
+
+      get 'vehicles' => 'vehicles#index'
       
       get 'dimensions' => 'dimensions#index'
       patch 'dimensions' => 'dimensions#update'

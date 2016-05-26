@@ -1,5 +1,6 @@
 class Ticket::BaseController < ApplicationController
   # https://github.com/drapergem/draper#when-to-decorate-objects
+  before_action :set_ticket
   decorates_assigned :ticket
 
   # Generic updating method, works with all Ticket pages

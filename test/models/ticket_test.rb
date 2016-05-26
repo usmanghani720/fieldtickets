@@ -97,6 +97,11 @@ class TicketTest < ActiveSupport::TestCase
     assert ticket.delays_total == 107.0
   end
   
-  
+  # Make sure that finalized? and finalize! work nicely
+  def test_finalize!
+    refute ticket.finalized?
+    ticket.finalize!
+    assert ticket.finalized?
+  end
   
 end

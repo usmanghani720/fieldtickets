@@ -1,3 +1,12 @@
 class Ticket::FinalizeController < Ticket::BaseController
-  before_action :set_ticket, only: [ :index ]
+
+  # TODO: Show a different page if ticket isn't complete.
+  def index
+    
+  end
+  
+  def update
+    @ticket.finalize!
+    redirect_to tickets_path
+  end
 end

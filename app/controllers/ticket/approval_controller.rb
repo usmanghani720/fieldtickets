@@ -1,6 +1,4 @@
 class Ticket::ApprovalController < Ticket::BaseController
-  before_action :set_ticket
-  
   # Crew chief has tapped Approval in the sidebar
   def index
     if @ticket.pending_approval?

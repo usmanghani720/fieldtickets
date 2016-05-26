@@ -1,5 +1,8 @@
-.page-header
-  h1
-    | Ticket::Finalize#index
-p
-  | Find me in app/views/ticket/finalize/index.html.slim
+div#approval_form
+  
+  h2 Finalize Ticket
+  hr
+  p.question When you finalize the ticket, employee hours will be sent to payroll.
+  p.question Please double-check your entries before proceeding.
+  
+  = link_to 'Finalize Ticket', ticket_finalize_path(ticket), class: 'btn-disapprove', method: :patch

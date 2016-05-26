@@ -16,7 +16,7 @@
 
 //= require autocomplete-rails
 
-// disabled = require bootstrap-select
+// DISABLED = require bootstrap-select
 //= require vendor/bootstrap-checkbox
 //= require bootstrap/alert
 //= require bootstrap/dropdown
@@ -30,3 +30,4 @@
 
 //= require app/data-links
 //= require app/autoshow-form-buttons
+//= require ticket/approval

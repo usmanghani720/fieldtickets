@@ -125,6 +125,14 @@ class Ticket < ActiveRecord::Base
       (milling_square_feet / 9).to_i
     end
   end
+  
+  def finalized?
+    finalized_at.present?
+  end
+  
+  def finalize!
+    update(finalized_at: Time.now)
+  end
 
   
   private
