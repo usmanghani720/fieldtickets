@@ -1,5 +1,5 @@
 class Ticket::VehicleEntry < ActiveRecord::Base
-  # include Timesheet
+  include Timesheet
   
   belongs_to :field_ticket
   validates :field_ticket, presence: true
@@ -11,7 +11,6 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   
   acts_as_paranoid
   
-  # timesheet_column :vehicle_id
   STATUS_TYPES = ['on_the_job', 'in_maintenance', 'refuel', 'idle']
   
   def maintenance_available?
@@ -31,6 +30,11 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   end
     
   private
+  
+    # Required by Timesheet concern
+    def timesheet_column
+      :vehicle_id
+    end
   
     def mileage_required?
       status == 'refuel'

@@ -11,3 +11,8 @@
     = f.hidden_field :employee_id, id: 'employee_id'
             
   = partial 'autoshow_form_buttons', f: f
+
+coffee: 
+  # Focus
+  $ ->
+    $('#ticket_employee_employee').focus()

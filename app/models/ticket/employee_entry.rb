@@ -1,12 +1,11 @@
 class Ticket::EmployeeEntry < ActiveRecord::Base
-  #include Timesheet
+  include Timesheet
   
   belongs_to :ticket
   validates :ticket, presence: true
   belongs_to :employee
   validates :employee, presence: true
   
-  #timesheet_column :employee_id
   STATUS_TYPES = ['on_the_job', 'overhead', 'idle']
     
   acts_as_paranoid
@@ -14,5 +13,12 @@ class Ticket::EmployeeEntry < ActiveRecord::Base
   def to_s
     employee.to_s
   end
+  
+  private
+  
+    # Required by Timesheet concern
+    def timesheet_column
+      :employee_id
+    end
   
 end

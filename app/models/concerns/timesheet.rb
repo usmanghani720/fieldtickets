@@ -35,11 +35,6 @@ module Timesheet
       true
     end
     
-    # Used by the model to tell this concern the name of the item's column, such as :employee_id or :equipment_id
-    def timesheet_column(column)
-      @column = column
-    end
-    
   end
   
   # Don't let time_end be less than time
