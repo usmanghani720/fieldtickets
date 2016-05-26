@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       patch 'job' => 'job#update'
       
       get 'employees' => 'employees#index'
+      get 'employees/add' => 'employees#new'
+      post 'employees/add' => 'employees#create'
 
       get 'vehicles' => 'vehicles#index'
       

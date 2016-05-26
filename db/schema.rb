@@ -99,14 +99,14 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   add_index "jobs", ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
 
   create_table "ticket_employees", force: :cascade do |t|
-    t.integer  "ticket_ticket_id"
+    t.integer  "ticket_id"
     t.integer  "employee_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "ticket_employees", ["employee_id"], name: "index_ticket_employees_on_employee_id", using: :btree
-  add_index "ticket_employees", ["ticket_ticket_id"], name: "index_ticket_employees_on_ticket_ticket_id", using: :btree
+  add_index "ticket_employees", ["ticket_id"], name: "index_ticket_employees_on_ticket_id", using: :btree
 
   create_table "ticket_tickets", force: :cascade do |t|
     t.integer  "bill_to",                         default: 0
@@ -142,13 +142,13 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   add_index "ticket_tickets", ["job_id"], name: "index_ticket_tickets_on_job_id", using: :btree
 
   create_table "ticket_vehicles", force: :cascade do |t|
-    t.integer  "ticket_ticket_id"
+    t.integer  "ticket_id"
     t.integer  "vehicle_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "ticket_vehicles", ["ticket_ticket_id"], name: "index_ticket_vehicles_on_ticket_ticket_id", using: :btree
+  add_index "ticket_vehicles", ["ticket_id"], name: "index_ticket_vehicles_on_ticket_id", using: :btree
   add_index "ticket_vehicles", ["vehicle_id"], name: "index_ticket_vehicles_on_vehicle_id", using: :btree
 
   create_table "vehicles", force: :cascade do |t|
@@ -165,9 +165,5 @@ ActiveRecord::Schema.define(version: 20160526154330) do
 
   add_foreign_key "field_tickets", "jobs"
   add_foreign_key "jobs", "customers"
-  add_foreign_key "ticket_employees", "employees"
-  add_foreign_key "ticket_employees", "ticket_tickets"
   add_foreign_key "ticket_tickets", "jobs"
-  add_foreign_key "ticket_vehicles", "ticket_tickets"
-  add_foreign_key "ticket_vehicles", "vehicles"
 end

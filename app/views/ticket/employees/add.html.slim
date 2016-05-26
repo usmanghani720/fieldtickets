@@ -1,0 +1,13 @@
+= simple_form_for @ticket_employee, url: request.original_url do |f|
+  h2 Add an Employee to This Job
+  
+  hr
+
+  = f.error_notification
+
+  .form-inputs
+  
+    = f.input :employee, url: autocomplete_employee_display_name_tickets_path, as: :autocomplete, id_element: '#employee_id'
+    = f.hidden_field :employee_id, id: 'employee_id'
+            
+  = partial 'autoshow_form_buttons', f: f
