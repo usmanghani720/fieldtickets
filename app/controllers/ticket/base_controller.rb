@@ -18,7 +18,7 @@ class Ticket::BaseController < ApplicationController
     
     # Look up @ticket from params
     def set_ticket
-      @ticket = Ticket.find(params[:ticket_id] || params[:id])
+      @ticket = Ticket::Ticket.find(params[:ticket_id] || params[:id])
     end
   
     def ticket_params

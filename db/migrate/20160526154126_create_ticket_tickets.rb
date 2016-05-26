@@ -1,6 +1,6 @@
-class CreateTickets < ActiveRecord::Migration
+class CreateTicketTickets < ActiveRecord::Migration
   def change
-    create_table :tickets do |t|
+    create_table :ticket_tickets do |t|
       t.integer :bill_to, default: 0
       
       t.belongs_to :job, index: true, foreign_key: true
@@ -32,6 +32,6 @@ class CreateTickets < ActiveRecord::Migration
       t.timestamps null: false
     end
     
-    add_attachment :tickets, :approval_signature
+    add_attachment :ticket_tickets, :approval_signature
   end
 end

@@ -1,6 +1,6 @@
-class CreateEquipment < ActiveRecord::Migration
+class CreateVehicles < ActiveRecord::Migration
   def change
-    create_table :equipment do |t|
+    create_table :vehicles do |t|
       t.string :internal_number
       t.string :description
       t.string :vehicle_type

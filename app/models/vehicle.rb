@@ -1,7 +1,7 @@
-class Equipment < ActiveRecord::Base
+class Vehicle < ActiveRecord::Base
   include DisplayName
   
-  VEHICLE_TYPES = ['Truck', 'Mill']
+  TYPES = ['Truck', 'Mill']
   
   acts_as_paranoid
   

@@ -9,12 +9,12 @@ class Ticket::TicketsController < Ticket::BaseController
   
   # Show list of tickets
   def index
-    @tickets = Ticket.all
+    @tickets = Ticket::Ticket.all
   end
   
   # When calling #new, create the Ticket and redirect to it.
   def new
-    @ticket = Ticket.create
+    @ticket = Ticket::Ticket.create
     redirect_to @ticket
   end
   

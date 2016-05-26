@@ -81,7 +81,7 @@ en:
         internal_number: 'BRM Vehicle #'
         vehicle_type: 'Type'
         
-      ticket:
+      ticket/ticket:
         job: 'BRM Job #'
         bill_to: 'Bill To'
         

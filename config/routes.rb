@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  namespace :ticket do
-  get 'vehicles/index'
-  end
+  # namespace :ticket do
+  # get 'vehicles/index'
+  # end
 
   devise_for :employees
   

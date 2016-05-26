@@ -1,4 +1,4 @@
-class TicketDecorator < Draper::Decorator
+class Ticket::TicketDecorator < Draper::Decorator
   delegate_all
 
   def milling_square_yards
