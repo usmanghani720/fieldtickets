@@ -19,8 +19,8 @@ class Ticket::Ticket < ActiveRecord::Base
   # If the ticket is billed to "Job" or "Cancelled Job", it'll reference the Job here.
   belongs_to :job
   
-  has_many :equipment_entries
-  has_many :employee_entries
+  has_many :employees
+  has_many :vehicles
     
   # Whether the Customer's representative has signed off on the Job.
   enum approval: { pending_approval: 0, approved: 1, disapproved: 2 }

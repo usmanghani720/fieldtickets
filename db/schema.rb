@@ -98,6 +98,22 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   add_index "jobs", ["customer_id"], name: "index_jobs_on_customer_id", using: :btree
   add_index "jobs", ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
 
+  create_table "ticket_employee_entries", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "ticket_id"
+    t.string   "status",      default: "idle"
+    t.datetime "time"
+    t.datetime "time_end"
+    t.integer  "duration"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "ticket_employee_entries", ["deleted_at"], name: "index_ticket_employee_entries_on_deleted_at", using: :btree
+  add_index "ticket_employee_entries", ["employee_id"], name: "index_ticket_employee_entries_on_employee_id", using: :btree
+  add_index "ticket_employee_entries", ["ticket_id"], name: "index_ticket_employee_entries_on_ticket_id", using: :btree
+
   create_table "ticket_employees", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "employee_id"
@@ -140,6 +156,26 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   add_index "ticket_tickets", ["deleted_at"], name: "index_ticket_tickets_on_deleted_at", using: :btree
   add_index "ticket_tickets", ["finalized_at"], name: "index_ticket_tickets_on_finalized_at", using: :btree
   add_index "ticket_tickets", ["job_id"], name: "index_ticket_tickets_on_job_id", using: :btree
+
+  create_table "ticket_vehicle_entries", force: :cascade do |t|
+    t.integer  "ticket_id"
+    t.boolean  "rental"
+    t.integer  "equipment_id"
+    t.string   "rental_description"
+    t.string   "status",             default: "idle"
+    t.decimal  "fuel_gallons"
+    t.decimal  "mileage"
+    t.datetime "time"
+    t.datetime "time_end"
+    t.integer  "duration_total"
+    t.datetime "deleted_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "ticket_vehicle_entries", ["deleted_at"], name: "index_ticket_vehicle_entries_on_deleted_at", using: :btree
+  add_index "ticket_vehicle_entries", ["equipment_id"], name: "index_ticket_vehicle_entries_on_equipment_id", using: :btree
+  add_index "ticket_vehicle_entries", ["ticket_id"], name: "index_ticket_vehicle_entries_on_ticket_id", using: :btree
 
   create_table "ticket_vehicles", force: :cascade do |t|
     t.integer  "ticket_id"

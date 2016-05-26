@@ -4,12 +4,15 @@
     |  Add an Employee to This Job
   h2 Employees
     
-div.col-md-4
-  h3 On the Job
-    
-div.col-md-4
-  h3 Overhead
-    
-div.col-md-4
-  h3 Idle
-  
+/div.col-md-4
+/  h3 On the Job
+/    
+/div.col-md-4
+/  h3 Overhead
+/    
+/div.col-md-4
+/  h3 Idle
+
+ul
+  - ticket.employees.each do |employee|
+    li = employee

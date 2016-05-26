@@ -1,17 +1,17 @@
-class EquipmentEntry < ActiveRecord::Base
-  include Timesheet
+class Ticket::VehicleEntry < ActiveRecord::Base
+  # include Timesheet
   
   belongs_to :field_ticket
   validates :field_ticket, presence: true
-  belongs_to :equipment
-  validates :equipment, presence: true, if: "not rental?"
+  belongs_to :vehicle
+  validates :vehicle, presence: true, if: "not rental?"
   
   validates :rental_description, presence: true, if: "rental?"
   validates :mileage, presence: true, if: :mileage_required?
   
   acts_as_paranoid
   
-  timesheet_column :equipment_id
+  # timesheet_column :vehicle_id
   STATUS_TYPES = ['on_the_job', 'in_maintenance', 'refuel', 'idle']
   
   def maintenance_available?
