@@ -3,7 +3,7 @@ class Ticket::TicketsController < Ticket::BaseController
   
   autocomplete :job, :display_name, limit: 50, full: true, scopes: [:in_progress]
   
-  autocomplete :equipment, :display_name, limit: 50, full: true
+  autocomplete :vehicle, :display_name, limit: 50, full: true
 
   autocomplete :employee, :display_name, limit: 50, full: true
   
