@@ -35,7 +35,7 @@ coffee:
 
   # When any form input is changed, recalculate delays total
   $('form :input').on 'input', ->
-    delays_total = +$('#ticket_delays_trucks').val() + +$('#ticket_delays_paving').val() + +$('#ticket_delays_mot').val() + +$('#ticket_delays_other').val()
+    delays_total = +$('#ticket_ticket_delays_trucks').val() + +$('#ticket_ticket_delays_paving').val() + +$('#ticket_ticket_delays_mot').val() + +$('#ticket_ticket_delays_other').val()
     
     new_text = switch
       when delays_total == 1.0

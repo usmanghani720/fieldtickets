@@ -29,7 +29,7 @@ coffee:
 
   # When any form input is changed, recalculate square yards
   $('form :input').on 'input', ->
-    square_feet = $('#ticket_milling_length').val() * $('#ticket_milling_width').val()
+    square_feet = $('#ticket_ticket_milling_length').val() * $('#ticket_ticket_milling_width').val()
     square_yards = square_feet / 9
     square_yards = parseInt(square_yards) # round down to integer
     
