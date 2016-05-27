@@ -31,11 +31,6 @@ class Ticket::VehicleEntry < ActiveRecord::Base
     
   private
   
-    # Required by Timesheet concern
-    def timesheet_column
-      :vehicle_id
-    end
-  
     def mileage_required?
       status == 'refuel'
       #(field_ticket.equipment_entries.where(equipment: self.equipment).count == 0) or

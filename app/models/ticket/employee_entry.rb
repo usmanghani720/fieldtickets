@@ -12,11 +12,4 @@ class Ticket::EmployeeEntry < ActiveRecord::Base
     employee.to_s
   end
   
-  private
-  
-    # Required by Timesheet concern
-    def timesheet_column
-      :employee_id
-    end
-  
 end
