@@ -1,11 +1,14 @@
 class Ticket::EmployeesController < Ticket::BaseController
+  # Show the Employees on this Ticket
   def index
   end
   
+  # Show the form to add an Employee to this Ticket
   def new
     blank_ticket_employee
   end
   
+  # Add an Employee to this Ticket
   def create
     blank_ticket_employee
     @ticket_employee.update(ticket_employee_params)
@@ -15,6 +18,16 @@ class Ticket::EmployeesController < Ticket::BaseController
     else
       render :new
     end
+  end
+  
+  # Add a new EmployeeEntry to change an Employee's status
+  def create_status
+    set_employee
+    
+    @employee.status = params[:status]
+    
+    flash[:notice] = "#{@employee} marked ‘#{params[:status].titleize}’"
+    redirect_to ticket_employees_path(@ticket)
   end
   
   private
@@ -27,5 +40,9 @@ class Ticket::EmployeesController < Ticket::BaseController
       params.require(:ticket_employee).permit(
         :employee_id,
       )
+    end
+    
+    def set_employee
+      @employee = Ticket::Employee.find(params[:employee_id])
     end
 end

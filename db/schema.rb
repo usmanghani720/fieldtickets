@@ -53,36 +53,6 @@ ActiveRecord::Schema.define(version: 20160526154330) do
 
   add_index "employees", ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
 
-  create_table "field_tickets", force: :cascade do |t|
-    t.integer  "job_id"
-    t.text     "bill_to",                         default: "Job"
-    t.datetime "submitted_at"
-    t.boolean  "customer_approved_work"
-    t.text     "customer_name_and_title"
-    t.text     "customer_feedback"
-    t.text     "supplies_teeth"
-    t.text     "supplies_oil"
-    t.text     "supplies_holders"
-    t.text     "supplies_other"
-    t.integer  "length"
-    t.integer  "width"
-    t.decimal  "depth"
-    t.text     "delays_trucks"
-    t.text     "delays_paving"
-    t.text     "delays_mot"
-    t.text     "delays_other"
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
-    t.string   "customer_signature_file_name"
-    t.string   "customer_signature_content_type"
-    t.integer  "customer_signature_file_size"
-    t.datetime "customer_signature_updated_at"
-  end
-
-  add_index "field_tickets", ["deleted_at"], name: "index_field_tickets_on_deleted_at", using: :btree
-  add_index "field_tickets", ["job_id"], name: "index_field_tickets_on_job_id", using: :btree
-
   create_table "jobs", force: :cascade do |t|
     t.integer  "customer_id"
     t.string   "internal_number"
@@ -100,25 +70,25 @@ ActiveRecord::Schema.define(version: 20160526154330) do
 
   create_table "ticket_employee_entries", force: :cascade do |t|
     t.integer  "employee_id"
-    t.integer  "ticket_id"
-    t.string   "status",      default: "idle"
+    t.integer  "status"
     t.datetime "time"
     t.datetime "time_end"
     t.integer  "duration"
     t.datetime "deleted_at"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "ticket_employee_entries", ["deleted_at"], name: "index_ticket_employee_entries_on_deleted_at", using: :btree
   add_index "ticket_employee_entries", ["employee_id"], name: "index_ticket_employee_entries_on_employee_id", using: :btree
-  add_index "ticket_employee_entries", ["ticket_id"], name: "index_ticket_employee_entries_on_ticket_id", using: :btree
 
   create_table "ticket_employees", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "employee_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "status",      default: 0
+    t.datetime "time"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "ticket_employees", ["employee_id"], name: "index_ticket_employees_on_employee_id", using: :btree
@@ -199,7 +169,6 @@ ActiveRecord::Schema.define(version: 20160526154330) do
 
   add_index "vehicles", ["deleted_at"], name: "index_vehicles_on_deleted_at", using: :btree
 
-  add_foreign_key "field_tickets", "jobs"
   add_foreign_key "jobs", "customers"
   add_foreign_key "ticket_tickets", "jobs"
 end

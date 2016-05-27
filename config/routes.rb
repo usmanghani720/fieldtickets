@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get 'employees' => 'employees#index'
       get 'employees/add' => 'employees#new'
       post 'employees/add' => 'employees#create'
+      post 'employees/:employee_id/:status' => 'employees#create_status', as: :employee_new_status
 
       get 'vehicles' => 'vehicles#index'
       

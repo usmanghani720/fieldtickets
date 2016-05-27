@@ -1,0 +1,34 @@
+- employees.each do |employee|
+  .btn-group
+  
+    button.employee-button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      = employee
+      |  
+      span.caret
+    
+    ul.dropdown-menu
+      
+      li.disabled
+        a
+          = employee.status.humanize
+          |  since 
+          = hide_today_in_date(employee.time)
+      
+      /li = link_to 'View timesheet…', ticket_employee_log_path(employee.ticket, employee)
+      
+      li.divider role="separator"
+      
+      - if not employee.status == 'on_the_job'
+        li = link_to 'Mark ‘On the Job’', ticket_employee_new_status_path(ticket, employee, status: 'on_the_job'), method: :post
+      
+      - if not employee.status == 'transport'
+        li = link_to 'Mark ‘Transport’', ticket_employee_new_status_path(ticket, employee, status: 'transport'), method: :post
+      
+      - if not employee.status == 'maintenance'
+        li = link_to 'Mark ‘Maintenance’', ticket_employee_new_status_path(ticket, employee, status: 'maintenance'), method: :post
+        
+      - if not employee.status == 'idle'
+        li = link_to 'Mark ‘Idle’', ticket_employee_new_status_path(ticket, employee, status: 'idle'), method: :post
+            
+  br
+  br

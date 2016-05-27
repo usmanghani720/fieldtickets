@@ -3,6 +3,9 @@ class CreateTicketEmployees < ActiveRecord::Migration
     create_table :ticket_employees do |t|
       t.references :ticket, index: true
       t.references :employee, index: true
+      t.integer :status, default: 0
+      
+      t.datetime :time
 
       t.timestamps null: false
     end

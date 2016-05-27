@@ -26,13 +26,13 @@ Job.create!([
   {internal_number: '12345', customer_id: 1, billing: 1},
   {internal_number: '54321', customer_id: 2, billing: 2},
 ])
-
-FieldTicket.create!([
-  {job_id: 1},
-  {job_id: 1},
-  {job_id: 2},
-  {bill_to: 'Equipment Maintenance & Repair'},
-])
+# 
+# FieldTicket.create!([
+#   {job_id: 1},
+#   {job_id: 1},
+#   {job_id: 2},
+#   {bill_to: 'Equipment Maintenance & Repair'},
+# ])
 
 Ticket::Ticket.create!([
   {job_id: 1},

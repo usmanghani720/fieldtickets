@@ -13,6 +13,4 @@
 /div.col-md-4
 /  h3 Idle
 
-ul
-  - ticket.employees.each do |employee|
-    li = employee
+= render partial: 'employees_buttons', locals: { employees: ticket.employees }

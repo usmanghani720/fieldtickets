@@ -1,12 +1,10 @@
 class Ticket::EmployeeEntry < ActiveRecord::Base
-  include Timesheet
+  include TimesheetEntry
   
-  belongs_to :ticket
-  validates :ticket, presence: true
   belongs_to :employee
   validates :employee, presence: true
   
-  STATUS_TYPES = ['on_the_job', 'overhead', 'idle']
+  enum status: { idle: 0, transport: 1, maintenance: 2, on_the_job: 3 }
     
   acts_as_paranoid
   

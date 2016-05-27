@@ -1,5 +1,5 @@
 class Ticket::VehicleEntry < ActiveRecord::Base
-  include Timesheet
+  include TimesheetEntry
   
   belongs_to :field_ticket
   validates :field_ticket, presence: true
