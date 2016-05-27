@@ -21,22 +21,6 @@ class Ticket::Employee < ActiveRecord::Base
     )
   end
   
-  def idle!
-    status = :idle
-  end
-  
-  def transport!
-    status = :transport
-  end
-  
-  def maintenance!
-    status = :maintenance
-  end
-  
-  def on_the_job!
-    status = :on_the_job
-  end
-  
   private
   
     def set_default_time
