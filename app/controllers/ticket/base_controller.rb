@@ -22,7 +22,7 @@ class Ticket::BaseController < ApplicationController
     end
   
     def ticket_params
-      params.require(:ticket).permit(
+      params.require(:ticket_ticket).permit(
         :bill_to,
         :job_id,
     

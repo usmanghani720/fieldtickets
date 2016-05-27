@@ -6,14 +6,15 @@ class Ticket::Ticket < ActiveRecord::Base
   
   # For accounting purposes, what are the ticket costs billed to?
   enum bill_to: {
-    'Job' => 0,
-    'Cancelled Job' => 1,
+    job: 0,
+    job_correction: 1,
+    cancelled_job: 2,
     # non-job items below
-    'Weather' => 2,
-    'Overhead' => 3,
-    'Office Staff' => 4,
-    'Transport' => 5,
-    'Shop Time' => 6
+    weather: 3,
+    overhead: 4,
+    office_staff: 5,
+    transport: 6,
+    shop: 7
   }
   
   # If the ticket is billed to "Job" or "Cancelled Job", it'll reference the Job here.
@@ -94,7 +95,7 @@ class Ticket::Ticket < ActiveRecord::Base
   # Should the Ticket be attached to a Job?
   def job_required?
     case bill_to
-    when 'Job', 'Cancelled Job'
+    when 'job', 'job_correction', 'cancelled_job'
       true
     else
       false

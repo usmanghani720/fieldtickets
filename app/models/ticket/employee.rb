@@ -15,7 +15,7 @@ class Ticket::Employee < ActiveRecord::Base
   end
   
   def status=(new_status)
-    employee_entry = Ticket::EmployeeEntry.create(
+    employee_entry = Ticket::EmployeeEntry.create!(
       employee: self,
       status: new_status
     )

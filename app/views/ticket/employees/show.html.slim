@@ -1,0 +1,18 @@
+.page-header
+  h2
+    | Timesheet for 
+    = @entries.first.employee.employee.name
+
+.table-responsive
+  table.table.table-striped.table-bordered
+    thead
+      tr
+        th Status
+        th Time
+        th Duration
+    tbody
+      - @entries.each do |entry|
+        tr
+          td = entry.status
+          td = entry.time
+          td = entry.duration
