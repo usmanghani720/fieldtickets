@@ -1,17 +1,15 @@
 class Ticket::VehicleEntry < ActiveRecord::Base
   include TimesheetEntry
   
-  belongs_to :field_ticket
-  validates :field_ticket, presence: true
   belongs_to :vehicle
-  validates :vehicle, presence: true, if: "not rental?"
+  validates :vehicle, presence: true, unless: :rental?
   
-  validates :rental_description, presence: true, if: "rental?"
+  validates :rental_description, presence: true, if: :rental?
   validates :mileage, presence: true, if: :mileage_required?
   
   acts_as_paranoid
   
-  STATUS_TYPES = ['on_the_job', 'in_maintenance', 'refuel', 'idle']
+  enum status: { idle: 0, refuel: 1, maintenance: 2, on_the_job: 3 }
   
   def maintenance_available?
     if equipment

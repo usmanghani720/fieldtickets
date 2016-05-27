@@ -5,6 +5,8 @@ module TimesheetParent
   
   included do
     validates :status, presence: true
+    
+    before_create :set_default_time
   end
   
   def recalculate!
@@ -39,7 +41,8 @@ module TimesheetParent
   
   private
   
-    def timesheet_entry
+    def set_default_time
+      self.time ||= self.created_at
     end
   
     # For Ticket::Employee, returns "employee"

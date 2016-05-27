@@ -5,7 +5,7 @@ class CreateTicketVehicleEntries < ActiveRecord::Migration
        t.boolean :rental
        t.belongs_to :equipment, index: true
        t.string :rental_description
-       t.string :status, default: 'idle'
+       t.integer :status
        t.decimal :fuel_gallons
        t.decimal :mileage
        

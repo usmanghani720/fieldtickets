@@ -38,7 +38,7 @@ Ticket::Ticket.create!([
   {job_id: 1},
   {job_id: 1},
   {job_id: 2},
-  {bill_to: 'Shop Time'},
+  {bill_to: :shop},
 ])
 
 # EmployeeEntry.create!([

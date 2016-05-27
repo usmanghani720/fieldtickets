@@ -1,0 +1,18 @@
+= simple_form_for @ticket_vehicle, url: request.original_url do |f|
+  h2 Add a Vehicle to This Ticket
+  
+  hr
+
+  = f.error_notification
+
+  .form-inputs
+  
+    = f.input :vehicle, url: autocomplete_vehicle_display_name_tickets_path, as: :autocomplete, id_element: '#vehicle_id'
+    = f.hidden_field :vehicle_id, id: 'vehicle_id'
+            
+  = partial 'autoshow_form_buttons', f: f
+
+coffee: 
+  # Focus
+  $ ->
+    $('#ticket_vehicle_vehicle').focus()

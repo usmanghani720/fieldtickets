@@ -8,8 +8,6 @@ class Ticket::Employee < ActiveRecord::Base
   
   enum status: { idle: 0, transport: 1, maintenance: 2, on_the_job: 3 }
   
-  before_create :set_default_time
-  
   def to_s
     employee.display_name + ' — ' + status
   end
@@ -21,9 +19,4 @@ class Ticket::Employee < ActiveRecord::Base
     )
   end
   
-  private
-  
-    def set_default_time
-      self.time ||= self.created_at
-    end
 end

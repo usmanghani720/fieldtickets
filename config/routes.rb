@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       post 'employees/:employee_id/:status' => 'employees#create_status', as: :employee_new_status
 
       get 'vehicles' => 'vehicles#index'
+      get 'vehicles/add' => 'vehicles#new'
       
       get 'dimensions' => 'dimensions#index'
       patch 'dimensions' => 'dimensions#update'
@@ -40,7 +41,7 @@ Rails.application.routes.draw do
       patch 'finalize' => 'finalize#update'
       
       get :autocomplete_job_display_name, on: :collection
-      get :autocomplete_equipment_display_name, on: :collection
+      get :autocomplete_vehicle_display_name, on: :collection
       get :autocomplete_employee_display_name, on: :collection
     end
   end

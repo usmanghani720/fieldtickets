@@ -1,16 +1,7 @@
 .page-header
   = link_to ticket_employees_add_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
-    |  Add an Employee to This Job
+    |  Add an Employee to This Ticket
   h2 Employees
     
-/div.col-md-4
-/  h3 On the Job
-/    
-/div.col-md-4
-/  h3 Overhead
-/    
-/div.col-md-4
-/  h3 Idle
-
 = render partial: 'employees_buttons', locals: { employees: ticket.employees }
