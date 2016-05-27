@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails fieldtickets: test" uuid="8a329417-3d5e-44c9-b389-b744248ba709">
+      <schema-pattern>field_tickets_text.*</schema-pattern>
+      <default-schemas>field_tickets_text.*</default-schemas>
+    </data-source>
+    <data-source name="Rails fieldtickets: development" uuid="e1672167-7419-48a2-8a71-9aa11e9ec33d">
+      <schema-pattern>field_tickets_development.*</schema-pattern>
+      <default-schemas>field_tickets_development.*</default-schemas>
+    </data-source>
+    <data-source name="Rails fieldtickets: production" uuid="1c06cc6b-4053-445e-b66d-40162b3d689e">
+      <first-sync>true</first-sync>
+    </data-source>
+  </component>
+</project>
