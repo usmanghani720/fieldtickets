@@ -1,0 +1,24 @@
+.page-header
+  = link_to new_vehicle_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New 
+    = Vehicle.human
+  h1
+    = Vehicle.humans
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          = Vehicle.human_attribute_name :internal_number
+        th
+          = Vehicle.human_attribute_name :vehicle_type
+    tbody
+      - @vehicle.each do | vehicle |
+        tr data-link="#{vehicle_path(vehicle)}"
+          td
+            = vehicle.internal_number
+          td
+            = vehicle.vehicle_type
+            

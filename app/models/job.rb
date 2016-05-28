@@ -4,9 +4,9 @@ class Job < ActiveRecord::Base
   acts_as_paranoid
   
   belongs_to :customer
-  has_many :field_tickets
-  has_many :equipment_entries, through: :field_tickets
-  has_many :employee_entries, through: :field_tickets
+  has_many :tickets, class_name: 'Ticket::Ticket'
+  has_many :employees, through: :tickets, class_name: 'Ticket::Employee'
+  has_many :vehicles, through: :tickets, class_name: 'Ticket::Vehicle'
     
   enum billing: { day_rate: 1, square_yards: 2, hourly: 3 }
   enum status: { in_progress: 0, completed: 1 }

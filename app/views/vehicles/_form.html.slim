@@ -1,14 +1,14 @@
-= form_for(@equipment, html: { class: "form-horizontal", role: "form" }) do |f|
-  - if @equipment.errors.any?
+= form_for(@vehicle, html: { class: "form-horizontal", role: "form" }) do |f|
+  - if @vehicle.errors.any?
     .alert.alert-danger.alert-dismissable role="alert"
       button.close type="button" data-dismiss="alert"
         span aria-hidden="true"
           | &times;
         span.sr-only
           | Close
-      h4= "#{pluralize(@equipment.errors.count,"error")} prohibited this equipment from being saved:"
+      h4= "#{pluralize(@vehicle.errors.count,"error")} prohibited this vehicle from being saved:"
       ul
-        - @equipment.errors.full_messages.each do |msg|
+        - @vehicle.errors.full_messages.each do |msg|
           li= msg
   .form-group
     = f.label :internal_number, class: "col-sm-2 control-label"

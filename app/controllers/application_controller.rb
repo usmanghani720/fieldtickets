@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     current_employee
   end
   
+  # Render the previous display without redirecting it
   def render_previous
     hsh = Rails.application.routes.recognize_path(request.referer)
     render template: "#{hsh[:controller]}/#{hsh[:action]}"

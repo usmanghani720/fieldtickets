@@ -47,17 +47,26 @@ class Ticket::TicketTest < ActiveSupport::TestCase
     assert ticket.milling_square_feet == 9000
   end
   
-  # Make sure it won't let crappy dimensions in
+  # Make sure it won't let crappy dimensions in.
+  # 
+  # If any milling dimensions are inputted, they should all be required.
+  # This is really just for validations.
   def test_milling_dimensions_validations
+    refute ticket.milling_dimensions_required?
     ticket.milling_width = 36
+    assert ticket.milling_dimensions_required?
     refute ticket.valid?
     ticket.milling_length = 250
+    assert ticket.milling_dimensions_required?
     refute ticket.valid?
     ticket.milling_depth = 30
+    assert ticket.milling_dimensions_required?
     refute ticket.valid?
     ticket.milling_depth = 1
+    assert ticket.milling_dimensions_required?
     assert ticket.valid?
     ticket.milling_width = 0
+    assert ticket.milling_dimensions_required?
     refute ticket.valid?
   end
   
@@ -102,5 +111,17 @@ class Ticket::TicketTest < ActiveSupport::TestCase
     refute ticket.finalized?
     ticket.finalize!
     assert ticket.finalized?
+    assert ticket.finalized_at
+  end
+  
+  # Makes sure that bill_to_blank? only fires when bill-to info is incomplete
+  def test_bill_to_blank?
+    assert ticket.bill_to_blank?
+    ticket.bill_to = :weather
+    refute ticket.bill_to_blank?
+    ticket.bill_to = :job_correction
+    assert ticket.bill_to_blank?
+    ticket.job = job
+    refute ticket.bill_to_blank?
   end
 end

@@ -1,0 +1,33 @@
+.page-header
+
+  = link_to vehicles_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back to 
+    = @vehicle.class.humans
+
+  = link_to @vehicle, method: :delete, data: { confirm: @vehicle.flash(:confirm_destroy) }, class: 'btn-delete' do
+    span.glyphicon.glyphicon-remove
+    |  Delete
+    
+  = link_to edit_vehicle_path(@vehicle), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+    
+  h1
+    = @vehicle
+    
+dl.dl-horizontal
+  dt
+    = Vehicle.human_attribute_name :internal_number
+  dd
+    = @vehicle.internal_number
+  dt
+    = Vehicle.human_attribute_name :description
+  dd
+    = @vehicle.description
+  dt
+    = Vehicle.human_attribute_name :vehicle_type
+  dd
+    = @vehicle.vehicle_type
+
+hr

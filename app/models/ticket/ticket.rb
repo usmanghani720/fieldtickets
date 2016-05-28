@@ -108,6 +108,7 @@ class Ticket::Ticket < ActiveRecord::Base
   end
   
   # If any milling dimensions are inputted, they should all be required.
+  # This is really just for validations.
   def milling_dimensions_required?
     milling_length.present? or milling_width.present? or milling_depth.present?
   end

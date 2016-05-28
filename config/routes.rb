@@ -87,7 +87,7 @@ Rails.application.routes.draw do
   #  post 'submit' => 'field_tickets#submit_confirm'
   #end
   
-  resources :equipment, path: 'vehicles'
+  resources :vehicles
   
   resources :jobs do
     get :autocomplete_customer_name, on: :collection

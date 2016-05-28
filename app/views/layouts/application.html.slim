@@ -50,7 +50,7 @@ html
                 li
                   = link_to 'Log Out', destroy_employee_session_path, method: :delete
     .container-fluid
-      - if not @minimal_ui
+      - if params[:controller].include? 'ticket/' and not @minimal_ui
         div class="col-sm-3 col-md-2 sidebar"
           ul class="nav nav-sidebar"
         
