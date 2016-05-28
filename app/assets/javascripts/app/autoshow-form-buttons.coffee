@@ -3,6 +3,9 @@ $ ->
   $('form :input').on 'input', ->
     $("#autoshow-form-buttons").fadeIn()
 
+  $('form .btn').click ->
+    $("#autoshow-form-buttons").fadeIn()
+
   # Restore the form to original values when Undo is clicked
   $('#undo-my-changes').click ->
     $('form')[0].reset()

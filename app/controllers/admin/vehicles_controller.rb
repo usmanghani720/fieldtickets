@@ -1,4 +1,4 @@
-class VehiclesController < ApplicationController
+class Admin::VehiclesController < Admin::BaseController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
   # GET /vehicle
@@ -28,7 +28,7 @@ class VehiclesController < ApplicationController
 
     respond_to do |format|
       if @vehicle.save
-        format.html { redirect_to @vehicle, notice: @vehicle.flash(:create) }
+        format.html { redirect_to admin_vehicle_path(@vehicle), notice: @vehicle.flash(:create) }
         format.json { render :show, status: :created, location: @vehicle }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class VehiclesController < ApplicationController
   def update
     respond_to do |format|
       if @vehicle.update(vehicle_params)
-        format.html { redirect_to @vehicle, notice: @vehicle.flash(:update) }
+        format.html { redirect_to admin_vehicle_path(@vehicle), notice: @vehicle.flash(:update) }
         format.json { render :show, status: :ok, location: @vehicle }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class VehiclesController < ApplicationController
   def destroy
     @vehicle.destroy
     respond_to do |format|
-      format.html { redirect_to vehicle_index_url, notice: @vehicle.flash(:destroy) }
+      format.html { redirect_to admin_vehicles_path, notice: @vehicle.flash(:destroy) }
       format.json { head :no_content }
     end
   end

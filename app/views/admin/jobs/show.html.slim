@@ -1,11 +1,11 @@
 .page-header
-  = link_to jobs_path, class: 'btn btn-default' do 
+  = link_to admin_jobs_path, class: 'btn btn-default' do 
     span.glyphicon.glyphicon-list-alt
     |  Back 
-  = link_to @job, method: :delete, data: { confirm: @job.flash(:confirm_destroy) }, class: 'btn-delete' do
+  = link_to admin_job_path(@job), method: :delete, data: { confirm: @job.flash(:confirm_destroy) }, class: 'btn-delete' do
     span.glyphicon.glyphicon-remove
     |  Delete
-  = link_to edit_job_path(@job), class: 'btn btn-primary' do 
+  = link_to edit_admin_job_path(@job), class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-pencil
     |  Edit 
   h1
@@ -22,7 +22,7 @@ dl.dl-horizontal
   dt
     | Customer’s Job #
   dd
-    = @job.customers_number
+    = @job.customer_number
   dt
     | Billing:
   dd

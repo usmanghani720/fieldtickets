@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_employee_path, class: 'btn btn-primary' do 
+  = link_to new_admin_employee_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
     |  New Employee
   h1
@@ -15,7 +15,7 @@
           | Password Set?
     tbody
       - @employees.each do | employee |
-        tr data-link="#{employee_path(employee)}"
+        tr data-link="#{admin_employee_path(employee)}"
           td
             = employee.to_s
           td

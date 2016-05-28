@@ -1,11 +1,11 @@
 .page-header
-  = link_to employees_path, class: 'btn btn-default' do 
+  = link_to admin_employees_path, class: 'btn btn-default' do 
     span.glyphicon.glyphicon-list-alt
     |  Back 
-  = link_to @employee, method: :delete, data: { confirm: @employee.flash(:confirm_destroy) }, class: 'btn-delete' do
+  = link_to admin_employee_path(@employee), method: :delete, data: { confirm: @employee.flash(:confirm_destroy) }, class: 'btn-delete' do
     span.glyphicon.glyphicon-remove
     |  Delete
-  = link_to edit_employee_path(@employee), class: 'btn btn-primary' do 
+  = link_to edit_admin_employee_path(@employee), class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-pencil
     |  Edit 
   h1

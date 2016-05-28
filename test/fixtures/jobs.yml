@@ -2,10 +2,10 @@
 
 one:
   internal_number: MyText
-  customers_number: MyText
+  customer_number: MyText
   customer_id: 
 
 two:
   internal_number: MyText
-  customers_number: MyText
+  customer_number: MyText
   customer_id: 

@@ -1,0 +1,17 @@
+.page-header
+  = link_to admin_customers_path, class: 'btn btn-default' do 
+    span.glyphicon.glyphicon-list-alt
+    |  Back 
+  = link_to admin_customer_path(@customer), method: :delete, data: { confirm: @customer.flash(:confirm_destroy) }, class: 'btn-delete' do
+    span.glyphicon.glyphicon-remove
+    |  Delete
+  = link_to edit_admin_customer_path(@customer), class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-pencil
+    |  Edit 
+  h1
+    | Customer
+dl.dl-horizontal
+  dt
+    | Name:
+  dd
+    = @customer.name

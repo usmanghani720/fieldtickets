@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_vehicle_path, class: 'btn btn-primary' do 
+  = link_to new_admin_vehicle_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
     |  New 
     = Vehicle.human
@@ -16,7 +16,7 @@
           = Vehicle.human_attribute_name :vehicle_type
     tbody
       - @vehicle.each do | vehicle |
-        tr data-link="#{vehicle_path(vehicle)}"
+        tr data-link="#{admin_vehicle_path(vehicle)}"
           td
             = vehicle.internal_number
           td

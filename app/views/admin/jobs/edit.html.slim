@@ -1,8 +1,8 @@
 .page-header
-  = link_to jobs_path, class: 'btn btn-default' do
+  = link_to admin_jobs_path, class: 'btn btn-default' do
     span.glyphicon.glyphicon-list-alt
     |  Back 
-  = link_to @job, class: 'btn btn-primary' do
+  = link_to admin_job_path(@job), class: 'btn btn-primary' do
     span.glyphicon.glyphicon-info-sign
     |  Show 
   h1

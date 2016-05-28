@@ -1,4 +1,9 @@
-= form_for(@employee, html: { class: "form-horizontal", role: "form", autocomplete: 'off' }) do |f|
+- if @employee.id
+  - url = admin_employee_path @employee
+- else
+  - url = admin_employees_path
+
+= form_for(@employee, url: url, html: { class: "form-horizontal", role: "form", autocomplete: 'off' }) do |f|
   - if @employee.errors.any?
     .alert.alert-danger.alert-dismissable role="alert"
       button.close type="button" data-dismiss="alert"

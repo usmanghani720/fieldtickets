@@ -1,0 +1,21 @@
+- if @job.id
+  - url = admin_job_path @job
+- else
+  - url = admin_jobs_path
+
+= simple_form_for @job, url: url do |f|
+  = f.error_notification
+
+  .form-inputs
+  
+    = f.input :customer_name, as: :autocomplete, url: autocomplete_customer_name_admin_jobs_path
+
+    = f.input :internal_number
+    
+    = f.input :customer_number
+    
+    = f.input :billing, as: :radio_buttons, wrapper: :bootstrap_radio_buttons, item_wrapper_tag: nil, item_label_class: 'btn btn-default'
+
+    
+                  
+  = partial 'autoshow_form_buttons', f: f

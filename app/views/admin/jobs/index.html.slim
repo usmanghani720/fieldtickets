@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_job_path, class: 'btn btn-primary' do 
+  = link_to new_admin_job_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
     |  New Job
   h1
@@ -21,13 +21,13 @@
           | Completed
     tbody
       - @jobs.each do | job |
-        tr data-link="#{job_path(job)}"
+        tr data-link="#{admin_job_path(job)}"
           td
             = job.customer
           td
             = job.internal_number
           td
-            = job.customers_number
+            = job.customer_number
           td
             = job.billing
           td

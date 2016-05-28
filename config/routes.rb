@@ -87,14 +87,14 @@ Rails.application.routes.draw do
   #  post 'submit' => 'field_tickets#submit_confirm'
   #end
   
-  resources :vehicles
-  
-  resources :jobs do
-    get :autocomplete_customer_name, on: :collection
+  namespace :admin do
+    resources :customers
+    resources :employees
+    resources :vehicles
+    resources :jobs do
+      get :autocomplete_customer_name, on: :collection
+    end
   end
-  
-  resources :customers
-  resources :employees
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

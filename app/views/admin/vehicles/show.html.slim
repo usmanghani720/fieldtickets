@@ -1,15 +1,15 @@
 .page-header
 
-  = link_to vehicles_path, class: 'btn btn-default' do 
+  = link_to admin_vehicles_path, class: 'btn btn-default' do 
     span.glyphicon.glyphicon-list-alt
     |  Back to 
     = @vehicle.class.humans
 
-  = link_to @vehicle, method: :delete, data: { confirm: @vehicle.flash(:confirm_destroy) }, class: 'btn-delete' do
+  = link_to admin_vehicle_path(@vehicle), method: :delete, data: { confirm: @vehicle.flash(:confirm_destroy) }, class: 'btn-delete' do
     span.glyphicon.glyphicon-remove
     |  Delete
     
-  = link_to edit_vehicle_path(@vehicle), class: 'btn btn-primary' do 
+  = link_to edit_admin_vehicle_path(@vehicle), class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-pencil
     |  Edit 
     

@@ -29,7 +29,7 @@ en:
     format: "%{message}"
       
     messages:
-      blank: "Please fill in the <strong>%{attribute}</strong>."
+      blank: "Please fill this in."
       
     template:
       header:
@@ -43,6 +43,13 @@ en:
   activerecord:
     errors:
       models:
+      
+        job:
+          attributes:
+            billing:
+              blank: 'Please choose how the customer should be billed.'
+            internal_number:
+              blank: 'Please fill in the BRM number.'
       
         employee_entry:
           attributes:
@@ -65,17 +72,14 @@ en:
       equipment:
         one: 'Vehicle'
         other: 'Vehicles'
-      non_job:
-        one: 'Non-Job'
-        other: 'Non-Jobs'
     
     attributes:
     
       job:
         customer_name: 'Customer'
         internal_number: 'BRM Job #'
-        customers_number: 'Customer’s Job #'
-        flat_rate: 'Billing'
+        customer_number: 'Customer’s Job #'
+        billing: 'Billed By'
         
       equipment:
         internal_number: 'BRM Vehicle #'

@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_customer_path, class: 'btn btn-primary' do 
+  = link_to new_admin_customer_path, class: 'btn btn-primary' do 
     span.glyphicon.glyphicon-plus
     |  New Customer
   h1
@@ -13,6 +13,6 @@
           | Name
     tbody
       - @customers.each do | customer |
-        tr data-link="#{customer_path(customer)}"
+        tr data-link="#{admin_customer_path(customer)}"
           td
             = customer.name

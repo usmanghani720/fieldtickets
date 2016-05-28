@@ -56,15 +56,16 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   create_table "jobs", force: :cascade do |t|
     t.integer  "customer_id"
     t.string   "internal_number"
-    t.string   "customers_number"
-    t.integer  "billing",          default: 0
-    t.integer  "status",           default: 0
+    t.string   "customer_number"
+    t.integer  "billing",         default: 0
     t.string   "display_name"
+    t.datetime "completed_at"
     t.datetime "deleted_at"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
+  add_index "jobs", ["completed_at"], name: "index_jobs_on_completed_at", using: :btree
   add_index "jobs", ["customer_id"], name: "index_jobs_on_customer_id", using: :btree
   add_index "jobs", ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
 

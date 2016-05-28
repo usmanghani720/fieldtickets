@@ -1,4 +1,9 @@
-= form_for(@vehicle, html: { class: "form-horizontal", role: "form" }) do |f|
+- if @vehicle.id
+  - url = admin_vehicle_path @vehicle
+- else
+  - url = admin_vehicles_path
+
+= form_for(@vehicle, url: url, html: { class: "form-horizontal", role: "form" }) do |f|
   - if @vehicle.errors.any?
     .alert.alert-danger.alert-dismissable role="alert"
       button.close type="button" data-dismiss="alert"
