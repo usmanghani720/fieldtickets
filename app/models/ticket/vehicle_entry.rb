@@ -12,8 +12,8 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   enum status: { idle: 0, refuel: 1, maintenance: 2, on_the_job: 3 }
   
   def maintenance_available?
-    if equipment
-      equipment.vehicle_type == 'Mill'
+    if vehicle
+      vehicle.vehicle_type == 'Mill'
     else
       rental?
     end
@@ -23,7 +23,7 @@ class Ticket::VehicleEntry < ActiveRecord::Base
     if self.rental?
       rental_description
     else
-      equipment.to_s
+      vehicle.to_s
     end
   end
     
@@ -31,7 +31,7 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   
     def mileage_required?
       status == 'refuel'
-      #(field_ticket.equipment_entries.where(equipment: self.equipment).count == 0) or
+      #(field_ticket.vehicle_entries.where(vehicle: self.vehicle).count == 0) or
     end
     
 end

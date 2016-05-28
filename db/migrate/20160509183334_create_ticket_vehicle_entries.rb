@@ -3,7 +3,7 @@ class CreateTicketVehicleEntries < ActiveRecord::Migration
      create_table :ticket_vehicle_entries do |t|
        t.belongs_to :ticket, index: true
        t.boolean :rental
-       t.belongs_to :equipment, index: true
+       t.belongs_to :vehicle, index: true
        t.string :rental_description
        t.integer :status
        t.decimal :fuel_gallons
@@ -13,7 +13,7 @@ class CreateTicketVehicleEntries < ActiveRecord::Migration
        t.datetime :time_end        #          calculated
        # t.integer :duration_day   # minutes, calculated
        # t.integer :duration_night # minutes, calculated
-       t.integer :duration_total   # minutes, calculated
+       t.integer :duration   # minutes, calculated
        
        t.datetime :deleted_at, index: true
  

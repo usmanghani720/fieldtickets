@@ -5,6 +5,8 @@ class CreateTicketEmployees < ActiveRecord::Migration
       t.references :employee, index: true
       t.integer :status, default: 0
       
+      t.string :display_name
+      
       t.datetime :time
 
       t.timestamps null: false

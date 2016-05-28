@@ -1,0 +1,8 @@
+- last_status = nil
+- ticket.employees.each do |employee|
+
+  - if employee.status != last_status
+    - last_status = employee.status
+    = render partial: 'employee_heading', locals: { employee: employee.decorate }
+
+  = render partial: 'employee_buttons', locals: { employee: employee.decorate }

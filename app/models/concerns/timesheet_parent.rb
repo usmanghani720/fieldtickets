@@ -6,6 +6,9 @@ module TimesheetParent
   included do
     validates :status, presence: true
     
+    # Order so that the most interesting statuses are first, followed by newest changed
+    default_scope { order(status: :desc, time: :desc, updated_at: :desc, id:  :desc) }
+    
     before_create :set_default_time
   end
   

@@ -17,6 +17,11 @@ module DisplayName
     self[:display_name]
   end
   
+  # Assume that an object wants to be known as its display_name.
+  def to_s
+    display_name
+  end
+  
   # Don't allow display_name to be set; it is always calculated programatically.
   def display_name=(new_value)
     raise 'display_name is read only!'

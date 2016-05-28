@@ -9,5 +9,9 @@ class Ticket::VehicleDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+  
+  def status
+    object.status.titleize
+  end
 
 end

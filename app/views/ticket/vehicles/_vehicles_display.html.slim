@@ -1,0 +1,8 @@
+- last_status = nil
+- ticket.vehicles.each do |vehicle|
+
+  - if vehicle.status != last_status
+    - last_status = vehicle.status
+    = render partial: 'vehicle_heading', locals: { vehicle: vehicle.decorate }
+
+  = render partial: 'vehicle_buttons', locals: { vehicle: vehicle.decorate }

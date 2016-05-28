@@ -16,7 +16,7 @@ class Ticket::TicketTest < ActiveSupport::TestCase
   # After changing bill_to to something other than Job or Job Cancelled, it should no longer require a job number
   def test_job_required
     assert ticket.job_required?
-    ticket.bill_to = 'Office Staff'
+    ticket.bill_to = :office_staff
     refute ticket.job_required?
     ticket.bill_to = 1
     assert ticket.job_required?
@@ -26,7 +26,7 @@ class Ticket::TicketTest < ActiveSupport::TestCase
   def test_job_removed_upon_change
     ticket.job = job
     assert ticket.job
-    ticket.bill_to = 'Weather'
+    ticket.bill_to = :weather
     ticket.save
     refute ticket.job
   end

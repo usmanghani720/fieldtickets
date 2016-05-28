@@ -5,6 +5,8 @@ class CreateTicketVehicles < ActiveRecord::Migration
       t.references :vehicle, index: true
       t.integer :status, default: 0
       
+      t.string :display_name
+      
       t.datetime :time
 
       t.timestamps null: false

@@ -8,8 +8,20 @@
   @extend .btn-xs;
 }
 
+.employee, .vehicle {
+  @extend .btn-group;
+  float: left;
+  clear: both;
+  margin-bottom: 10px;
+}
+
 .employee-button, .vehicle-button {
   @extend .btn;
   @extend .btn-primary;
   @extend .dropdown-toggle;
+}
+
+.timesheet-status-heading {
+  float: left;
+  clear: both;
 }

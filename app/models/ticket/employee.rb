@@ -1,4 +1,5 @@
 class Ticket::Employee < ActiveRecord::Base
+  include DisplayName
   include TimesheetParent
   
   belongs_to :ticket
@@ -8,15 +9,15 @@ class Ticket::Employee < ActiveRecord::Base
   
   enum status: { idle: 0, transport: 1, maintenance: 2, on_the_job: 3 }
   
-  def to_s
-    employee.display_name + ' — ' + status
-  end
-  
   def status=(new_status)
     employee_entry = Ticket::EmployeeEntry.create!(
       employee: self,
       status: new_status
     )
+  end
+  
+  def to_s
+    employee
   end
   
 end

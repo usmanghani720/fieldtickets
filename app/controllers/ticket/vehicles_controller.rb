@@ -25,7 +25,6 @@ class Ticket::VehiclesController < Ticket::BaseController
   # Add a new VehicleEntry to change an Vehicle's status
   def create_status
     @vehicle.status = params[:status]
-    raise params[:status]
     
     flash[:notice] = "#{@vehicle} marked ‘#{params[:status].titleize}’"
     redirect_to ticket_vehicles_path(@ticket)
