@@ -1,8 +1,8 @@
-- employees.each do |employee|
+- vehicles.each do |vehicle|
   .btn-group
   
-    button.employee-button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-      = employee
+    button.vehicle-button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      = vehicle
       |  
       span.caret
     
@@ -10,28 +10,28 @@
       
       li.disabled
         a
-          = employee.status.humanize
+          = vehicle.status.humanize
           |  since 
-          = hide_today_in_date(employee.time)
+          = hide_today_in_date(vehicle.time)
       
-      li = link_to 'View timesheet…', ticket_employee_log_path(ticket, employee)
+      li = link_to 'View timesheet…', ticket_vehicle_log_path(ticket, vehicle)
       
       li.divider role="separator"
       
       li.disabled
         a Change status:
       
-      - if not employee.status == 'on_the_job'
-        li = link_to 'On the Job', ticket_employee_new_status_path(ticket, employee, status: 'on_the_job'), method: :post
+      - if not vehicle.status == 'on_the_job'
+        li = link_to 'On the Job', ticket_vehicle_new_status_path(ticket, vehicle, status: 'on_the_job'), method: :post
       
-      - if not employee.status == 'transport'
-        li = link_to 'Transport', ticket_employee_new_status_path(ticket, employee, status: 'transport'), method: :post
+      - if not vehicle.status == 'transport'
+        li = link_to 'Transport', ticket_vehicle_new_status_path(ticket, vehicle, status: 'transport'), method: :post
       
-      - if not employee.status == 'maintenance'
-        li = link_to 'Maintenance', ticket_employee_new_status_path(ticket, employee, status: 'maintenance'), method: :post
+      - if not vehicle.status == 'maintenance'
+        li = link_to 'Maintenance', ticket_vehicle_new_status_path(ticket, vehicle, status: 'maintenance'), method: :post
         
-      - if not employee.status == 'idle'
-        li = link_to 'Idle', ticket_employee_new_status_path(ticket, employee, status: 'idle'), method: :post
+      - if not vehicle.status == 'idle'
+        li = link_to 'Idle', ticket_vehicle_new_status_path(ticket, vehicle, status: 'idle'), method: :post
             
   br
   br

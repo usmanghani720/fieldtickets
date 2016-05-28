@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
       get 'vehicles' => 'vehicles#index'
       get 'vehicles/add' => 'vehicles#new'
+      post 'vehicles/add' => 'vehicles#create'
+      get 'vehicles/:vehicle_id' => 'vehicles#show', as: :vehicle_log
+      post 'vehicles/:vehicle_id/:status' => 'vehicles#create_status', as: :vehicle_new_status
       
       get 'dimensions' => 'dimensions#index'
       patch 'dimensions' => 'dimensions#update'
