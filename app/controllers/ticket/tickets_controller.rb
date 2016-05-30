@@ -15,7 +15,7 @@ class Ticket::TicketsController < Ticket::BaseController
   # When calling #new, create the Ticket and redirect to it.
   def new
     @ticket = Ticket::Ticket.create
-    redirect_to @ticket
+    redirect_to ticket_path(@ticket)
   end
   
   # To show the ticket, redirect to job if Job not set. Otherwise, redirect to employees.

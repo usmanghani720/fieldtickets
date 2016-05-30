@@ -85,6 +85,8 @@ class Ticket::Ticket < ActiveRecord::Base
   # If this Ticket shouldn't be attached to a Job, set job to nil.
   before_save :erase_job_if_not_needed
   
+  after_create :add_crew_chief_to_employees
+  
   # For now, crew_chief is locked to the creator.
   # In the future, it can be overridden here.
   def crew_chief
@@ -217,6 +219,12 @@ class Ticket::Ticket < ActiveRecord::Base
 
   
   private
+  
+    def add_crew_chief_to_employees
+      if crew_chief.crew_chief?
+        ticket_employee = employees.create(employee: creator)
+      end
+    end
   
     # If this Ticket shouldn't be attached to a Job, set job to nil.
       def erase_job_if_not_needed
