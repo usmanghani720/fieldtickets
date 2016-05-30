@@ -2,9 +2,6 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   include TimesheetEntry
   
   belongs_to :vehicle
-  validates :vehicle, presence: true, unless: :rental?
-  
-  validates :rental_description, presence: true, if: :rental?
   validates :mileage, presence: true, if: :mileage_required?
   
   acts_as_paranoid
@@ -20,11 +17,7 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   end
   
   def to_s
-    if self.rental?
-      rental_description
-    else
-      vehicle.to_s
-    end
+    vehicle.to_s
   end
     
   private

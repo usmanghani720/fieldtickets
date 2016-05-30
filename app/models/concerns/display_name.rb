@@ -1,3 +1,6 @@
+# This concern caches a display_name attribute.
+# Please define to_s in the model, with the desired output of the display_name.
+
 module DisplayName
   extend ActiveSupport::Concern
   
@@ -15,11 +18,6 @@ module DisplayName
     cache_display_name if changed?
       
     self[:display_name]
-  end
-  
-  # Assume that an object wants to be known as its display_name.
-  def to_s
-    display_name
   end
   
   # Don't allow display_name to be set; it is always calculated programatically.

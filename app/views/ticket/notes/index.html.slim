@@ -1,0 +1,18 @@
+.page-header
+  = link_to ticket_notes_add_path, class: 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Note
+  h1
+    | Notes
+
+.table-responsive
+  table.table.table-striped.table-bordered
+    tbody
+      - @notes.each do | note |
+        /tr data-link="#{ticket_note_path(note)}"
+        tr
+          td
+            = note.note
+            br
+            br
+            em = note.attribution

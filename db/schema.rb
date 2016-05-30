@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160526154330) do
+ActiveRecord::Schema.define(version: 20160530174316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,18 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   add_index "ticket_employees", ["employee_id"], name: "index_ticket_employees_on_employee_id", using: :btree
   add_index "ticket_employees", ["ticket_id"], name: "index_ticket_employees_on_ticket_id", using: :btree
 
+  create_table "ticket_notes", force: :cascade do |t|
+    t.integer  "ticket_id"
+    t.integer  "employee_id"
+    t.text     "note"
+    t.integer  "note_type",   default: 1
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "ticket_notes", ["employee_id"], name: "index_ticket_notes_on_employee_id", using: :btree
+  add_index "ticket_notes", ["ticket_id"], name: "index_ticket_notes_on_ticket_id", using: :btree
+
   create_table "ticket_tickets", force: :cascade do |t|
     t.integer  "bill_to",                         default: 0
     t.integer  "job_id"
@@ -130,9 +142,7 @@ ActiveRecord::Schema.define(version: 20160526154330) do
 
   create_table "ticket_vehicle_entries", force: :cascade do |t|
     t.integer  "ticket_id"
-    t.boolean  "rental"
     t.integer  "vehicle_id"
-    t.string   "rental_description"
     t.integer  "status"
     t.decimal  "fuel_gallons"
     t.decimal  "mileage"
@@ -140,8 +150,8 @@ ActiveRecord::Schema.define(version: 20160526154330) do
     t.datetime "time_end"
     t.integer  "duration"
     t.datetime "deleted_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "ticket_vehicle_entries", ["deleted_at"], name: "index_ticket_vehicle_entries_on_deleted_at", using: :btree
@@ -151,11 +161,13 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   create_table "ticket_vehicles", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "vehicle_id"
-    t.integer  "status",       default: 0
+    t.boolean  "rental"
+    t.string   "rental_description"
+    t.integer  "status",             default: 0
     t.string   "display_name"
     t.datetime "time"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "ticket_vehicles", ["ticket_id"], name: "index_ticket_vehicles_on_ticket_id", using: :btree
@@ -174,5 +186,6 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   add_index "vehicles", ["deleted_at"], name: "index_vehicles_on_deleted_at", using: :btree
 
   add_foreign_key "jobs", "customers"
+  add_foreign_key "ticket_notes", "employees"
   add_foreign_key "ticket_tickets", "jobs"
 end

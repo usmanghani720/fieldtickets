@@ -1,10 +1,12 @@
 class Admin::VehiclesController < Admin::BaseController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+  
+  decorates_assigned :vehicle
 
   # GET /vehicle
   # GET /vehicle.json
   def index
-    @vehicle = Vehicle.all
+    @vehicles = Vehicle.all.decorate
   end
 
   # GET /vehicle/1

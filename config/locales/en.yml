@@ -30,6 +30,7 @@ en:
       
     messages:
       blank: "Please fill this in."
+      taken: "This has already been used."
       
     template:
       header:
@@ -50,28 +51,13 @@ en:
               blank: 'Please choose how the customer should be billed.'
             internal_number:
               blank: 'Please fill in the BRM number.'
-      
-        employee_entry:
+        
+        ticket/vehicle:
           attributes:
-            employee:
-              blank: 'Please fill in the <strong>employee</strong>’s name or BRM number.'
-      
-        equipment_entry:
-          attributes:
-            mileage:
-              blank: 'To fill in the <strong>current mileage</strong>, please look at the vehicle’s odometer.'
-            equipment:
-              blank: 'Please fill in the vehicle’s <strong>BRM number</strong>.'
+            vehicle:
+              taken: 'This vehicle has already been added to this ticket.'
             rental_description:
-              blank: 'Please fill in a short <strong>description</strong> of the rental vehicle.'
-  
-    models:
-      field_ticket:
-        one: 'Ticket'
-        other: 'Tickets'
-      equipment:
-        one: 'Vehicle'
-        other: 'Vehicles'
+              taken: 'Please enter the vehicle’s license-plate number.'
     
     attributes:
     

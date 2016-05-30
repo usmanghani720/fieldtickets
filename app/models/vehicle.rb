@@ -1,7 +1,9 @@
 class Vehicle < ActiveRecord::Base
   include DisplayName
   
-  enum vehicle_type: { truck: 1, mill: 2 }
+  enum vehicle_type: { truck: 1, mill: 2 }  
+  validates :vehicle_type, presence: true
+  validates :internal_number, presence: true
   
   acts_as_paranoid
   

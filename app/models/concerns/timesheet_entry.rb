@@ -15,30 +15,6 @@ module TimesheetEntry
     validates :status, presence: true
     
   end
-  
-  class_methods do
-    # def recalculate(field_ticket_id, column_data)
-    #   entries = self.where(
-    #     field_ticket_id: field_ticket_id,
-    #     @column => column_data
-    #   )
-    #   
-    #   entries.each_with_index do |entry, index|
-    #     next_entry = entries[index + 1]
-    #     
-    #     if next_entry
-    #       entry.time_end = next_entry.time
-    #     else
-    #       entry.time_end = nil
-    #     end
-    #       
-    #     entry.save if entry.changed?
-    #   end
-    #   
-    #   true
-    # end
-    
-  end
     
   def recalculate!
     parent.recalculate!

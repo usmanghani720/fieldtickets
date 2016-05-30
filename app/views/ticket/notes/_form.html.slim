@@ -1,0 +1,15 @@
+- if note.id
+  - url = ticket_note_path note
+- else
+  - url = ticket_notes_path
+
+= simple_form_for note, url: url do |f|
+  = f.error_notification
+
+  .form-inputs
+  
+    = f.input :note
+    
+    = f.input :note_type, as: :radio_buttons, wrapper: :bootstrap_radio_buttons, item_wrapper_tag: nil, item_label_class: 'btn btn-default'
+                  
+  = partial 'autoshow_form_buttons', f: f

@@ -78,6 +78,10 @@ html
               a href="#{ticket_delays_path @ticket}"
                 | Delays
         
+            li class="#{'active' if params[:controller].include? 'notes'}"
+              a href="#{ticket_notes_path @ticket}"
+                | Notes
+        
             li class="#{'active' if params[:controller].include? 'approval'}"
               a href="#{ticket_approval_path @ticket}"
                 | Customer Approval

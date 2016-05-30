@@ -28,28 +28,20 @@ class Admin::JobsController < Admin::BaseController
   def create
     @job = Job.new(job_params)
 
-    respond_to do |format|
-      if @job.save
-        format.html { redirect_to admin_job_path(@job), notice: 'Job was successfully created.' }
-        format.json { render :show, status: :created, location: @job }
-      else
-        format.html { render :new }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
-      end
+    if @job.save
+      redirect_to admin_job_path(@job), notice: 'Job was successfully created.'
+    else
+      format.html { render :new }
     end
   end
 
   # PATCH/PUT /jobs/1
   # PATCH/PUT /jobs/1.json
   def update
-    respond_to do |format|
-      if @job.update(job_params)
-        format.html { redirect_to admin_job_path(@job), notice: 'Job was successfully updated.' }
-        format.json { render :show, status: :ok, location: @job }
-      else
-        format.html { render :edit }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
-      end
+    if @job.update(job_params)
+      redirect_to admin_job_path(@job), notice: 'Job was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -57,10 +49,7 @@ class Admin::JobsController < Admin::BaseController
   # DELETE /jobs/1.json
   def destroy
     @job.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_jobs_path, notice: 'Job was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_jobs_path, notice: 'Job was successfully destroyed.'
   end
 
   private

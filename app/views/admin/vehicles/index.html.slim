@@ -15,10 +15,10 @@
         th
           = Vehicle.human_attribute_name :vehicle_type
     tbody
-      - @vehicle.each do | vehicle |
+      - @vehicles.each do | vehicle |
         tr data-link="#{admin_vehicle_path(vehicle)}"
           td
             = vehicle.internal_number
           td
-            = vehicle.type
+            = vehicle.vehicle_type
             

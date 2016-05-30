@@ -2,9 +2,7 @@ class CreateTicketVehicleEntries < ActiveRecord::Migration
    def change
      create_table :ticket_vehicle_entries do |t|
        t.belongs_to :ticket, index: true
-       t.boolean :rental
        t.belongs_to :vehicle, index: true
-       t.string :rental_description
        t.integer :status
        t.decimal :fuel_gallons
        t.decimal :mileage

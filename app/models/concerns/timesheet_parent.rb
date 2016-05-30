@@ -13,7 +13,7 @@ module TimesheetParent
   end
   
   def recalculate!
-    entries.each_with_index do |entry, index|
+    entries.reload.each_with_index do |entry, index|
       next_entry = entries[index + 1]
       
       if next_entry

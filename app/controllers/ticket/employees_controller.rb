@@ -41,7 +41,7 @@ class Ticket::EmployeesController < Ticket::BaseController
     
     # Provides a new @ticket_employee attached to this ticket
     def blank_ticket_employee
-      @ticket_employee = Ticket::Employee.new(ticket: @ticket)
+      @ticket_employee = @ticket.employees.new
     end
     
     # The only field we need to make a new ticket_employee is employee_id

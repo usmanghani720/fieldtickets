@@ -21,7 +21,19 @@ class Ticket::Ticket < ActiveRecord::Base
   belongs_to :job
   
   has_many :employees
+  #has_many :employee_entries, through: :employees
+  # no need for this yet
+  
   has_many :vehicles
+  #has_many :vehicle_entries, through: :vehicles
+  # no need for this yet
+  
+  has_many :mills, -> { mills }, class_name: '::Ticket::Vehicle'
+  # has_many :mill_entries, source: :vehicle_entries, through: :mills
+  # couldn't get this working
+  
+  has_many :notes
+  
     
   # Whether the Customer's representative has signed off on the Job.
   enum approval: { pending_approval: 0, approved: 1, disapproved: 2 }
@@ -35,10 +47,10 @@ class Ticket::Ticket < ActiveRecord::Base
   validates_attachment_content_type :approval_signature, content_type: /\Aimage\/.*\Z/
   
   # If customer has approved or disapproved, certain info is required.
-  with_options unless: :pending_approval? do |ticket|
-    ticket.validates :approval_name_and_title, presence: true, length: { minimum: 9 }
-    ticket.validates :approval_email, presence: true, email: true
-    ticket.validates :approval_signature, presence: true
+  with_options unless: :pending_approval?, presence: true do |ticket|
+    ticket.validates :approval_name_and_title, length: { minimum: 9 }
+    ticket.validates :approval_email, email: true
+    ticket.validates :approval_signature
   end
   
   # Require feedback only if customer has DISAPPROVED.
@@ -71,6 +83,46 @@ class Ticket::Ticket < ActiveRecord::Base
   # If this Ticket shouldn't be attached to a Job, set job to nil.
   before_save :erase_job_if_not_needed
   
+  # Earliest mill start time, used for customer reports
+  # Latest mill end time, used for customer reports, nil if ongoing
+  def mill_times
+    start_time = nil
+    end_time = nil
+    end_time_is_nil = false
+    
+    mills.each do |mill|
+      entries = mill.entries.on_the_job
+      
+      if not entries.blank?
+      
+        if entry_time = entries.first.time
+          if (not start_time) or (start_time < entry_time)
+            start_time = entry_time
+          end
+        end
+        
+        if entry_time = entries.last.time_end
+          if (not end_time) or (end_time < entry_time)
+            end_time = entry_time
+          end
+        else
+          end_time_is_nil = true
+        end
+        
+      end
+      
+    end
+    
+    # a nil means the job is still ongoing
+    if end_time_is_nil
+      [start_time, nil]
+    else
+      [start_time, end_time]
+    end
+  end
+  
+
+  # Allow UI accessor field :job_name_entry to SET the :job_id OR :job_name_override as appropriate
   def job_name_entry=(new_value)
     self.job = Job.where(display_name: new_value).first
     
@@ -81,6 +133,7 @@ class Ticket::Ticket < ActiveRecord::Base
     end
   end
   
+  # Allow UI accessor field :job_name_entry to READ the :job_id OR :job_name_override as appropriate
   def job_name_entry
     if job
       job.to_s

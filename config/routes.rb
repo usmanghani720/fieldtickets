@@ -35,6 +35,10 @@ Rails.application.routes.draw do
       get 'delays' => 'delays#index'
       patch 'delays' => 'delays#update'
       
+      get 'notes' => 'notes#index'
+      get 'notes/add' => 'notes#new'
+      post 'notes' => 'notes#create'
+      
       get 'approval' => 'approval#index'
       get 'approval/:decision' => 'approval#approval_confirm', as: :approval_confirm
       patch 'approval/:decision' => 'approval#update'
