@@ -35,4 +35,12 @@ class Job < ActiveRecord::Base
     "##{internal_number} — #{customer_name}"
   end
   
+  def completed?
+    completed_at.present?
+  end
+  
+  def complete!
+    update(completed_at: Time.now)
+  end
+  
 end
