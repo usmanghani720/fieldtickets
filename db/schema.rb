@@ -30,9 +30,7 @@ ActiveRecord::Schema.define(version: 20160526154330) do
     t.string   "nickname"
     t.string   "internal_number"
     t.string   "display_name"
-    t.boolean  "worker"
-    t.boolean  "crew_chief"
-    t.boolean  "manager"
+    t.integer  "role",                   default: 0
     t.string   "email"
     t.string   "encrypted_password"
     t.string   "reset_password_token"
@@ -99,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   create_table "ticket_tickets", force: :cascade do |t|
     t.integer  "bill_to",                         default: 0
     t.integer  "job_id"
+    t.string   "job_name"
     t.integer  "approval",                        default: 0
     t.string   "approval_name_and_title"
     t.string   "approval_email"
@@ -165,7 +164,7 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   create_table "vehicles", force: :cascade do |t|
     t.string   "internal_number"
     t.string   "description"
-    t.string   "vehicle_type"
+    t.integer  "vehicle_type"
     t.string   "display_name"
     t.datetime "deleted_at"
     t.datetime "created_at",      null: false

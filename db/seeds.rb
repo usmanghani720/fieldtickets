@@ -13,13 +13,13 @@ Employee.create!([
     name: 'Oliver Anson',
     email: 'oliver@fluffyx.com',
     encrypted_password: '$2a$10$2uB..Revw3TAjgcpDTYBmuPkbFZrl3Ym1L5VSQjmAOto2LieOBY6.',
-    manager: true,
+    role: :manager,
   },
 ])
 
 Vehicle.create!([
-  {internal_number: '007', vehicle_type: 'Truck'},
-  {internal_number: '032', vehicle_type: 'Mill'},
+  {internal_number: '007', vehicle_type: :truck},
+  {internal_number: '032', vehicle_type: :mill},
 ])
 
 Job.create!([

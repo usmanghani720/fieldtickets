@@ -3,7 +3,7 @@ class CreateVehicles < ActiveRecord::Migration
     create_table :vehicles do |t|
       t.string :internal_number
       t.string :description
-      t.string :vehicle_type
+      t.integer :vehicle_type
       
       t.string :display_name # cached display name
       

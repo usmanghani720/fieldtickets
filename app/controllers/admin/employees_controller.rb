@@ -74,9 +74,7 @@ class Admin::EmployeesController < Admin::BaseController
         :nickname,
         :internal_number,
         
-        :manager,
-        :crew_chief,
-        :worker,
+        :role,
         
         :email,
         :password,

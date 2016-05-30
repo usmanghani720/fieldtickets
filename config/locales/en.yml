@@ -81,9 +81,8 @@ en:
         customer_number: 'Customer’s Job #'
         billing: 'Billed By'
         
-      equipment:
+      vehicle:
         internal_number: 'BRM Vehicle #'
-        vehicle_type: 'Type'
         
       ticket/ticket:
         job: 'BRM Job #'

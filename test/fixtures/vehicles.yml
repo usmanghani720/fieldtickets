@@ -2,8 +2,6 @@
 
 one:
   internal_number: MyText
-  vehicle_type: MyText
 
 two:
   internal_number: MyText
-  vehicle_type: MyText

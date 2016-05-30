@@ -9,7 +9,9 @@ class Job < ActiveRecord::Base
   has_many :vehicles, through: :tickets, class_name: 'Ticket::Vehicle'
     
   enum billing: { milled_area: 1, day: 2, hour: 3 }
-  enum status: { in_progress: 0, completed: 1 }
+  
+  scope :in_progress, -> { where(completed_at: nil) }
+  scope :completed, -> { where.not(completed_at: nil) }
   
   # Don’t allow a Job to be created if we don’t know how to bill it.
   validates :customer, presence: true

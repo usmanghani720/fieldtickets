@@ -8,6 +8,14 @@ class Ticket::BaseController < ApplicationController
     set_ticket
     
     if @ticket.update(ticket_params)
+      # If there's no Job on the Ticket, but there is a job name entered, save it.
+      if params[:ticket_ticket]
+        if job_name = params[:ticket_ticket][:job]
+          @ticket.update(job_name: job_name)
+        end
+      end
+
+
       redirect_to :back, notice: 'Your changes have been saved.'
     else
       render_previous
@@ -29,8 +37,8 @@ class Ticket::BaseController < ApplicationController
         :approval,
         :approval_name_and_title,
         :approval_email,
-        :approval_signature,
         :approval_feedback,
+        :approval_signature,
     
         :milling_length,
         :milling_width,

@@ -3,6 +3,9 @@ $ ->
   $('form :input').on 'input', ->
     $("#autoshow-form-buttons").fadeIn()
 
+  $('.selectpicker').change ->
+    $("#autoshow-form-buttons").fadeIn()
+
   $('form .btn').click ->
     $("#autoshow-form-buttons").fadeIn()
 

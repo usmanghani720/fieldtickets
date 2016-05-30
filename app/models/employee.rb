@@ -5,6 +5,11 @@ class Employee < ActiveRecord::Base
   
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
   
+  enum role: { unknown: 0, manager: 2, crew_chief: 3, worker: 4, other: 1 }
+  
+  validates :name, presence: true
+  validates :role, presence: true
+  
   # Simple method to say if user has credentials to log in.
   def can_log_in?
     not (encrypted_password.blank? or email.blank?)

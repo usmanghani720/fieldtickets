@@ -26,7 +26,7 @@
   .form-group
     = f.label :vehicle_type, class: "col-sm-2 control-label"
     .col-sm-10
-      = f.select :vehicle_type, options_for_select(Vehicle::TYPES), {}, {class: 'selectpicker'}
+      = f.select :vehicle_type
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: "btn btn-primary"

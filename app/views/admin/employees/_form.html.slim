@@ -2,67 +2,19 @@
   - url = admin_employee_path @employee
 - else
   - url = admin_employees_path
-
-= form_for(@employee, url: url, html: { class: "form-horizontal", role: "form", autocomplete: 'off' }) do |f|
-  - if @employee.errors.any?
-    .alert.alert-danger.alert-dismissable role="alert"
-      button.close type="button" data-dismiss="alert"
-        span aria-hidden="true"
-          | &times;
-        span.sr-only
-          | Close
-      h4= "#{pluralize(@employee.errors.count,"error")} prohibited this employee from being saved:"
-      ul
-        - @employee.errors.full_messages.each do |msg|
-          li= msg
-          
-  .form-group
-    = f.label :name, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.text_field :name, class: "form-control"
-      
-  .form-group
-    = f.label :nickname, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.text_field :nickname, class: "form-control"
-      
-  .form-group
-    = f.label :internal_number, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.text_field :internal_number, class: "form-control"
-      
-  hr
   
-  .form-group
-    = f.label :email, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.text_field :email, class: "form-control"
-      
-  .form-group
-    = f.label :password, 'Change Password', class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.password_field :password, class: "form-control"
+= simple_form_for @employee, url: url, autocomplete: false do |f|
+  = f.error_notification
 
-  .form-group
-    = f.label :worker, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.check_box :worker, class: "form-control"
-
-  .form-group
-    = f.label :crew_chief, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.check_box :crew_chief, class: "form-control"
-
-  .form-group
-    = f.label :manager, class: "col-sm-2 control-label"
-    .col-sm-10
-      = f.check_box :manager, class: "form-control"
-      
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit class: "btn btn-primary"
-
-coffee:
-  $('#employee_worker').checkboxpicker()
-  $('#employee_crew_chief').checkboxpicker()
-  $('#employee_manager').checkboxpicker()
+  .form-inputs
+  
+    = f.input :role, include_blank: false
+    = f.input :name
+    = f.input :nickname
+    
+    hr
+    
+    = f.input :email
+    = f.input :password
+                  
+  = partial 'autoshow_form_buttons', f: f

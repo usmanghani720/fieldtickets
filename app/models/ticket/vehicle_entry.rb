@@ -13,7 +13,7 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   
   def maintenance_available?
     if vehicle
-      vehicle.vehicle_type == 'Mill'
+      vehicle.mill?
     else
       rental?
     end

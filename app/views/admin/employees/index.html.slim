@@ -12,11 +12,15 @@
         th
           | Name
         th
+          | Role
+        th
           | Password Set?
     tbody
       - @employees.each do | employee |
         tr data-link="#{admin_employee_path(employee)}"
           td
             = employee.to_s
+          td
+            = employee.role.to_s.titleize
           td
             = 'Yes' if employee.can_log_in?

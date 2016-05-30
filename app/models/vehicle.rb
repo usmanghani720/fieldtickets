@@ -1,7 +1,7 @@
 class Vehicle < ActiveRecord::Base
   include DisplayName
   
-  TYPES = ['Truck', 'Mill']
+  enum vehicle_type: { truck: 1, mill: 2 }
   
   acts_as_paranoid
   

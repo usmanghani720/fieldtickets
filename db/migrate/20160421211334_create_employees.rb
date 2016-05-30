@@ -8,9 +8,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.string :display_name # cached display name
       
       # roles
-      t.boolean :worker
-      t.boolean :crew_chief
-      t.boolean :manager
+      t.integer :role, default: 0
       
       
       
