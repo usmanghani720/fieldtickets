@@ -85,7 +85,7 @@ en:
         internal_number: 'BRM Vehicle #'
         
       ticket/ticket:
-        job: 'BRM Job #'
+        job_name_entry: 'BRM Job #'
         bill_to: 'Bill To'
         
         customer_approved_work: 'Customer Approves?'

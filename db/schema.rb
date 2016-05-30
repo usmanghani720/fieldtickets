@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20160526154330) do
   create_table "ticket_tickets", force: :cascade do |t|
     t.integer  "bill_to",                         default: 0
     t.integer  "job_id"
-    t.string   "job_name"
+    t.string   "job_name_override"
     t.integer  "approval",                        default: 0
     t.string   "approval_name_and_title"
     t.string   "approval_email"

@@ -4,9 +4,9 @@
   .form-inputs
     = f.input :bill_to, include_blank: false
     
-    = f.input :job, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, id_element: '#job_id', wrapper_html: { style: (@ticket.job_required? ? '' : 'display:none') }
+    = f.input :job_name_entry, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, wrapper_html: { style: (@ticket.job_required? ? '' : 'display:none') }
     
-    = f.hidden_field :job_id, id: 'job_id'
+    / = f.hidden_field :job_id, id: 'job_id'
     
   = partial 'autoshow_form_buttons', f: f
       

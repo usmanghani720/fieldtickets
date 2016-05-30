@@ -4,7 +4,7 @@ class CreateTicketTickets < ActiveRecord::Migration
       t.integer :bill_to, default: 0
       
       t.belongs_to :job, index: true, foreign_key: true
-      t.string :job_name
+      t.string :job_name_override
             
       t.integer :approval, default: 0
         # { pending_approval: 0, approved: 1, disapproved: 2 }

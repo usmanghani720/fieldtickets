@@ -71,6 +71,24 @@ class Ticket::Ticket < ActiveRecord::Base
   # If this Ticket shouldn't be attached to a Job, set job to nil.
   before_save :erase_job_if_not_needed
   
+  def job_name_entry=(new_value)
+    self.job = Job.where(display_name: new_value).first
+    
+    if self.job
+      self.job_name_override = nil
+    else
+      self.job_name_override = new_value
+    end
+  end
+  
+  def job_name_entry
+    if job
+      job.to_s
+    else
+      job_name_override
+    end
+  end
+  
   # Returns true if any delays are entered
   def delays_present?
     [:trucks, :paving, :mot, :other].each do |delay_type|
