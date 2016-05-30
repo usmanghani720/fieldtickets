@@ -6,6 +6,7 @@ class CreateTicketNotes < ActiveRecord::Migration
       t.text :note
       t.integer :note_type, default: 1
 
+      t.authorstamps(:integer)
       t.timestamps null: false
     end
   end

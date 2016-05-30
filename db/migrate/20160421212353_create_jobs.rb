@@ -14,6 +14,7 @@ class CreateJobs < ActiveRecord::Migration
       t.datetime :completed_at, index: true
       t.datetime :deleted_at, index: true
 
+      t.authorstamps(:integer)
       t.timestamps null: false
     end
   end

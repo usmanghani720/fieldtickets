@@ -28,6 +28,8 @@ gem 'email_validator'
 gem 'awesome_print'
 gem 'draper'
 
+gem 'ar-audit-tracer'
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

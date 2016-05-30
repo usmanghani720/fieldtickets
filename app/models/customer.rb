@@ -1,4 +1,5 @@
 class Customer < ActiveRecord::Base
+  include CreatedBy
   has_many :jobs
   
   default_scope { order(:name) }

@@ -1,4 +1,5 @@
 class Vehicle < ActiveRecord::Base
+  include CreatedBy
   include DisplayName
   
   enum vehicle_type: { truck: 1, mill: 2 }  

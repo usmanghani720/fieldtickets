@@ -1,4 +1,5 @@
 class Ticket::EmployeeEntry < ActiveRecord::Base
+  include CreatedBy
   include TimesheetEntry
   
   belongs_to :employee

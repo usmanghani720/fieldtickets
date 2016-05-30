@@ -6,6 +6,12 @@
     
     = f.input :job_name_entry, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, wrapper_html: { style: (@ticket.job_required? ? '' : 'display:none') }
     
+    .form-group
+      label.col-sm-3.control-label Crew Chief
+      .col-sm-9
+        span.form-control-calculated = ticket.crew_chief
+    
+    
     / = f.hidden_field :job_id, id: 'job_id'
     
   = partial 'autoshow_form_buttons', f: f

@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
   create_table "customers", force: :cascade do |t|
     t.string   "name"
     t.datetime "deleted_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -45,6 +47,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "deleted_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
@@ -59,6 +63,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.string   "display_name"
     t.datetime "completed_at"
     t.datetime "deleted_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
@@ -74,6 +80,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.datetime "time_end"
     t.integer  "duration"
     t.datetime "deleted_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -87,6 +95,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.integer  "status",       default: 0
     t.string   "display_name"
     t.datetime "time"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -99,6 +109,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.integer  "employee_id"
     t.text     "note"
     t.integer  "note_type",   default: 1
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
@@ -128,6 +140,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.text     "delays_notes"
     t.datetime "finalized_at"
     t.datetime "deleted_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.string   "approval_signature_file_name"
@@ -150,6 +164,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.datetime "time_end"
     t.integer  "duration"
     t.datetime "deleted_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -166,6 +182,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.integer  "status",             default: 0
     t.string   "display_name"
     t.datetime "time"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
@@ -179,6 +197,8 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.integer  "vehicle_type"
     t.string   "display_name"
     t.datetime "deleted_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

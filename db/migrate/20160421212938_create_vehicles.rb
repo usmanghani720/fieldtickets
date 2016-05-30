@@ -9,6 +9,7 @@ class CreateVehicles < ActiveRecord::Migration
       
       t.datetime :deleted_at, index: true
 
+      t.authorstamps(:integer)
       t.timestamps null: false
     end
   end

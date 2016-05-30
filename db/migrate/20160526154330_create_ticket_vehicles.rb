@@ -12,6 +12,7 @@ class CreateTicketVehicles < ActiveRecord::Migration
       
       t.datetime :time
 
+      t.authorstamps :integer, null: true
       t.timestamps null: false
     end
   end

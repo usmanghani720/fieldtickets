@@ -1,4 +1,5 @@
 class Job < ActiveRecord::Base
+  include CreatedBy
   include DisplayName
   
   acts_as_paranoid

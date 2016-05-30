@@ -2,6 +2,8 @@ require 'fx_datetime'
 
 # A Ticket is used by a crew chief Employee to report their work back to management and payroll.
 class Ticket::Ticket < ActiveRecord::Base
+  include CreatedBy
+  
   acts_as_paranoid
   
   # For accounting purposes, what are the ticket costs billed to?
@@ -82,6 +84,12 @@ class Ticket::Ticket < ActiveRecord::Base
   
   # If this Ticket shouldn't be attached to a Job, set job to nil.
   before_save :erase_job_if_not_needed
+  
+  # For now, crew_chief is locked to the creator.
+  # In the future, it can be overridden here.
+  def crew_chief
+    creator
+  end
   
   # Earliest mill start time, used for customer reports
   # Latest mill end time, used for customer reports, nil if ongoing

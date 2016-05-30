@@ -9,6 +9,7 @@ class CreateTicketEmployees < ActiveRecord::Migration
       
       t.datetime :time
 
+      t.authorstamps(:integer)
       t.timestamps null: false
     end
   end

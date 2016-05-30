@@ -1,8 +1,8 @@
 class Ticket::Note < ActiveRecord::Base
-  belongs_to :ticket
-  belongs_to :employee # this is the author
+  include CreatedBy
   
-  # validates :employee, presence: true
+  belongs_to :ticket
+  
   validates :note, presence: true
   validates :note_type, presence: true
   

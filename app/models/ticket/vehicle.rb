@@ -1,4 +1,5 @@
 class Ticket::Vehicle < ActiveRecord::Base
+  include CreatedBy
   include DisplayName
   include TimesheetParent
 

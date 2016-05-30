@@ -1,6 +1,4 @@
 module ApplicationHelper
-  include RenamedRoutesHelper
-  
   def hide_today_in_date(datetime)
     if datetime.today?
       datetime.pretty_time
