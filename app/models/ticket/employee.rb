@@ -18,7 +18,7 @@ class Ticket::Employee < ActiveRecord::Base
   end
   
   def to_s
-    employee
+    employee.display_name
   end
   
 end
