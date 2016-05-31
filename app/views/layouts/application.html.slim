@@ -15,44 +15,12 @@ html
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body
-    nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
-      .container-fluid
-        .navbar-header
-          button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
-            span.sr-only
-              | Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          = link_to "BlackRock Milling", "#", class: "navbar-brand"
-        - if not @minimal_ui
-          #navbar.collapse.navbar-collapse
-            ul.nav.navbar-nav
-              li class="#{'active' if controller_name == 'field_tickets'}"
-                a href="/tickets"
-                  | Tickets
-              li class="#{'active' if controller_name == 'employees'}"
-               a href="/admin/employees"
-                 | Employees
-              li class="#{'active' if controller_name == 'equipment'}"
-               a href="/admin/vehicles"
-                 | Vehicles
-              li class="#{'active' if controller_name == 'customers'}"
-               a href="/admin/customers"
-                 | Customers
-              li class="#{'active' if controller_name == 'jobs'}"
-               a href="/admin/jobs"
-                 | Jobs
-              li class="#{'active' if controller_name == 'payroll'}"
-               a href="/reports/payroll"
-                 | Reports
-              - if employee_signed_in?
-                li
-                  = link_to 'Log Out', destroy_employee_session_path, method: :delete
     .container-fluid
       - if params[:controller].include? 'ticket/' and not @minimal_ui
         div class="col-sm-3 col-md-2 sidebar"
           ul class="nav nav-sidebar"
+
+            = image_tag('blackrock-logo-80.png', border: 0, width: '150px', height: '106px', class: 'nav-sidebar-logo')
         
             li class="#{'active' if params[:controller].include? 'job'}"
               a href="#{ticket_job_path @ticket}"
