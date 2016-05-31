@@ -9,6 +9,10 @@ class Ticket::TicketDecorator < Draper::Decorator
     pluralize_or_blank object.delays_total, 'hour'
   end
   
+  def number
+    object.id
+  end
+  
   private
     def pluralize_or_blank(count, name)
       if count.to_i == count

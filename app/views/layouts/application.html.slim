@@ -16,47 +16,7 @@ html
     = csrf_meta_tags
   body
     .container-fluid
-      - if params[:controller].include? 'ticket/' and not @minimal_ui
-        div class="col-sm-3 col-md-2 sidebar"
-          ul class="nav nav-sidebar"
-
-            = image_tag('blackrock-logo-80.png', border: 0, width: '150px', height: '106px', class: 'nav-sidebar-logo')
-        
-            li class="#{'active' if params[:controller].include? 'job'}"
-              a href="#{ticket_job_path @ticket}"
-                | Job
-        
-            li class="#{'active' if params[:controller].include? 'employees'}"
-              a href="#{ticket_employees_path @ticket}"
-                | Employees
-        
-            li class="#{'active' if params[:controller].include? 'vehicles'}"
-              a href="#{ticket_vehicles_path @ticket}"
-                | Vehicles &amp; Mills
-        
-            li class="#{'active' if params[:controller].include? 'dimensions'}"
-              a href="#{ticket_dimensions_path @ticket}"
-                | Dimensions
-        
-            li class="#{'active' if params[:controller].include? 'supplies'}"
-              a href="#{ticket_supplies_path @ticket}"
-                | Supplies
-        
-            li class="#{'active' if params[:controller].include? 'delays'}"
-              a href="#{ticket_delays_path @ticket}"
-                | Delays
-        
-            li class="#{'active' if params[:controller].include? 'notes'}"
-              a href="#{ticket_notes_path @ticket}"
-                | Notes
-        
-            li class="#{'active' if params[:controller].include? 'approval'}"
-              a href="#{ticket_approval_path @ticket}"
-                | Customer Approval
-        
-            li class="#{'active' if params[:controller].include? 'finalize'}"
-              a href="#{ticket_finalize_path @ticket}"
-                | Finalize Ticket
+      = partial '/layouts/sidebar'
       
       - flash.each do |name, msg|
         = content_tag :div, class: "col-sm-offset-2 alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

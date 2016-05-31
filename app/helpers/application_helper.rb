@@ -33,4 +33,8 @@ module ApplicationHelper
     end
   end
   
+  def controller?(term)
+    params[:controller].include? term.to_s
+  end
+  
 end

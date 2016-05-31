@@ -10,19 +10,29 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  def set_author
+  def homepage
     if current_employee
-      Concern::Audit::Author.current = current_employee.id
+      redirect_to ticket_path(Ticket::Ticket.last)
+    else
+      redirect_to new_employee_session_path
     end
   end
   
-  def current_user
-    current_employee
-  end
+  private
   
-  # Render the previous display without redirecting it
-  def render_previous
-    hsh = Rails.application.routes.recognize_path(request.referer)
-    render template: "#{hsh[:controller]}/#{hsh[:action]}"
-  end
+    def set_author
+      if current_employee
+        Concern::Audit::Author.current = current_employee.id
+      end
+    end
+  
+    def current_user
+      current_employee
+    end
+  
+    # Render the previous display without redirecting it
+    def render_previous
+      hsh = Rails.application.routes.recognize_path(request.referer)
+      render template: "#{hsh[:controller]}/#{hsh[:action]}"
+    end
 end
