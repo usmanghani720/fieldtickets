@@ -13,28 +13,30 @@
       
           - active_class = ""
           li class="indent-0 #{active_class}"
-            a href="#{admin_employees_path}"
-              | Management
-        
-          - active_class = "#{'active' if controller? :jobs}"
-          li class="indent-1 #{active_class}"
             a href="#{admin_jobs_path}"
-              | Jobs
+              | Management
+          
+          - if controller? 'admin/'
         
-          - active_class = "#{'active' if controller? :customers}"
-          li class="indent-1 #{active_class}"
-            a href="#{admin_customers_path}"
-              | Customers
+            - active_class = "#{'active' if controller? :jobs}"
+            li class="indent-1 #{active_class}"
+              a href="#{admin_jobs_path}"
+                | Jobs
+        
+            - active_class = "#{'active' if controller? :customers}"
+            li class="indent-1 #{active_class}"
+              a href="#{admin_customers_path}"
+                | Customers
 
-          - active_class = "#{'active' if controller? :employees}"
-          li class="indent-1 #{active_class}"
-            a href="#{admin_employees_path}"
-              | Employees
+            - active_class = "#{'active' if controller? :employees}"
+            li class="indent-1 #{active_class}"
+              a href="#{admin_employees_path}"
+                | Employees
         
-          - active_class = "#{'active' if controller? :vehicles}"
-          li class="indent-1 #{active_class}"
-            a href="#{admin_vehicles_path}"
-              | Vehicles
+            - active_class = "#{'active' if controller? :vehicles}"
+            li class="indent-1 #{active_class}"
+              a href="#{admin_vehicles_path}"
+                | Vehicles
 
       ul.nav.nav-sidebar
 
