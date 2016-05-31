@@ -48,6 +48,7 @@ class Ticket::EmployeesController < Ticket::BaseController
     def ticket_employee_params
       params.require(:ticket_employee).permit(
         :employee_id,
+        :per_diem,
       )
     end
     

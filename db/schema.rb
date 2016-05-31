@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20160530174316) do
   create_table "ticket_employees", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "employee_id"
+    t.boolean  "per_diem"
     t.integer  "status",       default: 0
     t.string   "display_name"
     t.datetime "time"

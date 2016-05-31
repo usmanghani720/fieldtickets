@@ -30,7 +30,7 @@ class CreateTicketTickets < ActiveRecord::Migration
       t.datetime :finalized_at, index: true
       t.datetime :deleted_at, index: true
 
-      t.authorstamps(:integer)
+      t.authorstamps :integer, null: true
       t.timestamps null: false
     end
     

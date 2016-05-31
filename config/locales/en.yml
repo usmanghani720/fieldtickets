@@ -70,6 +70,9 @@ en:
       vehicle:
         internal_number: 'BRM Vehicle #'
         
+      ticket/employee:
+        per_diem: 'Per-diem allowance'
+        
       ticket/ticket:
         job_name_entry: 'BRM Job #'
         bill_to: 'Bill To'

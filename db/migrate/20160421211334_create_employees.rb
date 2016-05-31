@@ -46,7 +46,7 @@ class CreateEmployees < ActiveRecord::Migration
       t.datetime :deleted_at, index: true
       
       
-      t.authorstamps(:integer)
+      t.authorstamps :integer, null: true
       t.timestamps null: false
     end
   end

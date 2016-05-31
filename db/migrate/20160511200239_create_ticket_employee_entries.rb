@@ -14,8 +14,8 @@ class CreateTicketEmployeeEntries < ActiveRecord::Migration
        
        t.datetime :deleted_at, index: true
  
-       t.authorstamps(:integer)
-      t.timestamps null: false
+       t.authorstamps :integer, null: true
+       t.timestamps null: false
      end
    end
 end

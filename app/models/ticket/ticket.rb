@@ -221,7 +221,7 @@ class Ticket::Ticket < ActiveRecord::Base
   private
   
     def add_crew_chief_to_employees
-      if crew_chief.crew_chief?
+      if crew_chief and crew_chief.crew_chief?
         ticket_employee = employees.create(employee: creator)
       end
     end
