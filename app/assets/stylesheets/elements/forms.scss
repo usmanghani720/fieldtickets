@@ -1,3 +1,16 @@
+// Disable WebKit's spinner on numeric fields, from http://stackoverflow.com/questions/3975769/disable-webkits-spin-buttons-on-input-type-number
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+// Same, but for Firefox
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+
 .btn-edit, .btn-delete {
   @extend .btn;
   @extend .btn-default;
