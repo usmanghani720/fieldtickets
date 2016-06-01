@@ -42,9 +42,12 @@
   padding-left: 15px;
 }
 
-#undo-my-changes, #cancel-my-changes {
+#undo-my-changes, #cancel-my-changes, #delete-record {
   @extend .btn;
   @extend .btn-link;
+}
+
+#delete-record {
 }
 
 .form-actions input[type="submit"] {

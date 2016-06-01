@@ -1,5 +1,5 @@
 class Ticket::EmployeesController < Ticket::BaseController
-  before_action :set_employee, only: [:show, :create_status, :edit_status, :update_status]
+  before_action :set_employee, only: [:show, :create_status, :edit_status, :update_status, :delete_status]
   
   # Show the Employees on this Ticket
   def index
@@ -49,10 +49,19 @@ class Ticket::EmployeesController < Ticket::BaseController
     @employee_entry = Ticket::EmployeeEntry.find params[:employee_entry_id]
     
     if @employee_entry.update(ticket_employee_entry_params)
-      redirect_to ticket_employee_log_path(@ticket, @employee), notice: 'Your changes have been saved.'
+      redirect_to ticket_employee_log_path(@ticket, @employee), notice: 'Your change has been saved.'
     else
       render_previous
     end
+  end
+  
+  # Delete status
+  def delete_status
+    @employee_entry = Ticket::EmployeeEntry.find params[:employee_entry_id]
+    
+    @employee_entry.destroy!
+    
+    redirect_to ticket_employee_log_path(@ticket, @employee), notice: 'That timesheet entry has been deleted.'
   end
   
   private

@@ -29,6 +29,8 @@
                     = f.button :submit, 'Save'
                     |  or 
                     = link_to 'Cancel', ticket_employee_log_path(ticket, @employee), id: 'cancel-my-changes'
+                    |  or 
+                    = link_to 'Delete', request.original_url, id: 'delete-record', method: :delete
                 
                 
           - else
