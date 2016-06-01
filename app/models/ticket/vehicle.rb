@@ -13,8 +13,8 @@ class Ticket::Vehicle < ActiveRecord::Base
 
   validates :mileage, presence: true
   
-  validates :rental_description, presence: true, unless: :company?
-  validates :rental_description, uniqueness: { scope: :ticket }, unless: :company?
+  validates :manual_description, presence: true, unless: :company?
+  validates :manual_description, uniqueness: { scope: :ticket }, unless: :company?
   
   enum ownership: { company: 0, employee: 1, rental: 2 }
   enum status: { idle: 0, maintenance: 2, on_the_job: 3 }
@@ -32,7 +32,11 @@ class Ticket::Vehicle < ActiveRecord::Base
   end
   
   def to_s
-    vehicle.to_s
+    if company?
+      vehicle.to_s
+    else
+      manual_description
+    end
   end
   
 end

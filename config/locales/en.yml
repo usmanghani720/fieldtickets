@@ -36,7 +36,7 @@ en:
     ticket:
       vehicle:
         ownership:
-          company: 'BRM’s Vehicle'
+          company: 'BlackRock Vehicle'
           employee: 'Employee’s Vehicle'
     
       ticket:
@@ -55,7 +55,7 @@ en:
 
       note:
         note_type:
-          internal: 'BRM Only'
+          internal: 'BlackRock Only'
           to_customer: 'Send to Customer'
           from_customer: 'Customer Comment'
   
@@ -87,32 +87,39 @@ en:
           attributes:
             billing:
               blank: 'Please choose how the customer should be billed.'
+              
             internal_number:
-              blank: 'Please fill in the BRM number.'
+              blank: 'Please fill in the BlackRock Job Number.'
         
         ticket/vehicle:
           attributes:
             vehicle:
               taken: 'This vehicle has already been added to this ticket.'
-            rental_description:
-              taken: 'Please enter the vehicle’s license-plate number.'
+              blank: 'Please fill in the BlackRock vehicle number.'
+              
+            manual_description:
+              taken: 'Please describe the vehicle or enter its license-plate number.'
+              blank: 'Please describe the vehicle or enter its license-plate number.'
+              
+            mileage:
+              blank: 'Please read the vehicle’s odometer (in miles).'
     
     attributes:
     
       job:
         customer_name: 'Customer'
-        internal_number: 'BRM Job #'
+        internal_number: 'BlackRock Job #'
         customer_number: 'Customer’s Job #'
         billing: 'Billed By'
         
       vehicle:
-        internal_number: 'BRM Vehicle #'
+        internal_number: 'BlackRock Vehicle #'
         
       ticket/employee:
         per_diem: 'Per-diem allowance'
         
       ticket/ticket:
-        job_name_entry: 'BRM Job #'
+        job_name_entry: 'BlackRock Job #'
         bill_to: 'Bill To'
         
         customer_approved_work: 'Customer Approves?'
@@ -140,6 +147,6 @@ en:
       ticket/vehicle:
         ownership: 'Type'
         vehicle: 'Vehicle #'
-        rental_description: 'Description'
+        manual_description: 'Description'
         fuel_gallons: 'Fuel Pumped'
         mileage: 'Current Mileage'

@@ -7,18 +7,33 @@
 
   .form-inputs
   
-    = f.input :ownership, as: :radio_buttons, wrapper: :bootstrap_radio_buttons, item_wrapper_tag: nil, item_label_class: 'btn btn-default'
+    = f.input :ownership
   
-    = f.input :vehicle, url: autocomplete_vehicle_display_name_tickets_path, as: :autocomplete, id_element: '#vehicle_id'
+    = f.input :vehicle, url: autocomplete_vehicle_display_name_tickets_path, as: :autocomplete, id_element: '#vehicle_id', wrapper_html: { style: (@ticket_vehicle.company? ? '' : 'display:none') }
     = f.hidden_field :vehicle_id, id: 'vehicle_id'
 
-    = f.input :rental_description
+    = f.input :manual_description, wrapper_html: { style: (!@ticket_vehicle.company? ? '' : 'display:none') }
     
     = f.input :mileage
             
   = partial 'autoshow_form_buttons', f: f
 
 coffee: 
-  # Focus
+  show_hide_manual_description = () ->
+    switch $('#ticket_vehicle_ownership').val()
+      when 'company'
+        $('#ticket_vehicle_manual_description').parent().parent().slideUp()
+        $('#ticket_vehicle_vehicle').parent().parent().slideDown()
+        $('#ticket_vehicle_vehicle').focus()
+      else
+        $('#ticket_vehicle_vehicle').parent().parent().slideUp()
+        $('#ticket_vehicle_manual_description').parent().parent().slideDown()
+        $('#ticket_vehicle_manual_description').focus()
+
   $ ->
-    $('#ticket_vehicle_vehicle').focus()
+    # Focus
+    show_hide_manual_description()
+
+    # Handle hiding/showing BRM Job #
+    $('form :input').change ->
+      show_hide_manual_description()

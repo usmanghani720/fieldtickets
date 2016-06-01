@@ -175,9 +175,9 @@ ActiveRecord::Schema.define(version: 20160530174316) do
 
   create_table "ticket_vehicles", force: :cascade do |t|
     t.integer  "ticket_id",                      null: false
-    t.integer  "vehicle_id",                     null: false
+    t.integer  "vehicle_id"
     t.integer  "ownership",          default: 0, null: false
-    t.string   "rental_description"
+    t.string   "manual_description"
     t.decimal  "mileage"
     t.integer  "status",             default: 0, null: false
     t.string   "display_name"

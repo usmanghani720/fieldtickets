@@ -75,10 +75,13 @@ class Ticket::VehiclesController < Ticket::BaseController
       @ticket_vehicle = Ticket::Vehicle.new(ticket: @ticket)
     end
     
-    # The only field we need to make a new ticket_vehicle is vehicle_id
+    # The fields we need to make a new ticket_vehicle
     def ticket_vehicle_params
       params.require(:ticket_vehicle).permit(
         :vehicle_id,
+        :ownership,
+        :manual_description,
+        :mileage,
       )
     end
     
