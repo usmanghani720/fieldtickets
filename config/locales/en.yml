@@ -56,7 +56,7 @@ en:
       note:
         note_type:
           internal: 'BlackRock Only'
-          to_customer: 'Send to Customer'
+          to_customer: 'Show to Customer'
           from_customer: 'Customer Comment'
   
 
