@@ -14,6 +14,7 @@ class Ticket::Vehicle < ActiveRecord::Base
   validates :rental_description, presence: true, if: :rental?
   validates :rental_description, uniqueness: { scope: :ticket }, if: :rental?
   
+  enum ownership: { company: 0, rental: 1, employee: 2 }
   enum status: { idle: 0, maintenance: 2, on_the_job: 3 }
   
   scope :mills, -> {

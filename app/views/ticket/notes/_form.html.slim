@@ -8,8 +8,8 @@
 
   .form-inputs
   
-    = f.input :note
-    
-    = f.input :note_type, as: :radio_buttons, wrapper: :bootstrap_radio_buttons, item_wrapper_tag: nil, item_label_class: 'btn btn-default'
+    = f.input :note_type, as: :radio_buttons, wrapper: :bootstrap_radio_buttons, item_wrapper_tag: nil, item_label_class: 'btn btn-default', collection: [:internal, :to_customer]
+
+    = f.input :note    
                   
   = partial 'autoshow_form_buttons', f: f

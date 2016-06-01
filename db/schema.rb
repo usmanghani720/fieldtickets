@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 20160530174316) do
   create_table "ticket_vehicles", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "vehicle_id"
-    t.boolean  "rental"
+    t.integer  "ownership"
     t.string   "rental_description"
     t.integer  "status",             default: 0
     t.string   "display_name"

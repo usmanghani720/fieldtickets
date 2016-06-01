@@ -25,6 +25,14 @@
 en:
 
   enums:
+    employee:
+      role:
+        crew_chief: 'Crew Chief'
+
+    job:
+      billing:
+        milled_area: 'Milled Area'
+        
     ticket:
       ticket:
         bill_to:
@@ -39,6 +47,12 @@ en:
       employee_entry:
         status:
           on_the_job: 'On the Job'
+
+      note:
+        note_type:
+          internal: 'BRM Only'
+          to_customer: 'Send to Customer'
+          from_customer: 'Customer Comment'
   
 
   # Error Messages
@@ -114,6 +128,9 @@ en:
         milling_length: 'Length'
         milling_width: 'Width'
         milling_depth: 'Depth'
+      
+      ticket/note:
+        note_type: 'Visibility'
       
       equipment_entry:
         rental: 'Type'

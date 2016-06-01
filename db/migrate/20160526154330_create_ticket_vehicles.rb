@@ -3,7 +3,7 @@ class CreateTicketVehicles < ActiveRecord::Migration
     create_table :ticket_vehicles do |t|
       t.references :ticket, index: true
       t.references :vehicle, index: true
-      t.boolean :rental
+      t.integer :ownership
       t.string :rental_description
       
       t.integer :status, default: 0
