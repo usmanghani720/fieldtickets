@@ -66,31 +66,34 @@
             li class="indent-2 #{active_class}"
               a href="#{ticket_vehicles_path @ticket}"
                 | Vehicles & Mills
-              
-            - active_class = "#{'active' if controller? :dimensions}"
-            li class="indent-2 #{active_class}"
-              a href="#{ticket_dimensions_path @ticket}"
-                | Dimensions
+            
+            - if @ticket.job
+              - active_class = "#{'active' if controller? :dimensions}"
+              li class="indent-2 #{active_class}"
+                a href="#{ticket_dimensions_path @ticket}"
+                  | Dimensions
               
             - active_class = "#{'active' if controller? :supplies}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_supplies_path @ticket}"
                 | Supplies
               
-            - active_class = "#{'active' if controller? :delays}"
-            li class="indent-2 #{active_class}"
-              a href="#{ticket_delays_path @ticket}"
-                | Delays
+            - if @ticket.job
+              - active_class = "#{'active' if controller? :delays}"
+              li class="indent-2 #{active_class}"
+                a href="#{ticket_delays_path @ticket}"
+                  | Delays
               
             - active_class = "#{'active' if controller? :notes}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_notes_path @ticket}"
                 | Notes
               
-            - active_class = "#{'active' if controller? :approval}"
-            li class="indent-2 #{active_class}"
-              a href="#{ticket_approval_path @ticket}"
-                | Customer Approval
+            - if @ticket.job
+              - active_class = "#{'active' if controller? :approval}"
+              li class="indent-2 #{active_class}"
+                a href="#{ticket_approval_path @ticket}"
+                  | Customer Approval
               
             - active_class = "#{'active' if controller? :finalize}"
             li class="indent-2 #{active_class}"

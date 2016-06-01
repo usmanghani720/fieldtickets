@@ -29,7 +29,7 @@ gem 'awesome_print'
 gem 'draper'
 
 gem 'ar-audit-tracer'
-gem 'best_in_place', '~> 3.0.1'
+# gem 'best_in_place', '~> 3.0.1' # in-place editor, not needed yet
 
 
 
