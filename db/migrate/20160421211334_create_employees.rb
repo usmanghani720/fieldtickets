@@ -1,14 +1,14 @@
 class CreateEmployees < ActiveRecord::Migration
   def change
     create_table :employees do |t|
-      t.string :name
+      t.string :name, null: false
       t.string :nickname
       t.string :internal_number
 
       t.string :display_name # cached display name
       
       # roles
-      t.integer :role, default: 0
+      t.integer :role, default: 0, null: false
       
       
       

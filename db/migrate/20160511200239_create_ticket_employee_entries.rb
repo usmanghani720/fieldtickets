@@ -1,10 +1,10 @@
 class CreateTicketEmployeeEntries < ActiveRecord::Migration
    def change
      create_table :ticket_employee_entries do |t|
-       t.belongs_to :employee, index: true
+       t.belongs_to :employee, index: true, null: false
        # t.belongs_to :ticket, index: true
        # No longer needed because Ticket::Employee links to Ticket::Ticket
-       t.integer :status
+       t.integer :status, null: false
        
        t.datetime :time
        t.datetime :time_end        #          calculated

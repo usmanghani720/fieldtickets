@@ -1,12 +1,12 @@
 class CreateJobs < ActiveRecord::Migration
   def change
     create_table :jobs do |t|
-      t.belongs_to :customer, index: true, foreign_key: true
+      t.belongs_to :customer, index: true, foreign_key: true, null: false
       
-      t.string :internal_number
+      t.string :internal_number, null: false
       t.string :customer_number
       
-      t.integer :billing, default: 0
+      t.integer :billing, default: 0, null: false
         # [ day_rate: 1, square_yards: 2, hourly: 3 ]
       
       t.string :display_name # cached display name

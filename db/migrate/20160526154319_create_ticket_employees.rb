@@ -1,11 +1,11 @@
 class CreateTicketEmployees < ActiveRecord::Migration
   def change
     create_table :ticket_employees do |t|
-      t.references :ticket, index: true
-      t.references :employee, index: true
-      t.boolean :per_diem
+      t.references :ticket, index: true, null: false
+      t.references :employee, index: true, null: false
+      t.boolean :per_diem, default: false, null: false
       
-      t.integer :status, default: 0
+      t.integer :status, default: 0, null: false
       
       t.string :display_name
       

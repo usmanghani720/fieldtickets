@@ -1,7 +1,7 @@
 class CreateTicketTickets < ActiveRecord::Migration
   def change
     create_table :ticket_tickets do |t|
-      t.integer :bill_to, default: 0
+      t.integer :bill_to, default: 0, null: false
       
       t.belongs_to :job, index: true, foreign_key: true
       t.string :job_name_override

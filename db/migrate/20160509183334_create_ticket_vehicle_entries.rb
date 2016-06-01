@@ -1,9 +1,8 @@
 class CreateTicketVehicleEntries < ActiveRecord::Migration
    def change
      create_table :ticket_vehicle_entries do |t|
-       t.belongs_to :ticket, index: true
-       t.belongs_to :vehicle, index: true
-       t.integer :status
+       t.belongs_to :vehicle, index: true, null: false
+       t.integer :status, null: false
        t.decimal :fuel_gallons
        t.decimal :mileage
        

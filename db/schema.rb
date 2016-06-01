@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(version: 20160530174316) do
   create_table "ticket_vehicles", force: :cascade do |t|
     t.integer  "ticket_id"
     t.integer  "vehicle_id"
-    t.integer  "ownership"
+    t.integer  "ownership",          default: 0, null: false
     t.string   "rental_description"
     t.integer  "status",             default: 0
     t.string   "display_name"
@@ -208,7 +208,3 @@ ActiveRecord::Schema.define(version: 20160530174316) do
 
   add_index "vehicles", ["deleted_at"], name: "index_vehicles_on_deleted_at", using: :btree
 
-  add_foreign_key "jobs", "customers"
-  add_foreign_key "ticket_notes", "employees"
-  add_foreign_key "ticket_tickets", "jobs"
-end
