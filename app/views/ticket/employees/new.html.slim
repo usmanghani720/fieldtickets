@@ -9,8 +9,13 @@
   
     = f.input :employee, url: autocomplete_employee_display_name_tickets_path, as: :autocomplete, id_element: '#employee_id'
     = f.hidden_field :employee_id, id: 'employee_id'
+    
+    .form-group
+      label.col-sm-3.control-label Per-Diem
+      .col-sm-9
+        = f.check_box :per_diem, class: "form-control", data: {'off-label': 'No', 'on-label': 'Yes', 'off-active-cls': 'btn-primary', 'on-active-cls': 'btn-success'}
 
-    = f.input :per_diem
+    /= f.input :per_diem
             
   = partial 'autoshow_form_buttons', f: f
 
@@ -18,3 +23,6 @@ coffee:
   # Focus
   $ ->
     $('#ticket_employee_employee').focus()
+
+  $ ->
+    $('#ticket_employee_per_diem').checkboxpicker()

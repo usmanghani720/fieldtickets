@@ -6,6 +6,8 @@ class Ticket::Employee < ActiveRecord::Base
   belongs_to :ticket
   belongs_to :employee, class_name: '::Employee'
   
+  validates :employee, uniqueness: { scope: :ticket }
+  
   has_many :employee_entries
   
   enum status: { idle: 0, transport: 1, maintenance: 2, on_the_job: 3 }

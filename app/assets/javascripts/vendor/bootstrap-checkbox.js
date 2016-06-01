@@ -1,9 +1,3 @@
-/**
- * $.inArray: friends with IE8. Use Array.prototype.indexOf in future.
- * Use this.element.hidden in future.
- * $.proxy: friends with IE8. Use Function.prototype.bind in future.
- */
-
 'use strict';
 
 (function(factory) {

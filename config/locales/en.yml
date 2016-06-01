@@ -91,14 +91,20 @@ en:
             internal_number:
               blank: 'Please fill in the BlackRock Job Number.'
         
+        ticket/employee:
+          attributes:
+            employee:
+              taken: "%{value} is already on this ticket."
+              blank: 'Which employee do you want to add to this ticket?'
+
         ticket/vehicle:
           attributes:
             vehicle:
-              taken: 'This vehicle has already been added to this ticket.'
+              taken: '%{value} has already been added to this ticket.'
               blank: 'Please fill in the BlackRock vehicle number.'
               
             manual_description:
-              taken: 'Please describe the vehicle or enter its license-plate number.'
+              taken: '%{value} has already been added to this ticket.'
               blank: 'Please describe the vehicle or enter its license-plate number.'
               
             mileage:

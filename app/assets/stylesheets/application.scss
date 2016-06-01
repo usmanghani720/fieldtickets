@@ -1,9 +1,10 @@
 @import "vendor/bootstrap-generators/bootstrap-generators";
 @import "vendor/bootstrap-generators/bootstrap-variables";
-@import "vendor/bootstrap-switch";
+//@import "vendor/bootstrap-switch";
 @import "bootstrap-select";
 
 //@import "custom/rails-jquery-autocomplete";
+@import "custom/fix-autocomplete-under-buttons";
 @import "vendor/jquery-ui";
 
 @import "elements/forms";
