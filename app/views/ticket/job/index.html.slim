@@ -20,10 +20,10 @@ coffee:
   show_hide_job_field = () ->
     switch $('#ticket_ticket_bill_to').val()
       when 'job', 'job_correction', 'cancelled_job'
-        $('#ticket_ticket_job').parent().parent().slideDown()
-        $('#ticket_ticket_job').focus()
+        $('#ticket_ticket_job_name_entry').parent().parent().slideDown()
+        $('#ticket_ticket_job_name_entry').focus()
       else
-        $('#ticket_ticket_job').parent().parent().slideUp()
+        $('#ticket_ticket_job_name_entry').parent().parent().slideUp()
 
   $ ->
     # Handle hiding/showing BRM Job #
