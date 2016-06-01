@@ -10,8 +10,7 @@ class Ticket::TimesheetEntryDecorator < Draper::Decorator
   # end
   
   def duration
-    if not object.duration
-    else
+    if object.duration
       hours = object.duration / 60
       minutes = object.duration % 60
       
