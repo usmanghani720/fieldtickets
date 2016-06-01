@@ -11,20 +11,16 @@ class Ticket::TimesheetEntryDecorator < Draper::Decorator
   
   def duration
     if not object.duration
-    elsif object.duration == 1
-      '1 minute'
-    elsif object.duration < 60
-      "#{object.duration} minutes"
-    elsif object.duration == 60
-      "1 hour"
     else
       hours = object.duration / 60
       minutes = object.duration % 60
       
-      if minutes == 0
-        "#{hours} hours"
+      if hours == 0
+        "#{minutes} min"
+      elsif minutes == 0
+        "#{hours} hr"
       else
-        "#{hours} hours, #{minutes} minutes"
+        "#{hours} hr #{minutes} min"
       end
     end
   end
