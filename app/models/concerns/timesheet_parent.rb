@@ -35,6 +35,14 @@ module TimesheetParent
       end
     end
     
+    # no entries found, reset to default
+    if entries.blank?
+      self.time = self.created_at
+      self[:status] = 0
+      
+      self.save! if self.changed?
+    end
+    
   end
   
   def entries

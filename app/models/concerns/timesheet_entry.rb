@@ -11,6 +11,7 @@ module TimesheetEntry
     
     attr_accessor :recalculating
     after_save :recalculate!, unless: :recalculating
+    after_destroy :recalculate!
     
     validates :status, presence: true
     
