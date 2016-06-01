@@ -36,7 +36,13 @@
   padding-top: 20px;
 }
 
-#undo-my-changes {
+#alwaysshow-form-buttons {
+  @extend .col-sm-offset-3;
+  padding-top: 20px;
+  padding-left: 15px;
+}
+
+#undo-my-changes, #cancel-my-changes {
   @extend .btn;
   @extend .btn-link;
 }

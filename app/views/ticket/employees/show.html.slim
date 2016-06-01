@@ -14,5 +14,8 @@
       - @entries.each do |entry|
         tr
           td = entry.status
-          td = entry.time
+          td
+            = entry.time
+            |  
+            = link_to 'edit', ticket_employee_edit_status_path(employee_entry_id: entry.id)
           td = entry.duration

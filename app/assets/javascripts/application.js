@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require best_in_place
+//= require best_in_place.jquery-ui
 
 //= require autocomplete-rails
 
@@ -30,4 +32,5 @@
 
 //= require app/data-links
 //= require app/autoshow-form-buttons
+//= require app/best-in-place-activate
 //= require ticket/approval

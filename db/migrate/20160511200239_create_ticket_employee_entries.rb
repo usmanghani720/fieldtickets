@@ -12,6 +12,8 @@ class CreateTicketEmployeeEntries < ActiveRecord::Migration
        #t.integer :duration_night   # minutes, calculated
        t.integer :duration   # minutes, calculated
        
+       t.string :reason_for_edit
+       
        t.datetime :deleted_at, index: true
  
        t.authorstamps :integer, null: true

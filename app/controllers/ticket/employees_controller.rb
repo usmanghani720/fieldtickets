@@ -1,5 +1,5 @@
 class Ticket::EmployeesController < Ticket::BaseController
-  before_action :set_employee, only: [:create_status, :show]
+  before_action :set_employee, only: [:show, :create_status, :edit_status, :update_status]
   
   # Show the Employees on this Ticket
   def index
@@ -22,6 +22,12 @@ class Ticket::EmployeesController < Ticket::BaseController
     end
   end
   
+  # Show the timeclock log
+  def show
+    @entries = @employee.entries.decorate
+    @entries_deleted = @employee.entries.only_deleted
+  end
+  
   # Add a new EmployeeEntry to change an Employee's status
   def create_status
     @employee.status = params[:status]
@@ -30,11 +36,23 @@ class Ticket::EmployeesController < Ticket::BaseController
     redirect_to ticket_employees_path(@ticket)
   end
   
-  # Show the timeclock log
-  def show
+  # Show the form to edit a status
+  def edit_status
     @entries = @employee.entries.decorate
     @entries_deleted = @employee.entries.only_deleted
-    @new_entry = Ticket::EmployeeEntry.new
+    
+    @entry_id = params[:employee_entry_id].to_i
+  end
+  
+  # Post the changes of an edited status
+  def update_status
+    @employee_entry = Ticket::EmployeeEntry.find params[:employee_entry_id]
+    
+    if @employee_entry.update(ticket_employee_entry_params)
+      redirect_to ticket_employee_log_path(@ticket, @employee), notice: 'Your changes have been saved.'
+    else
+      render_previous
+    end
   end
   
   private
@@ -49,6 +67,15 @@ class Ticket::EmployeesController < Ticket::BaseController
       params.require(:ticket_employee).permit(
         :employee_id,
         :per_diem,
+      )
+    end
+    
+    # For editing
+    def ticket_employee_entry_params
+      params.require(:ticket_employee_entry).permit(
+        :status,
+        :time,
+        :reason_for_edit,
       )
     end
     

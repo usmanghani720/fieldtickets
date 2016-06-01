@@ -29,6 +29,10 @@ module TimesheetEntry
   end
   
   def time=(new_time)
+    if new_time.is_a? String
+      new_time = new_time.to_time_with_chronic
+    end
+    
     self[:time] = new_time.round_to_minute
     
     recalculate_duration

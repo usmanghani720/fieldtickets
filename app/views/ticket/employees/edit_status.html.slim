@@ -1,0 +1,41 @@
+.page-header
+  h2
+    | Timesheet for 
+    = @employee.display_name
+
+.table
+  table.table.table-striped.table-bordered
+    thead
+      tr
+        th Status
+        th Time
+        th Duration
+    tbody
+      - @entries.each do |entry|
+        tr
+          - if entry.id == @entry_id
+          
+            = simple_form_for entry, url: request.original_url do |f|
+              td colspan="3"
+                .form-inputs
+                  = f.input :status, include_blank: false
+                  br
+                  = f.input :time, as: :string
+                  br
+                  = f.input :reason_for_edit
+                  br
+                #alwaysshow-form-buttons
+                  .form-actions
+                    = f.button :submit, 'Save'
+                    |  or 
+                    = link_to 'Cancel', ticket_employee_log_path(ticket, @employee), id: 'cancel-my-changes'
+                
+                
+          - else
+        
+            td = entry.status
+            td
+              = entry.time
+              |  
+              = link_to 'edit', ticket_employee_edit_status_path(employee_entry_id: entry.id)
+            td = entry.duration
