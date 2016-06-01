@@ -1,13 +1,13 @@
 class Ticket::TimesheetEntryDecorator < Draper::Decorator
   delegate_all
 
-  # def status
-  #   if object.idle?
-  #     object.status.titleize
-  #   else
-  #     "<strong>#{object.status.titleize}</strong>".html_safe
-  #   end
-  # end
+  def status_pretty
+    if object.idle? or object.deleted?
+      object.status_i18n
+    else
+      "<strong>#{object.status_i18n}</strong>".html_safe
+    end
+  end
   
   def duration
     if object.duration

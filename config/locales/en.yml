@@ -19,7 +19,27 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+
+      
+
 en:
+
+  enums:
+    ticket:
+      ticket:
+        bill_to:
+          job_correction: 'Job Correction'
+          cancelled_job: 'Cancelled Job'
+          office_staff: 'Office Staff'
+
+      vehicle_entry:
+        status:
+          on_the_job: 'On the Job'
+  
+      employee_entry:
+        status:
+          on_the_job: 'On the Job'
+  
 
   # Error Messages
   # Read more at http://guides.rubyonrails.org/i18n.html#error-message-scopes
@@ -37,9 +57,8 @@ en:
         one: "Oops! Just one issue:"
         two: "Oops! Just a couple issues:"
         other: "Oops! Just a few issues:"
-    
-    
-
+        
+  
 
   activerecord:
     errors:
