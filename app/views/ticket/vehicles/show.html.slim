@@ -1,7 +1,7 @@
 .page-header
   h2
     | Timesheet for 
-    = @vehicle
+    = @vehicle.display_name
 
 .table-responsive
   table.table.table-striped.table-bordered
@@ -13,6 +13,11 @@
     tbody
       - @entries.each do |entry|
         tr
-          td = entry.status
-          td = entry.time
+          td = entry.status_pretty
+          td
+            = entry.time
+            |  
+            = link_to 'edit', ticket_vehicle_edit_status_path(vehicle_entry_id: entry.id)
           td = entry.duration
+
+= partial 'deleted_entries', entries: @entries_deleted

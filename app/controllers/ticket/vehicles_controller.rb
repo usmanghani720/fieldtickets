@@ -1,5 +1,6 @@
 class Ticket::VehiclesController < Ticket::BaseController
-  before_action :set_vehicle, only: [:create_status, :show]
+  before_action :set_vehicle, only: [:show, :create_status, :edit_status, :update_status, :delete_status]
+  
   
   # Show the Vehicles on this Ticket
   def index
@@ -22,6 +23,13 @@ class Ticket::VehiclesController < Ticket::BaseController
     end
   end
   
+  # Show the timeclock log
+  def show
+    @entries = @vehicle.entries.decorate
+    @entries_deleted = @vehicle.entries.only_deleted
+    @new_entry = Ticket::VehicleEntry.new
+  end
+  
   # Add a new VehicleEntry to change an Vehicle's status
   def create_status
     @vehicle.status = params[:status]
@@ -30,11 +38,33 @@ class Ticket::VehiclesController < Ticket::BaseController
     redirect_to ticket_vehicles_path(@ticket)
   end
   
-  # Show the timeclock log
-  def show
+  # Show the form to edit a status
+  def edit_status
     @entries = @vehicle.entries.decorate
     @entries_deleted = @vehicle.entries.only_deleted
-    @new_entry = Ticket::VehicleEntry.new
+    
+    @entry_id = params[:vehicle_entry_id].to_i
+  end
+  
+  # Post the changes of an edited status
+  def update_status
+    @vehicle_entry = Ticket::VehicleEntry.find params[:vehicle_entry_id]
+    
+    if @vehicle_entry.update(ticket_vehicle_entry_params)
+      redirect_to ticket_vehicle_log_path(@ticket, @vehicle), notice: 'Your change has been saved.'
+    else
+      render_previous
+    end
+  end
+  
+  # Delete status
+  def delete_status
+    @vehicle_entry = Ticket::VehicleEntry
+    .find params[:vehicle_entry_id]
+    
+    @vehicle_entry.destroy!
+    
+    redirect_to ticket_vehicle_log_path(@ticket, @vehicle), notice: 'That timesheet entry has been deleted.'
   end
   
   
@@ -51,6 +81,16 @@ class Ticket::VehiclesController < Ticket::BaseController
         :vehicle_id,
       )
     end
+    
+    # For editing
+    def ticket_vehicle_entry_params
+      params.require(:ticket_vehicle_entry).permit(
+        :status,
+        :time,
+        :reason_for_edit,
+      )
+    end
+    
     
     # Read @vehicle from params
     def set_vehicle

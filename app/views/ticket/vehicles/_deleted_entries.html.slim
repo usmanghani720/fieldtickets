@@ -1,0 +1,20 @@
+- entries = entries.decorate
+
+- if entries.count > 0
+  h3 Deleted Entries
+  - if entries.count == 1
+    p This is a permanent record of the timesheet entry that was deleted.
+  - else
+    p = "This is a permanent record of the #{entries.count} timesheet entries that were deleted."
+
+  .table-responsive
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th Status
+          th Time
+      tbody
+        - entries.each do |entry|
+          tr
+            td = entry.status_pretty
+            td = entry.time

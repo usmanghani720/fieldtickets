@@ -83,7 +83,7 @@
               li class="indent-2 #{active_class}"
                 a href="#{ticket_delays_path @ticket}"
                   | Delays
-              
+            
             - active_class = "#{'active' if controller? :notes}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_notes_path @ticket}"
