@@ -7,8 +7,14 @@
 
   .form-inputs
   
+    = f.input :ownership, as: :radio_buttons, wrapper: :bootstrap_radio_buttons, item_wrapper_tag: nil, item_label_class: 'btn btn-default'
+  
     = f.input :vehicle, url: autocomplete_vehicle_display_name_tickets_path, as: :autocomplete, id_element: '#vehicle_id'
     = f.hidden_field :vehicle_id, id: 'vehicle_id'
+
+    = f.input :rental_description
+    
+    = f.input :mileage
             
   = partial 'autoshow_form_buttons', f: f
 

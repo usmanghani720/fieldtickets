@@ -6,6 +6,7 @@ class CreateTicketVehicles < ActiveRecord::Migration
       t.integer :ownership, default: 0, null: false
       t.string :rental_description
       
+      t.decimal :mileage
       t.integer :status, default: 0, null: false
       
       t.string :display_name

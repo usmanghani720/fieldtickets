@@ -34,6 +34,11 @@ en:
         milled_area: 'Milled Area'
         
     ticket:
+      vehicle:
+        ownership:
+          company: 'BRM’s Vehicle'
+          employee: 'Employee’s Vehicle'
+    
       ticket:
         bill_to:
           job_correction: 'Job Correction'
@@ -131,10 +136,10 @@ en:
       
       ticket/note:
         note_type: 'Visibility'
-      
-      equipment_entry:
-        rental: 'Type'
-        equipment: 'Vehicle #'
+        
+      ticket/vehicle:
+        ownership: 'Type'
+        vehicle: 'Vehicle #'
         rental_description: 'Description'
         fuel_gallons: 'Fuel Pumped'
         mileage: 'Current Mileage'

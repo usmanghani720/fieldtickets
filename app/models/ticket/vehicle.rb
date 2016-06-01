@@ -8,13 +8,15 @@ class Ticket::Vehicle < ActiveRecord::Base
   
   has_many :vehicle_entries
   
-  validates :vehicle, presence: true, unless: :rental?
-  validates :vehicle, uniqueness: { scope: :ticket }, unless: :rental?
+  validates :vehicle, presence: true, if: :company?
+  validates :vehicle, uniqueness: { scope: :ticket }, if: :company?
+
+  validates :mileage, presence: true
   
-  validates :rental_description, presence: true, if: :rental?
-  validates :rental_description, uniqueness: { scope: :ticket }, if: :rental?
+  validates :rental_description, presence: true, unless: :company?
+  validates :rental_description, uniqueness: { scope: :ticket }, unless: :company?
   
-  enum ownership: { company: 0, rental: 1, employee: 2 }
+  enum ownership: { company: 0, employee: 1, rental: 2 }
   enum status: { idle: 0, maintenance: 2, on_the_job: 3 }
   
   scope :mills, -> {
