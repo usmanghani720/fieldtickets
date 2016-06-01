@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require best_in_place
-//= require best_in_place.jquery-ui
+// DISABLED = require best_in_place
+// DISABLED = require best_in_place.jquery-ui
 
 //= require autocomplete-rails
 
