@@ -5,6 +5,8 @@
     thead
       tr
         th
+          | Ticket #
+        th
           | Bill To
         th
           | Milled Area
@@ -16,6 +18,8 @@
     tbody
       - tickets.each do | ticket |
         tr data-link="#{ticket_path(ticket)}"
+          td
+            strong = ticket.number
           td = ticket.bill_to_pretty
           td
             = ticket.milling_square_yards :abbreviate
