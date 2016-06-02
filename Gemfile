@@ -20,8 +20,8 @@ gem 'jquery-ui-rails'
 gem 'seed_dump'
 
 gem 'simple_form'
-gem 'client_side_validations'
-gem 'client_side_validations-simple_form'
+#gem 'client_side_validations'
+#gem 'client_side_validations-simple_form'
 
 gem 'bootstrap3-datetimepicker-rails'
 gem 'bootstrap-select-rails'
