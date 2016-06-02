@@ -6,7 +6,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :internal_number, null: false
       t.string :customer_number
       
-      t.integer :billing, default: 0, null: false
+      t.integer :billing, null: false
         # [ day_rate: 1, square_yards: 2, hourly: 3 ]
       
       t.string :display_name # cached display name

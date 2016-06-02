@@ -56,17 +56,17 @@ ActiveRecord::Schema.define(version: 20160530174316) do
   add_index "employees", ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
 
   create_table "jobs", force: :cascade do |t|
-    t.integer  "customer_id",                 null: false
-    t.string   "internal_number",             null: false
+    t.integer  "customer_id",     null: false
+    t.string   "internal_number", null: false
     t.string   "customer_number"
-    t.integer  "billing",         default: 0, null: false
+    t.integer  "billing",         null: false
     t.string   "display_name"
     t.datetime "completed_at"
     t.datetime "deleted_at"
     t.integer  "created_by"
     t.integer  "updated_by"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   add_index "jobs", ["completed_at"], name: "index_jobs_on_completed_at", using: :btree

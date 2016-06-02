@@ -8,7 +8,9 @@
 
   .form-inputs
   
-    = f.input :note_type, as: :radio_buttons, wrapper: :bootstrap_radio_buttons, item_wrapper_tag: nil, item_label_class: 'btn btn-default', collection: [:internal, :to_customer]
+    /= f.input :note_type, as: :button_radio, wrapper: :bootstrap_radio_buttons, item_wrapper_tag: nil, item_label_class: 'btn btn-default', collection: [:internal, :to_customer]
+    
+    = f.input :note_type, as: :button_radio, collection: [:internal, :to_customer]
 
     = f.input :note, :input_html => {:rows => 5}  
                   

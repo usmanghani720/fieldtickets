@@ -31,7 +31,7 @@ class Admin::JobsController < Admin::BaseController
     if @job.save
       redirect_to admin_job_path(@job), notice: 'Job was successfully created.'
     else
-      format.html { render :new }
+      render :new
     end
   end
 

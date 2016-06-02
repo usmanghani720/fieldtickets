@@ -119,7 +119,8 @@ en:
         billing: 'Billed By'
         
       vehicle:
-        internal_number: 'BlackRock Vehicle #'
+        vehicle_type: 'Type'
+        internal_number: 'Vehicle #'
         
       ticket/employee:
         per_diem: 'Per-diem allowance'

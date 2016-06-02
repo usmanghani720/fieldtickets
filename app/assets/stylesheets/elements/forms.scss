@@ -1,3 +1,11 @@
+// Make enum_radio_buttons show blue when selected, not gray
+[data-toggle="buttons"] .btn-default.active,
+.enum_radio_buttons .btn-default.active {
+  @extend .btn;
+  @extend .btn-primary;
+  @extend .active;
+}
+
 // Disable WebKit's spinner on numeric fields, from http://stackoverflow.com/questions/3975769/disable-webkits-spin-buttons-on-input-type-number
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
