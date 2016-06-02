@@ -46,30 +46,7 @@ class Ticket::TicketTest < ActiveSupport::TestCase
     ticket.milling_length = 250
     assert ticket.milling_square_feet == 9000
   end
-  
-  # Make sure it won't let crappy dimensions in.
-  # 
-  # If any milling dimensions are inputted, they should all be required.
-  # This is really just for validations.
-  def test_milling_dimensions_validations
-    refute ticket.milling_dimensions_required?
-    ticket.milling_width = 36
-    assert ticket.milling_dimensions_required?
-    refute ticket.valid?
-    ticket.milling_length = 250
-    assert ticket.milling_dimensions_required?
-    refute ticket.valid?
-    ticket.milling_depth = 30
-    assert ticket.milling_dimensions_required?
-    refute ticket.valid?
-    ticket.milling_depth = 1
-    assert ticket.milling_dimensions_required?
-    assert ticket.valid?
-    ticket.milling_width = 0
-    assert ticket.milling_dimensions_required?
-    refute ticket.valid?
-  end
-  
+    
   # Make sure it validates approval okay
   def test_approval
     ticket.approval = :approved

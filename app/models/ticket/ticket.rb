@@ -62,14 +62,12 @@ class Ticket::Ticket < ActiveRecord::Base
   validates :approval_feedback, presence: true, if: :disapproved?
 
   # Make sure milling dimensions, if entered, are a number greater than 0
-  with_options if: :milling_dimensions_required? do |t|
-    t.validates :milling_length, numericality: { greater_than: 0 }
-    t.validates :milling_width, numericality: { greater_than: 0 }
-    t.validates :milling_depth, numericality: {
-      greater_than: 0,
-      less_than_or_equal_to: 24
-    }
-  end
+  validates :milling_length, numericality: { greater_than: 0 }, if: 'milling_length.present?'
+  
+  validates :milling_width, numericality: { greater_than: 0 }, if: 'milling_width.present?'
+  
+  validates :milling_depth, numericality: { greater_than: 0, less_than_or_equal_to: 24 }, if: 'milling_depth.present?'
+  
   
   with_options numericality: { greater_than_or_equal_to: 0 }, allow_blank: true do |t|
     t.validates :delays_trucks
@@ -194,12 +192,6 @@ class Ticket::Ticket < ActiveRecord::Base
   # Is the billing yet to be filled out?
   def bill_to_blank?
     job_required? and job.blank?
-  end
-  
-  # If any milling dimensions are inputted, they should all be required.
-  # This is really just for validations.
-  def milling_dimensions_required?
-    milling_length.present? or milling_width.present? or milling_depth.present?
   end
   
   # Calculate the dimensions of the milled area
