@@ -241,8 +241,9 @@ class Ticket::Ticket < ActiveRecord::Base
   
     def set_crew_chief
       if creator and creator.crew_chief?
-        crew_chief ||= creator
+        self.crew_chief ||= self.creator
         ticket_employee = employees.create(employee: creator)
+        self.save!
       end
     end
   

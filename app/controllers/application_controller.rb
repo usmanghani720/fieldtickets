@@ -11,10 +11,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   def homepage
-    if current_employee
-      redirect_to ticket_path(Ticket::Ticket.last)
-    else
+    if current_employee.blank?
       redirect_to new_employee_session_path
+    elsif current_employee.manager?
+      redirect_to admin_approval_index_path
+    else
+      redirect_to tickets_path
     end
   end
   

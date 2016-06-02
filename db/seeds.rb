@@ -12,13 +12,13 @@ Employee.create!([
     name: 'Mike Smith',
     role: :crew_chief,
     email: 'mike@fluffyx.com',
-    encrypted_password: '$2a$10$2uB..Revw3TAjgcpDTYBmuPkbFZrl3Ym1L5VSQjmAOto2LieOBY6.',
+    password: 'goat',
   },
   {
     name: 'Oliver Anson',
-    email: 'oliver@fluffyx.com',
-    encrypted_password: '$2a$10$2uB..Revw3TAjgcpDTYBmuPkbFZrl3Ym1L5VSQjmAOto2LieOBY6.',
     role: :manager,
+    email: 'oliver@fluffyx.com',
+    password: 'goat',
   },
 ])
 

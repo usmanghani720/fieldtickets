@@ -7,4 +7,5 @@
 
 = render 'index_table', tickets: @tickets
 
-= link_to "Show #{pluralize @tickets_finalized.count, 'finalized tickets'}", tickets_finalized_path
+- if @tickets_finalized.present?
+  = link_to "Show #{pluralize @tickets_finalized.count, 'finalized tickets'}", tickets_finalized_path
