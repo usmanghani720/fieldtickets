@@ -1,3 +1,9 @@
+// Make invalid number fields show red. They don’t sumbit when invalid.
+input[type=number]:invalid {
+    background-color: #FFCCCC;
+    color: white;
+}
+
 // Make enum_radio_buttons show blue when selected, not gray
 [data-toggle="buttons"] .btn-default.active,
 .enum_radio_buttons .btn-default.active {

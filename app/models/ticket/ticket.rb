@@ -60,15 +60,17 @@ class Ticket::Ticket < ActiveRecord::Base
   
   # Require feedback only if customer has DISAPPROVED.
   validates :approval_feedback, presence: true, if: :disapproved?
+  
+  with_options numericality: { greater_than: 0 }, allow_blank: true do |t|
 
-  # Make sure milling dimensions, if entered, are a number greater than 0
-  validates :milling_length, numericality: { greater_than: 0 }, if: 'milling_length.present?'
-  
-  validates :milling_width, numericality: { greater_than: 0 }, if: 'milling_width.present?'
-  
-  validates :milling_depth, numericality: { greater_than: 0, less_than_or_equal_to: 24 }, if: 'milling_depth.present?'
-  
-  
+    # Make sure milling dimensions, if entered, are a number greater than 0
+    t.validates :milling_length, if: 'milling_length.present?'
+    
+    t.validates :milling_width, if: 'milling_width.present?'
+    
+    t.validates :milling_depth, numericality: { less_than_or_equal_to: 24 }, if: 'milling_depth.present?'
+  end
+
   with_options numericality: { greater_than_or_equal_to: 0 }, allow_blank: true do |t|
     t.validates :delays_trucks
     t.validates :delays_paving
