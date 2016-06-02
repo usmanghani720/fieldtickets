@@ -14,7 +14,7 @@ class ButtonRadioInput < SimpleForm::Inputs::CollectionRadioButtonsInput
     end
     
     # Makes it work with decorators
-    obj = if object.object
+    obj = if object.methods.include? :object
       object.object
     else
       object

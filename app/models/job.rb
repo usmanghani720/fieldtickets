@@ -18,6 +18,7 @@ class Job < ActiveRecord::Base
   validates :customer, presence: true
   validates :billing, presence: true
   validates :internal_number, presence: true
+  validates :customer_name, presence: true
   
   # When customer_name is set, find or create a customer by that name
   def customer_name=(name)
