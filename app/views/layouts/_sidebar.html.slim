@@ -39,9 +39,10 @@
                 | Vehicles
 
       ul.nav.nav-sidebar
-
-        li.indent-0
-          = link_to 'Tickets', ticket_path(Ticket::Ticket.last)
+      
+        - active_class = "#{'active' if controller? 'ticket/tickets', :exact}"
+        li class="indent-0 #{active_class}"
+          = link_to 'Tickets', tickets_path
       
         - if controller? 'ticket/'
       

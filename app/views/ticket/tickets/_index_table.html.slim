@@ -1,0 +1,22 @@
+- finalized = tickets.first.finalized?
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Bill to
+        - if finalized
+          th
+            | Finalized At
+        th
+          | Customer Approval
+    tbody
+      - tickets.each do | ticket |
+        tr data-link="#{ticket_path(ticket)}"
+          td = ticket.bill_to_pretty
+          - if finalized
+            td
+              = ticket.finalized_at
+          td
+            = ticket.approval

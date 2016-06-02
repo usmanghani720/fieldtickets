@@ -9,7 +9,13 @@ class Ticket::TicketsController < Ticket::BaseController
   
   # Show list of tickets
   def index
-    @tickets = Ticket::Ticket.all
+    @tickets = Ticket::Ticket.not_finalized.decorate
+    @tickets_finalized = Ticket::Ticket.finalized.decorate
+  end
+  
+  # Show list of finalized tickets
+  def index_finalized
+    index
   end
   
   # When calling #new, create the Ticket and redirect to it.

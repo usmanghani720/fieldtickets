@@ -9,8 +9,14 @@ class Ticket::TicketDecorator < Draper::Decorator
     pluralize_or_blank object.delays_total, 'hour'
   end
   
-  def number
-    object.id
+  def approval
+    if not object.pending_approval?
+      object.approval
+    end
+  end
+  
+  def bill_to_pretty
+    "#{object.bill_to_i18n} #{object.job}"
   end
   
   private

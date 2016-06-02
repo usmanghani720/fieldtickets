@@ -6,6 +6,9 @@ class Ticket::Ticket < ActiveRecord::Base
   
   acts_as_paranoid
   
+  scope :not_finalized, -> { where(finalized_at: nil) }
+  scope :finalized, -> { where.not(finalized_at: nil) }
+  
   # For accounting purposes, what are the ticket costs billed to?
   enum bill_to: {
     job: 0,
@@ -86,6 +89,11 @@ class Ticket::Ticket < ActiveRecord::Base
   before_save :erase_job_if_not_needed
   
   after_create :add_crew_chief_to_employees
+  
+  # Ticket number, shown to user
+  def number
+    id
+  end
   
   # For now, crew_chief is locked to the creator.
   # In the future, it can be overridden here.

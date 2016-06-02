@@ -37,8 +37,14 @@ module ApplicationHelper
     end
   end
   
-  def controller?(term)
-    params[:controller].include? term.to_s
+  def controller?(term, exact = false)
+    term = term.to_s
+    
+    if exact == :exact
+      params[:controller] == term
+    else
+      params[:controller].include? term
+    end
   end
   
 end

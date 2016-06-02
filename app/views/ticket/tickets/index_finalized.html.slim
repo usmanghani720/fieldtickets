@@ -7,4 +7,6 @@
 
 = render 'index_table', tickets: @tickets
 
-= link_to 'Show 2 finalized entries', tickets_finalized_path
+h3 Finalized Tickets
+
+= render 'index_table', tickets: @tickets_finalized
