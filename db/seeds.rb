@@ -11,6 +11,8 @@ Employee.create!([
   {
     name: 'Mike Smith',
     role: :crew_chief,
+    email: 'mike@fluffyx.com',
+    encrypted_password: '$2a$10$2uB..Revw3TAjgcpDTYBmuPkbFZrl3Ym1L5VSQjmAOto2LieOBY6.',
   },
   {
     name: 'Oliver Anson',
