@@ -2,7 +2,7 @@ ruby '2.2.2'
 
 source 'https://rubygems.org'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 gem 'puma'
 
 
