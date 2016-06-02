@@ -10,6 +10,8 @@
           th
             | Finalized At
         th
+          | Area
+        th
           | Customer Approval
     tbody
       - tickets.each do | ticket |
@@ -18,5 +20,7 @@
           - if finalized
             td
               = ticket.finalized_at
+          td
+            = ticket.milling_square_yards :abbreviate
           td
             = ticket.approval

@@ -68,7 +68,7 @@
               a href="#{ticket_vehicles_path @ticket}"
                 | Vehicles & Mills
             
-            - if @ticket.job
+            - if @ticket.job_required?
               - active_class = "#{'active' if controller? :dimensions}"
               li class="indent-2 #{active_class}"
                 a href="#{ticket_dimensions_path @ticket}"
@@ -79,7 +79,7 @@
               a href="#{ticket_supplies_path @ticket}"
                 | Supplies
               
-            - if @ticket.job
+            - if @ticket.job_required?
               - active_class = "#{'active' if controller? :delays}"
               li class="indent-2 #{active_class}"
                 a href="#{ticket_delays_path @ticket}"
@@ -90,7 +90,7 @@
               a href="#{ticket_notes_path @ticket}"
                 | Notes
               
-            - if @ticket.job
+            - if @ticket.job_required?
               - active_class = "#{'active' if controller? :approval}"
               li class="indent-2 #{active_class}"
                 a href="#{ticket_approval_path @ticket}"

@@ -1,8 +1,14 @@
 class Ticket::TicketDecorator < Draper::Decorator
   delegate_all
 
-  def milling_square_yards
-    pluralize_or_blank object.milling_square_yards, 'square yard'
+  def milling_square_yards(abbreviate = nil)
+    amount = object.milling_square_yards
+    
+    if abbreviate == :abbreviate
+      "#{amount} sq. yd." if amount and amount > 0
+    else
+      pluralize_or_blank amount, 'square yard'
+    end
   end
   
   def delays_total
