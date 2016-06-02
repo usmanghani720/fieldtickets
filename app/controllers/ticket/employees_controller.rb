@@ -1,6 +1,10 @@
 class Ticket::EmployeesController < Ticket::BaseController
   before_action :set_employee, only: [:show, :create_status, :edit_status, :update_status, :delete_status]
   
+  before_action :set_ticket, except: :autocomplete_employee_display_name
+  
+  autocomplete :employee, :display_name, limit: 50, full: true, scopes: [:worker]
+  
   # Show the Employees on this Ticket
   def index
   end

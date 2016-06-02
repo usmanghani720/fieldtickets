@@ -4,11 +4,14 @@ Customer.create!([
 ])
 
 Employee.create!([
-  {name: 'John Appleseed'},
-  {name: 'Kevin Jones'},
-  {name: 'Emily Langer'},
-  {name: 'Mike Smith'},
-  {name: 'Joe Walker'},
+  {name: 'John Appleseed', role: :worker},
+  {name: 'Kevin Jones', role: :worker},
+  {name: 'Emily Langer', role: :worker},
+  {name: 'Joe Walker', role: :worker},
+  {
+    name: 'Mike Smith',
+    role: :crew_chief,
+  },
   {
     name: 'Oliver Anson',
     email: 'oliver@fluffyx.com',

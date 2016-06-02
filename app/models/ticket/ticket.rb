@@ -24,6 +24,7 @@ class Ticket::Ticket < ActiveRecord::Base
   
   # If the ticket is billed to "Job" or "Cancelled Job", it'll reference the Job here.
   belongs_to :job
+  belongs_to :crew_chief, class_name: '::Employee'
   
   has_many :employees
   #has_many :employee_entries, through: :employees
@@ -39,9 +40,13 @@ class Ticket::Ticket < ActiveRecord::Base
   
   has_many :notes
   
+  
+  # Whether management has signed off on the billing.
+  enum admin_approval: { pending_admin_approval: 0, admin_approved: 1, admin_disapproved: 2 }
     
   # Whether the Customer's representative has signed off on the Job.
   enum approval: { pending_approval: 0, approved: 1, disapproved: 2 }
+  
   
   # Use Paperclip to attach a customer signature
   has_attached_file :approval_signature,
@@ -88,17 +93,29 @@ class Ticket::Ticket < ActiveRecord::Base
   # If this Ticket shouldn't be attached to a Job, set job to nil.
   before_save :erase_job_if_not_needed
   
-  after_create :add_crew_chief_to_employees
+  after_create :set_crew_chief
+  
+  def employee_hours
+    return @employee_hours if @employee_hours
+    
+    @employee_hours = {total: 0}
+
+    Ticket::Employee.statuses.each do |status, code|
+      @employee_hours[status.to_sym] = 0
+    end
+    
+    employees.each do |employee|
+      employee.hours.each do |status, duration|
+        @employee_hours[status] += duration
+      end
+    end
+    
+    @employee_hours
+  end
   
   # Ticket number, shown to user
   def number
     id
-  end
-  
-  # For now, crew_chief is locked to the creator.
-  # In the future, it can be overridden here.
-  def crew_chief
-    creator
   end
   
   # Earliest mill start time, used for customer reports
@@ -222,16 +239,15 @@ class Ticket::Ticket < ActiveRecord::Base
   
   private
   
-    def add_crew_chief_to_employees
-      if crew_chief and crew_chief.crew_chief?
+    def set_crew_chief
+      if creator and creator.crew_chief?
+        crew_chief ||= creator
         ticket_employee = employees.create(employee: creator)
       end
     end
   
     # If this Ticket shouldn't be attached to a Job, set job to nil.
-      def erase_job_if_not_needed
-      if not job_required?
-        self.job = nil
-      end
+    def erase_job_if_not_needed
+      self.job = nil if not job_required?
     end
 end

@@ -1,0 +1,152 @@
+.page-header
+  h1
+    | Ticket #
+    = ticket.number
+
+/ Job
+dl.dl-horizontal
+  dt Crew Chief:
+  dd = ticket.crew_chief
+  
+  dt Bill To:
+  dd = ticket.bill_to_pretty
+
+/ Employees
+hr
+
+dl.dl-horizontal
+  dt Employees:
+  dd
+    .table-responsive
+      table.table.table-striped.table-bordered
+        thead
+          tr
+            th
+            th Employee
+            th On the Job
+            th Transport
+            th Maintenance
+            th Total
+            th Per Diem
+        tbody
+          - ticket.employees.decorate.each_with_index do | employee, index |
+            tr
+              td
+                = index + 1
+              td
+                = employee.display_name
+              td
+                = employee.hours_pretty[:on_the_job]
+              td
+                = employee.hours_pretty[:transport]
+              td
+                = employee.hours_pretty[:maintenance]
+              td
+                strong = employee.hours_pretty[:total]
+              td
+                strong = 'Yes' if employee.per_diem
+          tr
+            th
+            th
+            th
+              = ticket.employee_hours_pretty[:on_the_job]
+            th
+              = ticket.employee_hours_pretty[:transport]
+            th
+              = ticket.employee_hours_pretty[:maintenance]
+            th
+              strong = ticket.employee_hours_pretty[:total]
+            th
+
+/ Mills
+hr
+
+dl.dl-horizontal
+  dt Mills:
+  dd = ticket.mills.count
+
+/ Other Vehicles
+hr
+
+dl.dl-horizontal
+  dt Other Vehicles:
+  dd = ticket.vehicles.count - ticket.mills.count
+
+/ Dimensions
+hr
+
+dl.dl-horizontal
+  dt Depth:
+  dd = ticket.milling_depth
+  dt Width:
+  dd = ticket.milling_depth
+  dt Length:
+  dd = ticket.milling_depth
+  dt Area:
+  dd = ticket.milling_square_yards
+
+/ Supplies
+hr
+
+/ Delays
+hr
+
+dl.dl-horizontal
+  - if ticket.delays_trucks.present?
+    dt Trucks:
+    dd = ticket.delays_trucks_pretty
+
+  - if ticket.delays_paving.present?
+    dt Trucks:
+    dd = ticket.delays_paving_pretty
+
+  - if ticket.delays_mot.present?
+    dt Trucks:
+    dd = ticket.delays_mot_pretty
+
+  - if ticket.delays_other.present?
+    dt Trucks:
+    dd = ticket.delays_other_pretty
+  
+  dt Total:
+  dd
+    - if ticket.delays_total.present?
+      strong
+        = ticket.delays_total
+    - else
+      | None
+
+  - if ticket.delays_notes.present?
+    dt Notes:
+    dd = ticket.delays_notes
+  
+
+/ Notes
+hr
+
+dl.dl-horizontal
+  dt Notes:
+  - if ticket.notes.blank?
+    dd None
+  - else
+    dd
+      .table-responsive
+        table.table.table-striped.table-bordered
+          tbody
+            - ticket.notes.decorate.each do | note |
+              tr
+                td
+                  = note.note
+                  br
+                  br
+                  em = note.attribution
+    
+/ Customer Approval
+hr
+
+/ Finalization
+hr
+
+dl.dl-horizontal
+  dt Finalized At:
+  dd = ticket.finalized_at

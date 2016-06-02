@@ -7,8 +7,8 @@
 
   .form-inputs
   
-    = f.input :employee, url: autocomplete_employee_display_name_tickets_path, as: :autocomplete, id_element: '#employee_id'
-    = f.hidden_field :employee_id, id: 'employee_id'
+    = f.input :employee, url: autocomplete_worker_display_name_tickets_path, as: :autocomplete, id_element: '#ticket_employee_employee_id'
+    = f.hidden_field :employee_id
     
     .form-group
       label.col-sm-3.control-label Per-Diem

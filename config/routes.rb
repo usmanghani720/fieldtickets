@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  # namespace :ticket do
-  # get 'vehicles/index'
-  # end
 
   devise_for :employees
   
@@ -55,9 +52,17 @@ Rails.application.routes.draw do
       get 'finalize' => 'finalize#index'
       patch 'finalize' => 'finalize#update'
       
-      get :autocomplete_job_display_name, on: :collection
-      get :autocomplete_vehicle_display_name, on: :collection
-      get :autocomplete_employee_display_name, on: :collection
+      collection do
+        get :autocomplete_job_display_name
+        
+        get :autocomplete_vehicle_display_name
+        
+        #get :autocomplete_employee_display_name
+        
+        get 'autocomplete_crew_chief_display_name' => 'job#autocomplete_employee_display_name'
+        
+        get 'autocomplete_worker_display_name' => 'employees#autocomplete_employee_display_name'
+      end
     end
   end
   
@@ -70,6 +75,8 @@ Rails.application.routes.draw do
     resources :jobs do
       get :autocomplete_customer_name, on: :collection
     end
+    
+    resources :approval
   end
   
   root 'application#homepage'

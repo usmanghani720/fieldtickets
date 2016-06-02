@@ -23,6 +23,8 @@ class Ticket::BaseController < ApplicationController
   
     def ticket_params
       params.require(:ticket_ticket).permit(
+        :crew_chief_id,
+        
         :bill_to,
         :job_name_entry,
     

@@ -1,4 +1,19 @@
 module ApplicationHelper
+  def duration(number)
+    if number
+      hours = number / 60
+      minutes = number % 60
+    
+      if hours == 0
+        "#{minutes} min"
+      elsif minutes == 0
+        "#{hours} hr"
+      else
+        "#{hours} hr #{minutes} min"
+      end
+    end
+  end
+  
   def title(page_title)
     content_for :title, "#{page_title} — BlackRock Milling"
   end
@@ -32,7 +47,7 @@ module ApplicationHelper
   def partial(partial_path, locals = {})
     begin
       render partial: partial_path, locals: locals
-    rescue
+    rescue ActionView::MissingTemplate
       render partial: "shared/#{partial_path}", locals: locals
     end
   end

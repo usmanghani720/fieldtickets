@@ -13,10 +13,15 @@
       
           - active_class = ""
           li class="indent-0 #{active_class}"
-            a href="#{admin_jobs_path}"
+            a href="#{admin_approval_index_path}"
               | Management
           
           - if controller? 'admin/'
+        
+            - active_class = "#{'active' if controller? :approval}"
+            li class="indent-1 #{active_class}"
+              a href="#{admin_approval_index_path}"
+                | Approve Tickets
         
             - active_class = "#{'active' if controller? :jobs}"
             li class="indent-1 #{active_class}"

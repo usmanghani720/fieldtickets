@@ -1,5 +1,15 @@
 class Ticket::TicketDecorator < Draper::Decorator
   delegate_all
+  
+  def employee_hours_pretty
+    result = object.employee_hours.clone
+    
+    result.each do |k,v|
+      result[k] = h.duration(v)
+    end
+    
+    result
+  end
 
   def milling_square_yards(abbreviate = nil)
     amount = object.milling_square_yards
@@ -13,6 +23,22 @@ class Ticket::TicketDecorator < Draper::Decorator
   
   def delays_total
     pluralize_or_blank object.delays_total, 'hour'
+  end
+  
+  def delays_trucks_pretty
+    pluralize_or_blank object.delays_trucks, 'hour'
+  end
+  
+  def delays_paving_pretty
+    pluralize_or_blank object.delays_paving, 'hour'
+  end
+  
+  def delays_mot_pretty
+    pluralize_or_blank object.delays_mot, 'hour'
+  end
+  
+  def delays_other_pretty
+    pluralize_or_blank object.delays_other, 'hour'
   end
   
   def approval

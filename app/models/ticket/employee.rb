@@ -12,6 +12,25 @@ class Ticket::Employee < ActiveRecord::Base
   
   enum status: { idle: 0, transport: 1, maintenance: 2, on_the_job: 3 }
   
+  def hours
+    return @hours if @hours
+    
+    @hours = {total: 0}
+
+    Ticket::Employee.statuses.each do |status, code|
+      @hours[status.to_sym] = 0
+    end
+
+    employee_entries.each do |entry|
+      status = entry.status.to_sym
+      duration = entry.duration || 0
+      @hours[status] += duration
+      @hours[:total] += duration
+    end
+    
+    @hours
+  end
+  
   def status=(new_status)
     employee_entry = Ticket::EmployeeEntry.create!(
       employee: self,

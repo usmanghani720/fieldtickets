@@ -1,0 +1,42 @@
+- finalized = tickets.first.finalized?
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Ticket #
+        th
+          | Bill To
+        th
+          | Crew Chief
+        th
+          | Employees
+        th
+          | Milled Area
+        th
+          | Delays
+        th
+          | Customer Approval
+        - if finalized
+          th
+            | Finalized At
+    tbody
+      - tickets.each do | ticket |
+        tr data-link="#{admin_approval_path(ticket)}"
+          td
+            strong = ticket.number
+          td = ticket.bill_to_pretty
+          td
+            = ticket.crew_chief
+          td
+            | 3 employees × 7.9 hr.
+          td
+            = ticket.milling_square_yards :abbreviate
+          td
+            = ticket.delays_total
+          td
+            = ticket.approval
+          - if finalized
+            td
+              = ticket.finalized_at

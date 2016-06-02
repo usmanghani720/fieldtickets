@@ -121,8 +121,10 @@ ActiveRecord::Schema.define(version: 20160530174316) do
   create_table "ticket_tickets", force: :cascade do |t|
     t.integer  "bill_to",                         default: 0, null: false
     t.integer  "job_id"
+    t.integer  "crew_chief_id"
     t.string   "job_name_override"
-    t.integer  "approval",                        default: 0
+    t.integer  "admin_approval",                  default: 0, null: false
+    t.integer  "approval",                        default: 0, null: false
     t.string   "approval_name_and_title"
     t.string   "approval_email"
     t.text     "approval_feedback"
@@ -150,6 +152,7 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.datetime "approval_signature_updated_at"
   end
 
+  add_index "ticket_tickets", ["crew_chief_id"], name: "index_ticket_tickets_on_crew_chief_id", using: :btree
   add_index "ticket_tickets", ["deleted_at"], name: "index_ticket_tickets_on_deleted_at", using: :btree
   add_index "ticket_tickets", ["finalized_at"], name: "index_ticket_tickets_on_finalized_at", using: :btree
   add_index "ticket_tickets", ["job_id"], name: "index_ticket_tickets_on_job_id", using: :btree
