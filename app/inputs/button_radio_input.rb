@@ -48,9 +48,11 @@ class ButtonRadioInput < SimpleForm::Inputs::CollectionRadioButtonsInput
         btn = 'btn btn-default'
       end
       
+      checked_attribute = ' checked="checked"'unless active.empty?
+      
       out << <<-HTML
         <label class="#{btn} #{active}">    
-          <input type="radio" value="#{value}" name="#{html_name}">#{label}</input>
+          <input type="radio" value="#{value}" name="#{html_name}"#{checked_attribute}>#{label}</input>
         </label>
 HTML
     end
