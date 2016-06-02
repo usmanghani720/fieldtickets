@@ -1,7 +1,8 @@
 // Make invalid number fields show red. They don’t sumbit when invalid.
 input[type=number]:invalid {
-    background-color: #FFCCCC;
-    color: white;
+  background-color: #F00;
+  color: white;
+  font-weight: bold;
 }
 
 // Make enum_radio_buttons show blue when selected, not gray
@@ -12,14 +13,12 @@ input[type=number]:invalid {
   @extend .active;
 }
 
-// Disable WebKit's spinner on numeric fields, from http://stackoverflow.com/questions/3975769/disable-webkits-spin-buttons-on-input-type-number
+// Disable WebKit's and Safari’s spinner on numeric fields, from http://stackoverflow.com/questions/3975769/disable-webkits-spin-buttons-on-input-type-number
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-
-// Same, but for Firefox
 input[type=number] {
     -moz-appearance:textfield;
 }
