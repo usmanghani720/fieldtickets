@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def title(page_title)
+    content_for :title, "#{page_title} — BlackRock Milling"
+  end
+  
   def hide_today_in_date(datetime)
     if datetime.today?
       datetime.pretty_time
