@@ -5,6 +5,15 @@ class Ticket::TicketDecorator < Draper::Decorator
     object.approval_i18n
   end
   
+  def employees_summary
+    count = object.employees.count
+    if count > 0
+      minutes = object.employee_hours[:total]
+      minutes_per_employee = minutes/count
+      "#{count} @ #{h.duration(minutes_per_employee)} each"
+    end
+  end
+  
   def employee_hours_pretty
     result = object.employee_hours.clone
     
@@ -45,8 +54,14 @@ class Ticket::TicketDecorator < Draper::Decorator
     end
   end
   
-  def delays_total
-    pluralize_or_blank object.delays_total, 'hour'
+  def delays_total(abbreviate = nil)
+    amount = object.delays_total
+    
+    if abbreviate == :abbreviate
+      "#{amount} hr." if amount and amount > 0
+    else
+      pluralize_or_blank amount, 'hour'
+    end
   end
   
   def delays_trucks_pretty

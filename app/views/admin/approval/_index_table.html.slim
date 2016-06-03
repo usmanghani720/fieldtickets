@@ -30,11 +30,11 @@
           td
             = ticket.crew_chief
           td
-            | 3 employees × 7.9 hr.
+            = ticket.employees_summary
           td
             = ticket.milling_square_yards :abbreviate
           td
-            = ticket.delays_total
+            = ticket.delays_total :abbreviate
           td
             = ticket.approval
           - if finalized
