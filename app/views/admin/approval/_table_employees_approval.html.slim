@@ -47,3 +47,4 @@
             th
               strong = ticket.employee_hours_pretty[:total]
             th
+              = ticket.employees.where(per_diem: true).count

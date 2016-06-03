@@ -9,7 +9,8 @@ class Vehicle < ActiveRecord::Base
   acts_as_paranoid
   
   def to_s
-    the_string = (internal_number || 'Unnumbered Vehicle')
+    the_string = ''
+    the_string << (internal_number || 'Unnumbered Vehicle')
     the_string << " — #{description}" if description.present?
     the_string
   end

@@ -5,11 +5,7 @@
     thead
       tr
         th
-          | Ticket #
-        th
           | Bill To
-        th
-          | Crew Chief
         th
           | Employees
         th
@@ -18,18 +14,24 @@
           | Delays
         th
           | Customer Approval
-        - if finalized
-          th
-            | Finalized At
+        th
+          | Finalized At
     tbody
       - tickets.each do | ticket |
         tr data-link="#{admin_approval_path(ticket)}"
           td
-            strong = ticket.number
-          td = ticket.bill_to_pretty
-          td
+            strong
+              | Ticket #
+              = ticket.number
+            |  (
             = ticket.crew_chief
+            | )
+            br
+            = ticket.bill_to_pretty
           td
+            = ticket.employees.count
+            |  employees ×
+            br
             = ticket.employees_summary
           td
             = ticket.milling_square_yards :abbreviate
@@ -37,6 +39,5 @@
             = ticket.delays_total :abbreviate
           td
             = ticket.approval
-          - if finalized
-            td
-              = ticket.finalized_at
+          td
+            = ticket.finalized_at

@@ -5,12 +5,21 @@ class Ticket::TicketDecorator < Draper::Decorator
     object.approval_i18n
   end
   
+  # def employees_summary
+  #   count = object.employees.count
+  #   if count > 0
+  #     minutes = object.employee_hours[:total]
+  #     minutes_per_employee = minutes/count
+  #     "#{count} @ #{h.duration(minutes_per_employee)} each"
+  #   end
+  # end
+
   def employees_summary
     count = object.employees.count
     if count > 0
       minutes = object.employee_hours[:total]
       minutes_per_employee = minutes/count
-      "#{count} @ #{h.duration(minutes_per_employee)} each"
+      h.duration minutes_per_employee
     end
   end
   

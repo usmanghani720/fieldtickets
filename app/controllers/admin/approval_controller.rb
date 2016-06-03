@@ -3,7 +3,7 @@ class Admin::ApprovalController < Admin::BaseController
   decorates_assigned :ticket
   
   def index
-    @tickets_pending_approval = Ticket::Ticket.pending_admin_approval.decorate
+    @tickets_pending_approval = Ticket::Ticket.approved.pending_admin_approval.decorate
     @tickets_approved = Ticket::Ticket.admin_approved.decorate
     @tickets_disapproved = Ticket::Ticket.admin_disapproved.decorate
   end

@@ -42,14 +42,10 @@ class Admin::VehiclesController < Admin::BaseController
   # PATCH/PUT /vehicle/1
   # PATCH/PUT /vehicle/1.json
   def update
-    respond_to do |format|
-      if @vehicle.update(vehicle_params)
-        format.html { redirect_to admin_vehicle_path(@vehicle), notice: @vehicle.flash(:update) }
-        format.json { render :show, status: :ok, location: @vehicle }
-      else
-        format.html { render :edit }
-        format.json { render json: @vehicle.errors, status: :unprocessable_entity }
-      end
+    if @vehicle.update(vehicle_params)
+      redirect_to admin_vehicle_path(@vehicle), notice: @vehicle.flash(:update)
+    else
+      render :edit
     end
   end
 
