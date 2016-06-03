@@ -30,7 +30,7 @@
                     |  or 
                     = link_to 'Cancel', ticket_vehicle_log_path(ticket, @vehicle), id: 'cancel-my-changes'
                     |  or 
-                    = link_to 'Delete', request.original_url, id: 'delete-record', method: :delete
+                    = link_to 'Delete', request.original_url, id: 'delete-record', method: :delete, data: {confirm: 'Are you sure you want to delete this timesheet entry?'}
                 
                 
           - else
