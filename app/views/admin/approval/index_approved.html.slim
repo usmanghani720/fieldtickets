@@ -1,0 +1,9 @@
+.page-header
+  h1
+    | Tickets Pending Approval
+
+= render 'index_table', tickets: @tickets_pending_approval
+
+h3 Approved Tickets
+
+= render 'index_table', tickets: @tickets_approved

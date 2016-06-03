@@ -56,8 +56,11 @@ class Ticket::TicketDecorator < Draper::Decorator
   def milling_square_yards(abbreviate = nil)
     amount = object.milling_square_yards
     
-    if abbreviate == :abbreviate
+    case abbreviate
+    when :abbreviate
       "#{amount} sq. yd." if amount and amount > 0
+    when :blank
+      amount
     else
       pluralize_or_blank amount, 'square yard'
     end

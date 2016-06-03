@@ -1,11 +1,11 @@
-- finalized = tickets.first.finalized?
+- admin_approved = tickets.first and tickets.first.admin_approved?
 
 .table-responsive
   table.table.table-striped.table-bordered.table-hover
     thead
       tr
         th
-          | Bill To
+          | Ticket
         th
           | Employees
         th
@@ -29,9 +29,11 @@
             br
             = ticket.bill_to_pretty
           td
-            = ticket.employees.count
-            |  employees ×
+            strong
+              = ticket.employees.count
+              |  employees
             br
+            | Avg: 
             = ticket.employees_summary
           td
             = ticket.milling_square_yards :abbreviate

@@ -29,7 +29,7 @@ dl.dl-horizontal
 hr
 
 dl.dl-horizontal
-  dt Other Vehicles:
+  dt Trucks:
   dd = partial 'table_nonmills_approval'
 
 / Dimensions
@@ -158,4 +158,12 @@ dl.dl-horizontal
   
 hr
 
-h3 Approval
+div#approval_form
+  
+  h2 Approve Ticket
+  
+  p.question When you approve this ticket, employee hours will be sent to payroll.
+  
+  = link_to 'Approve Ticket', admin_approval_approve_path(ticket), class: 'btn-approve', method: :patch
+  
+  = link_to 'Make Changes', ticket_employees_path(ticket), class: 'btn-disapprove'

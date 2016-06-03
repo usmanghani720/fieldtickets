@@ -28,14 +28,10 @@ class Admin::VehiclesController < Admin::BaseController
   def create
     @vehicle = Vehicle.new(vehicle_params)
 
-    respond_to do |format|
-      if @vehicle.save
-        format.html { redirect_to admin_vehicle_path(@vehicle), notice: @vehicle.flash(:create) }
-        format.json { render :show, status: :created, location: @vehicle }
-      else
-        format.html { render :new }
-        format.json { render json: @vehicle.errors, status: :unprocessable_entity }
-      end
+    if @vehicle.save
+      redirect_to admin_vehicle_path(@vehicle), notice: @vehicle.flash(:create)
+    else
+      render :new
     end
   end
 
@@ -53,10 +49,7 @@ class Admin::VehiclesController < Admin::BaseController
   # DELETE /vehicle/1.json
   def destroy
     @vehicle.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_vehicles_path, notice: @vehicle.flash(:destroy) }
-      format.json { head :no_content }
-    end
+    redirect_to admin_vehicles_path, notice: @vehicle.flash(:destroy)
   end
 
   private

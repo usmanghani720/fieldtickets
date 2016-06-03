@@ -76,7 +76,10 @@ Rails.application.routes.draw do
       get :autocomplete_customer_name, on: :collection
     end
     
-    resources :approval
+    get 'approval/approved' => 'approval#index_approved'
+    resources :approval do
+      patch :approve
+    end
   end
   
   root 'application#homepage'

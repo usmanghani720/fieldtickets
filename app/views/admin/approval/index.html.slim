@@ -1,8 +1,8 @@
 .page-header
   h1
-    | Tickets
+    | Tickets Pending Approval
 
 = render 'index_table', tickets: @tickets_pending_approval
 
 - if @tickets_approved.present?
-  = link_to "Show #{pluralize @tickets_approved.count, 'approved tickets'}", tickets_finalized_path
+  = link_to "Show #{pluralize @tickets_approved.count, 'approved tickets'}", admin_approval_approved_path
