@@ -1,0 +1,40 @@
+- mills = ticket.mills.decorate
+- just_one = mills.count == 1
+
+- if mills.blank?
+  | None
+- else
+  .table-responsive
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          - unless just_one
+            th
+          th Mill
+          th On the Job
+          th Maintenance
+          th Total
+      tbody
+        - mills.each_with_index do | mill, index |
+          tr
+            - unless just_one
+              td
+                = index + 1
+            td
+              = mill.display_name
+            td
+              = mill.hours_pretty[:on_the_job]
+            td
+              = mill.hours_pretty[:maintenance]
+            td
+              strong = mill.hours_pretty[:total]
+        - unless just_one
+          tr
+            th
+            th
+            th
+              = ticket.mill_hours_pretty[:on_the_job]
+            th
+              = ticket.mill_hours_pretty[:maintenance]
+            th
+              strong = ticket.mill_hours_pretty[:total]

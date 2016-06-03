@@ -1,8 +1,5 @@
-class Ticket::VehicleDecorator < Draper::Decorator
+class Ticket::VehicleDecorator < Ticket::TimesheetParentDecorator
   delegate_all
   
-  def status
-    object.status.titleize
-  end
 
 end

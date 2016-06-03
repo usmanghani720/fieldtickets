@@ -1,0 +1,49 @@
+- employees = ticket.employees.decorate
+- just_one = employees.count == 1
+
+- if employees.blank?
+  | None
+- else
+  .table-responsive
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          - unless just_one
+            th
+          th Employee
+          th On the Job
+          th Transport
+          th Maintenance
+          th Total
+          th Per Diem
+      tbody
+        - employees.each_with_index do | employee, index |
+          tr
+            - unless just_one
+              td
+                = index + 1
+            td
+              = employee.display_name
+            td
+              = employee.hours_pretty[:on_the_job]
+            td
+              = employee.hours_pretty[:transport]
+            td
+              = employee.hours_pretty[:maintenance]
+            td
+              strong = employee.hours_pretty[:total]
+            td
+              strong = 'Yes' if employee.per_diem
+        - unless just_one
+          tr
+            th
+            th
+            th
+              = ticket.employee_hours_pretty[:on_the_job]
+            th
+              = ticket.employee_hours_pretty[:transport]
+            th
+              = ticket.employee_hours_pretty[:maintenance]
+            th
+              strong = ticket.employee_hours_pretty[:total]
+            th

@@ -10,6 +10,26 @@ class Ticket::TicketDecorator < Draper::Decorator
     
     result
   end
+  
+  def mill_hours_pretty
+    result = object.mill_hours.clone
+    
+    result.each do |k,v|
+      result[k] = h.duration(v)
+    end
+    
+    result
+  end
+
+  def nonmill_hours_pretty
+    result = object.nonmill_hours.clone
+    
+    result.each do |k,v|
+      result[k] = h.duration(v)
+    end
+    
+    result
+  end
 
   def milling_square_yards(abbreviate = nil)
     amount = object.milling_square_yards

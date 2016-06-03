@@ -1,0 +1,36 @@
+- nonmills = ticket.nonmills
+- just_one = nonmills.count == 1
+
+- if nonmills.blank?
+  | None
+- else
+  .table-responsive
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          - unless just_one
+            th
+          th Vehicle
+          th On the Job (Total)
+          /th Total
+      tbody
+        - nonmills.each_with_index do | nonmill, index |
+          - nonmill = nonmill.decorate
+          tr
+            - unless just_one
+              td
+                = index + 1
+            td
+              = nonmill.display_name
+            td
+              = nonmill.hours_pretty[:on_the_job]
+            /td
+            /  strong = nonmill.hours_pretty[:total]
+        - unless just_one
+          tr
+            th
+            th
+            th
+              = ticket.nonmill_hours_pretty[:on_the_job]
+            / th
+            /   strong = ticket.nonmill_hours_pretty[:total]

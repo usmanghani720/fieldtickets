@@ -113,6 +113,46 @@ class Ticket::Ticket < ActiveRecord::Base
     @employee_hours
   end
   
+  def mill_hours
+    return @mill_hours if @mill_hours
+    
+    @mill_hours = {total: 0}
+
+    Ticket::Vehicle.statuses.each do |status, code|
+      @mill_hours[status.to_sym] = 0
+    end
+    
+    mills.each do |mill|
+      mill.hours.each do |status, duration|
+        @mill_hours[status] += duration
+      end
+    end
+    
+    @mill_hours
+  end
+  
+  def nonmill_hours
+    return @nonmill_hours if @nonmill_hours
+    
+    @nonmill_hours = {total: 0}
+
+    Ticket::Vehicle.statuses.each do |status, code|
+      @nonmill_hours[status.to_sym] = 0
+    end
+    
+    nonmills.each do |nonmill|
+      nonmill.hours.each do |status, duration|
+        @nonmill_hours[status] += duration
+      end
+    end
+    
+    @nonmill_hours
+  end
+  
+  def nonmills
+    vehicles - mills
+  end
+  
   # Ticket number, shown to user
   def number
     id

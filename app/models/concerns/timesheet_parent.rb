@@ -12,6 +12,25 @@ module TimesheetParent
     before_create :set_default_time
   end
   
+  def hours
+    return @hours if @hours
+    
+    @hours = {total: 0}
+
+    self.class.statuses.each do |status, code|
+      @hours[status.to_sym] = 0
+    end
+
+    entries.each do |entry|
+      status = entry.status.to_sym
+      duration = entry.duration || 0
+      @hours[status] += duration
+      @hours[:total] += duration
+    end
+    
+    @hours
+  end
+  
   def recalculate!
     entries.reload.each_with_index do |entry, index|
       next_entry = entries[index + 1]

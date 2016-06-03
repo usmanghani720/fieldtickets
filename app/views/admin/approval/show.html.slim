@@ -16,61 +16,21 @@ hr
 
 dl.dl-horizontal
   dt Employees:
-  dd
-    .table-responsive
-      table.table.table-striped.table-bordered
-        thead
-          tr
-            th
-            th Employee
-            th On the Job
-            th Transport
-            th Maintenance
-            th Total
-            th Per Diem
-        tbody
-          - ticket.employees.decorate.each_with_index do | employee, index |
-            tr
-              td
-                = index + 1
-              td
-                = employee.display_name
-              td
-                = employee.hours_pretty[:on_the_job]
-              td
-                = employee.hours_pretty[:transport]
-              td
-                = employee.hours_pretty[:maintenance]
-              td
-                strong = employee.hours_pretty[:total]
-              td
-                strong = 'Yes' if employee.per_diem
-          tr
-            th
-            th
-            th
-              = ticket.employee_hours_pretty[:on_the_job]
-            th
-              = ticket.employee_hours_pretty[:transport]
-            th
-              = ticket.employee_hours_pretty[:maintenance]
-            th
-              strong = ticket.employee_hours_pretty[:total]
-            th
+  dd = partial 'table_employees_approval'
 
 / Mills
 hr
 
 dl.dl-horizontal
   dt Mills:
-  dd = ticket.mills.count
-
+  dd = partial 'table_mills_approval'
+  
 / Other Vehicles
 hr
 
 dl.dl-horizontal
   dt Other Vehicles:
-  dd = ticket.vehicles.count - ticket.mills.count
+  dd = partial 'table_nonmills_approval'
 
 / Dimensions
 hr
