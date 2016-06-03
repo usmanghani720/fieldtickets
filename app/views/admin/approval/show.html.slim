@@ -48,27 +48,48 @@ dl.dl-horizontal
 / Supplies
 hr
 
+dl.dl-horizontal
+  - if ticket.supplies_teeth.present?
+    dt Teeth:
+    dd = ticket.supplies_teeth
+
+  - if ticket.supplies_holders.present?
+    dt Holders:
+    dd = ticket.supplies_holders
+
+  - if ticket.supplies_oil.present?
+    dt Oil:
+    dd = ticket.supplies_oil
+
+  - if ticket.supplies_notes.present?
+    dt Supplies Notes:
+    dd = ticket.delays_other_pretty
+
+  - if ticket.supplies_teeth.blank? and ticket.supplies_holders.blank? and ticket.supplies_oil.blank? and ticket.supplies_notes.blank?
+    dt Supplies:
+    dd None
+
 / Delays
 hr
 
 dl.dl-horizontal
   - if ticket.delays_trucks.present?
-    dt Trucks:
+    dt Truck Delays:
     dd = ticket.delays_trucks_pretty
 
   - if ticket.delays_paving.present?
-    dt Trucks:
+    dt Paving Delays:
     dd = ticket.delays_paving_pretty
 
   - if ticket.delays_mot.present?
-    dt Trucks:
+    dt MOT Delays:
     dd = ticket.delays_mot_pretty
 
   - if ticket.delays_other.present?
-    dt Trucks:
+    dt Other Delays:
     dd = ticket.delays_other_pretty
   
-  dt Total:
+  dt Total Delays:
   dd
     - if ticket.delays_total.present?
       strong
@@ -103,6 +124,30 @@ dl.dl-horizontal
     
 / Customer Approval
 hr
+
+dl.dl-horizontal
+  dt Customer Approval:
+  - if ticket.pending_approval?
+    dd Not yet approved
+  - else
+    dd = ticket.approval
+  
+    dt Customer Feedback:
+    dd
+      - if ticket.approval_feedback
+        = ticket.approval_feedback
+      - else
+        | None
+        
+    dt = "#{ticket.approval} By:"
+    dd
+      = ticket.approval_name_and_title
+      br
+      = ticket.approval_email
+
+    dt Signature
+    dd
+      img src="#{ticket.approval_signature}"
 
 / Finalization
 hr

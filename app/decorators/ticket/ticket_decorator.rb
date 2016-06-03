@@ -1,6 +1,10 @@
 class Ticket::TicketDecorator < Draper::Decorator
   delegate_all
   
+  def approval
+    object.approval_i18n
+  end
+  
   def employee_hours_pretty
     result = object.employee_hours.clone
     
@@ -61,11 +65,11 @@ class Ticket::TicketDecorator < Draper::Decorator
     pluralize_or_blank object.delays_other, 'hour'
   end
   
-  def approval
-    if not object.pending_approval?
-      object.approval
-    end
-  end
+  # def approval
+  #   if not object.pending_approval?
+  #     object.approval
+  #   end
+  # end
   
   def bill_to_pretty
     "#{object.bill_to_i18n} #{object.job}"
