@@ -159,11 +159,17 @@ dl.dl-horizontal
 hr
 
 div#approval_form
+
+  - if ticket.admin_approved?
+
+    h2 This ticket has been approved.
   
-  h2 Approve Ticket
+  - else
   
-  p.question When you approve this ticket, employee hours will be sent to payroll.
+    h2 Approve Ticket
   
-  = link_to 'Approve Ticket', admin_approval_approve_path(ticket), class: 'btn-approve', method: :patch
+    p.question When you approve this ticket, employee hours will be sent to payroll.
   
-  = link_to 'Make Changes', ticket_employees_path(ticket), class: 'btn-disapprove'
+    = link_to 'Approve Ticket', admin_approval_approve_path(ticket), class: 'btn-approve', method: :patch
+  
+    = link_to 'Make Changes', ticket_employees_path(ticket), class: 'btn-disapprove'
