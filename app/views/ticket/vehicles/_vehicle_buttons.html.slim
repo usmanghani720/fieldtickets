@@ -20,11 +20,11 @@
     li.disabled
       a Change status:
 
-    - if not vehicle.status == 'on_the_job'
+    - if not vehicle.on_the_job?
       li = link_to 'On the Job', ticket_vehicle_new_status_path(ticket, vehicle, status: 'on_the_job'), method: :post
 
-    - if not vehicle.status == 'maintenance' and vehicle.maintenance_available?
+    - if not vehicle.maintenance? and vehicle.maintenance_available?
       li = link_to 'Maintenance', ticket_vehicle_new_status_path(ticket, vehicle, status: 'maintenance'), method: :post
   
-    - if not vehicle.status == 'idle'
+    - if not vehicle.idle?
       li = link_to 'Idle', ticket_vehicle_new_status_path(ticket, vehicle, status: 'idle'), method: :post

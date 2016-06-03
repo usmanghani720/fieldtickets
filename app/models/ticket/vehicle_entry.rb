@@ -12,6 +12,17 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   def to_s
     vehicle.to_s
   end
+  
+  # Shows 
+  def available_statuses
+    if refuel?
+      { 'refuel' => 1 }
+    else
+      e = nil
+      e = :maintenance unless vehicle.maintenance_available?
+      Ticket::VehicleEntry.statuses.except :refuel, e
+    end
+  end
     
   private
   

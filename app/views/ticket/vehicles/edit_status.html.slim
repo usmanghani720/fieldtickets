@@ -18,7 +18,7 @@
             = simple_form_for entry, url: request.original_url do |f|
               td colspan="3"
                 .form-inputs
-                  = f.input :status, include_blank: false
+                  = f.input :status, include_blank: false, collection: entry.available_statuses
                   br
                   = f.input :time, as: :string
                   br
