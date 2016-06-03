@@ -24,6 +24,14 @@ class Ticket::Vehicle < ActiveRecord::Base
     where("vehicles.vehicle_type = ?", 2) # 2 is :mill, per app/models/vehicle.rb
   }
   
+  def maintenance_available?
+    if vehicle
+      vehicle.mill?
+    else
+      rental?
+    end
+  end
+  
   def status=(new_status)
     vehicle_entry = Ticket::VehicleEntry.create!(
       vehicle: self,

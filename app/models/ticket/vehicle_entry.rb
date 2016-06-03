@@ -8,15 +8,7 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   acts_as_paranoid
   
   enum status: { idle: 0, refuel: 1, maintenance: 2, on_the_job: 3 }
-  
-  def maintenance_available?
-    if vehicle
-      vehicle.mill?
-    else
-      rental?
-    end
-  end
-  
+    
   def to_s
     vehicle.to_s
   end
