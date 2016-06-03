@@ -2,17 +2,14 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :crew_chief, url: autocomplete_crew_chief_display_name_tickets_path, as: :autocomplete, id_element: '#ticket_ticket_crew_chief_id'
-    = f.hidden_field :crew_chief_id
-    
-  
-    hr
-  
     = f.input :bill_to, include_blank: false
     
-    = f.input :job_name_entry, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, wrapper_html: { style: (@ticket.job_required? ? '' : 'display:none') }    
+    = f.input :job_name_entry, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, wrapper_html: { style: (@ticket.job_required? ? '' : 'display:none') }
     
-    / = f.hidden_field :job_id, id: 'job_id'
+    hr
+    
+    = f.input :crew_chief, url: autocomplete_crew_chief_display_name_tickets_path, as: :autocomplete, id_element: '#ticket_ticket_crew_chief_id'
+    = f.hidden_field :crew_chief_id
     
   = partial 'autoshow_form_buttons', f: f
       
