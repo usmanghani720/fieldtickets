@@ -1,0 +1,72 @@
+class PayrollPeriod < ActiveRecord::Base
+  has_many :employee_entries, class_name: 'Ticket::EmployeeEntry'
+  
+  def self.create_with_dates(start_date, end_date)
+    pp = PayrollPeriod.create(
+      start_date: start_date,
+      end_date: end_date
+    )
+    pp.autoselect_entries!
+    pp
+  end
+  
+  # Choose the Ticket::EmployeeEntries that belong to this PayrollPeriod
+  def autoselect_entries!
+    if employee_entries.present?
+      raise 'This PayrollPeriod already has employee_entries! Can’t autoselect_entries!'
+    end
+    
+    Ticket::Ticket.set_first_employee_entries
+  
+    tickets = Ticket::Ticket.where(first_employee_entry: start_date..end_date)
+    tickets.each do |ticket|
+      ticket.employee_entries.each do |employee_entry|
+        if employee_entry.payroll_period
+          raise 'PayrollPeriod.autoselect_entries! was called for a date range that already has payroll data.'
+        end
+        employee_entry.payroll_period = self
+        employee_entry.save!
+      end
+    end
+  
+    calculate!
+  end
+
+  # Modify Ticket::EmployeeEntries to contain the correct data for payroll
+  def calculate!
+    # When expanding the application to support multi-week pay periods, this code must be modified
+    minutes_this_week = { total: 0 }
+    daily_limit = 8 * 60   # in minutes
+    weekly_limit = 40 * 60 # in minutes
+
+    entries = employee_entries.reload # TODO: sort logic here    
+  
+    entries.each do |e|
+      duration = e.duration || 0
+      date = e.payroll_worked_date = e.ticket.payroll_worked_date
+      minutes_this_week[date] ||= 0
+      minutes_this_week[date] += duration
+      minutes_this_week[:total] += duration
+      
+      overtime_today = minutes_this_week[date] - daily_limit
+      overtime_this_week = minutes_this_week[:total] - weekly_limit
+      overtime_max = [overtime_today, overtime_this_week, 0].max
+      
+      e.payroll_duration_standard = duration - overtime_max
+      e.payroll_duration_standard = 0 if e.payroll_duration_standard < 0
+      e.payroll_duration_overtime = duration - e.payroll_duration_standard
+      
+      e.payroll_bill_to = e.ticket.bill_to
+      e.payroll_job_id = e.ticket.job_id
+      e.payroll_status = if e.on_the_job? and e.payroll_job_id
+        :bill_to_job
+      else
+        :overhead
+      end
+      e.payroll_pay_rate = e.ticket.job.pay_rate if e.ticket.job
+      
+      e.save!
+    end
+  end
+  
+end

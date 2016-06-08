@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530174316) do
+ActiveRecord::Schema.define(version: 20160605222240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.string   "internal_number", null: false
     t.string   "customer_number"
     t.integer  "billing",         null: false
+    t.integer  "pay_rate",        null: false
     t.string   "display_name"
     t.datetime "completed_at"
     t.datetime "deleted_at"
@@ -73,9 +74,16 @@ ActiveRecord::Schema.define(version: 20160530174316) do
   add_index "jobs", ["customer_id"], name: "index_jobs_on_customer_id", using: :btree
   add_index "jobs", ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
 
+  create_table "payroll_periods", force: :cascade do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ticket_employee_entries", force: :cascade do |t|
-    t.integer  "employee_id",     null: false
-    t.integer  "status",          null: false
+    t.integer  "employee_id",               null: false
+    t.integer  "status",                    null: false
     t.datetime "time"
     t.datetime "time_end"
     t.integer  "duration"
@@ -83,12 +91,21 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.datetime "deleted_at"
     t.integer  "created_by"
     t.integer  "updated_by"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "payroll_period_id"
+    t.date     "payroll_worked_date"
+    t.integer  "payroll_duration_standard"
+    t.integer  "payroll_duration_overtime"
+    t.integer  "payroll_bill_to"
+    t.integer  "payroll_job_id"
+    t.integer  "payroll_status"
+    t.integer  "payroll_pay_rate"
   end
 
   add_index "ticket_employee_entries", ["deleted_at"], name: "index_ticket_employee_entries_on_deleted_at", using: :btree
   add_index "ticket_employee_entries", ["employee_id"], name: "index_ticket_employee_entries_on_employee_id", using: :btree
+  add_index "ticket_employee_entries", ["payroll_period_id"], name: "index_ticket_employee_entries_on_payroll_period_id", using: :btree
 
   create_table "ticket_employees", force: :cascade do |t|
     t.integer  "ticket_id",                    null: false
@@ -140,6 +157,7 @@ ActiveRecord::Schema.define(version: 20160530174316) do
     t.decimal  "delays_mot"
     t.decimal  "delays_other"
     t.text     "delays_notes"
+    t.date     "first_employee_entry"
     t.datetime "finalized_at"
     t.datetime "deleted_at"
     t.integer  "created_by"

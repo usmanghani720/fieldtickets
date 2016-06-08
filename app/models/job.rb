@@ -10,6 +10,7 @@ class Job < ActiveRecord::Base
   has_many :vehicles, through: :tickets, class_name: 'Ticket::Vehicle'
     
   enum billing: { milled_area: 1, day: 2, hour: 3 }
+  enum pay_rate: { day_pay: 1, night_pay: 2 }
   
   scope :in_progress, -> { where(completed_at: nil) }
   scope :completed, -> { where.not(completed_at: nil) }

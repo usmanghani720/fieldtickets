@@ -8,6 +8,8 @@ class CreateJobs < ActiveRecord::Migration
       
       t.integer :billing, null: false
         # [ day_rate: 1, square_yards: 2, hourly: 3 ]
+      t.integer :pay_rate, null: false
+        # { day_pay: 1, night_pay: 2 }
       
       t.string :display_name # cached display name
       

@@ -23,6 +23,11 @@
               a href="#{admin_approval_index_path}"
                 | Approve Tickets
         
+            - active_class = "#{'active' if controller? :payroll}"
+            li class="indent-1 #{active_class}"
+              a href="#{admin_jobs_path}"
+                | Payroll
+        
             - active_class = "#{'active' if controller? :jobs}"
             li class="indent-1 #{active_class}"
               a href="#{admin_jobs_path}"

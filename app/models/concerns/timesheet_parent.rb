@@ -43,7 +43,7 @@ module TimesheetParent
         # On the last entry, update the parent with the most recent data.
         self.time = entry.time
         self[:status] = entry.class.statuses[entry.status]
-        
+         
         self.save! if self.changed?
       end
         

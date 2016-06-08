@@ -31,6 +31,8 @@ class CreateTicketTickets < ActiveRecord::Migration
       t.decimal :delays_other
       t.text :delays_notes
       
+      t.date :first_employee_entry
+      
       t.datetime :finalized_at, index: true
       t.datetime :deleted_at, index: true
 

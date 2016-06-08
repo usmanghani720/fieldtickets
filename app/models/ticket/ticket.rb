@@ -27,8 +27,7 @@ class Ticket::Ticket < ActiveRecord::Base
   belongs_to :crew_chief, class_name: '::Employee'
   
   has_many :employees
-  #has_many :employee_entries, through: :employees
-  # no need for this yet
+  has_many :employee_entries, through: :employees
   
   has_many :vehicles
   #has_many :vehicle_entries, through: :vehicles
@@ -275,7 +274,25 @@ class Ticket::Ticket < ActiveRecord::Base
   def finalize!
     update(finalized_at: Time.now)
   end
-
+  
+  def payroll_worked_date
+    if entry = employee_entries.first
+      entry.time.to_date
+    end
+  end
+  
+  def set_first_employee_entry
+    self.first_employee_entry = payroll_worked_date
+  end
+  
+  # do for all
+  def self.set_first_employee_entries
+    tickets = Ticket::Ticket.where(first_employee_entry: nil)
+    tickets.each do |ticket|
+      ticket.set_first_employee_entry
+      ticket.save
+    end
+  end
   
   private
   
