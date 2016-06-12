@@ -8,12 +8,14 @@
 
   .form-inputs
   
-    = f.input :customer_name, as: :autocomplete, url: autocomplete_customer_name_admin_jobs_path
+    = f.input :customer_name, as: :autocomplete, url: autocomplete_customer_name_admin_jobs_path, input_html: { data: { 'auto-focus' => true } }
 
     = f.input :internal_number
     
     = f.input :customer_number
         
     = f.input :billing, as: :button_radio
+
+    = f.input :pay_rate, as: :button_radio
                   
   = partial 'autoshow_form_buttons', f: f

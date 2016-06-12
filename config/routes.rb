@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       
       get 'job' => 'job#index'
       patch 'job' => 'job#update'
+
+      get 'crew-chief' => 'job#index_crew_chief'
+      patch 'crew-chief' => 'job#update'
       
       get 'employees' => 'employees#index'
       get 'employees/add' => 'employees#new'
@@ -69,6 +72,7 @@ Rails.application.routes.draw do
 
   
   namespace :admin do
+    resources :payroll
     resources :customers
     resources :employees
     resources :vehicles

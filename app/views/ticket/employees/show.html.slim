@@ -15,9 +15,18 @@
         tr
           td = entry.status_pretty
           td
+            - if entry.time_entered_manually?
+              span.time_entered_manually data-toggle="tooltip" title="Originally #{entry.created_at}"
+                | ✱ 
             = entry.time
             |  
             = link_to 'edit', ticket_employee_edit_status_path(employee_entry_id: entry.id)
           td = entry.duration
 
 = partial 'deleted_entries', entries: @entries_deleted
+
+coffee:
+
+  # enable tooltips
+  $ ->
+    $('[data-toggle="tooltip"]').tooltip({'placement': 'top'})

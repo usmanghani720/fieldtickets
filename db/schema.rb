@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20160605222240) do
     t.integer  "payroll_job_id"
     t.integer  "payroll_status"
     t.integer  "payroll_pay_rate"
+    t.string   "payroll_category_string"
   end
 
   add_index "ticket_employee_entries", ["deleted_at"], name: "index_ticket_employee_entries_on_deleted_at", using: :btree

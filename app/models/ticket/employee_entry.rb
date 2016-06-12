@@ -32,4 +32,8 @@ class Ticket::EmployeeEntry < ActiveRecord::Base
     employee.to_s
   end
   
+  def decoded_payroll
+    @decode_payroll_category_string ||= Ticket::EmployeeEntry.where(payroll_category_string: payroll_category_string).first
+  end
+  
 end

@@ -60,6 +60,6 @@ class Admin::JobsController < Admin::BaseController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:internal_number, :customer_number, :billing, :completed, :customer_name)
+      params.require(:job).permit(:internal_number, :customer_number, :billing, :completed, :customer_name, :pay_rate)
     end
 end

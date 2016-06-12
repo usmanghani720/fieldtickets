@@ -18,8 +18,9 @@ class Job < ActiveRecord::Base
   # Don’t allow a Job to be created if we don’t know how to bill it.
   validates :customer, presence: true
   validates :billing, presence: true
-  validates :internal_number, presence: true
+  validates :internal_number, presence: true, uniqueness: true
   validates :customer_name, presence: true
+  validates :pay_rate, presence: true
   
   # When customer_name is set, find or create a customer by that name
   def customer_name=(name)

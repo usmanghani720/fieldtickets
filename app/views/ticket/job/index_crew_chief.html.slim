@@ -2,21 +2,20 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :bill_to, include_blank: false
-    
-    = f.input :job_name_entry, url: autocomplete_job_display_name_tickets_path, as: :autocomplete, wrapper_html: { style: (@ticket.job_required? ? '' : 'display:none') }, input_html: { data: { 'auto-focus' => true } }
+  
+    .form-group
+      label.col-sm-3.control-label Bill To
+      .col-sm-9
+        span.form-control-calculated#square_yards
+          = ticket.bill_to_pretty
+          |  
+          = link_to 'edit', ticket_job_path
     
     hr
     
-    / This is a separate page ONLY because the autocomplete field doesn't work properly when there's more than one on a page. TODO: Fix this!
-    .form-group
-      label.col-sm-3.control-label Crew Chief
-      .col-sm-9
-        span.form-control-calculated#square_yards
-          = ticket.crew_chief
-          |  
-          = link_to 'edit', ticket_crew_chief_path
-        
+    = f.input :crew_chief, url: autocomplete_crew_chief_display_name_tickets_path, as: :autocomplete, id_element: '#ticket_ticket_crew_chief_id', input_html: { data: { 'auto-focus' => true } }
+    = f.hidden_field :crew_chief_id
+    
   = partial 'autoshow_form_buttons', f: f
       
 coffee:

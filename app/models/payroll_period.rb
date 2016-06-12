@@ -10,6 +10,14 @@ class PayrollPeriod < ActiveRecord::Base
     pp
   end
   
+  def valid_entries
+    employee_entries.where('duration > ?', 0)
+  end
+  
+  def summarized_entries
+    valid_entries.unscoped.select('payroll_category_string, sum(payroll_duration_standard) as payroll_duration_standard, sum(payroll_duration_overtime) as payroll_duration_overtime').group(:payroll_category_string)
+  end
+  
   # Choose the Ticket::EmployeeEntries that belong to this PayrollPeriod
   def autoselect_entries!
     if employee_entries.present?
@@ -63,7 +71,13 @@ class PayrollPeriod < ActiveRecord::Base
       else
         :overhead
       end
-      e.payroll_pay_rate = e.ticket.job.pay_rate if e.ticket.job
+      e.payroll_pay_rate = if e.ticket.job
+        e.ticket.pay_rate
+      else
+        :day_pay
+      end
+      
+      e.payroll_category_string = "#{e.employee_id} - #{e.payroll_bill_to} - #{e.payroll_job_id} - #{e.payroll_pay_rate} - #{e.payroll_status}"
       
       e.save!
     end

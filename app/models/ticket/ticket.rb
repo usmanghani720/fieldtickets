@@ -275,6 +275,14 @@ class Ticket::Ticket < ActiveRecord::Base
     update(finalized_at: Time.now)
   end
   
+  def pay_rate
+    if job
+      job.pay_rate
+    else
+      :day_pay
+    end
+  end
+  
   def payroll_worked_date
     if entry = employee_entries.first
       entry.time.to_date

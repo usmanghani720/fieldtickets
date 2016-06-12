@@ -21,8 +21,11 @@ class CreateTicketEmployeeEntries < ActiveRecord::Migration
        t.integer :payroll_duration_overtime
        t.integer :payroll_bill_to
        t.integer :payroll_job_id
-       t.integer :payroll_status
        t.integer :payroll_pay_rate
+       t.integer :payroll_status
+       
+       # Payroll reports are summed and uniqued by this field.
+       t.string :payroll_category_string
      end
    end
 end

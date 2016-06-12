@@ -9,7 +9,7 @@
   
     = f.input :ownership
   
-    = f.input :vehicle, url: autocomplete_vehicle_display_name_tickets_path, as: :autocomplete, id_element: '#vehicle_id', wrapper_html: { style: (@ticket_vehicle.company? ? '' : 'display:none') }
+    = f.input :vehicle, url: autocomplete_vehicle_display_name_tickets_path, as: :autocomplete, id_element: '#vehicle_id', wrapper_html: { style: (@ticket_vehicle.company? ? '' : 'display:none') }, input_html: { data: { 'auto-focus' => true } }
     = f.hidden_field :vehicle_id, id: 'vehicle_id'
 
     = f.input :manual_description, wrapper_html: { style: (!@ticket_vehicle.company? ? '' : 'display:none') }
