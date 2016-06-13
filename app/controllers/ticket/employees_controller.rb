@@ -42,10 +42,12 @@ class Ticket::EmployeesController < Ticket::BaseController
   
   # Show the form to edit a status
   def edit_status
-    @entries = @employee.entries.decorate
+    @entries = @employee.entries
+    @entries = @entries.decorate
     @entries_deleted = @employee.entries.only_deleted
     
     @entry_id = params[:employee_entry_id].to_i
+    render :edit_status
   end
   
   # Post the changes of an edited status
@@ -55,7 +57,7 @@ class Ticket::EmployeesController < Ticket::BaseController
     if @employee_entry.update(ticket_employee_entry_params)
       redirect_to ticket_employee_log_path(@ticket, @employee), notice: 'Your change has been saved.'
     else
-      render_previous
+      edit_status
     end
   end
   
@@ -89,6 +91,7 @@ class Ticket::EmployeesController < Ticket::BaseController
         :status,
         :time,
         :reason_for_edit,
+        :manually_edited,
       )
     end
     

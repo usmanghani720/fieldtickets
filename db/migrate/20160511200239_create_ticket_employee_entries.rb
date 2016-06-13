@@ -8,6 +8,7 @@ class CreateTicketEmployeeEntries < ActiveRecord::Migration
        t.datetime :time_end        #          calculated from next entry
        t.integer :duration         # minutes, calculated
               
+       t.boolean :manually_edited
        t.string :reason_for_edit
        
        t.datetime :deleted_at, index: true

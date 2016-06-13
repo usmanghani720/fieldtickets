@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20160605222240) do
     t.datetime "time"
     t.datetime "time_end"
     t.integer  "duration"
+    t.boolean  "manually_edited"
     t.string   "reason_for_edit"
     t.datetime "deleted_at"
     t.integer  "created_by"
@@ -99,8 +100,8 @@ ActiveRecord::Schema.define(version: 20160605222240) do
     t.integer  "payroll_duration_overtime"
     t.integer  "payroll_bill_to"
     t.integer  "payroll_job_id"
-    t.integer  "payroll_status"
     t.integer  "payroll_pay_rate"
+    t.integer  "payroll_status"
     t.string   "payroll_category_string"
   end
 
@@ -184,6 +185,7 @@ ActiveRecord::Schema.define(version: 20160605222240) do
     t.datetime "time"
     t.datetime "time_end"
     t.integer  "duration"
+    t.boolean  "manually_edited"
     t.string   "reason_for_edit"
     t.datetime "deleted_at"
     t.integer  "created_by"

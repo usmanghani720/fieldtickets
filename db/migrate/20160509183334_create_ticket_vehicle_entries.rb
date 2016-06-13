@@ -12,6 +12,7 @@ class CreateTicketVehicleEntries < ActiveRecord::Migration
        # t.integer :duration_night # minutes, calculated
        t.integer :duration   # minutes, calculated
        
+       t.boolean :manually_edited
        t.string :reason_for_edit
        
        t.datetime :deleted_at, index: true

@@ -44,6 +44,7 @@ class Ticket::VehiclesController < Ticket::BaseController
     @entries_deleted = @vehicle.entries.only_deleted
     
     @entry_id = params[:vehicle_entry_id].to_i
+    render :edit_status
   end
   
   # Post the changes of an edited status
@@ -53,7 +54,7 @@ class Ticket::VehiclesController < Ticket::BaseController
     if @vehicle_entry.update(ticket_vehicle_entry_params)
       redirect_to ticket_vehicle_log_path(@ticket, @vehicle), notice: 'Your change has been saved.'
     else
-      render_previous
+      edit_status
     end
   end
   
@@ -91,6 +92,7 @@ class Ticket::VehiclesController < Ticket::BaseController
         :status,
         :time,
         :reason_for_edit,
+        :manually_edited,
       )
     end
     

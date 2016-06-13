@@ -24,3 +24,9 @@
           td = entry.duration
 
 = partial 'deleted_entries', entries: @entries_deleted
+
+coffee:
+
+  # enable tooltips
+  $ ->
+    $('[data-toggle="tooltip"]').tooltip({'placement': 'top'})

@@ -14,6 +14,7 @@ module TimesheetEntry
     after_destroy :recalculate!
     
     validates :status, presence: true
+    validates :reason_for_edit, presence: true, if: :manually_edited?
     
   end
     
