@@ -9,8 +9,14 @@ class Ticket::TicketsController < Ticket::BaseController
   
   # Show list of tickets
   def index
-    @tickets = Ticket::Ticket.not_finalized.decorate
-    @tickets_finalized = Ticket::Ticket.finalized.decorate
+    users_tickets = if current_employee.manager?
+      Ticket::Ticket.all
+    elsif current_employee.crew_chief?
+      Ticket::Ticket.where(crew_chief: current_employee)
+    end
+    
+    @tickets = users_tickets.not_finalized.decorate
+    @tickets_finalized = users_tickets.finalized.decorate
   end
   
   # Show list of finalized tickets

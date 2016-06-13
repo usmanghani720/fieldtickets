@@ -15,6 +15,8 @@
         - if finalized
           th
             | Finalized At
+        - if current_employee.manager?
+          th Crew Chief
     tbody
       - tickets.each do | ticket |
         tr data-link="#{ticket_path(ticket)}"
@@ -28,3 +30,5 @@
           - if finalized
             td
               = ticket.finalized_at
+          - if current_employee.manager?
+            td = ticket.crew_chief

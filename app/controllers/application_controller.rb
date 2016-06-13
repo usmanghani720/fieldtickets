@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     end
     
     def authorized?
-      false
+      true
     end
   
     def set_author
