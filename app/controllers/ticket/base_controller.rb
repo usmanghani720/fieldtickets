@@ -15,6 +15,10 @@ class Ticket::BaseController < ApplicationController
   end
 
   private
+  
+    def authorized?
+      current_user.manager? or current_user.crew_chief?
+    end
     
     # Look up @ticket from params
     def set_ticket

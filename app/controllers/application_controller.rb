@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   before_action :authenticate_employee!
   before_action :set_author
+  before_action :require_authorization
   
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -15,12 +16,25 @@ class ApplicationController < ActionController::Base
       redirect_to new_employee_session_path
     elsif current_employee.manager?
       redirect_to admin_approval_index_path
-    else
+    elsif current_employee.crew_chief?
       redirect_to tickets_path
+    else
+      raise 'Redirect to blank page for non-employee'
     end
   end
   
   private
+  
+    def require_authorization
+      if not authorized?
+        flash[:error] = 'Your account isn’t authorized for that page.'
+        homepage
+      end
+    end
+    
+    def authorized?
+      false
+    end
   
     def set_author
       if current_employee
