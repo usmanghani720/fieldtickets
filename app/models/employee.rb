@@ -40,6 +40,11 @@ class Employee < ActiveRecord::Base
     the_name
   end
   
+  # Is able to log in (via Devise)?
+  def active_for_authentication?
+    manager? or crew_chief?
+  end
+  
   private
   
     def update_ticket_employees

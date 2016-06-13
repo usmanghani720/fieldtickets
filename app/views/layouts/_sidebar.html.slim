@@ -7,112 +7,112 @@
         li.indent-0.active
           = link_to 'Log In', new_employee_session_path
 
-    - if employee_signed_in?
-      - if current_employee.manager?
-        ul.nav.nav-sidebar
-      
-          - active_class = ""
-          li class="indent-0 #{active_class}"
-            a href="#{admin_approval_index_path}"
-              | Management
-          
-          - if controller? 'admin/'
-        
-            - active_class = "#{'active' if controller? :approval}"
-            li class="indent-1 #{active_class}"
-              a href="#{admin_approval_index_path}"
-                | Approve Tickets
-        
-            - active_class = "#{'active' if controller? :payroll}"
-            li class="indent-1 #{active_class}"
-              a href="#{admin_payroll_index_path}"
-                | Payroll
-        
-            - active_class = "#{'active' if controller? :jobs}"
-            li class="indent-1 #{active_class}"
-              a href="#{admin_jobs_path}"
-                | Jobs
-        
-            - active_class = "#{'active' if controller? :customers}"
-            li class="indent-1 #{active_class}"
-              a href="#{admin_customers_path}"
-                | Customers
-
-            - active_class = "#{'active' if controller? :employees}"
-            li class="indent-1 #{active_class}"
-              a href="#{admin_employees_path}"
-                | Employees
-        
-            - active_class = "#{'active' if controller? :vehicles}"
-            li class="indent-1 #{active_class}"
-              a href="#{admin_vehicles_path}"
-                | Vehicles
-
+    - if employee_signed_in? and current_employee.manager?
       ul.nav.nav-sidebar
+    
+        - active_class = ""
+        li class="indent-0 #{active_class}"
+          a href="#{admin_approval_index_path}"
+            | Management
+        
+        - if controller? 'admin/'
       
+          - active_class = "#{'active' if controller? :approval}"
+          li class="indent-1 #{active_class}"
+            a href="#{admin_approval_index_path}"
+              | Approve Tickets
+      
+          - active_class = "#{'active' if controller? :payroll}"
+          li class="indent-1 #{active_class}"
+            a href="#{admin_payroll_index_path}"
+              | Payroll
+      
+          - active_class = "#{'active' if controller? :jobs}"
+          li class="indent-1 #{active_class}"
+            a href="#{admin_jobs_path}"
+              | Jobs
+      
+          - active_class = "#{'active' if controller? :customers}"
+          li class="indent-1 #{active_class}"
+            a href="#{admin_customers_path}"
+              | Customers
+
+          - active_class = "#{'active' if controller? :employees}"
+          li class="indent-1 #{active_class}"
+            a href="#{admin_employees_path}"
+              | Employees
+      
+          - active_class = "#{'active' if controller? :vehicles}"
+          li class="indent-1 #{active_class}"
+            a href="#{admin_vehicles_path}"
+              | Vehicles
+
+    - if employee_signed_in? and (current_employee.manager? or current_employee.crew_chief?)
+      ul.nav.nav-sidebar
+    
         - active_class = "#{'active' if controller? 'ticket/tickets', :exact}"
         li class="indent-0 #{active_class}"
           = link_to 'Tickets', tickets_path
-      
+    
         - if controller? 'ticket/'
-      
+    
           - if ticket
-        
+      
             li.indent-1
               a
                 | Ticket #
                 = ticket.number
-          
+        
             - active_class = "#{'active' if controller? :job}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_job_path @ticket}"
                 | Job
-          
+        
             - active_class = "#{'active' if controller? :employees}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_employees_path @ticket}"
                 | Employees
-              
+            
             - active_class = "#{'active' if controller? :vehicles}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_vehicles_path @ticket}"
                 | Vehicles & Mills
-            
+          
             - if @ticket.job_required?
               - active_class = "#{'active' if controller? :dimensions}"
               li class="indent-2 #{active_class}"
                 a href="#{ticket_dimensions_path @ticket}"
                   | Dimensions
-              
+            
             - active_class = "#{'active' if controller? :supplies}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_supplies_path @ticket}"
                 | Supplies
-              
+            
             - if @ticket.job_required?
               - active_class = "#{'active' if controller? :delays}"
               li class="indent-2 #{active_class}"
                 a href="#{ticket_delays_path @ticket}"
                   | Delays
-            
+          
             - active_class = "#{'active' if controller? :notes}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_notes_path @ticket}"
                 | Notes
-              
+            
             - if @ticket.job_required?
               - active_class = "#{'active' if controller? :approval}"
               li class="indent-2 #{active_class}"
                 a href="#{ticket_approval_path @ticket}"
                   | Customer Approval
-              
+            
             - active_class = "#{'active' if controller? :finalize}"
             li class="indent-2 #{active_class}"
               a href="#{ticket_finalize_path @ticket}"
                 | Finalize Ticket
 
             
-      - if employee_signed_in?
-        ul.nav.nav-sidebar
-          li.indent-0
-            = link_to 'Log Out', destroy_employee_session_path, method: :delete
+    - if employee_signed_in?
+      ul.nav.nav-sidebar
+        li.indent-0
+          = link_to 'Log Out', destroy_employee_session_path, method: :delete
