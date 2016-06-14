@@ -1,5 +1,7 @@
 class PayrollPeriod < ActiveRecord::Base
   has_many :employee_entries, class_name: 'Ticket::EmployeeEntry'
+  has_many :employees, -> { distinct }, through: :employee_entries, class_name: 'Ticket::Employee'
+  has_many :tickets, -> { distinct }, through: :employees, class_name: 'Ticket::Ticket'
   
   def self.create_with_dates(start_date, end_date)
     pp = PayrollPeriod.create(

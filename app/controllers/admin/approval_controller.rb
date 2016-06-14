@@ -19,13 +19,13 @@ class Admin::ApprovalController < Admin::BaseController
   
   def approve
     @ticket.admin_approved!
-    
+    redirect_to admin_approval_index_path
   end
   
   private
     
     # Look up @ticket from params
     def set_ticket
-      @ticket = Ticket::Ticket.find(params[:ticket_id] || params[:id])
+      @ticket = Ticket::Ticket.find(params[:ticket_id] || params[:approval_id] || params[:id])
     end
 end

@@ -7,6 +7,8 @@ class Ticket::FinalizeController < Ticket::BaseController
   
   def update
     @ticket.finalize!
+    flash[:notice] = "You’ve finalized ticket ##{@ticket.number}."
     redirect_to tickets_path
   end
+  
 end
