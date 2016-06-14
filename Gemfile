@@ -37,6 +37,9 @@ gem 'draper'
 gem 'ar-audit-tracer'
 # gem 'best_in_place', '~> 3.0.1' # in-place editor, not needed yet
 
+# Correctly titleizes English-language sentences
+gem 'titleize'
+
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

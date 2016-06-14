@@ -25,14 +25,7 @@
 en:
 
   enums:
-    employee:
-      role:
-        crew_chief: 'Crew Chief'
-
     job:
-      billing:
-        milled_area: 'Milled Area'
-        
       pay_rate:
         day_pay: 'Day Rate'
         night_pay: 'Night Rate'
@@ -43,20 +36,6 @@ en:
           company: 'BlackRock Vehicle'
           employee: 'Employee’s Vehicle'
     
-      ticket:
-        bill_to:
-          job_correction: 'Job Correction'
-          cancelled_job: 'Cancelled Job'
-          office_staff: 'Office Staff'
-
-      vehicle_entry:
-        status:
-          on_the_job: 'On the Job'
-  
-      employee_entry:
-        status:
-          on_the_job: 'On the Job'
-
       note:
         note_type:
           internal: 'BlackRock Only'
@@ -126,10 +105,7 @@ en:
       vehicle:
         vehicle_type: 'Type'
         internal_number: 'Vehicle #'
-        
-      ticket/employee:
-        per_diem: 'Per-diem allowance'
-        
+                
       ticket/ticket:
         job_name_entry: 'BlackRock Job #'
         bill_to: 'Bill To'
