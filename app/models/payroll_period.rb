@@ -1,4 +1,6 @@
 class PayrollPeriod < ActiveRecord::Base
+  PER_DIEM_ALLOWANCE = 30.00
+  
   has_many :employee_entries, class_name: 'Ticket::EmployeeEntry'
   has_many :employees, -> { unscope(:order).uniq }, through: :employee_entries, class_name: 'Ticket::Employee'
   has_many :tickets, -> { unscope(:order).uniq }, through: :employees, class_name: 'Ticket::Ticket'
@@ -29,7 +31,20 @@ class PayrollPeriod < ActiveRecord::Base
   end
   
   def summarized_entries
-    valid_entries.unscoped.select('payroll_category_string, sum(payroll_duration_standard) as payroll_duration_standard, sum(payroll_duration_overtime) as payroll_duration_overtime').group(:payroll_category_string)
+    results = valid_entries.
+    
+      unscoped.
+      
+      select('payroll_category_string, sum(payroll_duration_standard) as payroll_duration_standard, sum(payroll_duration_overtime) as payroll_duration_overtime').
+      
+      group(:payroll_category_string)
+      
+    results = results.reject do |result|
+      (result.payroll_duration_standard + result.payroll_duration_overtime) <= 0
+    end
+    
+    results
+    
   end
   
   # Choose the Ticket::EmployeeEntries that belong to this PayrollPeriod

@@ -17,6 +17,7 @@
         th Overtime
     tbody
       - @entries.each do | entry |
+        - entry = entry.decorate
         - pr = entry.decoded_payroll
         tr
           td
@@ -40,6 +41,7 @@
         tr
           th Employee
           th Days of Per Diem
+          th Dollar Amount
       tbody
         - @per_diems.each do | employee_id, hash |
           tr
@@ -47,3 +49,5 @@
               strong = hash[:name]
             td
               = hash[:count]
+            td
+              = number_to_currency(hash[:count] * PayrollPeriod::PER_DIEM_ALLOWANCE)
