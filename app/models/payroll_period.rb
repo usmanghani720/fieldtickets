@@ -1,7 +1,19 @@
 class PayrollPeriod < ActiveRecord::Base
   has_many :employee_entries, class_name: 'Ticket::EmployeeEntry'
-  has_many :employees, -> { distinct }, through: :employee_entries, class_name: 'Ticket::Employee'
-  has_many :tickets, -> { distinct }, through: :employees, class_name: 'Ticket::Ticket'
+  has_many :employees, -> { unscope(:order).uniq }, through: :employee_entries, class_name: 'Ticket::Employee'
+  has_many :tickets, -> { unscope(:order).uniq }, through: :employees, class_name: 'Ticket::Ticket'
+  
+  def per_diems
+    result = {}
+    
+    employees.where(per_diem: true).each do |employee|
+      result[employee.id] ||= { name: employee.display_name, count: 0 }
+      result[employee.id][employee.entries.first.payroll_worked_date] = true
+      result[employee.id][:count] = result[employee.id].count - 2
+    end
+    
+    result
+  end
   
   def self.create_with_dates(start_date, end_date)
     pp = PayrollPeriod.create(

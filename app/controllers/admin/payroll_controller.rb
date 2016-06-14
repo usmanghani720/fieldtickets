@@ -7,6 +7,7 @@ class Admin::PayrollController < ApplicationController
 
   def show
     @entries = @payroll_period.summarized_entries.decorate
+    @per_diems = @payroll_period.per_diems
   end
   
   private

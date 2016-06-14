@@ -28,3 +28,22 @@
             strong = entry.duration_standard
           td
             strong = entry.duration_overtime
+            
+- if @per_diems.present?
+  hr
+
+  h2 Per Diem Allowances
+
+  .table-responsive
+    table.table.table-striped.table-bordered
+      thead
+        tr
+          th Employee
+          th Days of Per Diem
+      tbody
+        - @per_diems.each do | employee_id, hash |
+          tr
+            td
+              strong = hash[:name]
+            td
+              = hash[:count]
