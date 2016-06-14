@@ -1,5 +1,5 @@
 class Ticket::EmployeesController < Ticket::BaseController
-  before_action :set_employee, only: [:show, :create_status, :edit_status, :update_status, :delete_status]
+  before_action :set_employee, only: [:show, :create_status, :edit_status, :update_status, :delete_status, :per_diem_toggle]
   
   before_action :set_ticket, except: :autocomplete_employee_display_name
   
@@ -68,6 +68,19 @@ class Ticket::EmployeesController < Ticket::BaseController
     @employee_entry.destroy!
     
     redirect_to ticket_employee_log_path(@ticket, @employee), notice: 'That timesheet entry has been deleted.'
+  end
+  
+  # Toggle per diem
+  def per_diem_toggle
+    @employee.update(per_diem: !@employee.per_diem)
+    
+    message = if @employee.per_diem
+      "#{@employee} will receive per diem for this ticket."
+    else
+      "#{@employee} will no longer receive per diem for this ticket."
+    end
+    
+    redirect_to ticket_employee_log_path(@ticket, @employee), notice: message
   end
   
   private

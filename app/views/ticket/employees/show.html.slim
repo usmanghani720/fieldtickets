@@ -1,4 +1,12 @@
 .page-header
+  = link_to ticket_employee_per_diem_path, class: 'btn btn-primary', method: :patch do 
+    - if @employee.per_diem
+      span.glyphicon.glyphicon-remove
+      |  Remove Per-Diem Allowance
+    - else
+      span.glyphicon.glyphicon-plus
+      |  Add Per-Diem Allowance
+  
   h2
     | Timesheet for 
     = @employee.display_name

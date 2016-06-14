@@ -35,7 +35,7 @@ en:
         ownership:
           company: 'BlackRock Vehicle'
           employee: 'Employee’s Vehicle'
-    
+     
       note:
         note_type:
           internal: 'BlackRock Only'
