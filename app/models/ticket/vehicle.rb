@@ -47,4 +47,8 @@ class Ticket::Vehicle < ActiveRecord::Base
     end
   end
   
+  def fuel_gallons_total
+    entries.sum(:fuel_gallons)
+  end
+  
 end

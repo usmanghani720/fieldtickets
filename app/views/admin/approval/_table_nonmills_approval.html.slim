@@ -12,6 +12,7 @@
             th
           th Vehicle
           th On the Job (Total)
+          th Fuel Used
           /th Total
       tbody
         - nonmills.each_with_index do | nonmill, index |
@@ -26,6 +27,8 @@
               = nonmill.hours_pretty[:on_the_job]
             /td
             /  strong = nonmill.hours_pretty[:total]
+            td
+              = nonmill.fuel_gallons_total
         - unless just_one
           tr
             th

@@ -21,7 +21,7 @@ module TimesheetParent
       @hours[status.to_sym] = 0
     end
 
-    entries.each do |entry|
+    entries.without_refuel.each do |entry|
       status = entry.status.to_sym
       duration = entry.duration || 0
       @hours[status] += duration
