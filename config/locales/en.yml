@@ -162,5 +162,7 @@ en:
         ownership: 'Type'
         vehicle: 'Vehicle #'
         manual_description: 'Description'
+      
+      ticket/vehicle_entry:
         fuel_gallons: 'Fuel Pumped'
         mileage: 'Current Mileage'

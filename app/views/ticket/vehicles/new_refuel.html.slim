@@ -1,0 +1,47 @@
+= simple_form_for @vehicle_entry, url: request.original_url do |f|
+  h2
+    | Refuel Vehicle 
+    = @vehicle
+  
+  hr
+
+  = f.error_notification
+
+  .form-inputs
+
+    = f.input :mileage, wrapper: :horizontal_input_group do
+      = f.input_field :mileage, class: 'form-control', autofocus: true
+      .input-group-addon miles
+      
+    = f.input :fuel_gallons, wrapper: :horizontal_input_group do
+      = f.input_field :fuel_gallons, class: 'form-control'
+      .input-group-addon gallons
+    
+            
+  = partial 'autoshow_form_buttons', f: f
+
+
+/ .row
+/   = render 'sidebar'
+/       
+/   div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main"
+/ 
+/     = render partial: 'header', locals: { title: "Refuel Vehicle #{}" }
+/     
+/     = form_for(@equipment_entry, url: field_ticket_vehicle_refuel_path, html: { class: "form-horizontal", role: "form" }) do |f|
+/ 
+/       = render partial: 'shared/errors_for', locals: { object: @equipment_entry }
+/       
+/       .form-group
+/         = f.label :mileage, class: "col-sm-2 control-label"
+/         .col-sm-10
+/           = f.text_field :mileage, class: 'form-control'
+/       
+/       .form-group
+/         = f.label :fuel_gallons, class: "col-sm-2 control-label"
+/         .col-sm-10
+/           .input-group
+/             = f.text_field :fuel_gallons, class: 'form-control'
+/             span.input-group-addon gallons
+/ 
+/       = render partial: 'form_buttons', locals: {f: f}

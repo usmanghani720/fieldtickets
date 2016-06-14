@@ -32,8 +32,10 @@ module TimesheetParent
   end
   
   def recalculate!
-    entries.reload.each_with_index do |entry, index|
-      next_entry = entries[index + 1]
+    timed_entries = entries.without_refuel.reload
+    
+    timed_entries.without_refuel.reload.each_with_index do |entry, index|
+      next_entry = timed_entries[index + 1]
       
       if next_entry
         entry.time_end = next_entry.time
@@ -41,21 +43,26 @@ module TimesheetParent
         entry.time_end = nil
         
         # On the last entry, update the parent with the most recent data.
+        # This doesn't work if refuel, because the parent can't be refuel
         self.time = entry.time
         self[:status] = entry.class.statuses[entry.status]
-         
-        self.save! if self.changed?
+       
+        if self.changed?
+          raise self.errors.inspect if not self.save
+        end
       end
         
       if entry.changed?
         # This must be set to true to avoid an infinite callback loop
         entry.recalculating = true
-        entry.save!
+        
+        raise entry.errors.inspect if not entry.save
+        # Debug code is useful because this breaks!
       end
     end
     
     # no entries found, reset to default
-    if entries.blank?
+    if timed_entries.blank?
       self.time = self.created_at
       self[:status] = 0
       

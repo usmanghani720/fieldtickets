@@ -5,7 +5,9 @@ module TimesheetEntry
   
   included do
     
-    #default_scope { order(:time, :created_at, :id) } # created_at must be in here — time is rounded to the minute and you're likely to get identical times if you're doing a lot at once.
+    default_scope { order(:time, :created_at, :id) } # created_at must be in here — time is rounded to the minute and you're likely to get identical times if you're doing a lot at once.
+    
+    scope :without_refuel, -> { where.not(status: 99) }
     
     before_create :set_default_time
     

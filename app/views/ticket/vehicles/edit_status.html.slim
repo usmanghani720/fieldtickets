@@ -20,6 +20,11 @@
                 .form-inputs
                   = f.hidden_field :manually_edited, value: true
                   = f.input :status, include_blank: false, collection: entry.available_statuses
+                  - if entry.refuel?
+                    br
+                    = f.input :mileage
+                    br
+                    = f.input :fuel_gallons
                   br
                   = f.input :time, as: :string
                   br

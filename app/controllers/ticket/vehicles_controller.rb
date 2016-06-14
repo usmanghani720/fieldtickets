@@ -1,5 +1,5 @@
 class Ticket::VehiclesController < Ticket::BaseController
-  before_action :set_vehicle, only: [:show, :create_status, :edit_status, :update_status, :delete_status]
+  before_action :set_vehicle, only: [:show, :create_status, :edit_status, :update_status, :delete_status, :new_refuel, :create_refuel]
   
   
   # Show the Vehicles on this Ticket
@@ -68,6 +68,26 @@ class Ticket::VehiclesController < Ticket::BaseController
     redirect_to ticket_vehicle_log_path(@ticket, @vehicle), notice: 'That timesheet entry has been deleted.'
   end
   
+  # Show form to refuel
+  def new_refuel
+    @vehicle_entry = Ticket::VehicleEntry.new(vehicle: @vehicle)
+  end
+  
+  # Save the refuel entry
+  def create_refuel
+    @vehicle_entry = Ticket::VehicleEntry.new(
+      vehicle: @vehicle,
+      status: :refuel
+    )
+    
+    if @vehicle_entry.update(ticket_vehicle_entry_params)
+      redirect_to ticket_vehicles_path
+    else
+      render :new_refuel
+    end
+    
+  end
+  
   
   private
     
@@ -93,6 +113,8 @@ class Ticket::VehiclesController < Ticket::BaseController
         :time,
         :reason_for_edit,
         :manually_edited,
+        :mileage,
+        :fuel_gallons,
       )
     end
     
