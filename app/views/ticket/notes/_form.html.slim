@@ -12,6 +12,6 @@
     
     = f.input :note_type, as: :button_radio, collection: [:internal, :to_customer]
 
-    = f.input :note, :input_html => {:rows => 5}  
+    = f.input :note, :input_html => {:rows => 5}, autofocus: true
                   
   = partial 'autoshow_form_buttons', f: f

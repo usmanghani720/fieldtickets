@@ -2,8 +2,8 @@
 # Combine with the titleize gem which overrides String#titleize with English-language rules.
 
 class ActiveRecord::Base
-  def self.human_attribute_name(attr)
-    attr.present? ? super(attr).titleize : super
+  def self.human_attribute_name(attr, options = {})
+    attr.present? ? super(attr, options).titleize : super
   end
 end
 

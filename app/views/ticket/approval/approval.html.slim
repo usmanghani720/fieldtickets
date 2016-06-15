@@ -1,15 +1,68 @@
 .row
-      
-  div#approval_form.main
+
+  .container
+
+    h2 Details of Today’s Work
+    
+    dl.dl-horizontal
   
-    h2 Job Approval
+      dt Customer:
+      dd = ticket.job.customer
+
+      dt Job Number:
+      - if ticket.job.customer_number
+        dd = ticket.job.customer_number
+      - else
+        dd
+          | BlackRock Milling #
+          = ticket.job.internal_number
+        
+      br
+
+      dt Depth:
+      dd = ticket.milling_depth_pretty
+    
+      dt Dimensions:
+      dd = ticket.milling_dimensions_pretty
+
+      dt Milling Started:
+      dd = ticket.mill_times.first
+
+      dt Milling Completed:
+      dd = ticket.mill_times.last
+  
+      br
+    
+      dt Notes
+      - if ticket.notes.to_customer.blank?
+        dd None
+      - else
+        dd
+          .table-responsive
+            table.table.table-striped.table-bordered
+              tbody
+                - ticket.notes.to_customer.decorate.each do | note |
+                  tr
+                    td
+                      = note.note
+                      br
+                      br
+                      em = note.attribution
+    
     hr
+
+    h2 Approval
+
+                      
+  #approval_form.main
+  
     p.question Are you satisfied with the work performed by BlackRock Milling?
     
     = link_to 'Yes, I’m satisfied.', ticket_approval_confirm_path(ticket, :approve), class: 'btn-approve'
     
     = link_to 'No, I’m not satisfied.', ticket_approval_confirm_path(ticket, :disapprove), class: 'btn-disapprove'
     
-    hr
+    br
+    br
     
     a.btn-cancel href="./" I’m not ready to approve at this time.

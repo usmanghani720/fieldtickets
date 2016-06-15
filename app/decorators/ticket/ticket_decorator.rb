@@ -52,6 +52,18 @@ class Ticket::TicketDecorator < Draper::Decorator
     
     result
   end
+  
+  def milling_depth_pretty
+    if object.milling_depth
+      "#{object.milling_depth}”"
+    end
+  end
+  
+  def milling_dimensions_pretty
+    if object.milling_square_yards
+      "#{object.milling_length}’ × #{object.milling_width}’ (#{milling_square_yards})"
+    end
+  end
 
   def milling_square_yards(abbreviate = nil)
     amount = object.milling_square_yards
