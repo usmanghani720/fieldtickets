@@ -32,7 +32,17 @@ class Ticket::ApprovalController < Ticket::BaseController
   end
   
   def results
-    render :results
+    respond_to do |format|
+      
+      format.html do
+        render :results
+      end
+      
+      format.pdf do
+        render pdf: "results",
+          template: 'ticket/approval/results'
+      end
+    end
   end
   
   # Customer has submitted form to finalize approval/disapproval

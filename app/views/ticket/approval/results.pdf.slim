@@ -1,0 +1,35 @@
+.row
+      
+  .main
+  
+    #approval_form
+  
+      - if ticket.approved?
+  
+        h2 Job Approved — BlackRock Milling
+        hr
+        p.question
+          = ticket.approval_name_and_title
+          |  
+          strong approved
+          |  the job.
+          
+      - elsif ticket.disapproved?
+    
+        h2 Job Disapproved — BlackRock Milling
+        hr
+        p.question
+          = ticket.approval_name_and_title
+          |  
+          strong did not approve
+          |  of the job.
+                  
+      img src="#{ticket.approval_signature}"
+      p.question
+        | Signed 
+        = ticket.approved_at
+      
+    hr
+    
+    div
+      = render partial: 'ticket/approval/approval_details'

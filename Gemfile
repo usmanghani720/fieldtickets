@@ -32,6 +32,8 @@ gem 'pundit'
 gem 'minitest-rails'
 gem 'email_validator'
 gem 'awesome_print'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'draper'
 
 gem 'ar-audit-tracer'
@@ -39,6 +41,7 @@ gem 'ar-audit-tracer'
 
 # Correctly titleizes English-language sentences
 gem 'titleize'
+
 
 
 
