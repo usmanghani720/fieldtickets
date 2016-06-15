@@ -138,6 +138,7 @@ en:
         ownership: 'Type'
         vehicle: 'Vehicle #'
         manual_description: 'Description'
+        mileage: 'Current Mileage'
       
       ticket/vehicle_entry:
         fuel_gallons: 'Fuel Pumped'
