@@ -37,8 +37,23 @@ class Ticket::ApprovalController < Ticket::BaseController
   
   # Customer has submitted form to finalize approval/disapproval
   def update
+    @ticket.approved_at = Time.now
+    
     if @ticket.update(ticket_params)
-      redirect_to ticket_approval_path, notice: 'Your changes have been saved.'
+      
+      # Add customer feedback to Notes
+      @ticket.notes.create(
+        note_type: :from_customer,
+        note: @ticket.approval_feedback
+      )
+      
+      message = if @ticket.approved?
+        'Thanks for approving our work.'
+      else
+        'Thank you for your feedback.'
+      end
+      
+      redirect_to ticket_approval_path, notice: message
     else
       approval_confirm
     end

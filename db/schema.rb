@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20160605222240) do
     t.string   "approval_name_and_title"
     t.string   "approval_email"
     t.text     "approval_feedback"
+    t.datetime "approved_at"
     t.integer  "supplies_teeth"
     t.decimal  "supplies_oil"
     t.integer  "supplies_holders"

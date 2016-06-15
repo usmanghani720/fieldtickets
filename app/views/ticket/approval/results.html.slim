@@ -1,27 +1,36 @@
 .row
       
-  div#approval_form.main
+  .main
   
-    - if ticket.approved?
+    #approval_form
   
-      h2 Job Approved
-      hr
-      p.question
-        = ticket.approval_name_and_title
-        |  
-        strong approved
-        |  the job.
+      - if ticket.approved?
+  
+        h2 Job Approved
+        hr
+        p.question
+          = ticket.approval_name_and_title
+          |  
+          strong approved
+          |  the job.
           
-    - elsif ticket.disapproved?
+      - elsif ticket.disapproved?
     
-      h2 Job Disapproved
-      hr
+        h2 Job Disapproved
+        hr
+        p.question
+          = ticket.approval_name_and_title
+          |  
+          strong did not approve
+          |  of the job.
+                  
+      img src="#{ticket.approval_signature}"
       p.question
-        = ticket.approval_name_and_title
-        |  
-        strong did not approve
-        |  of the job.
-        
-    p = ticket.approval_feedback
+        | Signed 
+        = ticket.approved_at
+      
+    hr
     
-    img src="#{ticket.approval_signature}"
+    div
+
+      = partial 'approval_details'

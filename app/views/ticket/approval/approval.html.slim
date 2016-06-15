@@ -4,50 +4,7 @@
 
     h2 Details of Today’s Work
     
-    dl.dl-horizontal
-  
-      dt Customer:
-      dd = ticket.job.customer
-
-      dt Job Number:
-      - if ticket.job.customer_number
-        dd = ticket.job.customer_number
-      - else
-        dd
-          | BlackRock Milling #
-          = ticket.job.internal_number
-        
-      br
-
-      dt Depth:
-      dd = ticket.milling_depth_pretty
-    
-      dt Dimensions:
-      dd = ticket.milling_dimensions_pretty
-
-      dt Milling Started:
-      dd = ticket.mill_times.first
-
-      dt Milling Completed:
-      dd = ticket.mill_times.last
-  
-      br
-    
-      dt Notes
-      - if ticket.notes.to_customer.blank?
-        dd None
-      - else
-        dd
-          .table-responsive
-            table.table.table-striped.table-bordered
-              tbody
-                - ticket.notes.to_customer.decorate.each do | note |
-                  tr
-                    td
-                      = note.note
-                      br
-                      br
-                      em = note.attribution
+    = partial 'approval_details'
     
     hr
 

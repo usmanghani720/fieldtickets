@@ -15,6 +15,7 @@ class CreateTicketTickets < ActiveRecord::Migration
       t.string :approval_name_and_title
       t.string :approval_email
       t.text :approval_feedback
+      t.datetime :approved_at
       
       t.integer :supplies_teeth
       t.decimal :supplies_oil

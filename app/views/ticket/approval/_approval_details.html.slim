@@ -1,0 +1,43 @@
+dl.dl-horizontal
+
+  dt Customer:
+  dd = ticket.job.customer
+  
+  - if ticket.job.customer_number
+    dt Customer’s Job #
+    dd = ticket.job.customer_number
+  
+  dt BlackRock’s Job #
+  dd = ticket.job.internal_number
+    
+  br
+
+  dt Depth:
+  dd = ticket.milling_depth_pretty
+
+  dt Dimensions:
+  dd = ticket.milling_dimensions_pretty
+
+  dt Milling Started:
+  dd = ticket.mill_times.first
+
+  dt Milling Completed:
+  dd = ticket.mill_times.last
+
+  br
+
+  dt Notes
+  - if ticket.notes.customer_visible.blank?
+    dd None
+  - else
+    dd
+      .table-responsive
+        table.table.table-striped.table-bordered
+          tbody
+            - ticket.notes.customer_visible.decorate.each do | note |
+              tr
+                td
+                  = note.note
+                  br
+                  br
+                  em = note.attribution
