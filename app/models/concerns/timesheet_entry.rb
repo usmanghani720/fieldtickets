@@ -66,7 +66,11 @@ module TimesheetEntry
   
     def cannot_be_outside_ticket_date
       if outside_ticket_date?
-        self.errors.add(:time, :outside_ticket_date, ticket_date: ticket.first_employee_entry)
+        errors.add(
+          :time,
+          :outside_ticket_date,
+          ticket_date: ticket.first_employee_entry
+        )
         return false
       end
     end

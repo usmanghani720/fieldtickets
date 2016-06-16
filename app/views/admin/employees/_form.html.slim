@@ -4,7 +4,7 @@
   - url = admin_employees_path
   
 = simple_form_for @employee, url: url, autocomplete: false do |f|
-  = f.error_notification
+  = partial 'error_notification', f: f
 
   .form-inputs
   

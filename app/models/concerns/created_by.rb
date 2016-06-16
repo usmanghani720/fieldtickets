@@ -6,6 +6,6 @@ module CreatedBy
   
   included do
     belongs_to :creator, class_name: '::Employee', foreign_key: :created_by
-    belongs_to :updater, class_name: '::Employee', foreign_key: :created_by
+    belongs_to :updater, class_name: '::Employee', foreign_key: :updated_by
   end
 end

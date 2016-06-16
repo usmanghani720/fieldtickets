@@ -1,0 +1,6 @@
+= f.error_notification
+
+/ Show errors not a field but on the base object
+- if errors = f.error(:base)
+  div.has-error
+    = errors

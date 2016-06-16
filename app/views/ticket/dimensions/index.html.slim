@@ -1,7 +1,8 @@
 = simple_form_for ticket, url: request.original_url do |f|
-  = f.error_notification
+  = partial 'error_notification', f: f
 
   .form-inputs
+  
   
     = f.input :milling_depth, wrapper: :horizontal_input_group do
       = f.input_field :milling_depth, class: 'form-control'

@@ -1,5 +1,5 @@
 = simple_form_for ticket, url: request.original_url do |f|
-  = f.error_notification
+  = partial 'error_notification', f: f
 
   .form-inputs
   

@@ -65,6 +65,8 @@ class Ticket::Ticket < ActiveRecord::Base
   # Require feedback only if customer has DISAPPROVED.
   validates :approval_feedback, presence: true, if: :disapproved?
   
+  before_update :cannot_be_finalized
+  
   with_options numericality: { greater_than: 0 }, allow_blank: true do |t|
 
     # Make sure milling dimensions, if entered, are a number greater than 0
@@ -295,6 +297,17 @@ class Ticket::Ticket < ActiveRecord::Base
   end
   
   private
+  
+    def cannot_be_finalized
+      # Must be ALREADY finalized, not just now finalized.
+      if finalized? and not changed.include?('finalized_at')
+        # Managers can still update finalized tickets.
+        unless updater.manager?
+          errors.add(:base, :already_finalized)
+          return false
+        end
+      end
+    end
   
     def set_crew_chief
       if creator and creator.crew_chief?

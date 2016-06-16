@@ -4,7 +4,7 @@
   - url = ticket_notes_path
 
 = simple_form_for note, url: url do |f|
-  = f.error_notification
+  = partial 'error_notification', f: f
 
   .form-inputs
   

@@ -73,6 +73,11 @@ en:
               
             internal_number:
               blank: 'Please fill in the BlackRock Job Number.'
+              
+        ticket/ticket:
+          attributes:
+            base:
+              already_finalized: 'This ticket can’t be modified because it’s already been finalized.'
         
         ticket/employee:
           attributes:

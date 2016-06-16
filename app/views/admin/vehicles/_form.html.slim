@@ -4,7 +4,7 @@
   - url = admin_vehicles_path
   
 = simple_form_for vehicle, url: url do |f|
-  = f.error_notification
+  = partial 'error_notification', f: f
 
   .form-inputs
     = f.input :vehicle_type, as: :button_radio
