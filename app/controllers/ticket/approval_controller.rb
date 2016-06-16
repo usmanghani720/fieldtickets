@@ -67,7 +67,7 @@ class Ticket::ApprovalController < Ticket::BaseController
       else
         'Thank you for your feedback.'
       end
-      message += " An email confirmation has been sent to #{@ticket.approval_email}."
+      message += " A confirmation will be emailed to #{@ticket.approval_email}."
       
       redirect_to ticket_approval_path, notice: message
     else
