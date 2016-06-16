@@ -132,7 +132,7 @@ en:
         milling_depth: 'Depth'
       
       ticket/note:
-        note_type: 'Visibility'
+        note_type: 'Privacy'
         
       ticket/vehicle:
         ownership: 'Type'

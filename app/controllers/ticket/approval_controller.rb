@@ -52,16 +52,22 @@ class Ticket::ApprovalController < Ticket::BaseController
     if @ticket.update(ticket_params)
       
       # Add customer feedback to Notes
-      @ticket.notes.create(
-        note_type: :from_customer,
-        note: @ticket.approval_feedback
-      )
+      if @ticket.approval_feedback.present?
+        @ticket.notes.create(
+          note_type: :from_customer,
+          note: @ticket.approval_feedback
+        )
+      end
+      
+      # Email approval
+      Ticket::CustomerMailer.ticket_approval_email(@ticket).deliver_later
       
       message = if @ticket.approved?
         'Thanks for approving our work.'
       else
         'Thank you for your feedback.'
       end
+      message += " An email confirmation has been sent to #{@ticket.approval_email}."
       
       redirect_to ticket_approval_path, notice: message
     else
