@@ -92,7 +92,12 @@ en:
               
             mileage:
               blank: 'Please read the vehicle’s odometer (in miles).'
-    
+              
+        ticket/employee_entry:
+          attributes:
+            time:
+              outside_ticket_date: 'This ticket is for %{ticket_date}. If the date you entered is correct, you should use a new ticket.'
+
     attributes:
     
       job:

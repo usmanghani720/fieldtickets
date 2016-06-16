@@ -1,4 +1,5 @@
 require 'fx_datetime'
+require 'pp'
 
 module TimesheetEntry
   extend ActiveSupport::Concern
@@ -17,6 +18,9 @@ module TimesheetEntry
     
     validates :status, presence: true
     validates :reason_for_edit, presence: true, if: :manually_edited?
+    
+    before_create :entry_cannot_be_outside_ticket_date
+    before_update :entry_cannot_be_outside_ticket_date
     
   end
     
@@ -59,6 +63,34 @@ module TimesheetEntry
   
   
   private
+  
+    def entry_cannot_be_outside_ticket_date
+      if outside_ticket_date?
+        self.errors.add(:time, :outside_ticket_date, ticket_date: ticket.first_employee_entry)
+        return false
+      end
+    end
+    
+    def outside_ticket_date?
+      if ticket.employee_entries.count == 0
+        # If there's only one employee entry, it's okay to edit it manually.
+        return false
+        
+      elsif earliest_time = ticket.first_employee_entry
+        # latest time is 6 AM the day after first entry
+        latest_time = earliest_time + 1.day + 6.hours
+        
+        #raise self.inspect
+        if (time < earliest_time) or (time > latest_time)
+          return true
+        else
+          return false
+        end
+        
+      else
+        return false
+      end
+    end
   
     def set_default_time
       self.time ||= self.created_at
