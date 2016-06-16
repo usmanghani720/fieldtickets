@@ -8,7 +8,7 @@ class CreateTicketTickets < ActiveRecord::Migration
       t.string :job_name_override
       
       t.integer :admin_approval, default: 0, null: false
-        # { pending_admin_approval: 0, admin_approved: 1, admin_disapproved: 2 }
+        # { pending_admin_approval: 0, admin_approved: 1 }
             
       t.integer :approval, default: 0, null: false
         # { pending_approval: 0, approved: 1, disapproved: 2 }

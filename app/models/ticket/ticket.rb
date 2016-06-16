@@ -41,7 +41,7 @@ class Ticket::Ticket < ActiveRecord::Base
   
   
   # Whether management has signed off on the billing.
-  enum admin_approval: { pending_admin_approval: 0, admin_approved: 1, admin_disapproved: 2 }
+  enum admin_approval: { pending_admin_approval: 0, admin_approved: 1 }
     
   # Whether the Customer's representative has signed off on the Job.
   enum approval: { pending_approval: 0, approved: 1, disapproved: 2 }
