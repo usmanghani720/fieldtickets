@@ -7,6 +7,9 @@ class Ticket::EmployeeEntry < ActiveRecord::Base
   belongs_to :payroll_period
   has_one :ticket, through: :employee
   
+  before_create :cannot_be_already_submitted_to_payroll
+  before_update :cannot_be_already_submitted_to_payroll
+  
   enum status: { idle: 0, transport: 1, maintenance: 2, on_the_job: 3 }
   
   # PAYROLL STUFF HERE
@@ -35,5 +38,16 @@ class Ticket::EmployeeEntry < ActiveRecord::Base
   def decoded_payroll
     @decode_payroll_category_string ||= Ticket::EmployeeEntry.where(payroll_category_string: payroll_category_string).first
   end
+  
+  private
+
+    def cannot_be_already_submitted_to_payroll
+      date = ticket.first_employee_entry
+      date ||= time.to_date
+      if PayrollPeriod.exists_for_date(date)
+        self.errors.add(:time, :already_submitted_to_payroll)
+        return false
+      end
+    end
   
 end

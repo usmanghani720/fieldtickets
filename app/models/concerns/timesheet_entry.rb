@@ -19,8 +19,8 @@ module TimesheetEntry
     validates :status, presence: true
     validates :reason_for_edit, presence: true, if: :manually_edited?
     
-    before_create :entry_cannot_be_outside_ticket_date
-    before_update :entry_cannot_be_outside_ticket_date
+    before_create :cannot_be_outside_ticket_date
+    before_update :cannot_be_outside_ticket_date
     
   end
     
@@ -64,7 +64,7 @@ module TimesheetEntry
   
   private
   
-    def entry_cannot_be_outside_ticket_date
+    def cannot_be_outside_ticket_date
       if outside_ticket_date?
         self.errors.add(:time, :outside_ticket_date, ticket_date: ticket.first_employee_entry)
         return false

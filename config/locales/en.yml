@@ -97,6 +97,7 @@ en:
           attributes:
             time:
               outside_ticket_date: 'This ticket is for %{ticket_date}. If the date you entered is correct, you should use a new ticket.'
+              already_submitted_to_payroll: 'This ticket was already submitted to payroll, so it cannot be modified.'
 
     attributes:
     

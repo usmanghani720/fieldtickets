@@ -5,6 +5,10 @@ class PayrollPeriod < ActiveRecord::Base
   has_many :employees, -> { unscope(:order).uniq }, through: :employee_entries, class_name: 'Ticket::Employee'
   has_many :tickets, -> { unscope(:order).uniq }, through: :employees, class_name: 'Ticket::Ticket'
   
+  def self.exists_for_date(date)
+    PayrollPeriod.where('start_date <= ?', date).where('end_date >= ?', date).count > 0
+  end
+  
   def per_diems
     result = {}
     
