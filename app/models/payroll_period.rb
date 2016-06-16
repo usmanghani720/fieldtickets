@@ -52,8 +52,6 @@ class PayrollPeriod < ActiveRecord::Base
     if employee_entries.present?
       raise 'This PayrollPeriod already has employee_entries! Can’t autoselect_entries!'
     end
-    
-    Ticket::Ticket.set_first_employee_entries
   
     tickets = Ticket::Ticket.where(first_employee_entry: start_date..end_date)
     tickets.each do |ticket|
@@ -80,7 +78,7 @@ class PayrollPeriod < ActiveRecord::Base
   
     entries.each do |e|
       duration = e.duration || 0
-      date = e.payroll_worked_date = e.ticket.payroll_worked_date
+      date = e.payroll_worked_date = e.ticket.first_employee_entry
       minutes_this_week[date] ||= 0
       minutes_this_week[date] += duration
       minutes_this_week[:total] += duration

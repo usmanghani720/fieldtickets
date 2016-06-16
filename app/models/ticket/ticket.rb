@@ -92,6 +92,9 @@ class Ticket::Ticket < ActiveRecord::Base
   # If this Ticket shouldn't be attached to a Job, set job to nil.
   before_save :erase_job_if_not_needed
   
+  # Cache the first employee entry date so we don't have to reload it
+  before_save :first_employee_entry
+  
   after_create :set_crew_chief
   
   def employee_hours
@@ -283,22 +286,11 @@ class Ticket::Ticket < ActiveRecord::Base
     end
   end
   
-  def payroll_worked_date
-    if entry = employee_entries.first
-      entry.time.to_date
-    end
-  end
-  
-  def set_first_employee_entry
-    self.first_employee_entry = payroll_worked_date
-  end
-  
-  # do for all
-  def self.set_first_employee_entries
-    tickets = Ticket::Ticket.where(first_employee_entry: nil)
-    tickets.each do |ticket|
-      ticket.set_first_employee_entry
-      ticket.save
+  def first_employee_entry
+    if self[:first_employee_entry]
+      self[:first_employee_entry]
+    elsif entry = employee_entries.first
+      self[:first_employee_entry] = entry.time.to_date
     end
   end
   
