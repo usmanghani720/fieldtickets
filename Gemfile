@@ -42,6 +42,7 @@ gem 'ar-audit-tracer'
 # Correctly titleizes English-language sentences
 gem 'titleize'
 
+gem 'sinatra'
 gem 'sidekiq'
 gem 'redis'
 
