@@ -11,23 +11,10 @@
   h1
     | Job
 dl.dl-horizontal
-  dt
-    | Customer:
-  dd
-    = @job.customer
-  dt
-    | BRM #
-  dd
-    = @job.internal_number
-  dt
-    | Customer’s Job #
-  dd
-    = @job.customer_number
-  dt
-    | Billing:
-  dd
-    = @job.billing
-  dt
-    | Completed:
-  dd
-    = @job.completed_at
+  = show_model_data @job, :customer
+  = show_model_data @job, :internal_number
+  = show_model_data @job, :customer_number
+  = show_model_data @job, :billing
+  = show_model_data @job, :pay_rate
+  = show_model_data @job, :completed_at
+hr

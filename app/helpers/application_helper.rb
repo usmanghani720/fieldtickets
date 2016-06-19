@@ -62,4 +62,26 @@ module ApplicationHelper
     end
   end
   
+  def show_model_data(object, method)
+    if object.respond_to?(i18n_method = "#{method}_i18n")
+      value = object.send(i18n_method)
+    else
+      value = object.send(method)
+    end
+    
+    if value === true
+      value = 'Yes'
+    elsif value === false
+      value = 'No'
+    end
+    
+    label = object.class.human_attribute_name(method)
+    if needs_colon = !['#', '?'].include?(label[-1])
+      label << ':'
+    end
+    
+    ("<dt>#{label}</dt>" +
+    "<dd>#{value}</dd>").html_safe
+  end
+  
 end

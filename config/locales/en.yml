@@ -29,6 +29,10 @@ en:
       pay_rate:
         day_pay: 'Day Rate'
         night_pay: 'Night Rate'
+
+    employee:
+      role:
+        worker: 'Construction Worker'
         
     ticket:
       vehicle:
@@ -106,6 +110,9 @@ en:
 
     attributes:
     
+      employee:
+        role: 'Job Title'
+    
       job:
         customer_name: 'Customer'
         internal_number: 'BlackRock Job #'
@@ -119,9 +126,6 @@ en:
                 
       ticket/ticket:
         job_name_entry: 'BlackRock Job #'
-        bill_to: 'Bill To'
-        
-        crew_chief: 'Crew Chief'
         
         customer_approved_work: 'Customer Approves?'
         customer_signature: 'Signature'

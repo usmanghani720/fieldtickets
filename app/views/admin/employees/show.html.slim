@@ -9,17 +9,11 @@
     span.glyphicon.glyphicon-pencil
     |  Edit 
   h1
-    | Show employee
+    | Employee
 dl.dl-horizontal
-  dt
-    | Name:
-  dd
-    = @employee.name
-  dt
-    | Nickname:
-  dd
-    = @employee.nickname
-  dt
-    | Internal Number:
-  dd
-    = @employee.internal_number
+  = show_model_data @employee, :role
+  = show_model_data @employee, :name
+  = show_model_data @employee, :nickname
+  = show_model_data @employee, :email
+  = show_model_data @employee, :can_log_in?
+hr

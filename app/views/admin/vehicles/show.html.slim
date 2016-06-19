@@ -13,21 +13,10 @@
     span.glyphicon.glyphicon-pencil
     |  Edit 
     
-  h1
-    = vehicle
+  h1 Vehicle
     
 dl.dl-horizontal
-  dt
-    = Vehicle.human_attribute_name :internal_number
-  dd
-    = vehicle.internal_number
-  dt
-    = Vehicle.human_attribute_name :description
-  dd
-    = vehicle.description
-  dt
-    = Vehicle.human_attribute_name :vehicle_type
-  dd
-    = vehicle.vehicle_type
-
+  = show_model_data @vehicle, :vehicle_type
+  = show_model_data @vehicle, :internal_number
+  = show_model_data @vehicle, :description
 hr
