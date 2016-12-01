@@ -1,4 +1,4 @@
-ruby '2.2.2'
+ruby '2.3.1'
 
 source 'https://rubygems.org'
 
@@ -12,9 +12,9 @@ gem 'pg'
 gem 'slim-rails'
 gem 'route_downcaser'
 gem 'paperclip'
+gem 'aws-sdk', '< 2.0' # Paperclip requires an old version of the ugly Amazon SDK gem
 gem 'paranoia'
 gem 'bootstrap-generators'
-gem 'aws-sdk', '< 2.0' # Paperclip requires an old version of the ugly Amazon SDK gem
 gem 'rails-jquery-autocomplete'
 gem 'jquery-ui-rails'
 gem 'seed_dump'
