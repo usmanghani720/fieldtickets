@@ -22,7 +22,7 @@ html
       = partial '/layouts/sidebar'
       
       - flash.each do |name, msg|
-        = content_tag :div, class: "col-sm-offset-2 alert alert-#{ name.to_sym == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
+        = content_tag :div, class: "col-sm-offset-3 col-md-offset-2 alert alert-#{ name.to_sym == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
           button.close type="button" data-dismiss="alert"
             span aria-hidden="true"
               | &times;
