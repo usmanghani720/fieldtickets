@@ -16,14 +16,14 @@ div#changeEmployeeStatus.modal.fade role="dialog"
         = form_tag(ticket_employee_new_status_path(ticket), method: :post) do |f|
           p When did Emily Langer begin maintenance?
           div
-            input#time_input type="time" name="time" value="06:53"
+            input#time_input type="time" name="time"
             |  
+            /| <input name="time_zone" type="hidden" value="eastern" />
             | <div class="btn-group" data-toggle="buttons">
-            |   <input name="time_zone" type="hidden" value="eastern" />
             |   <label class="btn btn-default ">    
             |     <input type="radio" value="central" name="time_zone">Central
             |   </label>
-            |   <label class="btn btn-default active">    
+            |   <label class="btn btn-default">    
             |     <input type="radio" value="eastern" name="time_zone">Eastern
             |   </label>
             | </div>
@@ -41,6 +41,17 @@ coffee:
   $('.change_status').click (event) ->
     $('#employee_id').val($(event.target).data('id'))
     $('#employee_status').val($(event.target).data('status'))
+    date = new Date
+    $('#time_input').val(date.toTimeString().substring(0,5))
+    time_zone_abbr = date.toString().match(/\(([A-Za-z\s].*)\)/)[1]
+    time_zone_string = switch time_zone_abbr
+      when 'CDT', 'CST' then 'central'
+      when 'EDT', 'EST' then 'eastern'
+    
+    time_zone_input = $('input[value=' + time_zone_string + ']')[0]
+    time_zone_input.checked = true
+    time_zone_input.parentElement.className += ' active'
+    
     $('#changeEmployeeStatus').modal('show')
     
   $('#changeEmployeeStatus').on 'shown.bs.modal', ->
