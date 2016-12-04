@@ -30,6 +30,7 @@
 //= require vendor/jquery-safari-forms
 //= require vendor/signature_pad
 
+//= require app/responsive-menu
 //= require app/data-links
 //= require app/autoshow-form-buttons
 //= require app/best-in-place-activate

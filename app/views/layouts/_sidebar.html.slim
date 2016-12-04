@@ -2,6 +2,8 @@
   #sidebar
     = image_tag('blackrock-logo-80.png', border: 0, width: '150px', height: '106px', class: 'nav-sidebar-logo')
     
+    a.menu-icon href="javascript:void(0);" onclick="toggleNavMenu()" &#9776;
+          
     - if not employee_signed_in?
       ul.nav.nav-sidebar
         li.indent-0.active
@@ -116,3 +118,4 @@
       ul.nav.nav-sidebar
         li.indent-0
           = link_to 'Log Out', destroy_employee_session_path, method: :delete
+    

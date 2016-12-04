@@ -44,7 +44,7 @@ class PayrollPeriod < ActiveRecord::Base
       group(:payroll_category_string)
       
     results = results.reject do |result|
-      (result.payroll_duration_standard + result.payroll_duration_overtime) <= 0
+      (result.payroll_duration_standard.to_f + result.payroll_duration_overtime.to_f) <= 0
     end
     
     results
