@@ -6,7 +6,7 @@
     | Notes
 
 .table-responsive
-  table.table.table-striped.table-bordered
+  table.table.table-striped
     tbody
       - @notes.each do | note |
         /tr data-link="#{ticket_note_path(note)}"

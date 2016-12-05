@@ -92,7 +92,7 @@ class Ticket::EmployeesController < Ticket::BaseController
     message = if @employee.per_diem
       "#{@employee} will receive per diem for this ticket."
     else
-      "#{@employee} will no longer receive per diem for this ticket."
+      "#{@employee} will not receive per diem for this ticket."
     end
     
     redirect_to ticket_employee_log_path(@ticket, @employee), notice: message
