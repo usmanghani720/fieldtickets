@@ -6,27 +6,40 @@
     
 = render partial: 'employees_display', locals: { ticket: ticket }
 
-a.btn.btn-info.change_status href="#" Change Status
-
 div#changeEmployeeStatus.modal.fade role="dialog"
   .modal-dialog
   
     .modal-content
       .modal-body
         button.close type="button" data-dismiss="modal" &times;
-        p When did Emily Langer begin maintenance?
-        div
-          input#time_input type="time" name="time" value="6:53 PM"
-        
-        hr
-        
-        a.btn.btn-primary href="#" Save
-        |  or 
-        a.btn-cancel data-dismiss="modal" Cancel
+        / form#changeEmployeeStatusForm method='
+        = form_tag(ticket_employee_new_status_path(ticket), method: :post) do |f|
+          p When did Emily Langer begin maintenance?
+          div
+            input#time_input type="time" name="time" value="6:53 PM"
+            |  
+            | <div class="btn-group" data-toggle="buttons">
+            |   <label class="btn btn-default ">    
+            |     <input type="radio" value="central" name="time_zone">Central
+            |   </label>
+            |   <label class="btn btn-default active">    
+            |     <input type="radio" value="eastern" name="time_zone">Eastern
+            |   </label>
+            | </div>
+            input#employee_id type="hidden" name="employee_id" value=""
+            input#employee_status type="hidden" name="employee_status" value=""
+          
+          hr
+          
+          /input.btn.btn-primary type="sumbit" Save
+          input.btn.btn-primary type="submit" name="commit" value="Save" data-disable-with="Please wait…"
+          a.btn.btn-cancel data-dismiss="modal" Cancel
 
 coffee: 
 
-  $('.change_status').click ->
+  $('.change_status').click (event) ->
+    $('#employee_id').val($(event.target).data('id'))
+    $('#employee_status').val($(event.target).data('status'))
     $('#changeEmployeeStatus').modal('show')
     
   $('#changeEmployeeStatus').on 'shown.bs.modal', ->

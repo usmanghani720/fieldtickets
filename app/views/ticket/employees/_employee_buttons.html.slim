@@ -21,13 +21,17 @@
       a Change status:
     
     - if not employee.on_the_job?
-      li = link_to 'On the Job', ticket_employee_new_status_path(ticket, employee, status: 'on_the_job'), method: :post
+      li
+        a.change_status href="#" data-id="#{employee.id}" data-status="on_the_job" On the Job
     
     - if not employee.transport?
-      li = link_to 'Transport', ticket_employee_new_status_path(ticket, employee, status: 'transport'), method: :post
+      li
+        a.change_status href="#" data-id="#{employee.id}" data-status="transport" Transport
     
     - if not employee.maintenance?
-      li = link_to 'Maintenance', ticket_employee_new_status_path(ticket, employee, status: 'maintenance'), method: :post
+      li
+        a.change_status href="#" data-id="#{employee.id}" data-status="maintenance" Maintenance
       
     - if not employee.idle?
-      li = link_to 'Idle', ticket_employee_new_status_path(ticket, employee, status: 'idle'), method: :post
+      li
+        a.change_status href="#" data-id="#{employee.id}" data-status="idle" Idle

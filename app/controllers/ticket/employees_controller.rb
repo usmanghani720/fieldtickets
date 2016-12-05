@@ -35,8 +35,8 @@ class Ticket::EmployeesController < Ticket::BaseController
   # Add a new EmployeeEntry to change an Employee's status
   def create_status
     begin
-      @employee.status = params[:status]
-      flash[:notice] = "#{@employee} marked ‘#{params[:status].titleize}’"
+      @employee.status = params[:employee_status]
+      flash[:notice] = "#{@employee} marked ‘#{@employee.status.titleize}’"
     rescue ActiveRecord::RecordNotSaved
       flash[:error] = "This ticket is for #{ticket.first_employee_entry}, so you can no longer clock employees in or out. If you need to make changes, click the employee and click “View Timesheet…”"
     end
