@@ -12,7 +12,7 @@ class Ticket::Employee < ActiveRecord::Base
   
   enum status: { idle: 0, transport: 1, maintenance: 2, on_the_job: 3 }
   
-  def status=(new_status, time = nil)
+  def update_status(new_status, time)
     employee_entry = Ticket::EmployeeEntry.create!(
       employee: self,
       status: new_status,

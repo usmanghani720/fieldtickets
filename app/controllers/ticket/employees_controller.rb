@@ -34,8 +34,19 @@ class Ticket::EmployeesController < Ticket::BaseController
   
   # Add a new EmployeeEntry to change an Employee's status
   def create_status
+    timezone = if params[:time_zone] == 'eastern'
+      ActiveSupport::TimeZone.new('Eastern Time (US & Canada)')
+    elsif params[:time_zone] == 'central'
+      ActiveSupport::TimeZone.new('Central Time (US & Canada)')
+    end
+    
+    old_timezone = Chronic.time_class
+    Chronic.time_class = timezone
+    time = Chronic.parse('today at ' + params[:time])
+    Chronic.time_class = old_timezone
+        
     begin
-      @employee.status = params[:employee_status]
+      @employee.update_status(params[:employee_status], time)
       flash[:notice] = "#{@employee} marked ‘#{@employee.status.titleize}’"
     rescue ActiveRecord::RecordNotSaved
       flash[:error] = "This ticket is for #{ticket.first_employee_entry}, so you can no longer clock employees in or out. If you need to make changes, click the employee and click “View Timesheet…”"
