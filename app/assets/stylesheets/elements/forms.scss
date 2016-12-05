@@ -1,3 +1,13 @@
+// 
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
+
 // Make invalid number fields show red. They don’t sumbit when invalid.
 input[type=number]:invalid {
   background-color: #F00;
