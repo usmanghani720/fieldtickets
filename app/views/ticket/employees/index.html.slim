@@ -6,29 +6,7 @@
     
 = render partial: 'employees_display', locals: { ticket: ticket }
 
-| <!-- Trigger the modal with a button -->
-| <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#changeEmployeeStatus">Open Modal</button>
-| 
-| <!-- Modal -->
-/ <div id="myModal" class="modal fade" role="dialog">
-/   <div class="modal-dialog">
-/ 
-/     <!-- Modal content-->
-/     <div class="modal-content">
-/       <div class="modal-header">
-/         <button type="button" class="close" data-dismiss="modal">&times;</button>
-/         <h4 class="modal-title">Modal Header</h4>
-/       </div>
-/       <div class="modal-body">
-/         <p>Some text in the modal.</p>
-/       </div>
-/       <div class="modal-footer">
-/         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-/       </div>
-/     </div>
-/ 
-/   </div>
-/ </div>
+a.btn.btn-info.change_status href="#" Change Status
 
 div#changeEmployeeStatus.modal.fade role="dialog"
   .modal-dialog
@@ -38,10 +16,21 @@ div#changeEmployeeStatus.modal.fade role="dialog"
         button.close type="button" data-dismiss="modal" &times;
         p When did Emily Langer begin maintenance?
         div
-          input type="time" name="time" value="6:53 PM" autofocus="true"
+          input#time_input type="time" name="time" value="6:53 PM"
         
         hr
         
-        a.btn.btn-primary href="./" Save
+        a.btn.btn-primary href="#" Save
         |  or 
         a.btn-cancel href="./" Cancel
+
+coffee: 
+
+  $('.change_status').click ->
+    $('#changeEmployeeStatus').modal('show')
+
+  $ ->
+    
+    $('#changeEmployeeStatus').on 'shown', ->
+      $('#time_input').focus()
+    
