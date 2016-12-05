@@ -20,7 +20,7 @@ div#changeEmployeeStatus.modal.fade role="dialog"
             |  
             /| <input name="time_zone" type="hidden" value="eastern" />
             | <div class="btn-group" data-toggle="buttons">
-            |   <label class="btn btn-default ">    
+            |   <label class="btn btn-default">    
             |     <input type="radio" value="central" name="time_zone">Central
             |   </label>
             |   <label class="btn btn-default">    
@@ -46,11 +46,11 @@ coffee:
     time_zone_abbr = date.toString().match(/\(([A-Za-z\s].*)\)/)[1]
     time_zone_string = switch time_zone_abbr
       when 'CDT', 'CST' then 'central'
-      when 'EDT', 'EST' then 'eastern'
+      else 'eastern'
     
     time_zone_input = $('input[value=' + time_zone_string + ']')[0]
-    time_zone_input.checked = true
-    time_zone_input.parentElement.className += ' active'
+    time_zone_input.click()
+    
     
     $('#changeEmployeeStatus').modal('show')
     
