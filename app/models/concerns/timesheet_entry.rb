@@ -10,7 +10,7 @@ module TimesheetEntry
     
     scope :without_refuel, -> { where.not(status: 99) }
     
-    before_create :set_default_time
+    before_save :set_default_time
     
     attr_accessor :recalculating
     after_save :recalculate!, unless: :recalculating
@@ -32,6 +32,11 @@ module TimesheetEntry
     send(timesheet_model)
   end
   
+  def time
+    set_default_time
+    self[:time]
+  end
+  
   def time_entered_manually?
     created_at.round_to_minute != time
   end
@@ -39,9 +44,11 @@ module TimesheetEntry
   def time=(new_time)
     if new_time.is_a? String
       new_time = new_time.to_time_with_chronic
+    elsif new_time
+      self[:time] = new_time.round_to_minute
+    else
+      self[:time] = nil
     end
-    
-    self[:time] = new_time.round_to_minute
     
     recalculate_duration
   end
@@ -97,7 +104,7 @@ module TimesheetEntry
     end
   
     def set_default_time
-      self.time ||= self.created_at
+      self[:time] ||= self.created_at
     end
     
     # For Ticket::Employee, returns "employee"

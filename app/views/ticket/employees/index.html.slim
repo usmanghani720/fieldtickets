@@ -19,6 +19,7 @@ div#changeEmployeeStatus.modal.fade role="dialog"
             input#time_input type="time" name="time" value="6:53 PM"
             |  
             | <div class="btn-group" data-toggle="buttons">
+            |   <input name="time_zone" type="hidden" value="eastern" />
             |   <label class="btn btn-default ">    
             |     <input type="radio" value="central" name="time_zone">Central
             |   </label>
@@ -44,3 +45,6 @@ coffee:
     
   $('#changeEmployeeStatus').on 'shown.bs.modal', ->
     $('#time_input').focus()
+    
+  $ ->
+    $('#ticket_employee_per_diem').checkboxpicker()
