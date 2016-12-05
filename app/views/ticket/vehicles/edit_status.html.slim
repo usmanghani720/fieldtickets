@@ -41,12 +41,12 @@
                 
           - else
         
-          td = entry.status_pretty
-          td
-            - if entry.time_entered_manually?
-              span.time_entered_manually data-toggle="tooltip" title="#{entry.reason_for_edit} — originally #{entry.created_at}"
-                | ✱ 
-            = entry.time
-            |  
-            = link_to 'edit', ticket_vehicle_edit_status_path(vehicle_entry_id: entry.id)
-          td = entry.duration
+            td = entry.status_pretty
+            td
+              - if entry.time_entered_manually?
+                span.time_entered_manually data-toggle="tooltip" title="#{entry.reason_for_edit} — originally #{entry.created_at}"
+                  | ✱ 
+              = entry.time
+              |  
+              = link_to 'edit', ticket_vehicle_edit_status_path(vehicle_entry_id: entry.id)
+            td = entry.duration

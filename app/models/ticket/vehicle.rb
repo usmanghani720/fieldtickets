@@ -32,12 +32,14 @@ class Ticket::Vehicle < ActiveRecord::Base
     end
   end
   
-  def status=(new_status)
+  def update_status(new_status, time)
     vehicle_entry = Ticket::VehicleEntry.create!(
       vehicle: self,
-      status: new_status
+      status: new_status,
+      time: time
     )
   end
+  
   
   def to_s
     if company?

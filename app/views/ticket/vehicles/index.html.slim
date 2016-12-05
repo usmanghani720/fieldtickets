@@ -5,3 +5,53 @@
   h2 Vehicles
     
 = render partial: 'vehicles_display', locals: { ticket: ticket }
+
+div#changeVehicleStatus.modal.fade role="dialog"
+  .modal-dialog
+  
+    .modal-content
+      .modal-body
+        button.close type="button" data-dismiss="modal" &times;
+        = form_tag(ticket_vehicle_new_status_path(ticket), method: :post) do |f|
+          p When did Emily Langer begin maintenance?
+          div
+            input#time_input type="time" name="time"
+            |  
+            /| <input name="time_zone" type="hidden" value="eastern" />
+            | <div class="btn-group" data-toggle="buttons">
+            |   <label class="btn btn-default">    
+            |     <input type="radio" value="central" name="time_zone">Central
+            |   </label>
+            |   <label class="btn btn-default">    
+            |     <input type="radio" value="eastern" name="time_zone">Eastern
+            |   </label>
+            | </div>
+            input#vehicle_id type="hidden" name="vehicle_id" value=""
+            input#vehicle_status type="hidden" name="vehicle_status" value=""
+          
+          hr
+          
+          /input.btn.btn-primary type="sumbit" Save
+          input.btn.btn-primary type="submit" name="commit" value="Save" data-disable-with="Please wait…"
+          a.btn.btn-cancel data-dismiss="modal" Cancel
+
+coffee: 
+
+  $('.change_status').click (event) ->
+    $('#vehicle_id').val($(event.target).data('id'))
+    $('#vehicle_status').val($(event.target).data('status'))
+    date = new Date
+    $('#time_input').val(date.toTimeString().substring(0,5))
+    time_zone_abbr = date.toString().match(/\(([A-Za-z\s].*)\)/)[1]
+    time_zone_string = switch time_zone_abbr
+      when 'CDT', 'CST' then 'central'
+      else 'eastern'
+    
+    time_zone_input = $('input[value=' + time_zone_string + ']')[0]
+    time_zone_input.click()
+    
+    
+    $('#changeVehicleStatus').modal('show')
+    
+  $('#changeVehicleStatus').on 'shown.bs.modal', ->
+    $('#time_input').focus()

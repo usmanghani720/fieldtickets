@@ -36,7 +36,8 @@ Rails.application.routes.draw do
       get 'vehicles/:vehicle_id' => 'vehicles#show', as: :vehicle_log
       get 'vehicles/:vehicle_id/refuel' => 'vehicles#new_refuel', as: :vehicle_refuel
       post 'vehicles/:vehicle_id/refuel' => 'vehicles#create_refuel'
-      post 'vehicles/:vehicle_id/:status' => 'vehicles#create_status', as: :vehicle_new_status
+      #post 'vehicles/:vehicle_id/:status' => 'vehicles#create_status', as: :vehicle_new_status
+      post 'vehicles/status' => 'vehicles#create_status', as: :vehicle_new_status
       get 'vehicles/:vehicle_id/edit/:vehicle_entry_id' => 'vehicles#edit_status', as: :vehicle_edit_status
       patch 'vehicles/:vehicle_id/edit/:vehicle_entry_id' => 'vehicles#update_status'
       delete 'vehicles/:vehicle_id/edit/:vehicle_entry_id' => 'vehicles#delete_status'

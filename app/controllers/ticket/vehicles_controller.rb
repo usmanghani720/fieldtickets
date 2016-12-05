@@ -32,10 +32,30 @@ class Ticket::VehiclesController < Ticket::BaseController
   
   # Add a new VehicleEntry to change an Vehicle's status
   def create_status
-    @vehicle.status = params[:status]
+    timezone = if params[:time_zone] == 'eastern'
+      ActiveSupport::TimeZone.new('Eastern Time (US & Canada)')
+    elsif params[:time_zone] == 'central'
+      ActiveSupport::TimeZone.new('Central Time (US & Canada)')
+    end
     
-    flash[:notice] = "#{@vehicle} marked ‘#{params[:status].titleize}’"
+    old_timezone = Chronic.time_class
+    Chronic.time_class = timezone
+    time = Chronic.parse('today at ' + params[:time])
+    Chronic.time_class = old_timezone
+        
+    begin
+      @vehicle.update_status(params[:vehicle_status], time)
+      flash[:notice] = "#{@vehicle} marked ‘#{@vehicle.status.titleize}’"
+    rescue ActiveRecord::RecordNotSaved
+      flash[:error] = "This ticket is for #{ticket.first_employee_entry}, so you can no longer update a vehicle’s status. If you need to make changes, click the vehicle and click “View Timesheet…”"
+    end
+    
     redirect_to ticket_vehicles_path(@ticket)
+    
+    
+    #@vehicle.status = params[:status]
+    #
+    #flash[:notice] = "#{@vehicle} marked ‘#{params[:status].titleize}’"
   end
   
   # Show the form to edit a status

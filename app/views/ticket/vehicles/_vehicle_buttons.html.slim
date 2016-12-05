@@ -23,10 +23,13 @@
       a Change status:
 
     - if not vehicle.on_the_job?
-      li = link_to 'On the Job', ticket_vehicle_new_status_path(ticket, vehicle, status: 'on_the_job'), method: :post
+      li
+        a.change_status href="#" data-id="#{vehicle.id}" data-status="on_the_job" On the Job
 
     - if not vehicle.maintenance? and vehicle.maintenance_available?
-      li = link_to 'Maintenance', ticket_vehicle_new_status_path(ticket, vehicle, status: 'maintenance'), method: :post
-  
+      li
+        a.change_status href="#" data-id="#{vehicle.id}" data-status="maintenance" Maintenance
+
     - if not vehicle.idle?
-      li = link_to 'Idle', ticket_vehicle_new_status_path(ticket, vehicle, status: 'idle'), method: :post
+      li
+        a.change_status href="#" data-id="#{vehicle.id}" data-status="idle" Idle

@@ -5,6 +5,7 @@ class Ticket::VehicleEntry < ActiveRecord::Base
   belongs_to :vehicle
   validates :mileage, presence: true, if: :mileage_required?
   validates :fuel_gallons, presence: true, if: :fuel_gallons_required?
+  has_one :ticket, through: :vehicle
   
   acts_as_paranoid
   
