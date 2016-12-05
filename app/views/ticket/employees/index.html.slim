@@ -22,15 +22,12 @@ div#changeEmployeeStatus.modal.fade role="dialog"
         
         a.btn.btn-primary href="#" Save
         |  or 
-        a.btn-cancel href="./" Cancel
+        a.btn-cancel data-dismiss="modal" Cancel
 
 coffee: 
 
   $('.change_status').click ->
     $('#changeEmployeeStatus').modal('show')
-
-  $ ->
     
-    $('#changeEmployeeStatus').on 'shown', ->
-      $('#time_input').focus()
-    
+  $('#changeEmployeeStatus').on 'shown.bs.modal', ->
+    $('#time_input').focus()
