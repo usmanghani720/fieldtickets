@@ -38,12 +38,23 @@ module TimesheetEntry
   end
   
   def time_entered_manually?
-    created_at.round_to_minute != time
+    #created_at.round_to_minute != time
+    
+    wiggle_room = 5.minutes
+    
+    t = created_at.round_to_minute
+    t_min = t - wiggle_room
+    t_max = t + wiggle_room
+    if time >= t_min and time <= t_max
+      false
+    else
+      true
+    end
   end
   
   def time=(new_time)
     if new_time.is_a? String
-      new_time = new_time.to_time_with_chronic
+      self[:time] = new_time.to_time_with_chronic.round_to_minute
     elsif new_time
       self[:time] = new_time.round_to_minute
     else
