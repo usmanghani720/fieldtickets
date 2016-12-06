@@ -2,6 +2,7 @@ class CreateEmployees < ActiveRecord::Migration
   def change
     create_table :employees do |t|
       t.string :name, null: false
+      t.string :name_searchable
       t.string :nickname
       t.string :internal_number
 

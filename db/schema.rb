@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160605222240) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "name",                               null: false
+    t.string   "name_searchable"
     t.string   "nickname"
     t.string   "internal_number"
     t.string   "display_name"
