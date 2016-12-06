@@ -1,14 +1,19 @@
 dl.dl-horizontal
 
-  dt Customer:
-  dd = ticket.job.customer
+  - if ticket.job
+    dt Customer:
+    dd = ticket.job.customer
   
-  - if ticket.job.customer_number
-    dt Customer’s Job #
-    dd = ticket.job.customer_number
-  
-  dt BlackRock’s Job #
-  dd = ticket.job.internal_number
+    - if ticket.job.customer_number
+      dt Customer’s Job #
+      dd = ticket.job.customer_number
+
+    dt BlackRock’s Job #
+    dd = ticket.job.internal_number
+    
+  - else
+    dt Job:
+    dd = ticket.job_name_entry
     
   br
 
