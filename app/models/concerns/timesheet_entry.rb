@@ -38,18 +38,13 @@ module TimesheetEntry
   end
   
   def time_entered_manually?
-    #created_at.round_to_minute != time
-    
-    wiggle_room = 5.minutes
+    wiggle_room = 15.minutes
     
     t = created_at.round_to_minute
     t_min = t - wiggle_room
     t_max = t + wiggle_room
-    if time >= t_min and time <= t_max
-      false
-    else
-      true
-    end
+    
+    return (not (time >= t_min and time <= t_max))
   end
   
   def time=(new_time)

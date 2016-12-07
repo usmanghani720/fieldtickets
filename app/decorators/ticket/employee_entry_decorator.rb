@@ -12,4 +12,12 @@ class Ticket::EmployeeEntryDecorator < Ticket::TimesheetEntryDecorator
       "#{num} hours"
     end
   end
+  
+  def edit_summary
+    if object.reason_for_edit
+      "#{object.reason_for_edit} — originally entered at #{object.created_at}"
+    else
+      "Entered at #{object.created_at}"
+    end
+  end
 end

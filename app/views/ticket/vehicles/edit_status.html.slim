@@ -44,7 +44,7 @@
             td = entry.status_pretty
             td
               - if entry.time_entered_manually?
-                span.time_entered_manually data-toggle="tooltip" title="#{entry.reason_for_edit} — originally #{entry.created_at}"
+                span.time_entered_manually data-toggle="tooltip" title="#{entry.edit_summary}"
                   | ✱ 
               = entry.time
               |  
