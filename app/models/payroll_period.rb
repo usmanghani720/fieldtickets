@@ -5,6 +5,20 @@ class PayrollPeriod < ActiveRecord::Base
   has_many :employees, -> { unscope(:order).uniq }, through: :employee_entries, class_name: 'Ticket::Employee'
   has_many :tickets, -> { unscope(:order).uniq }, through: :employees, class_name: 'Ticket::Ticket'
   
+  # returns tickets that are admin-approved but not attached to a payroll period
+  def self.available_tickets
+    entries = Ticket::EmployeeEntry.where(payroll_period_id: nil)
+    
+    pending_tickets = Set.new
+    entries.each do |entry|
+      if entry.ticket.admin_approved?
+        pending_tickets << entry.ticket
+      end
+    end
+    
+    pending_tickets
+  end
+  
   def self.exists_for_date(date)
     PayrollPeriod.where('start_date <= ?', date).where('end_date >= ?', date).count > 0
   end
@@ -73,25 +87,48 @@ class PayrollPeriod < ActiveRecord::Base
     calculate!
   end
   
-  # Choose the Ticket::EmployeeEntries that belong to this PayrollPeriod
+  # Choose all finalized Ticket::EmployeeEntries that belong to this PayrollPeriod
   def autoselect_all_possible_entries!
     if employee_entries.present?
       raise 'This PayrollPeriod already has employee_entries! Can’t autoselect_entries!'
     end
   
-    tickets = Ticket::Ticket.where(first_employee_entry: start_date..end_date)
+    entries = Ticket::EmployeeEntry.where(payroll_period_id: nil)
+
+    tickets = Set.new
+    entries.each do |entry|
+      if entry.ticket.admin_approved?
+        tickets << entry.ticket
+      end
+    end
+    
+    earliest_date = nil
+    latest_date = nil
+
     tickets.each do |ticket|
       ticket.employee_entries.each do |employee_entry|
         if employee_entry.payroll_period
-          raise 'PayrollPeriod.autoselect_entries! was called for a date range that already has payroll data.'
+          raise 'autoselect_all_possible_entries! is working on a ticket that already has a payroll period. More nuanced control is required here.'
         end
+        
+        if (not earliest_date) or (earliest_date > employee_entry.time)
+          earliest_date = employee_entry.time
+        end
+        if (not latest_date) or (latest_date < employee_entry.time)
+          latest_date = employee_entry.time
+        end
+        
         employee_entry.payroll_period = self
         if not employee_entry.save
           raise employee_entry.errors.inspect
         end
       end
     end
-  
+    
+    self.start_date = earliest_date
+    self.end_date = latest_date
+    self.save
+    
     calculate!
   end
 

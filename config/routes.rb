@@ -81,6 +81,7 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :payroll
+    post 'payroll/calculate' => 'payroll#add_pending_tickets', as: :payroll_calculate
     resources :customers
     resources :employees
     resources :vehicles

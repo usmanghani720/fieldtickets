@@ -1,4 +1,10 @@
 .page-header
+  - if @pending_tickets.count > 0
+    = link_to admin_payroll_calculate_path, class: 'btn btn-warning', method: :post do 
+      span.glyphicon.glyphicon-plus
+      |  Add 
+      = pluralize @pending_tickets.count, 'Ticket'
+      |  to a Payroll Period
   h1
     | Payroll Reports
 
