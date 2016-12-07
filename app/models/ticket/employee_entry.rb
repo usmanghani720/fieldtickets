@@ -44,7 +44,9 @@ class Ticket::EmployeeEntry < ActiveRecord::Base
     def cannot_be_already_submitted_to_payroll
       date = ticket.first_employee_entry
       date ||= time.to_date
-      if PayrollPeriod.exists_for_date(date)
+      if false
+      #if payroll_period
+      #if PayrollPeriod.exists_for_date(date)
         self.errors.add(:time, :already_submitted_to_payroll)
         return false
       end

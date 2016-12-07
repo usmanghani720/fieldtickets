@@ -7,11 +7,11 @@
     thead
       tr
         th
-          | Start Date
-        th
-          | End Date
+          | Dates
     tbody
       - @payroll_periods.each do | period |
         tr data-link="#{admin_payroll_path(period)}"
-          td = period.start_date
-          td = period.end_date
+          td
+            = period.start_date
+            |  – 
+            = period.end_date

@@ -64,7 +64,31 @@ class PayrollPeriod < ActiveRecord::Base
           raise 'PayrollPeriod.autoselect_entries! was called for a date range that already has payroll data.'
         end
         employee_entry.payroll_period = self
-        employee_entry.save!
+        if not employee_entry.save
+          raise employee_entry.errors.inspect
+        end
+      end
+    end
+  
+    calculate!
+  end
+  
+  # Choose the Ticket::EmployeeEntries that belong to this PayrollPeriod
+  def autoselect_all_possible_entries!
+    if employee_entries.present?
+      raise 'This PayrollPeriod already has employee_entries! Can’t autoselect_entries!'
+    end
+  
+    tickets = Ticket::Ticket.where(first_employee_entry: start_date..end_date)
+    tickets.each do |ticket|
+      ticket.employee_entries.each do |employee_entry|
+        if employee_entry.payroll_period
+          raise 'PayrollPeriod.autoselect_entries! was called for a date range that already has payroll data.'
+        end
+        employee_entry.payroll_period = self
+        if not employee_entry.save
+          raise employee_entry.errors.inspect
+        end
       end
     end
   

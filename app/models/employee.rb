@@ -36,11 +36,15 @@ class Employee < ActiveRecord::Base
   
   # “Ollie” Oliver Anson (32)
   def display_name
-    the_name = ''
-    the_name << "“#{nickname}” " if nickname.present?
-    the_name << (name || 'Unnamed Employee')
-    the_name << " (#{internal_number})" if internal_number.present?
-    the_name
+    if not changed?
+      return self[:display_name]
+    else
+      the_name = ''
+      the_name << "“#{nickname}” " if nickname.present?
+      the_name << (name || 'Unnamed Employee')
+      the_name << " (#{internal_number})" if internal_number.present?
+      return the_name
+    end
   end
   
   def to_s

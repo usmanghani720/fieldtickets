@@ -22,15 +22,15 @@
     
     - if not employee.on_the_job?
       li
-        a.change_status href="#" data-id="#{employee.id}" data-status="on_the_job" On the Job
+        a.change_status href="#" data-id="#{employee.id}" data-status="on_the_job" data-displayname="#{employee.display_name}" On the Job
     
     - if not employee.transport?
       li
-        a.change_status href="#" data-id="#{employee.id}" data-status="transport" Transport
+        a.change_status href="#" data-id="#{employee.id}" data-status="transport" data-displayname="#{employee.display_name}" Transport
     
     - if not employee.maintenance?
       li
-        a.change_status href="#" data-id="#{employee.id}" data-status="maintenance" Maintenance
+        a.change_status href="#" data-id="#{employee.id}" data-status="maintenance" data-displayname="#{employee.display_name}" Maintenance
       
     - if not employee.idle?
       li

@@ -11,7 +11,7 @@ gem 'devise-bootstrap-views'
 gem 'pg'
 gem 'slim-rails'
 gem 'route_downcaser'
-gem 'paperclip'
+gem 'paperclip', '4.3.6'
 gem 'aws-sdk', '< 2.0' # Paperclip requires an old version of the ugly Amazon SDK gem
 gem 'paranoia'
 gem 'bootstrap-generators'

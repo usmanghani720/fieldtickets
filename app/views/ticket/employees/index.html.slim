@@ -14,7 +14,7 @@ div#changeEmployeeStatus.modal.fade role="dialog"
         button.close type="button" data-dismiss="modal" &times;
         / form#changeEmployeeStatusForm method='
         = form_tag(ticket_employee_new_status_path(ticket), method: :post) do |f|
-          p When did Emily Langer begin maintenance?
+          p#employee_instructional_text
           div
             input#time_input type="time" name="time"
             |  
@@ -41,6 +41,18 @@ coffee:
   $('.change_status').click (event) ->
     $('#employee_id').val($(event.target).data('id'))
     $('#employee_status').val($(event.target).data('status'))
+    
+    employee_instructional_text = 'When did '
+    employee_instructional_text += $(event.target).data('displayname')
+    employee_instructional_text += ' '
+    employee_instructional_text += switch $(event.target).data('status')
+      when 'on_the_job' then 'go on the job'
+      when 'idle' then 'go idle'
+      when 'transport' then 'begin transport'
+      when 'maintenance' then 'begin maintenance'
+    employee_instructional_text += '?'
+    $('#employee_instructional_text').html(employee_instructional_text)
+    
     date = new Date
     $('#time_input').val(date.toTimeString().substring(0,5))
     time_zone_abbr = date.toString().match(/\(([A-Za-z\s].*)\)/)[1]
