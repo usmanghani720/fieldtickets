@@ -16,7 +16,7 @@
         th Regular Time
         th Overtime
     tbody
-      - @entries.each do | entry |
+      - @entries.each do |entry|
         - entry = entry.decorate
         - pr = entry.decoded_payroll
         tr

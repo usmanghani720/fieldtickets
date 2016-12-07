@@ -49,9 +49,7 @@ class PayrollPeriod < ActiveRecord::Base
   end
   
   def summarized_entries
-    results = valid_entries.
-    
-      unscoped.
+    results = employee_entries.unscope(:order).
       
       select('payroll_category_string, sum(payroll_duration_standard) as payroll_duration_standard, sum(payroll_duration_overtime) as payroll_duration_overtime').
       
