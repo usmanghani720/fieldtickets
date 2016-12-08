@@ -133,7 +133,7 @@ class PayrollPeriod < ActiveRecord::Base
   # Modify Ticket::EmployeeEntries to contain the correct data for payroll
   def calculate!
     # When expanding the application to support multi-week pay periods, this code must be modified
-    minutes_this_week = { total: 0 }
+    minutes_this_week = []
     daily_limit = 8 * 60   # in minutes
     weekly_limit = 40 * 60 # in minutes
 
@@ -142,12 +142,14 @@ class PayrollPeriod < ActiveRecord::Base
     entries.each do |e|
       duration = e.duration || 0
       date = e.payroll_worked_date = e.ticket.first_employee_entry
-      minutes_this_week[date] ||= 0
-      minutes_this_week[date] += duration
-      minutes_this_week[:total] += duration
       
-      overtime_today = minutes_this_week[date] - daily_limit
-      overtime_this_week = minutes_this_week[:total] - weekly_limit
+      minutes_this_week[e.employee_id] ||= { total: 0 }
+      minutes_this_week[e.employee_id][date] ||= 0
+      minutes_this_week[e.employee_id][date] += duration
+      minutes_this_week[e.employee_id][:total] += duration
+      
+      overtime_today = minutes_this_week[e.employee_id][date] - daily_limit
+      overtime_this_week = minutes_this_week[e.employee_id][:total] - weekly_limit
       overtime_max = [overtime_today, overtime_this_week, 0].max
       
       e.payroll_duration_standard = duration - overtime_max
