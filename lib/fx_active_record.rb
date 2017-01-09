@@ -12,7 +12,7 @@ module FxActiveRecord
     when :destroy
       self.model_reference_name + ' was successfully deleted.'
     when :confirm_destroy
-      "Are you sure you want to delete #{self.model_reference_name}?"
+      "Are you sure you want to delete #{self}?"
     else
       raise "FxActiveRecord: flash(param) `#{method}` not found."
     end
