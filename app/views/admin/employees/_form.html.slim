@@ -34,4 +34,6 @@
 
 coffee:
   $ ->
-    $('.disable_autocomplete').hide()
+    setTimeout ( ->
+      $('.disable_autocomplete').hide()
+    ), 1000
