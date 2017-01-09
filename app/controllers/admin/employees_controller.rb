@@ -4,7 +4,7 @@ class Admin::EmployeesController < Admin::BaseController
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all
+    @employees = Employee.all.order(:name)
   end
 
   # GET /employees/1
