@@ -17,9 +17,9 @@
     | <input id="fake_user_name" name="fake_user[name]" style="position:absolute; top:-100px;" type="text" value="Safari Autofill Me">
     | <input id="fake_user_password" name="fake_user[password]" style="position:absolute; top:-100px;" type="password" value="Safari Autofill Me">
 
-    | <input style="/*position:absolute; top:-100px;*/" type="text" name="employee[email]" id="employee_email">
+    | <input style="position:absolute; top:-100px;" type="text" name="employee[email]" id="employee_email">
     = f.input :email
-    | <input style="/*position:absolute; top:-100px;*/" type="password" name="employee[password]" id="employee_password">
+    | <input style="position:absolute; top:-100px;" type="password" name="employee[password]" id="employee_password">
     = f.input :password
                   
   = partial 'autoshow_form_buttons', f: f
