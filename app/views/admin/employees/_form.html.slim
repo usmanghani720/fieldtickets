@@ -3,7 +3,7 @@
 - else
   - url = admin_employees_path
   
-= simple_form_for @employee, url: url, autocomplete: false do |f|
+= simple_form_for @employee, url: url, html: {autocomplete: false} do |f|
   = partial 'error_notification', f: f
 
   .form-inputs
