@@ -21,6 +21,6 @@
           td
             = employee.to_s
           td
-            = employee.role.to_s.titleize
+            = show_model_data employee, :role, false
           td
             = 'Yes' if employee.can_log_in?

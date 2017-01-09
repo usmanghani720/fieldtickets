@@ -62,7 +62,7 @@ module ApplicationHelper
     end
   end
   
-  def show_model_data(object, method)
+  def show_model_data(object, method, show_label = true)
     if object.respond_to?(i18n_method = "#{method}_i18n")
       value = object.send(i18n_method)
     else
@@ -80,8 +80,12 @@ module ApplicationHelper
       label << ':'
     end
     
-    ("<dt>#{label}</dt>" +
-    "<dd>#{value}</dd>").html_safe
+    if show_label
+      ("<dt>#{label}</dt>" +
+      "<dd>#{value}</dd>").html_safe
+    else
+      value
+    end
   end
   
 end

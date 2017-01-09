@@ -32,7 +32,7 @@ en:
 
     employee:
       role:
-        worker: 'Construction Worker'
+        worker: 'Field Employee'
         
     ticket:
       vehicle:
