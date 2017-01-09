@@ -1,9 +1,12 @@
 .disable_autocomplete {
   width: 1px;
   height: 1px;
+  margin-bottom: -1px;
 }
 .disable_autocomplete input {
   width: 1px;
   height: 1px;
   -webkit-appearance: none;
+  border: none;
+  margin-bottom: -1px;
 }
