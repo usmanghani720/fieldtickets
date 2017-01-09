@@ -88,4 +88,8 @@ module ApplicationHelper
     end
   end
   
+  def current_user
+    current_employee
+  end
+  
 end

@@ -54,6 +54,7 @@ class Admin::EmployeesController < Admin::BaseController
   # DELETE /employees/1
   # DELETE /employees/1.json
   def destroy
+    raise 'You can’t delete yourself' if @employee == current_user
     @employee.destroy
     respond_to do |format|
       format.html { redirect_to admin_employees_path, notice: 'Employee was successfully destroyed.' }
