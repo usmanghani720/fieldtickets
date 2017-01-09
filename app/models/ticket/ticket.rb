@@ -24,7 +24,7 @@ class Ticket::Ticket < ActiveRecord::Base
   
   # If the ticket is billed to "Job" or "Cancelled Job", it'll reference the Job here.
   belongs_to :job
-  belongs_to :crew_chief, class_name: '::Employee'
+  belongs_to :crew_chief, -> { with_deleted }, class_name: '::Employee'
   
   has_many :employees
   has_many :employee_entries, through: :employees
