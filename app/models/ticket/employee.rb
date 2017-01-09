@@ -4,7 +4,7 @@ class Ticket::Employee < ActiveRecord::Base
   include TimesheetParent
   
   belongs_to :ticket
-  belongs_to :employee, class_name: '::Employee', -> { with_deleted }
+  belongs_to :employee, -> { with_deleted }, class_name: '::Employee'
   
   validates :employee, uniqueness: { scope: :ticket }
   
