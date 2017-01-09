@@ -57,7 +57,7 @@ class Admin::EmployeesController < Admin::BaseController
     raise 'You can’t delete yourself' if @employee == current_user
     @employee.destroy
     respond_to do |format|
-      format.html { redirect_to admin_employees_path, notice: 'Employee was successfully destroyed.' }
+      format.html { redirect_to admin_employees_path, notice: "#{@employee} was successfully deleted." }
       format.json { head :no_content }
     end
   end
