@@ -37,7 +37,6 @@ input[type=number] {
 .btn-edit, .btn-delete {
   @extend .btn;
   @extend .btn-default;
-  @extend .btn-sm;
 }
 
 .btn-delete:hover {
