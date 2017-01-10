@@ -54,7 +54,7 @@ class Employee < ActiveRecord::Base
   end
   
   def name_searchable
-    self[:name_searchable] = "#{nickname}#{name}#{internal_number}".searchable
+    self[:name_searchable] = display_name.searchable
   end
   
   # Is able to log in (via Devise)?

@@ -1,6 +1,7 @@
 class CreateVehicles < ActiveRecord::Migration
   def change
     create_table :vehicles do |t|
+      t.string :name_searchable
       t.string :internal_number, null: false
       t.string :description
       t.integer :vehicle_type, null: false

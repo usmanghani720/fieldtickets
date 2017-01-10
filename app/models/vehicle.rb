@@ -20,6 +20,10 @@ class Vehicle < ActiveRecord::Base
     the_string
   end
   
+  def name_searchable
+    self[:name_searchable] = to_s.searchable
+  end
+  
   private
   
     def update_ticket_vehicles

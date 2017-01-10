@@ -14,7 +14,15 @@ class Ticket::VehiclesController < Ticket::BaseController
   # Add an Vehicle to this Ticket
   def create
     blank_ticket_vehicle
-    @ticket_vehicle.update(ticket_vehicle_params)
+    @ticket_vehicle.assign_attributes(ticket_vehicle_params)
+    
+    #if not @ticket_vehicle.vehicle
+    #  str = params[:ticket_vehicle][:vehicle].searchable
+    #  employees = Employee.where('name_searchable LIKE ?', "%#{str}%")
+    #  if employees.count == 1
+    #    @ticket_employee.employee = employees[0]
+    #  end
+    #end
     
     if @ticket_vehicle.save
       redirect_to ticket_vehicles_path(@ticket)
