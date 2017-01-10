@@ -208,7 +208,12 @@ class Ticket::Ticket < ActiveRecord::Base
     if self.job
       self.job_name_override = nil
     else
-      self.job_name_override = new_value
+      jobs = Job.where(internal_number: new_value)
+      if jobs.count == 1
+        self.job = jobs[0]
+      else
+        self.job_name_override = new_value
+      end
     end
   end
   
