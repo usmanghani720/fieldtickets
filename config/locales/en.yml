@@ -27,8 +27,8 @@ en:
   enums:
     job:
       pay_rate:
-        day_pay: 'Day Rate'
-        night_pay: 'Night Rate'
+        day_pay: 'Day Shift'
+        night_pay: 'Night Shift'
 
     employee:
       role:
