@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20160605222240) do
   add_index "ticket_vehicles", ["vehicle_id"], name: "index_ticket_vehicles_on_vehicle_id", using: :btree
 
   create_table "vehicles", force: :cascade do |t|
+    t.string   "name_searchable"
     t.string   "internal_number", null: false
     t.string   "description"
     t.integer  "vehicle_type",    null: false

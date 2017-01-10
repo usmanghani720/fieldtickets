@@ -11,6 +11,8 @@ class Vehicle < ActiveRecord::Base
   
   acts_as_paranoid
   
+  before_save :name_searchable
+  
   after_save :update_ticket_vehicles
   
   def to_s
