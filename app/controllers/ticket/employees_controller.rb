@@ -17,7 +17,15 @@ class Ticket::EmployeesController < Ticket::BaseController
   # Add an Employee to this Ticket
   def create
     blank_ticket_employee
-    @ticket_employee.update(ticket_employee_params)
+    @ticket_employee.assign_attributes(ticket_employee_params)
+    
+    if not @ticket_employee.employee
+      str = params[:ticket_employee][:employee].searchable
+      employees = Employee.where('name_searchable LIKE ?', "%#{str}%")
+      if employees.count == 1
+        @ticket_employee.employee = employees[0]
+      end
+    end
     
     if @ticket_employee.save
       redirect_to ticket_employees_path(@ticket)

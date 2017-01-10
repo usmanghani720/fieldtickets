@@ -6,7 +6,7 @@ class Ticket::Employee < ActiveRecord::Base
   belongs_to :ticket
   belongs_to :employee, -> { with_deleted }, class_name: '::Employee'
   
-  validates :employee, uniqueness: { scope: :ticket }
+  validates :employee, uniqueness: { scope: :ticket }, presence: true
   
   has_many :employee_entries
   
@@ -21,7 +21,11 @@ class Ticket::Employee < ActiveRecord::Base
   end
   
   def to_s
-    employee.display_name
+    if employee
+      employee.display_name
+    else
+      ''
+    end
   end
   
 end

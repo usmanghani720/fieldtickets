@@ -6,8 +6,17 @@ class Ticket::BaseController < ApplicationController
   # Generic updating method, works with all Ticket pages
   def update
     set_ticket
+    @ticket.assign_attributes(ticket_params)
     
-    if @ticket.update(ticket_params)
+    if params[:ticket_ticket] and params[:ticket_ticket][:crew_chief_id].blank? and not params[:ticket_ticket][:crew_chief].blank?
+      str = params[:ticket_ticket][:crew_chief].searchable
+      employees = Employee.where('name_searchable LIKE ?', "%#{str}%")
+      if employees.count == 1
+        @ticket.crew_chief = employees[0]
+      end
+    end
+    
+    if @ticket.save
       redirect_to :back, notice: 'Your changes have been saved.'
     else
       render_previous

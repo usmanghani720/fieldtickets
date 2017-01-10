@@ -1,3 +1,5 @@
+require 'fx_string'
+
 class Employee < ActiveRecord::Base
   include CreatedBy
   include DisplayName
@@ -52,7 +54,7 @@ class Employee < ActiveRecord::Base
   end
   
   def name_searchable
-    self[:name_searchable] = "#{nickname}#{name}#{internal_number}".downcase.gsub(/[^a-z0-9]/, '')
+    self[:name_searchable] = "#{nickname}#{name}#{internal_number}".searchable
   end
   
   # Is able to log in (via Devise)?
