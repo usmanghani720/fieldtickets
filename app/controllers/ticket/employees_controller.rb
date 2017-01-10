@@ -42,10 +42,10 @@ class Ticket::EmployeesController < Ticket::BaseController
   
   # Add a new EmployeeEntry to change an Employee's status
   def create_status
-    timezone = if params[:time_zone] == 'eastern'
-      ActiveSupport::TimeZone.new('Eastern Time (US & Canada)')
-    elsif params[:time_zone] == 'central'
+    timezone = if params[:time_zone] == 'central'
       ActiveSupport::TimeZone.new('Central Time (US & Canada)')
+    else
+      ActiveSupport::TimeZone.new('Eastern Time (US & Canada)')      
     end
     
     old_timezone = Chronic.time_class
