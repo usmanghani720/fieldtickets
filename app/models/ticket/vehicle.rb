@@ -3,7 +3,7 @@ class Ticket::Vehicle < ActiveRecord::Base
   include DisplayName
   include TimesheetParent
 
-  after_save :send_mail_about_faulty_vehicle
+  #after_save :send_mail_about_faulty_vehicle
 
 
   belongs_to :ticket
@@ -14,7 +14,7 @@ class Ticket::Vehicle < ActiveRecord::Base
   validates :vehicle, presence: true, if: :company?
   validates :vehicle, uniqueness: { scope: :ticket }, if: :company?
 
-  #validates :mileage, presence: true
+  validates :mileage, presence: true
   
   #validates :manual_description, presence: true, unless: :company?
   #validates :manual_description, uniqueness: { scope: :ticket }, unless: :company?
@@ -162,7 +162,8 @@ class Ticket::Vehicle < ActiveRecord::Base
   enum chains_binders_serviceable: {chains_binders_serviceable_yes: 0, chains_binders_serviceable_no: 1}
 
   def send_mail_about_faulty_vehicle
-    Ticket::VehicleMailer.ticket_approval_email(this) if check_if_any_issue_with_vehicle == true
+    debugger
+    Ticket::CustomerMailer.ticket_approval_email(@ticket).deliver_later if check_if_any_issue_with_vehicle == true
   end
 
   def check_if_any_issue_with_vehicle

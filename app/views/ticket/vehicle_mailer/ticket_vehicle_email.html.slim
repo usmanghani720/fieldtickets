@@ -1,0 +1,30 @@
+h2
+  | Vehicle for ticket has been added
+
+h3
+  | External Side Mirrors
+
+.table-responsive
+  table.table.table-striped
+    thead
+      tr
+        th Fault
+        th Value
+        th Description
+    tbody
+        tr
+          td 
+          	p
+          		| Broken or cracked?
+          td
+            - if @ticket_vehicle.mirror_broken.present? &&  @ticket_vehicle.mirror_broken == 'mirror_broken_yes'
+            	p
+	  				| Yes
+          td      	 
+			- if @ticket_vehicle.mirror_broken_explanation.present?
+				p
+	 				| = @ticket_vehicle.mirror_broken_explanation
+p
+  | Black Rock Milling
+  br
+  | (813) 251-MILL
