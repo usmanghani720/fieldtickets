@@ -7,14 +7,399 @@
 
   .form-inputs
   
+    = f.input :crew_chief, collection: Employee.where(role: [2, 3]), input_html: { multiple: false}
+
+    = f.input :driver, collection: Employee.all , input_html: { multiple: false}
+
     = f.input :ownership
   
     = f.input :vehicle, url: autocomplete_vehicle_display_name_tickets_path, as: :autocomplete, id_element: '#vehicle_id', wrapper_html: { style: (@ticket_vehicle.company? ? '' : 'display:none') }, input_html: { data: { 'auto-focus' => true } }
     = f.hidden_field :vehicle_id, id: 'vehicle_id'
 
-    = f.input :manual_description, wrapper_html: { style: (!@ticket_vehicle.company? ? '' : 'display:none') }
+    /= f.input :manual_description, wrapper_html: { style: (!@ticket_vehicle.company? ? '' : 'display:none') }
     
     = f.input :mileage
+
+    h4
+      | Driver and Passenger Sides
+
+    h5
+      | External Side Mirrors
+
+    = f.input :mirror_broken, as: :button_radio, collection: [:mirror_broken_yes, :mirror_broken_no]
+
+    = f.input :mirror_broken_explanation, :label => 'Description'
+
+    = f.input :mirror_working, as: :button_radio, collection: [:mirror_working_yes, :mirror_working_no]
+
+    = f.input :mirror_working_explanation, :label => 'Description'
+
+    = f.input :mirror_placed, as: :button_radio, collection: [:mirror_placed_yes, :mirror_placed_no]
+
+    = f.input :mirror_placed_explanation, :label => 'Description'
+
+    h5
+      | Tires
+
+    = f.input :tires_inflated
+
+    = f.input :tires_properly_inflated, as: :button_radio, collection: [:tires_properly_inflated_yes, :tires_properly_inflated_no]
+
+    = f.input :tires_properly_inflated_explanation, :label => 'Description'
+
+    = f.input :tires_tread, as: :button_radio, collection: [:tires_tread_yes, :tires_tread_no]
+
+    = f.input :tires_tread_explanation, :label => 'Description'
+
+    h5
+      | Windows
+
+    = f.input :windows_broken, as: :button_radio, collection: [:windows_broken_yes, :windows_broken_no]
+
+    = f.input :windows_broken_explanation, :label => 'Description'
+
+    = f.input :windows_missing, as: :button_radio, collection: [:windows_missing_yes, :windows_missing_no]
+
+    = f.input :windows_missing_explanation, :label => 'Description', :label => 'Description'
+
+    h5
+      | Side Doors
+
+    = f.input :doors_broken, as: :button_radio, collection: [:doors_broken_yes, :doors_broken_no]
+
+    = f.input :doors_broken_explanation, :label => 'Description'
+
+    = f.input :doors_dented, as: :button_radio, collection: [:doors_dented_yes, :doors_dented_no]
+
+    = f.input :doors_dented_explanation, :label => 'Description'
+
+    = f.input :doors_latched, as: :button_radio, collection: [:doors_latched_yes, :doors_latched_no]
+
+    = f.input :doors_latched_explanation, :label => 'Description'
+
+    h5
+      | Brakes
+
+    = f.input :brakes_worn, as: :button_radio, collection: [:brakes_worn_yes, :brakes_worn_no]
+
+    = f.input :brakes_worn_explanation, :label => 'Description'
+
+    = f.input :brakes_missing, as: :button_radio, collection: [:brakes_missing_yes, :brakes_missing_no]
+
+    = f.input :brakes_missing_explanation, :label => 'Description'
+
+    = f.input :brakes_damaged, as: :button_radio, collection: [:brakes_damaged_yes, :brakes_damaged_no]
+
+    = f.input :brakes_damaged_explanation, :label => 'Description'
+
+    h5
+      | Fifth Wheel
+
+    = f.input :fifth_wheel_locked, as: :button_radio, collection: [:fifth_wheel_locked_yes, :fifth_wheel_locked_no]
+
+    = f.input :fifth_wheel_locked_explanation, :label => 'Description'
+
+    = f.input :fifth_wheel_greased, as: :button_radio, collection: [:fifth_wheel_greased_yes, :fifth_wheel_greased_no]
+
+    = f.input :fifth_wheel_greased_explanation, :label => 'Description'
+
+    = f.input :fifth_wheel_abnormal, as: :button_radio, collection: [:fifth_wheel_abnormal_yes, :fifth_wheel_abnormal_no]
+
+    = f.input :fifth_wheel_abnormal_explanation, :label => 'Description'
+
+    h5
+      | Hoses
+
+    = f.input :hoses_secured, as: :button_radio, collection: [:hoses_secured_yes, :hoses_secured_yes]
+
+    = f.input :hoses_secured_explanation, :label => 'Description'
+
+    = f.input :hoses_hanging, as: :button_radio, collection: [:hoses_hanging_yes, :hoses_hanging_no]
+
+    = f.input :hoses_hanging_explanation, :label => 'Description'
+
+    = f.input :hoses_leaks, as: :button_radio, collection: [:hoses_leaks_yes, :hoses_leaks_no]
+
+    = f.input :hoses_leaks_explanation, :label => 'Description'
+
+    = f.input :hoses_wear, as: :button_radio, collection: [:hoses_wear_yes, :hoses_wear_no]
+
+    = f.input :hoses_wear_explanation, :label => 'Description'
+
+    h5
+      | Flags
+
+    = f.input :flags_secured, as: :button_radio, collection: [:flags_secured_yes, :flags_secured_no]
+
+    = f.input :flags_secured_explanation, :label => 'Description'
+
+    = f.input :flags_serviceable, as: :button_radio, collection: [:flags_serviceable_yes, :flags_serviceable_no]
+
+    = f.input :flags_serviceable_explanation, :label => 'Description'
+
+    h4
+      | Rear of Vehicle
+
+    h5
+      | Bumper
+
+    = f.input :rear_bumper_loose, as: :button_radio, collection: [:rear_bumper_loose_yes, :rear_bumper_loose_no]
+    
+    = f.input :rear_bumper_loose_explanation, :label => 'Description'
+
+    = f.input :rear_bumper_missing, as: :button_radio, collection: [:rear_bumper_missing_yes, :rear_bumper_missing_no]
+
+    = f.input :rear_bumper_missing_explanation, :label => 'Description'
+
+    = f.input :rear_bumper_damaged, as: :button_radio, collection: [:rear_bumper_damaged_yes, :rear_bumper_damaged_no]
+
+    = f.input :rear_bumper_damaged_explanation, :label => 'Description'
+
+    h5
+      | License Plate
+
+    = f.input :license_plate_dirty, as: :button_radio, collection: [:license_plate_dirty_yes, :license_plate_dirty_no]
+
+    = f.input :license_plate_dirty_explanation, :label => 'Description'
+
+    = f.input :license_plate_attached, as: :button_radio, collection: [:license_plate_attached_yes, :license_plate_attached_no]
+
+    = f.input :license_plate_attached_explanation, :label => 'Description'
+
+    = f.input :license_plate_sticker, as: :button_radio, collection: [:license_plate_sticker_yes, :license_plate_sticker_no]
+
+    = f.input :license_plate_sticker_explanation, :label => 'Description'
+
+    h5
+      | Truck Bed
+
+    = f.input :truck_bed_tire, as: :button_radio, collection: [:truck_bed_tire_present, :truck_bed_tire_damaged, :truck_bed_tire_missing]
+
+    = f.input :truck_bed_tire_explanation, :label => 'Description'
+
+    = f.input :truck_bed_jack, as: :button_radio, collection: [:truck_bed_jack_present, :truck_bed_jack_damaged, :truck_bed_jack_missing]
+
+    = f.input :truck_bed_jack_explanation, :label => 'Description'
+
+    = f.input :truck_bed_wrench, as: :button_radio, collection: [:truck_bed_wrench_present, :truck_bed_wrench_damaged, :truck_bed_wrench_missing]
+
+    = f.input :truck_bed_wrench_explanation, :label => 'Description'
+
+    = f.input :truck_bed_debris, as: :button_radio, collection: [:truck_bed_debris_yes, :truck_bed_debris_no]
+
+    = f.input :truck_bed_debris_explanation, :label => 'Description'
+
+    = f.input :truck_bed_tools, as: :button_radio, collection: [:truck_bed_tools_yes, :truck_bed_tools_no]
+
+    = f.input :truck_bed_tools_explanation, :label => 'Description'
+
+    = f.input :truck_bed_clean, as: :button_radio, collection: [:truck_bed_clean_yes, :truck_bed_clean_no]
+
+    = f.input :truck_bed_clean_explanation, :label => 'Description'
+
+    h5
+      | Brake Lights
+
+    = f.input :brake_lights_working, as: :button_radio, collection: [:brake_lights_working_yes, :brake_lights_working_no]
+
+    = f.input :brake_lights_working_explanation, :label => 'Description'
+
+    h5
+      | Rear Window
+
+    = f.input :rear_window_broken, as: :button_radio, collection: [:rear_window_broken_yes, :rear_window_broken_no]
+
+    = f.input :rear_window_broken_explanation, :label => 'Description'
+
+    = f.input :rear_window_missing, as: :button_radio, collection: [:rear_window_missing_yes, :rear_window_missing_no]
+
+    = f.input :rear_window_missing_explanation, :label => 'Description'
+
+    = f.input :rear_window_clean, as: :button_radio, collection: [:rear_window_clean_yes, :rear_window_clean_no]
+
+    = f.input :rear_window_clean_explanation, :label => 'Description'
+
+    h5
+      | Air Bags/Air Lines
+
+    = f.input :air_bags_leaks, as: :button_radio, collection: [:air_bags_leaks_yes, :air_bags_leaks_no]
+
+    = f.input :air_bags_leaks_explanation, :label => 'Description'
+
+    h4
+      | Front of Vehicle
+
+    h5
+      | Headlights
+
+    = f.input :headlights_brights_working, as: :button_radio, collection: [:headlights_brights_working_yes, :headlights_brights_working_no]
+
+    = f.input :headlights_brights_working_explanation, :label => 'Description'
+
+    = f.input :headlights_low_beams_working, as: :button_radio, collection: [:headlights_low_beams_working_yes, :headlights_low_beams_working_no]
+
+    = f.input :headlights_low_beams_working_explanation, :label => 'Description'
+
+    h5
+      | Turn Signals
+
+    = f.input :turn_signals_working, as: :button_radio, collection: [:turn_signals_working_yes, :turn_signals_working_no]
+
+    = f.input :turn_signals_working_explanation, :label => 'Description'
+
+    h5
+      | Bumper
+
+    = f.input :front_bumper_attached, as: :button_radio, collection: [:front_bumper_attached_yes, :front_bumper_attached_no]
+
+    = f.input :front_bumper_attached_explanation, :label => 'Description'
+
+    h5
+      | WindShield
+
+    = f.input :windshield_broken, as: :button_radio, collection: [:windshield_broken_yes, :windshield_broken_no]
+
+    = f.input :windshield_broken_explanation, :label => 'Description'
+
+    = f.input :windshield_missing, as: :button_radio, collection: [:windshield_missing_yes, :windshield_missing_no]
+
+    = f.input :windshield_missing_explanation, :label => 'Description'
+
+    = f.input :windshield_clean, as: :button_radio, collection: [:windshield_clean_yes, :windshield_clean_no]
+
+    = f.input :windshield_clean_explanation, :label => 'Description'
+
+    h5
+      | Wiper Blades
+
+    = f.input :wiper_blades_broken, as: :button_radio, collection: [:wiper_blades_broken_yes, :wiper_blades_broken_no]
+
+    = f.input :wiper_blades_broken_explanation, :label => 'Description'
+
+    = f.input :wiper_blades_working, as: :button_radio, collection: [:wiper_blades_working_yes, :wiper_blades_working_no]
+
+    = f.input :wiper_blades_working_explanation, :label => 'Description'
+
+    h4
+      | Interior
+
+    h5
+      | Overall Interior
+
+    = f.input :overall_interior_clean, as: :button_radio, collection: [:overall_interior_clean_yes, :overall_interior_clean_no]
+
+    = f.input :overall_interior_clean_explanation, :label => 'Description'
+
+    h5
+      | Parking Brake
+
+    = f.input :parking_brake_working, as: :button_radio, collection: [:parking_brake_working_yes, :parking_brake_working_no]
+
+    = f.input :parking_brake_working_explanation, :label => 'Description'
+
+    h5
+      | Horn
+
+    = f.input :horn_working, as: :button_radio, collection: [:horn_working_yes, :horn_working_no]
+
+    = f.input :horn_working_explanation, :label => 'Description'
+
+    h5
+      | Seat Belts
+
+    = f.input :seat_belts_working, as: :button_radio, collection: [:seat_belts_working_yes, :seat_belts_working_no]
+
+    = f.input :seat_belts_working_explanation, :label => 'Description'
+
+    = f.input :seat_belts_frayed, as: :button_radio, collection: [:seat_belts_frayed_yes, :seat_belts_frayed_no]
+
+    = f.input :seat_belts_frayed_explanation, :label => 'Description'
+
+    = f.input :seat_belts_cut, as: :button_radio, collection: [:seat_belts_cut_yes, :seat_belts_cut_no]
+
+    = f.input :seat_belts_cut_explanation, :label => 'Description'
+
+    = f.input :seat_belts_torn, as: :button_radio, collection: [:seat_belts_torn_yes, :seat_belts_torn_no]
+
+    = f.input :seat_belts_torn_explanation, :label => 'Description'
+
+    = f.input :seat_belts_snagged, as: :button_radio, collection: [:seat_belts_snagged_yes, :seat_belts_snagged_no]
+
+    = f.input :seat_belts_snagged_explanation, :label => 'Description'
+
+    = f.input :seat_belts_roping, as: :button_radio, collection: [:seat_belts_roping_yes, :seat_belts_roping_no]
+
+    = f.input :seat_belts_roping_explanation, :label => 'Description'
+
+    h5
+      | Gauges
+
+    = f.input :gauges_working, as: :button_radio, collection: [:gauges_working_yes, :gauges_working_no]
+
+    = f.input :gauges_working_explanation, :label => 'Description'
+
+    h5
+      | Rearview Mirror
+
+    = f.input :rearview_mirror_placed, as: :button_radio, collection: [:rearview_mirror_placed_yes, :rearview_mirror_placed_no]
+
+    = f.input :rearview_mirror_placed_explanation, :label => 'Description'
+
+    = f.input :rearview_mirror_working, as: :button_radio, collection: [:rearview_mirror_working_yes, :rearview_mirror_working_no]
+
+    = f.input :rearview_mirror_working_explanation, :label => 'Description'
+
+    = f.input :rearview_mirror_clean, as: :button_radio, collection: [:rearview_mirror_clean_yes, :rearview_mirror_clean_no]
+
+    = f.input :rearview_mirror_clean_explanation, :label => 'Description'
+
+    h5
+      | Registration
+
+    = f.input :registration_present, as: :button_radio, collection: [:registration_present_yes, :registration_present_no]
+
+    = f.input :registration_present_explanation, :label => 'Description'
+
+    = f.input :registration_current, as: :button_radio, collection: [:registration_current_yes, :registration_current_no]
+
+    = f.input :registration_current_explanation, :label => 'Description'
+
+    h4
+      | Maintenance
+
+    h5
+      | Fluids
+
+    = f.input :fluids_add, as: :button_radio, collection: [:fluids_add_yes, :fluids_add_no]
+
+    = f.input :fluids_add_explanation, :label => 'Description'
+
+
+    h5
+      | Deficiences Corrected
+
+    = f.input :deficiences_corrected, as: :button_radio, collection: [:deficiences_corrected_yes, :deficiences_corrected_no]
+
+    = f.input :deficiences_corrected_explanation
+
+    h4
+      | If Required
+
+    h5
+      | Permits and Paperwork
+
+    = f.input :permits_paperwork_present, as: :button_radio, collection: [:permits_paperwork_present_yes, :permits_paperwork_present_no]
+
+    = f.input :permits_paperwork_current, as: :button_radio, collection: [:permits_paperwork_current_yes, :permits_paperwork_current_no]
+
+    h5
+      | Chains and Binders
+
+    = f.input :chains_binders_present, as: :button_radio, collection: [:chains_binders_present_yes, :chains_binders_present_no]
+
+    = f.input :chains_binders_serviceable, as: :button_radio, collection: [:chains_binders_serviceable_yes, :chains_binders_serviceable_no]
+
+
             
   = partial 'autoshow_form_buttons', f: f
 
@@ -37,3 +422,15 @@ coffee:
     # Handle hiding/showing BRM Job #
     $('form :input').change ->
       show_hide_manual_description()
+
+  $ ->
+    $('select#ticket_vehicle_crew_chief').select2()
+
+ $ ->
+    $('select#ticket_vehicle_driver').select2()
+
+ $ ->
+    $('select#ticket_vehicle_ownership').select2()
+
+
+    

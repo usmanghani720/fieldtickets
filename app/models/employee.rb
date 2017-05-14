@@ -1,6 +1,10 @@
 require 'fx_string'
 
 class Employee < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, 
+         :recoverable, :rememberable, :trackable, :validatable
   include CreatedBy
   include DisplayName
   

@@ -24,6 +24,8 @@
 //= require bootstrap/dropdown
 //= require bootstrap
   
+//= require select2
+
 //= require rails.validations
 //= require rails.validations.simple_form
 
@@ -35,3 +37,4 @@
 //= require app/autoshow-form-buttons
 //= require app/best-in-place-activate
 //= require ticket/approval
+//= require_tree .

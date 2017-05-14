@@ -31,6 +31,14 @@ class ButtonRadioInput < SimpleForm::Inputs::CollectionRadioButtonsInput
       translations = object.class.send("#{attribute_name.to_s.pluralize}_i18n")
       label = item.send(label_method)
       label = translations[label]
+      if label.present?
+        label = 'Yes' if label.include? 'Yes'
+        label = 'No' if label.include? 'No'
+        label = 'Present' if label.include? 'Present'
+        label = 'Damaged' if label.include? 'Damaged'
+        label = 'Missing' if label.include? 'Missing'
+        label = '' if label.include? 'Explanation'
+      end
       active = ''
       active = ' active' if
           # out =~ / active/ ||
@@ -51,7 +59,7 @@ class ButtonRadioInput < SimpleForm::Inputs::CollectionRadioButtonsInput
       checked_attribute = ' checked="checked"'unless active.empty?
       
       out << <<-HTML
-        <label class="#{btn} #{active}">    
+        <label class="#{btn}#{active}">    
           <input type="radio" value="#{value}" name="#{html_name}"#{checked_attribute}>#{label}</input>
         </label>
 HTML

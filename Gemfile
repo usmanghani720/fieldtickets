@@ -46,6 +46,10 @@ gem 'sinatra'
 gem 'sidekiq'
 gem 'redis'
 
+gem "select2-rails"
+
+gem 'activeadmin', github: 'activeadmin'
+
 
 
 

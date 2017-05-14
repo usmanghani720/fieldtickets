@@ -2,3 +2,13 @@
   color: red;
   cursor: help;
 }
+
+.hide_text_field{
+  display: none;
+}
+
+.select2-container--default .select2-selection--single{
+	height: 35px !important;
+	padding-left: 2px;
+	padding-top: 2px;
+}

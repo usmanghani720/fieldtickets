@@ -102,4 +102,4 @@ Ticket::Ticket.create!([
 #     status: "idle", created_at: Time.parse("2016-05-15 4:30:00")
 #   },
 # ])
-# 
+# Employee.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
