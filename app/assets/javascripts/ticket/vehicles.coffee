@@ -754,7 +754,7 @@
     $('input:radio[name="ticket_vehicle[fluids_add]"]').change ->
         if $(this).val().indexOf('yes') >= 0
             $('input:radio[name="ticket_vehicle[fluids_add]"]:not(:checked)').parent().css("background-color", "white")
-            $('input:radio[name="ticket_vehicle[fluids_add]"]:checked').parent().css("background-color", "red")
+            $('input:radio[name="ticket_vehicle[fluids_add]"]:checked').parent().css("background-color", "green")
             $('.ticket_vehicle_fluids_add_explanation').show()
         else
             $('input:radio[name="ticket_vehicle[fluids_add]"]:not(:checked)').parent().css("background-color", "white")
@@ -765,7 +765,7 @@
     $('input:radio[name="ticket_vehicle[deficiences_corrected]"]').change ->
         if $(this).val().indexOf('yes') >= 0
             $('input:radio[name="ticket_vehicle[deficiences_corrected]"]:not(:checked)').parent().css("background-color", "white")
-            $('input:radio[name="ticket_vehicle[deficiences_corrected]"]:checked').parent().css("background-color", "red")
+            $('input:radio[name="ticket_vehicle[deficiences_corrected]"]:checked').parent().css("background-color", "green")
             $('.ticket_vehicle_deficiences_corrected_explanation').show()
         else
             $('input:radio[name="ticket_vehicle[deficiences_corrected]"]:not(:checked)').parent().css("background-color", "white")

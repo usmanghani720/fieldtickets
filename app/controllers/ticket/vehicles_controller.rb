@@ -1,6 +1,5 @@
 class Ticket::VehiclesController < Ticket::BaseController
-  before_action :set_vehicle, only: [:show, :create_status, :edit_status, :update_status, :delete_status, :new_refuel, :create_refuel, :display_inspection_form]
-  
+  before_action :set_vehicle, only: [:show, :create_status, :edit_status, :update_status, :delete_status, :new_refuel, :create_refuel]
   
   # Show the Vehicles on this Ticket
   def index
@@ -25,7 +24,7 @@ class Ticket::VehiclesController < Ticket::BaseController
     end
     
     if @ticket_vehicle.save
-      #Ticket::VehicleMailer.ticket_vehicle_email(@ticket_vehicle).deliver_now if check_if_any_issue_with_vehicle(@ticket_vehicle) == true
+      Ticket::VehicleMailer.ticket_vehicle_email(@ticket_vehicle).deliver_now if check_if_any_issue_with_vehicle(@ticket_vehicle) == true
       redirect_to ticket_vehicles_path(@ticket)
     else
       render :new
@@ -38,6 +37,7 @@ class Ticket::VehiclesController < Ticket::BaseController
     @entries_deleted = @vehicle.entries.only_deleted
     @new_entry = Ticket::VehicleEntry.new
   end
+  
   
   # Add a new VehicleEntry to change an Vehicle's status
   def create_status
@@ -67,11 +67,6 @@ class Ticket::VehiclesController < Ticket::BaseController
     #flash[:notice] = "#{@vehicle} marked ‘#{params[:status].titleize}’"
   end
 
-  def display_inspection_form
-    @vehicle
-    #render partial: '_display_inspection_form'
-  end
-  
   
   # Show the form to edit a status
   def edit_status

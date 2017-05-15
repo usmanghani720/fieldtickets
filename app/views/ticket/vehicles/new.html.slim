@@ -41,7 +41,7 @@
     h5
       | Tires
 
-    = f.input :tires_inflated
+    = f.input :tires_inflated, :label => 'Inflated to (PSI)'
 
     = f.input :tires_properly_inflated, as: :button_radio, collection: [:tires_properly_inflated_yes, :tires_properly_inflated_no]
 

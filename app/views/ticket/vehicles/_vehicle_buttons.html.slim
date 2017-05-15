@@ -13,8 +13,6 @@
         |  since 
         = hide_today_in_date(vehicle.time)
 
-    li = link_to 'View Inspection Form', ticket_vehicle_display_form_path(ticket, vehicle)
-
     li = link_to 'View timesheet…', ticket_vehicle_log_path(ticket, vehicle)
     
     li = link_to 'Refuel…', ticket_vehicle_refuel_path(ticket, vehicle)
