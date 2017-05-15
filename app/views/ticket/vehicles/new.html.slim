@@ -415,13 +415,26 @@ coffee:
         $('#ticket_vehicle_manual_description').parent().parent().slideDown()
         $('#ticket_vehicle_manual_description').focus()
 
+  check_input_other_than_radio_option = () ->
+
+
   $ ->
     # Focus
     show_hide_manual_description()
 
     # Handle hiding/showing BRM Job #
-    # $('form :input').change ->
-      # show_hide_manual_description()
+
+    $('#ticket_vehicle_vehicle').change ->
+        show_hide_manual_description()
+
+    $('#ticket_vehicle_manual_description').change ->
+        show_hide_manual_description()
+
+    $('#ticket_vehicle_mileage').change ->
+        show_hide_manual_description()
+
+    $('select').select2().on 'change', (e) ->
+        show_hide_manual_description()
 
   $ ->
     $('select#ticket_vehicle_crew_chief').select2()

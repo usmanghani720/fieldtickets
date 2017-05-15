@@ -14,6 +14,8 @@ class Ticket::Vehicle < ActiveRecord::Base
 
   validates :mileage, presence: true
 
+  validates :crew_chief, presence: true
+  validates :driver, presence: true
   validates :mirror_broken, presence: true
   validates :mirror_working, presence: true
   validates :mileage, presence: true
@@ -81,10 +83,14 @@ class Ticket::Vehicle < ActiveRecord::Base
   validates :registration_current, presence: true
   validates :fluids_add, presence: true
   validates :deficiences_corrected, presence: true
+  validates :permits_paperwork_present, presence: true
+  validates :permits_paperwork_current, presence: true
+  validates :chains_binders_present, presence: true
+  validates :chains_binders_serviceable, presence: true
 
 
-  #validates :manual_description, presence: true, unless: :company?
-  #validates :manual_description, uniqueness: { scope: :ticket }, unless: :company?
+  validates :manual_description, presence: true, unless: :company?
+  validates :manual_description, uniqueness: { scope: :ticket }, unless: :company?
   
   enum ownership: { company: 0, employee: 1, rental: 2 }
 
