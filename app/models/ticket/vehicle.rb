@@ -14,79 +14,79 @@ class Ticket::Vehicle < ActiveRecord::Base
 
   validates :mileage, presence: true
 
-  # validates :crew_chief, presence: true
-  # validates :driver, presence: true
-  # validates :mirror_broken, presence: true
-  # validates :mirror_working, presence: true
-  # validates :mileage, presence: true
-  # validates :mirror_placed, presence: true
-  # validates :tires_inflated, presence: true
-  # validates :tires_properly_inflated, presence: true
-  # validates :tires_tread, presence: true
-  # validates :windows_broken, presence: true
-  # validates :windows_missing, presence: true
-  # validates :doors_broken, presence: true
-  # validates :doors_dented, presence: true
-  # validates :doors_latched, presence: true
-  # validates :brakes_worn, presence: true
-  # validates :brakes_missing, presence: true
-  # validates :brakes_damaged, presence: true
-  # validates :fifth_wheel_locked, presence: true
-  # validates :fifth_wheel_greased, presence: true
-  # validates :fifth_wheel_abnormal, presence: true
-  # validates :hoses_secured, presence: true
-  # validates :hoses_hanging, presence: true
-  # validates :hoses_leaks, presence: true
-  # validates :hoses_wear, presence: true
-  # validates :flags_secured, presence: true
-  # validates :flags_serviceable, presence: true
-  # validates :rear_bumper_loose, presence: true
-  # validates :rear_bumper_missing, presence: true
-  # validates :rear_bumper_damaged, presence: true
-  # validates :license_plate_dirty, presence: true
-  # validates :license_plate_attached, presence: true
-  # validates :license_plate_sticker, presence: true
-  # validates :truck_bed_tire, presence: true
-  # validates :truck_bed_jack, presence: true
-  # validates :truck_bed_wrench, presence: true
-  # validates :truck_bed_debris, presence: true
-  # validates :truck_bed_tools, presence: true
-  # validates :truck_bed_clean, presence: true
-  # validates :brake_lights_working, presence: true
-  # validates :rear_window_broken, presence: true
-  # validates :rear_window_missing, presence: true
-  # validates :rear_window_clean, presence: true
-  # validates :air_bags_leaks, presence: true
-  # validates :headlights_brights_working, presence: true
-  # validates :headlights_low_beams_working, presence: true
-  # validates :turn_signals_working, presence: true
-  # validates :front_bumper_attached, presence: true
-  # validates :windshield_broken, presence: true
-  # validates :windshield_missing, presence: true
-  # validates :windshield_clean, presence: true
-  # validates :wiper_blades_broken, presence: true
-  # validates :wiper_blades_working, presence: true
-  # validates :overall_interior_clean, presence: true
-  # validates :parking_brake_working, presence: true
-  # validates :horn_working, presence: true
-  # validates :seat_belts_working, presence: true
-  # validates :seat_belts_frayed, presence: true
-  # validates :seat_belts_cut, presence: true
-  # validates :seat_belts_torn, presence: true
-  # validates :seat_belts_snagged, presence: true
-  # validates :seat_belts_roping, presence: true
-  # validates :gauges_working, presence: true
-  # validates :rearview_mirror_placed, presence: true
-  # validates :rearview_mirror_working, presence: true
-  # validates :rearview_mirror_clean, presence: true
-  # validates :registration_present, presence: true
-  # validates :registration_current, presence: true
-  # validates :fluids_add, presence: true
-  # validates :deficiences_corrected, presence: true
-  # validates :permits_paperwork_present, presence: true
-  # validates :permits_paperwork_current, presence: true
-  # validates :chains_binders_present, presence: true
-  # validates :chains_binders_serviceable, presence: true
+  validates :crew_chief, presence: true
+  validates :driver, presence: true
+  validates :mirror_broken, presence: true
+  validates :mirror_working, presence: true
+  validates :mileage, presence: true
+  validates :mirror_placed, presence: true
+  validates :tires_inflated, presence: true
+  validates :tires_properly_inflated, presence: true
+  validates :tires_tread, presence: true
+  validates :windows_broken, presence: true
+  validates :windows_missing, presence: true
+  validates :doors_broken, presence: true
+  validates :doors_dented, presence: true
+  validates :doors_latched, presence: true
+  validates :brakes_worn, presence: true
+  validates :brakes_missing, presence: true
+  validates :brakes_damaged, presence: true
+  validates :fifth_wheel_locked, presence: true
+  validates :fifth_wheel_greased, presence: true
+  validates :fifth_wheel_abnormal, presence: true
+  validates :hoses_secured, presence: true
+  validates :hoses_hanging, presence: true
+  validates :hoses_leaks, presence: true
+  validates :hoses_wear, presence: true
+  validates :flags_secured, presence: true
+  validates :flags_serviceable, presence: true
+  validates :rear_bumper_loose, presence: true
+  validates :rear_bumper_missing, presence: true
+  validates :rear_bumper_damaged, presence: true
+  validates :license_plate_dirty, presence: true
+  validates :license_plate_attached, presence: true
+  validates :license_plate_sticker, presence: true
+  validates :truck_bed_tire, presence: true
+  validates :truck_bed_jack, presence: true
+  validates :truck_bed_wrench, presence: true
+  validates :truck_bed_debris, presence: true
+  validates :truck_bed_tools, presence: true
+  validates :truck_bed_clean, presence: true
+  validates :brake_lights_working, presence: true
+  validates :rear_window_broken, presence: true
+  validates :rear_window_missing, presence: true
+  validates :rear_window_clean, presence: true
+  validates :air_bags_leaks, presence: true
+  validates :headlights_brights_working, presence: true
+  validates :headlights_low_beams_working, presence: true
+  validates :turn_signals_working, presence: true
+  validates :front_bumper_attached, presence: true
+  validates :windshield_broken, presence: true
+  validates :windshield_missing, presence: true
+  validates :windshield_clean, presence: true
+  validates :wiper_blades_broken, presence: true
+  validates :wiper_blades_working, presence: true
+  validates :overall_interior_clean, presence: true
+  validates :parking_brake_working, presence: true
+  validates :horn_working, presence: true
+  validates :seat_belts_working, presence: true
+  validates :seat_belts_frayed, presence: true
+  validates :seat_belts_cut, presence: true
+  validates :seat_belts_torn, presence: true
+  validates :seat_belts_snagged, presence: true
+  validates :seat_belts_roping, presence: true
+  validates :gauges_working, presence: true
+  validates :rearview_mirror_placed, presence: true
+  validates :rearview_mirror_working, presence: true
+  validates :rearview_mirror_clean, presence: true
+  validates :registration_present, presence: true
+  validates :registration_current, presence: true
+  validates :fluids_add, presence: true
+  validates :deficiences_corrected, presence: true
+  validates :permits_paperwork_present, presence: true
+  validates :permits_paperwork_current, presence: true
+  validates :chains_binders_present, presence: true
+  validates :chains_binders_serviceable, presence: true
 
 
   validates :manual_description, presence: true, unless: :company?
