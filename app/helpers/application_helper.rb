@@ -91,5 +91,9 @@ module ApplicationHelper
   def current_user
     current_employee
   end
+
+  def title(page_title)
+    content_for :title, page_title.to_s
+  end
   
 end

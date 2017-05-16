@@ -1,5 +1,5 @@
 class Ticket::VehiclesController < Ticket::BaseController
-  before_action :set_vehicle, only: [:show, :create_status, :edit_status, :update_status, :delete_status, :new_refuel, :create_refuel]
+  before_action :set_vehicle, only: [:show, :create_status, :edit_status, :update_status, :delete_status, :new_refuel, :create_refuel, :display_inspection_form]
   
   # Show the Vehicles on this Ticket
   def index
@@ -30,12 +30,15 @@ class Ticket::VehiclesController < Ticket::BaseController
       render :new
     end
   end
-  
   # Show the timeclock log
   def show
     @entries = @vehicle.entries.decorate
     @entries_deleted = @vehicle.entries.only_deleted
     @new_entry = Ticket::VehicleEntry.new
+  end
+
+  def display_inspection_form
+    render partial: 'inspection_form', locals: {vehicle: @vehicle}, layout: 'layouts/application'
   end
   
   
