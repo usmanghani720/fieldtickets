@@ -1,0 +1,15 @@
+#vehicle_form {
+  // NEW
+
+  .control-label {
+    @extend .col-sm-6
+  }
+
+  .control-field {
+    @extend .col-sm-6
+  }
+
+  .control-field-offset {
+    @extend .col-sm-offset-6
+  }
+}

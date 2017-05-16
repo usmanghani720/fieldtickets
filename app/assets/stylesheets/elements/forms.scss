@@ -88,3 +88,17 @@ input[type=number] {
 .form-actions input[type="submit"] {
   margin-right: 15px;
 }
+
+// NEW
+
+.control-label {
+  @extend .col-sm-3
+}
+
+.control-field {
+  @extend .col-sm-9
+}
+
+.control-field-offset {
+  @extend .col-sm-offset-3
+}
